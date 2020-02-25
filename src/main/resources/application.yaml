@@ -11,5 +11,7 @@ spring:
       - id: monolith
         uri: http://fmtok8s-monolith/
         predicates:
-        - Path=/**
+        - Path=/monolith/**
+        filters:
+          - RewritePath=/monolith/(?<id>.*), /$\{id}
 
