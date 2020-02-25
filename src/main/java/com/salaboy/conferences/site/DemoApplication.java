@@ -34,11 +34,11 @@ class ConferenceSiteController {
         return "Site v" + version;
     }
 
-    private static final String CONFERENCE_C4P = "http://fmtok8s-conference-c4p";
+    private static final String CONFERENCE_C4P = "http://fmtok8s-c4p";
 
-    private static final String CONFERENCE_EMAIL = "http://fmtok8s-conference-email";
+    private static final String CONFERENCE_EMAIL = "http://fmtok8s-email";
 
-    private static final String CONFERENCE_AGENDA = "http://fmtok8s-conference-agenda";
+    private static final String CONFERENCE_AGENDA = "http://fmtok8s-agenda";
 
     @GetMapping("/")
     public String index(Model model) {
