@@ -9,7 +9,7 @@ spring:
         filters:
           - RewritePath=/new/c4p/(?<id>.*), /$\{id}
       - id: monolith
-          uri: http://fmtok8s-monolith/
-          predicates:
-            - Path=/**
+        uri: http://fmtok8s-monolith/
+        predicates:
+        - Path=/**
 
