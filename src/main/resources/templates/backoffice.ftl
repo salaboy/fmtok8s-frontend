@@ -29,7 +29,7 @@
     <div class="container">
 
         <h1>KubeCon- Back Office</h1>
-        <h2>V${version} <img src="kubecon.png" width="7%"/></h2>
+        <h2>V${version} <img src="kubecon-logo.png" width="7%"/></h2>
         <h4><a href="/">Main Site</a></h4>
 
     </div>

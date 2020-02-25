@@ -8,10 +8,4 @@ spring:
         - Path=/new/c4p/**
         filters:
           - RewritePath=/new/c4p/(?<id>.*), /$\{id}
-      - id: monolith
-        uri: http://fmtok8s-monolith/
-        predicates:
-        - Path=/monolith/**
-        filters:
-          - RewritePath=/monolith/(?<id>.*), /$\{id}
 
