@@ -26,7 +26,7 @@ import static org.junit.Assert.assertTrue;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 @AutoConfigureMockMvc
 @AutoConfigureJsonTesters
-@AutoConfigureStubRunner(stubsMode = StubRunnerProperties.StubsMode.LOCAL, ids = "com.salaboy.conferences:fmtok8s-c4p")
+@AutoConfigureStubRunner(stubsMode = StubRunnerProperties.StubsMode.REMOTE,repositoryRoot = "http://nexus-jx.35.195.82.183.nip.io/repository/maven-group/" ,ids = "com.salaboy.conferences:fmtok8s-c4p")
 @DirtiesContext
 public class C4PApisTests {
 
