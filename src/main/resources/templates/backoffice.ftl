@@ -119,7 +119,7 @@
         });
         console.log(data);
         xhr.send(data);
-        window.location.href = "/";
+        window.location.href = "/backoffice";
 
     }
 
@@ -133,7 +133,7 @@
         });
         console.log(data);
         xhr.send(data);
-        window.location.href = "/";
+        window.location.href = "/backoffice";
 
     }
 
