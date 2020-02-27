@@ -54,26 +54,25 @@ public class C4PApisTests {
         assertTrue(response.getBody().startsWith("C4P v"));
 
     }
-//
-//    @Test
-//    public void shouldReturnProposalWithIdWhenAProposalIsCreated() throws IOException {
-//
-//        RestTemplate restTemplate = new RestTemplate();
-//        HttpHeaders headers = new HttpHeaders();
-//        headers.setContentType(MediaType.APPLICATION_JSON);
-//
-//        HttpEntity<Proposal> proposalHttpEntity = new HttpEntity<>(new Proposal("test title", "test abstract"), headers);
-//
-//
-//        ResponseEntity<Proposal> response = restTemplate.exchange("http://localhost:" + this.producerPort + "/", HttpMethod.POST, proposalHttpEntity,
-//                Proposal.class);
-//
-//        assertEquals(200, response.getStatusCodeValue());
-//        assertEquals("test title", response.getBody().getTitle());
-//        assertEquals("test abstract", response.getBody().getDescription());
-//        assertNotEquals("", response.getBody().getId());
-//
-//    }
+
+    @Test
+    public void shouldReturnProposalWithIdWhenAProposalIsCreated() throws IOException {
+
+        RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        HttpEntity<String> proposalHttpEntity = new HttpEntity<>("{ \"title\" : \"test title\", \"description\" : \"test description\", \"author\": \"salaboy\", \"email\": \"salaboy@mail.com\" }", headers);
+
+
+        ResponseEntity<String> response = restTemplate.exchange("http://localhost:" + this.producerPort + "/", HttpMethod.POST, proposalHttpEntity,
+                String.class);
+
+        assertEquals(200, response.getStatusCodeValue());
+        assertTrue(response.getBody().contains("\"id\":"));
+
+
+    }
 
 
 }
