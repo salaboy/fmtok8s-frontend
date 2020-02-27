@@ -27,11 +27,9 @@
 <!-- Add your site or application content here -->
 <div class="block conference">
     <div class="container">
-
-        <h1>KubeCon- Back Office</h1>
-        <h2>V${version} <img src="kubecon-logo.png" width="10%"/></h2>
-        <h4><a href="/">Main Site</a></h4>
-
+        <h1>KubeCon- Back Office <img src="kubecon-logo.png" width="8%"/></h1>
+        <h2>V${version} </h2><h4><a href="/">Main Site</a></h4>
+        <br/>
     </div>
 </div>
 <div class="bottom-blocks">
