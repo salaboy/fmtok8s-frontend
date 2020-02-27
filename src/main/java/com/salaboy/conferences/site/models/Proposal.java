@@ -9,6 +9,11 @@ public class Proposal {
     private boolean approved = false;
     private ProposalStatus status = ProposalStatus.PENDING;
 
+    public Proposal(String title, String description) {
+        this.title = title;
+        this.description = description;
+    }
+
     public Proposal(String id, String title, String description, boolean approved, ProposalStatus status) {
         this.id = id;
         this.title = title;

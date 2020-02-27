@@ -92,9 +92,7 @@ class ConferenceSiteController {
             model.addAttribute("agendaItems", agendaItems.getBody());
         }
 
-        if (proposals != null) {
-            model.addAttribute("proposals", proposals.getBody());
-        }
+
         return "index";
     }
 
@@ -133,6 +131,10 @@ class ConferenceSiteController {
         model.addAttribute("c4pURL", CONFERENCE_C4P);
         model.addAttribute("email", emailInfo);
         model.addAttribute("c4p", c4pInfo);
+
+        if (proposals != null) {
+            model.addAttribute("proposals", proposals.getBody());
+        }
 
         return "backoffice";
     }
