@@ -82,6 +82,28 @@
             <h2>${email}</h2>
 
             <h4>Send Email Reminder</h4>
+            <#if !sent>
+                <div class="block-form">
+                    <div class="form-field">
+                        <label>Title</label>
+                        <input id="title" type="text">
+                    </div>
+                    <div class="form-field">
+                        <label>To</label>
+                        <input id="toEmail" type="text">
+                    </div>
+
+                    <div class="form-field">
+                        <label>Content</label>
+                        <textarea id="content"></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" onclick="sendEmail()">Send</button>
+                    </div>
+                </div>
+            <#else>
+                <h5> Email Sent. </h5>
+            </#if>
 
         </div>
     </div>
@@ -92,20 +114,20 @@
 <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.4.1.min.js"><\/script>')</script>
 <script src="js/plugins.js"></script>
 <script type="text/javascript">
-    // $(document).ready(function () {
-    //     setInterval(function () {
-    //         window.location = window.location;
-    //     }, 3000);
-    // });
 
-    function refreshOn() {
-        // setInterval(function () {
-        //     window.location = window.location;
-        // }, 3000);
-    }
-
-    function refreshOff() {
-
+    function sendEmail(){
+        console.log("sending email");
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/email/", true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        var data = JSON.stringify({
+            title: document.getElementById("title").value,
+            toEmail: document.getElementById("toEmail").value,
+            content: document.getElementById("content").value,
+        });
+        console.log(data);
+        xhr.send(data);
+        window.location.href = "/backoffice?sent=true";
     }
 
     function approveProposal(id) {

@@ -94,7 +94,7 @@ class ConferenceSiteController {
     }
 
     @GetMapping("/backoffice")
-    public String backoffice(Model model) {
+    public String backoffice(@RequestParam(name = "sent", required = false, defaultValue = "false") boolean sent, Model model) {
         String emailInfo = "N/A";
         String c4pInfo = "N/A";
 
@@ -125,6 +125,7 @@ class ConferenceSiteController {
         model.addAttribute("c4pURL", C4P_SERVICE);
         model.addAttribute("email", emailInfo);
         model.addAttribute("c4p", c4pInfo);
+        model.addAttribute("sent", sent);
 
         if (proposals != null) {
             model.addAttribute("proposals", proposals.getBody());
