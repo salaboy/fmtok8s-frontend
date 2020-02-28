@@ -63,6 +63,7 @@
                 </div>
                 <#else>
                     <h5> Thanks for your submission. The committee will evaluate your proposal and notify you soon. </h5>
+                    <img src="https://lh3.googleusercontent.com/proxy/aez-tCdkMofydPVsyNKQ8WMNlZSuNhFJhHu4mdy7hDdXudLC5nD1yxXfRcU9VsolYpjvTU1yS5AGaluIU5Vl6ggGFhD5-k_dlYkDh9DWF3QjQeFcK3DzorvRpJ4M-1P-wrb6iOZnbhlwTlb1vz-LJqF7eLviJqRlnFM"></img>
                 </#if>
             </div>
 
