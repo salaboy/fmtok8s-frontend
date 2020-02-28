@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
@@ -34,58 +35,54 @@ class ConferenceSiteController {
         return "Site v" + version;
     }
 
-    private static final String CONFERENCE_C4P = "http://fmtok8s-c4p";
+    @Value("${C4P_SERVICE:http://fmtok8s-c4p}")
+    private String C4P_SERVICE;
 
-    private static final String CONFERENCE_EMAIL = "http://fmtok8s-email";
+    @Value("${EMAIL_SERVICE:http://fmtok8s-email}")
+    private String EMAIL_SERVICE;
 
-    private static final String CONFERENCE_AGENDA = "http://fmtok8s-agenda";
+    @Value("${AGENDA_SERVICE:http://fmtok8s-agenda}")
+    private String AGENDA_SERVICE;
+
+    private RestTemplate restTemplate = new RestTemplate();
 
     @GetMapping("/")
-    public String index(Model model) {
+    public String index(@RequestParam(name = "submitted", required = false, defaultValue = "false") boolean submitted, Model model) {
 
-        RestTemplate restTemplate = new RestTemplate();
 
         String agendaInfo = "N/A";
         String c4pInfo = "N/A";
 
         try {
-            ResponseEntity<String> agenda = restTemplate.getForEntity(CONFERENCE_AGENDA + "/info", String.class);
+            ResponseEntity<String> agenda = restTemplate.getForEntity(AGENDA_SERVICE + "/info", String.class);
             agendaInfo = agenda.getBody();
 
         } catch (Exception e) {
             e.printStackTrace();
         }
         try {
-            ResponseEntity<String> sponsors = restTemplate.getForEntity(CONFERENCE_C4P + "/info", String.class);
+            ResponseEntity<String> sponsors = restTemplate.getForEntity(C4P_SERVICE + "/info", String.class);
             c4pInfo = sponsors.getBody();
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-
         ResponseEntity<List<AgendaItem>> agendaItems = null;
 
         try {
-            agendaItems = restTemplate.exchange(CONFERENCE_AGENDA, HttpMethod.GET, null, new ParameterizedTypeReference<List<AgendaItem>>() {
+            agendaItems = restTemplate.exchange(AGENDA_SERVICE, HttpMethod.GET, null, new ParameterizedTypeReference<List<AgendaItem>>() {
             });
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        ResponseEntity<List<Proposal>> proposals = null;
-
-        try {
-            proposals = restTemplate.exchange(CONFERENCE_C4P, HttpMethod.GET, null, new ParameterizedTypeReference<List<Proposal>>() {
-            });
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
         model.addAttribute("version", version);
         model.addAttribute("agenda", agendaInfo);
-        model.addAttribute("c4pURL", CONFERENCE_C4P);
-        model.addAttribute("agendaURL", CONFERENCE_AGENDA);
+        model.addAttribute("c4pURL", C4P_SERVICE);
+        model.addAttribute("agendaURL", AGENDA_SERVICE);
         model.addAttribute("c4p", c4pInfo);
+        model.addAttribute("submitted", submitted);
 
 
         if (agendaItems != null) {
@@ -98,14 +95,11 @@ class ConferenceSiteController {
 
     @GetMapping("/backoffice")
     public String backoffice(Model model) {
-        RestTemplate restTemplate = new RestTemplate();
-
-
         String emailInfo = "N/A";
         String c4pInfo = "N/A";
 
         try {
-            ResponseEntity<String> email = restTemplate.getForEntity(CONFERENCE_EMAIL + "/info", String.class);
+            ResponseEntity<String> email = restTemplate.getForEntity(EMAIL_SERVICE + "/info", String.class);
             emailInfo = email.getBody();
         } catch (Exception e) {
             e.printStackTrace();
@@ -114,21 +108,21 @@ class ConferenceSiteController {
         ResponseEntity<List<Proposal>> proposals = null;
 
         try {
-            proposals = restTemplate.exchange(CONFERENCE_C4P, HttpMethod.GET, null, new ParameterizedTypeReference<List<Proposal>>() {
+            proposals = restTemplate.exchange(C4P_SERVICE, HttpMethod.GET, null, new ParameterizedTypeReference<List<Proposal>>() {
             });
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         try {
-            ResponseEntity<String> sponsors = restTemplate.getForEntity(CONFERENCE_C4P + "/info", String.class);
+            ResponseEntity<String> sponsors = restTemplate.getForEntity(C4P_SERVICE + "/info", String.class);
             c4pInfo = sponsors.getBody();
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         model.addAttribute("version", version);
-        model.addAttribute("c4pURL", CONFERENCE_C4P);
+        model.addAttribute("c4pURL", C4P_SERVICE);
         model.addAttribute("email", emailInfo);
         model.addAttribute("c4p", c4pInfo);
 

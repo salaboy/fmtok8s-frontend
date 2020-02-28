@@ -38,7 +38,8 @@
             <h2>${c4p}</h2>
 
             <div class="block-col">
-                <h4>New Proposal (Public)</h4>
+                <h4>New Proposal</h4>
+                <#if !submitted>
                 <div class="block-form">
                     <div class="form-field">
                         <label>Title</label>
@@ -60,6 +61,9 @@
                         <button type="submit" onclick="submitProposal()">Submit</button>
                     </div>
                 </div>
+                <#else>
+                    <h5> Thanks for your submission. The committee will evaluate your proposal and notify you soon. </h5>
+                </#if>
             </div>
 
         </div>
@@ -91,21 +95,6 @@
 <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.4.1.min.js"><\/script>')</script>
 <script src="js/plugins.js"></script>
 <script type="text/javascript">
-    // $(document).ready(function () {
-    //     setInterval(function () {
-    //         window.location = window.location;
-    //     }, 3000);
-    // });
-
-    function refreshOn() {
-        // setInterval(function () {
-        //     window.location = window.location;
-        // }, 3000);
-    }
-
-    function refreshOff() {
-
-    }
 
     function submitProposal() {
         var xhr = new XMLHttpRequest();
@@ -119,7 +108,7 @@
         });
         console.log(data);
         xhr.send(data);
-        window.location.href = "/";
+        window.location.href = "/?submitted=true";
     }
 </script>
 
