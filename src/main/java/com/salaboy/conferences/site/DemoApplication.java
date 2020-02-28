@@ -47,8 +47,15 @@ class ConferenceSiteController {
     private RestTemplate restTemplate = new RestTemplate();
 
     @GetMapping("/")
-    public String index(@RequestParam(name = "submitted", required = false, defaultValue = "false") boolean submitted, Model model) {
+    public String index(@RequestParam(name = "submitted", required = false, defaultValue = "false") boolean submitted,
+                        @RequestParam(name = "errorMsg", required = false, defaultValue = "") String errorMsg,
+                        Model model) {
 
+        String requiredFields = "The following fields are required: ";
+        if (!errorMsg.equals("")) {
+            requiredFields += errorMsg.substring(0, errorMsg.length()-1);
+            model.addAttribute("required", requiredFields);
+        }
 
         String agendaInfo = "N/A";
         String c4pInfo = "N/A";
@@ -83,6 +90,8 @@ class ConferenceSiteController {
         model.addAttribute("agendaURL", AGENDA_SERVICE);
         model.addAttribute("c4p", c4pInfo);
         model.addAttribute("submitted", submitted);
+
+
 
 
         if (agendaItems != null) {

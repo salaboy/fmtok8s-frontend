@@ -38,31 +38,35 @@
             <h2>${c4p}</h2>
 
             <div class="block-col">
+                <#if required??>
+                <h4>${required}</h4>
+                </#if>
                 <h4>New Proposal</h4>
                 <#if !submitted>
-                <div class="block-form">
-                    <div class="form-field">
-                        <label>Title</label>
-                        <input id="title" type="text">
+                    <div class="block-form">
+                        <div class="form-field">
+                            <label>Title</label>
+                            <input id="title" type="text">
+                        </div>
+                        <div class="form-field">
+                            <label>Author</label>
+                            <input id="author" type="text">
+                        </div>
+                        <div class="form-field">
+                            <label>Email</label>
+                            <input id="email" type="text">
+                        </div>
+                        <div class="form-field">
+                            <label>Abstract</label>
+                            <textarea id="description"></textarea>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" onclick="submitProposal()">Submit</button>
+                        </div>
                     </div>
-                    <div class="form-field">
-                        <label>Author</label>
-                        <input id="author" type="text">
-                    </div>
-                    <div class="form-field">
-                        <label>Email</label>
-                        <input id="email" type="text">
-                    </div>
-                    <div class="form-field">
-                        <label>Abstract</label>
-                        <textarea id="description"></textarea>
-                    </div>
-                    <div class="form-actions">
-                        <button type="submit" onclick="submitProposal()">Submit</button>
-                    </div>
-                </div>
                 <#else>
-                    <h5> Thanks for your submission. The committee will evaluate your proposal and notify you soon. </h5>
+                    <h5> Thanks for your submission. The committee will evaluate your proposal and notify you
+                        soon. </h5>
                 </#if>
             </div>
 
@@ -99,16 +103,34 @@
     function submitProposal() {
         var xhr = new XMLHttpRequest();
         xhr.open("POST", "/c4p/", true);
-        xhr.setRequestHeader('Content-Type', 'application/json');
-        var data = JSON.stringify({
-            author: document.getElementById("author").value,
-            email: document.getElementById("email").value,
-            title: document.getElementById("title").value,
-            description: document.getElementById("description").value
-        });
-        console.log(data);
-        xhr.send(data);
-        window.location.href = "/?submitted=true";
+        var errorMsg = "errorMsg=";
+        if(document.getElementById("author").value == ""){
+            errorMsg += "author,"
+        }
+        if(document.getElementById("email").value == ""){
+            errorMsg += "email,"
+        }
+        if(document.getElementById("title").value == ""){
+            errorMsg += "title,"
+        }
+        if(document.getElementById("description").value == ""){
+            errorMsg += "description,"
+        }
+
+        if(errorMsg == "errorMsg=") {
+            var data = JSON.stringify({
+                author: document.getElementById("author").value,
+                email: document.getElementById("email").value,
+                title: document.getElementById("title").value,
+                description: document.getElementById("description").value
+            });
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            console.log(data);
+            xhr.send(data);
+            window.location.href = "/?submitted=true";
+        }else{
+            window.location.href = "/?"+errorMsg;
+        }
     }
 </script>
 
