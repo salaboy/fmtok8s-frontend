@@ -9,6 +9,7 @@ image:
 
 # define environment variables here as a map of key: value
 env:
+  JAVA_OPTIONS: '-Xmx512m'
 
 # enable this flag to use knative serve to deploy the app
 knativeDeploy: false
@@ -53,10 +54,10 @@ service:
     fabric8.io/ingress.annotations: "kubernetes.io/ingress.class: nginx"
 resources:
   limits:
-    cpu: 750m
+    cpu: 1
     memory: 768Mi
   requests:
-    cpu: 500m
+    cpu: 750m
     memory: 512Mi
 probePath: /actuator/health
 livenessProbe:
