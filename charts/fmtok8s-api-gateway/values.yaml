@@ -9,7 +9,7 @@ image:
 
 # define environment variables here as a map of key: value
 env:
-  JAVA_OPTIONS: '-Xmx512m'
+  JAVA_OPTIONS: '-Xmx512m -Xms10m -XX:+UnlockExperimentalVMOptions -Dsun.zip.disableMemoryMapping=true -XX:+UseParallelGC -XX:MinHeapFreeRatio=5 -XX:MaxHeapFreeRatio=10 -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90'
 
 # enable this flag to use knative serve to deploy the app
 knativeDeploy: false
