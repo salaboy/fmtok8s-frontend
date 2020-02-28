@@ -1,7 +1,7 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: agenda
+  name: fmtok8s-agenda
 spec:
   type: ExternalName
   # Target service DNS name

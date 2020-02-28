@@ -1,7 +1,7 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: c4p
+  name: fmtok8s-c4p
 spec:
   type: ExternalName
   # Target service DNS name
