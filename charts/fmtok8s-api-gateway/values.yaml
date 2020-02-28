@@ -9,7 +9,7 @@ image:
 
 # define environment variables here as a map of key: value
 env:
-  JAVA_OPTIONS: '-Xmx512m -Xms10m -XX:+UnlockExperimentalVMOptions -Dsun.zip.disableMemoryMapping=true -XX:+UseParallelGC -XX:MinHeapFreeRatio=5 -XX:MaxHeapFreeRatio=10 -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90'
+  JAVA_OPTS: '-XX:+PrintFlagsFinal -XX:+UnlockExperimentalVMOptions -Dsun.zip.disableMemoryMapping=true -XX:+UseParallelGC -XX:MinHeapFreeRatio=5 -XX:MaxHeapFreeRatio=10 -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90'
 
 # enable this flag to use knative serve to deploy the app
 knativeDeploy: false
@@ -55,10 +55,10 @@ service:
 resources:
   limits:
     cpu: 1
-    memory: 768Mi
+    memory: 1768Mi
   requests:
     cpu: 750m
-    memory: 512Mi
+    memory: 1024Mi
 probePath: /actuator/health
 livenessProbe:
   initialDelaySeconds: 60
