@@ -28,7 +28,7 @@
 <div class="block conference">
     <div class="container">
         <h1>KubeCon <img src="kubecon-logo.png" width="8%"/></h1>
-        <h2>V${version} </h2><h4><a href="/backoffice">Access Back Office</a></h4>
+        <h2><a href="https://github.com/salaboy/fmtok8s-api-gateway/releases/tag/v${version}">v${version}</a> </h2><h4><a href="/backoffice">Access Back Office</a></h4>
         <br/>
     </div>
 </div>
