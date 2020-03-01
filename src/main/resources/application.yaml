@@ -14,4 +14,8 @@ spring:
         - Path=/email/**
         filters:
           - RewritePath=/email/(?<id>.*), /$\{id}
-
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "gateway"

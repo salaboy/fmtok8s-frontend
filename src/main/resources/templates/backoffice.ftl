@@ -79,6 +79,15 @@
                             <div class="item-list__data">
                                 16:00 <br/>
                                 <#--                                    Author: ${proposal.author}-->
+                                <#if proposal.approved>
+                                    <div class="item-list__status__approved">
+                                        Approved
+                                    </div>
+                                <#else>
+                                    <div class="item-list__status__declined">
+                                        Declined
+                                    </div>
+                                </#if>
                             </div>
                             <#if proposal.status?? && proposal.status == "PENDING">
                                 <div class="item-list__actions">
@@ -89,6 +98,7 @@
                                         Reject
                                     </a>
                                 </div>
+
                             </#if>
 
                             </li>
