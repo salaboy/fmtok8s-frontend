@@ -65,7 +65,7 @@
                                     ${item.title}
                                 </div>
                                 <div class="item-list__description">
-                                    ${item.description}
+<#--                                    ${item.description}-->
                                 </div>
                                 <div class="item-list__data">
                                     ${item.talkTime?string('HH:mm')} <br/>
@@ -172,7 +172,7 @@
             </div>
         </div>
         <div class="modal__content__action">
-            <a href="" onclick="submitProposal()" class="button">Send</a>
+            <a onclick="submitProposal()" class="button">Send</a>
         </div>
     </div>
     <div class="modal__overlay" onclick="toggleModal()"></div>
