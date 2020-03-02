@@ -11,6 +11,12 @@
    Base styles: opinionated defaults
    ========================================================================== */
 
+ :root {
+   --main-color: #F16D8F;
+   --main-color-hover: #BC4563;
+   --main-text-color: #FFF;
+ }
+
 html, body {
   color: #0D1F3C;
   font-size: 1em;
@@ -21,33 +27,75 @@ html, body {
   position: relative;
   width: 100%;
   overflow: hidden;
-  border: 1px solid #FFF;
-  border-bottom: 2px solid #FFF;
+
   box-sizing: border-box;
+  background-color: #E7E7EA;
+}
+body.backoffice {
+  background-color: #212222;
+}
+
+body.backoffice .block.header {
+  border-bottom: 1px solid #39393b;
+}
+
+body.backoffice h2, body.backoffice .agenda .agenda__day .agenda__day__info {
+  color: #FFF;
+}
+
+body.backoffice .agenda .agenda__day .agenda__day__content {
+  padding-right: 250px;
+  max-width: 50%;
+  min-width: 500px;
 }
 
 h1, h2 {
-  font-weight: 500;
+  font-weight: 300;
   margin: 0;
   padding: 0;
 }
 
 h1 {
-  font-size: 50px;
+  font-size: 25px;
   line-height: 55px;
 }
 h2 {
-  font-size: 30px;
+  font-size: 40px;
   line-height: 40px;
 }
+.button-layer {
+  position: absolute;
+  z-index: 100;
+  bottom: 0;
+  right: 0;
+  padding: 50px;
+}
+
+.button-layer .main-button {
+  height: 60px;
+  font-size: 20px;
+  font-weight: 400;
+  display: inline-block;
+  padding: 0 25px;
+  line-height: 60px;
+  text-decoration: none;
+  border-radius: 5px;
+  color: var(--main-text-color);
+  background-color: var(--main-color);
+  box-shadow: 0 15px 15px -15px rgba(0,0,0,.5);
+  position: relative;
+  cursor: pointer;
+}
+.button-layer .main-button:hover {
+  background-color: var(--main-color-hover);
+}
+
 
 .container {
   padding: 80px;
 }
 .block {
 
-  border: 2px solid #FFF;
-  background-color: #eee;
   position: relative;
   overflow-y: scroll;
 
@@ -75,29 +123,78 @@ h2 {
   border-radius: 5px;
 
 }
-.block.conference {
-  height: 30vh;
-  background-color: #91DDFF;
+.block.header {
+  height: 80px;
+  color: #FFF;
+
+  display: flex;
+  background-color: #212222;
+}
+
+.block.header .header__image {
+  padding: 20px;
+}
+.block.header .header__title {
+  line-height: 80px;
+  min-width: 50%;
+}
+
+.block.header .header__title h1{
+  line-height: 80px;
+}
+
+.block.header .header__title h1 span{
+  font-size: 15px;
+}
+
+.block.header .header__options {
+  text-align: right;
+  width: 100%;
+  padding: 0 20px;
+  line-height: 80px;
+}
+.block.header .header__options a {
+  color: #FFF;
+}
+
+
+
+.bottom-blocks {
+  height: calc(100vh - 80px);
+  padding: 40px 0;
+  overflow-y: auto;
+}
+.main-title {
+  padding: 20px 100px 40px;
+}
+.agenda {
+  margin-bottom: 150px;
+}
+.agenda .agenda__day {
+  display: flex;
+  margin: 10px 0;
 
 }
-.bottom-blocks {
-  display: flex;
+.agenda .agenda__day .agenda__day__info {
+  width: 100px;
+  min-width: 100px;
+  text-align: center;
+  opacity: .6;
 }
-.block.block-left {
-  width: 70vw;
-  height: 70vh;
-  background-color: #F0DE98;
+
+.agenda .agenda__day .agenda__day__info .agenda__day__info__number {
+  font-size: 40px;
+  font-weight: 300;
 }
-.block.block-right {
-  width: 30vw;
-  height: 70vh;
-  background-color: #FCA87C;
+.agenda .agenda__day .agenda__day__content {
+  width: 100%;
+  padding-right: 80px;
 }
 
 
 .item-list {
   list-style-type: none;
-  margin: 20px 0;
+  margin: 0;
   padding: 0;
   width: 100%;
 }
@@ -106,10 +203,27 @@ h2 {
   display: block;
 
   background-color: #FFF;
-  padding: 15px 20px;
-  margin-bottom: 5px;
-  border-radius: 5px;
+  padding: 40px;
+  margin-bottom: 10px;
+  border-radius: 10px;
   position: relative;
+}
+
+.item-list > li.pending{
+  /* background-color: #D2D3D3; */
+  background-color: #212222;
+  color: #FFF;
+  border: 1px solid #6A6C6C;
+}
+.item-list > li.declined{
+  background-color: #333;
+  color: #FFF;
+  border: 1px solid #333;
+
+}
+
+.item-list > li.declined > .item-list__title, .item-list > li.declined > .item-list__description {
+    opacity: .3;
 }
 
 .item-list > li > .item-list__title {
@@ -119,17 +233,18 @@ h2 {
   max-width: 80%;
 }
 
-.item-list > li > .item-list__author {
+.item-list > li > .item-list__description {
   opacity: .5;
-  font-size: 14px;
+  font-size: 15px;
+  max-width: 70%;
 }
 
-.item-list > li > .item-list__status {
+.item-list > li > .item-list__data {
   position: absolute;
   right: 20px;
   top: 15px;
-  opacity: .5;
-  font-size: 12px;
+  color:#919090;
+  font-size: 15px;
   text-transform: uppercase;
   text-align: right;
 
@@ -145,8 +260,8 @@ h2 {
   content: "";
   border-bottom: 2px solid #12B981;
   border-left: 2px solid #12B981;
-  left: -20px;
-  top: 3px;
+  left: -5px;
+  top: 5px;
   height: 4px;
   width: 10px;
   display: inline-block;
@@ -165,8 +280,8 @@ h2 {
   content: "";
   border-bottom: 2px solid #D84A4A;
   border-left: 2px solid #D84A4A;
-  left: -20px;
-  top: 7px;
+  left: 5px;
+  top: 9px;
   height: 0px;
   width: 8px;
   display: inline-block;
@@ -177,8 +292,8 @@ h2 {
   content: "";
   border-bottom: 2px solid #D84A4A;
   border-left: 2px solid #D84A4A;
-  left: -20px;
-  top: 7px;
+  left: 5px;
+  top: 9px;
   height: 0px;
   width: 8px;
   display: inline-block;
@@ -188,111 +303,201 @@ h2 {
 
 
 .item-list > li > .item-list__actions {
-  text-align: right;
+  position: absolute;
+  right: -110px;
+  width: 100px;
+  top: 0;
 }
 
 .item-list > li > .item-list__actions a {
-  font-size: 14px;
-
-  display: inline-block;
-  padding: 5px 10px;
+  font-size: 15px;
+  display: block;
+  padding: 10px;
   border-radius: 5px;
   color: #000;
   text-decoration: none;
-  border: 1px solid rgba(0,0,0,.2);
-  color: #333;
+  border: 1px solid #D2D3D3;
+  color: #D2d3d3;
+  cursor: pointer;
+  margin-bottom: 5px;
+  text-align: center;
 }
 .item-list > li > .item-list__actions a:hover {
   box-shadow: 0 2px 4px rgba(0,0,0,.2);
-  color: #000;
+}
+.item-list > li > .item-list__actions a.item-list__actions__accept {
+  color: #12B981;
+  border-color: #12B981;
+}
+
+.item-list > li > .item-list__actions a.item-list__actions__reject {
+  color: #D84A4A;
+  border-color: #D84A4A;
 }
 .item-list > li > .item-list__actions a.item-list__actions__accept:hover {
-  color: #12B981;
+  color: #FFF;
+  background-color: #12B981;
 }
 
 .item-list > li > .item-list__actions a.item-list__actions__reject:hover {
-  color: #D84A4A;
-}
-
-
-.block-form {
-  padding: 40px;
-  background-color: rgba(0,0,0,.5);
   color: #FFF;
-  border-radius: 5px;
+  background-color: #D84A4A;
 }
 
-.block-form {
 
+
+
+.modal {
+  position: absolute;
+  z-index: 200;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  right: 0;
+  display: none;
 }
-
-.block-form .form-field {
-  margin-bottom: 10px;
-}
-
-.block-form .form-field > label {
-  font-size: 12px;
-  font-weight: bold;
+.modal.open {
   display: block;
+}
+.modal .modal__overlay {
+  background-color: #000;
   opacity: .8;
-  text-transform: uppercase;
-  margin-bottom: 3px;
+  position: absolute;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  right: 0;
+  cursor: pointer;
 }
 
-.block-form .form-field > input, .block-form .form-field > textarea {
+.modal .modal__content {
+  background-color: #FFF;
+  width: 600px;
+  margin: 0 80px 80px;
+
+  border-radius: 0 0px 10px 10px;
+  position: absolute;
+  z-index: 20;
+  top: 0;
+  left: 50%;
+  margin-left: -300px;
+  display: inline-block;
+  box-sizing: border-box;
+
+}
+
+.modal .modal__content .modal__content__title {
+  padding: 20px 20px;
+  font-size: 25px;
+  border-bottom: 1px solid rgba(0,0,0,.2);
+  position: relative;
+}
+.modal .modal__content .modal__content__title .close {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  cursor: pointer;
+  font-size: 15px;
+  text-transform: uppercase;
+}
+.modal .modal__content .modal__content__body {
+  padding: 40px 20px;
+  color: #666;
+  border-bottom: 1px solid rgba(0,0,0,.2);
+}
+
+.modal .modal__content .modal__content__body_hidden {
+
+  display: none;
+}
+
+.modal .modal__content .modal__content__message {
+  padding: 80px;
+  color: #666;
+  text-align: center;
+  font-size: 20px;
+}
+
+.modal .modal__content .modal__content__message_hidden {
+  display: none;
+}
+
+.modal .modal__content .modal__content__message a{
+  color: var(--main-color);
+  cursor: pointer;
+}
+.modal .modal__content .modal__content__message a:hover{
+  text-decoration: underline;
+  color: var(--main-color-hover);
+}
+
+.modal .modal__content .modal__content__action {
+  padding: 20px 20px;
+
+}
+
+.modal .modal__content .modal__content__action_hidden {
+  display: none;
+
+}
+
+.modal .modal__content .modal__content__action .button {
+  height: 40px;
+  font-size: 15px;
+  text-transform: uppercase;
+  font-weight: 400;
+  display: inline-block;
+  padding: 0 25px;
+  line-height: 40px;
+  text-decoration: none;
+  border-radius: 5px;
+  color: var(--main-text-color);
+  background-color: var(--main-color);
+  position: relative;
+}
+
+.modal .modal__content .modal__content__action .button:hover {
+  background-color: var(--main-color-hover);
+}
+
+.form {
+  font-size: 0;
+}
+.form .form-field {
+  margin-bottom: 15px;
+  display: inline-block;
+  width: 100%;
+  font-size: 15px;
+  padding-right: 5px;
+  box-sizing: border-box;
+}
+.form .form-field:last-child {
+  margin-bottom: 0;
+}
+.form .form-field.half {
+  width: 50%;
+}
+.form .form-field label {
+  font-size: 15px;
+  text-transform: uppercase;
   display: block;
-  padding: 10px;
-  color: #FFF;
+}
+.form .form-field input, .form .form-field textarea {
+  font-size: 20px;
+  padding: 10px 10px;
   width: 100%;
   box-sizing: border-box;
-  border-radius: 2px;
-  border: 0;
-  background-color: rgba(0,0,0,.5);
-}
-
-.block-form .form-actions {
-  padding-top: 20px;
-}
-.block-form .form-actions button {
-  display: block;
-  padding: 15px 30px;
-  background-color: #FFF;
-  color: #333;
-  cursor: pointer;
-
-  box-sizing: border-box;
+  border: 1px solid #d2d3d3;
+  background-color: #E0E3E5;
   border-radius: 5px;
-  border: 1px solid rgba(0,0,0,.2);
 }
-
-.block-form .form-actions button:hover {
-  box-shadow: 0 2px 4px rgba(0,0,0,.2);
-  color: #12B981;
+.form .form-field textarea {
+  line-height: 30px;
 }
-
 
 @media only screen and (max-width: 1440px) {
-  .block .block-col {
-    display: block;
-    max-width: 100%;
-    width: 100%;
-    vertical-align: top;
-  }
 
-  .block .block-col + .block-col {
-    margin-left: 0px;
-  }
-
-  .block.block-left {
-    width: 60vw;
-    height: 70vh;
-    background-color: #F0DE98;
-  }
-  .block.block-right {
-    width: 40vw;
-    height: 70vh;
-    background-color: #FCA87C;
-  }
 
 }
 
