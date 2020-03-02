@@ -123,7 +123,7 @@
 <div class="modal" id="modal">
     <div class="modal__content">
         <div class="modal__content__title">
-            Send Email <h2>${emailInfo}</h2>
+            Send Email <h2>${email}</h2>
             <div class="close">
                 <a onclick="toggleModal()">Close</a>
             </div>
