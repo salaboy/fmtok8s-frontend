@@ -407,12 +407,22 @@ h2 {
   border-bottom: 1px solid rgba(0,0,0,.2);
 }
 
+.modal .modal__content .modal__content__body_hidden {
+
+  display: none;
+}
+
 .modal .modal__content .modal__content__message {
   padding: 80px;
   color: #666;
   text-align: center;
   font-size: 20px;
 }
+
+.modal .modal__content .modal__content__message_hidden {
+  display: none;
+}
+
 .modal .modal__content .modal__content__message a{
   color: var(--main-color);
   cursor: pointer;
@@ -424,6 +434,11 @@ h2 {
 
 .modal .modal__content .modal__content__action {
   padding: 20px 20px;
+
+}
+
+.modal .modal__content .modal__content__action_hidden {
+  display: none;
 
 }
 

@@ -43,7 +43,7 @@
 </div>
 <div class="bottom-blocks">
     <div class="main-title">
-        <h2><a href="https://github.com/salaboy/fmtok8s-c4p/releases/tag/v${version}">${c4p} v${version}</a></h2>
+        <h2><a href="https://github.com/salaboy/fmtok8s-c4p/releases/tag/v${version}">${agenda} v${version}</a></h2>
         <h3>Accepted talks</h3>
     </div>
     <div class="agenda">
@@ -65,7 +65,7 @@
                                     ${item.title}
                                 </div>
                                 <div class="item-list__description">
-<#--                                    ${item.description}-->
+                                    <#--                                    ${item.description}-->
                                 </div>
                                 <div class="item-list__data">
                                     ${item.talkTime?string('HH:mm')} <br/>
@@ -144,14 +144,14 @@
     </a>
 </div>
 <div class="modal" id="modal">
-    <div class="modal__content">
+    <div id="modalContent" class="modal__content">
         <div class="modal__content__title">
-            New Proposal
+            New Proposal ${c4p}
             <div class="close">
                 <a onclick="toggleModal()">Close</a>
             </div>
         </div>
-        <div class="modal__content__body">
+        <div id="modalBody" class="modal__content__body">
             <div class="form">
                 <div class="form-field">
                     <label>Title</label>
@@ -171,8 +171,15 @@
                 </div>
             </div>
         </div>
-        <div class="modal__content__action">
+        <div id="modalActions" class="modal__content__action">
             <a onclick="submitProposal()" class="button">Send</a>
+        </div>
+        <div id="modalMessage" class="modal__content__message_hidden">
+            <h2>Thanks for your submission</h2>
+            <p>Your proposal has been sent successfully. The committee will evaluate your proposal and notify you
+                soon.</p>
+
+            <p><a onclick="toggleModal()">Continue to the website</a></p>
         </div>
     </div>
     <div class="modal__overlay" onclick="toggleModal()"></div>
@@ -186,6 +193,13 @@
 <script type="text/javascript">
 
     function toggleModal() {
+        document.getElementById("modalBody").className = "modal__content__body";
+        document.getElementById("modalActions").className = "modal__content__action";
+        document.getElementById("modalMessage").className = "modal__content__message_hidden";
+        document.getElementById("author").value = "";
+        document.getElementById("email").value = "";
+        document.getElementById("title").value = "";
+        document.getElementById("description").value = "";
         var element = document.getElementById("modal");
         element.classList.toggle("open");
     }
@@ -218,7 +232,12 @@
             xhr.setRequestHeader('Content-Type', 'application/json');
             console.log(data);
             xhr.send(data);
-           // window.location.href = "/?submitted=true";
+            // window.location.href = "/?submitted=true";
+
+            document.getElementById("modalBody").className = "modal__content__body_hidden";
+            document.getElementById("modalActions").className = "modal__content__action_hidden";
+            document.getElementById("modalMessage").className = "modal__content__message";
+
         } else {
             //window.location.href = "/?" + errorMsg;
         }

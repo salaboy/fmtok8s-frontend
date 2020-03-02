@@ -123,12 +123,12 @@
 <div class="modal" id="modal">
     <div class="modal__content">
         <div class="modal__content__title">
-            Send Email <h2>${email}</h2>
+            Send Email <h2>${emailInfo}</h2>
             <div class="close">
                 <a onclick="toggleModal()">Close</a>
             </div>
         </div>
-        <div class="modal__content__body">
+        <div id="modalBody" class="modal__content__body">
             <div class="form">
                 <div class="form-field half">
                     <label>To</label>
@@ -144,10 +144,14 @@
                 </div>
             </div>
         </div>
-        <div class="modal__content__action">
-            <a href="" onclick="sendEmail()" class="button">Send</a>
+        <div id="modalActions" class="modal__content__action">
+            <a onclick="sendEmail()" class="button">Send</a>
         </div>
-
+        <div id="modalMessage" class="modal__content__message_hidden">
+            <h2>Email Sent.</h2>
+            <p>Your email has been sent successfully.</p>
+            <p><a onclick="toggleModal()">Continue to the backoffice</a></p>
+        </div>
     </div>
     <div class="modal__overlay"></div>
 </div>
@@ -171,6 +175,10 @@
         });
         console.log(data);
         xhr.send(data);
+
+        document.getElementById("modalBody").className = "modal__content__body_hidden";
+        document.getElementById("modalActions").className = "modal__content__action_hidden";
+        document.getElementById("modalMessage").className = "modal__content__message";
         //window.location.href = "/backoffice?sent=true";
     }
 
@@ -204,6 +212,12 @@
     }
 
     function toggleModal() {
+        document.getElementById("modalBody").className = "modal__content__body";
+        document.getElementById("modalActions").className = "modal__content__action";
+        document.getElementById("modalMessage").className = "modal__content__message_hidden";
+        document.getElementById("toEmail").value = "";
+        document.getElementById("title").value = "";
+        document.getElementById("content").value = "";
         var element = document.getElementById("modal");
         element.classList.toggle("open");
     }
