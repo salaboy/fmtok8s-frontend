@@ -31,7 +31,7 @@
     </div>
     <div class="header__title">
         <h1>Kubecon 2020 <span><a
-                        href="https://github.com/salaboy/fmtok8s-api-gateway/releases/tag/v${version}">v${version}</a></span>
+                        href="https://github.com/salaboy/fmtok8s-api-gateway/releases/tag/v${version}">API Gateway v${version}</a></span>
         </h1>
     </div>
     <div class="header__options">
@@ -44,7 +44,7 @@
 <div class="bottom-blocks">
     <div class="main-title">
         <h2><a href="https://github.com/salaboy/fmtok8s-agenda/releases/tag/v${agenda.version}">${agenda.name} v${agenda.version}</a></h2>
-        <h3>Accepted talks</h3>
+        <h2>Accepted talks</h2>
     </div>
     <div class="agenda">
         <div class="agenda__day">
@@ -117,7 +117,9 @@
 <div class="modal" id="modal">
     <div id="modalContent" class="modal__content">
         <div class="modal__content__title">
-            New Proposal <a href="https://github.com/salaboy/fmtok8s-c4p/releases/tag/v${c4p.version}">${c4p.name} v${c4p.version}</a>
+            <a href="https://github.com/salaboy/fmtok8s-c4p/releases/tag/v${c4p.version}">${c4p.name} v${c4p.version}</a>
+            <br/>
+            New Proposal
             <div class="close">
                 <a onclick="toggleModal()">Close</a>
             </div>
@@ -149,8 +151,6 @@
             <h2>Thanks for your submission</h2>
             <p>Your proposal has been sent successfully. The committee will evaluate your proposal and notify you
                 soon.</p>
-            <img src="https://lh3.googleusercontent.com/proxy/aez-tCdkMofydPVsyNKQ8WMNlZSuNhFJhHu4mdy7hDdXudLC5nD1yxXfRcU9VsolYpjvTU1yS5AGaluIU5Vl6ggGFhD5-k_dlYkDh9DWF3QjQeFcK3DzorvRpJ4M-1P-wrb6iOZnbhlwTlb1vz-LJqF7eLviJqRlnFM"/>
-
             <p><a onclick="toggleModal()">Continue to the website</a></p>
         </div>
     </div>

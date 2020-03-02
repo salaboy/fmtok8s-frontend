@@ -43,8 +43,8 @@
 </div>
 <div class="bottom-blocks">
     <div class="main-title">
-        <h2>${c4p}</h2>
-        <h3>Received Proposals</h3>
+        <h2><a href="https://github.com/salaboy/fmtok8s-c4p/releases/tag/v${c4p.version}">${c4p.name} v${c4p.version}</a></h2>
+        <h2>Received Proposals</h2>
     </div>
     <div class="agenda">
         <div class="agenda__day">
@@ -126,7 +126,9 @@
 <div class="modal" id="modal">
     <div class="modal__content">
         <div class="modal__content__title">
-            Send Email <h2>${email}</h2>
+            <a href="https://github.com/salaboy/fmtok8s-email/releases/tag/v${email.version}">${email.name} v${email.version}</a>
+            <br/>
+            Send Email
             <div class="close">
                 <a onclick="toggleModal()">Close</a>
             </div>
