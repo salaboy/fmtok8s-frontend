@@ -18,4 +18,6 @@ management:
   endpoints:
     web:
       exposure:
-        include: "gateway"
+        include: gateway, info, health
+
+
