@@ -57,9 +57,9 @@
                 </div>
             </div>
             <div class="agenda__day__content">
-                <#if agendaItems??>
+                <#if agendaItemsMonday??>
                     <ul class="item-list">
-                        <#list agendaItems as item>
+                        <#list agendaItemsMonday as item>
                             <li>
                                 <div class="item-list__title">
                                     ${item.title}
@@ -68,7 +68,7 @@
                                     <#--                                    ${item.description}-->
                                 </div>
                                 <div class="item-list__data">
-                                    ${item.talkTime?string('HH:mm')} <br/>
+                                    ${item.time} <br/>
                                     By ${item.author}
                                 </div>
                             </li>
@@ -90,50 +90,26 @@
                 </div>
             </div>
             <div class="agenda__day__content">
-                <ul class="item-list">
-                    <li>
-                        <div class="item-list__title">
-                            Talk title
-                        </div>
-                        <div class="item-list__description">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta corporis hic numquam
-                            delectus deleniti nisi porro provident harum quos dolore! Necessitatibus voluptatem quisquam
-                            eaque architecto quis, maiores rem, doloremque fugiat?
-                        </div>
-                        <div class="item-list__data">
-                            16:00 <br/>
-                            By Salaboy
-                        </div>
-                    </li>
-                    <li>
-                        <div class="item-list__title">
-                            Talk title
-                        </div>
-                        <div class="item-list__description">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta corporis hic numquam
-                            delectus deleniti nisi porro provident harum quos dolore! Necessitatibus voluptatem quisquam
-                            eaque architecto quis, maiores rem, doloremque fugiat?
-                        </div>
-                        <div class="item-list__data">
-                            16:00 <br/>
-                            By Salaboy
-                        </div>
-                    </li>
-                    <li>
-                        <div class="item-list__title">
-                            Talk title
-                        </div>
-                        <div class="item-list__description">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta corporis hic numquam
-                            delectus deleniti nisi porro provident harum quos dolore! Necessitatibus voluptatem quisquam
-                            eaque architecto quis, maiores rem, doloremque fugiat?
-                        </div>
-                        <div class="item-list__data">
-                            16:00 <br/>
-                            By Salaboy
-                        </div>
-                    </li>
-                </ul>
+                <#if agendaItemsTuesday??>
+                    <ul class="item-list">
+                        <#list agendaItemsTuesday as item>
+                            <li>
+                                <div class="item-list__title">
+                                    ${item.title}
+                                </div>
+                                <div class="item-list__description">
+                                    <#--                                    ${item.description}-->
+                                </div>
+                                <div class="item-list__data">
+                                    ${item.time} <br/>
+                                    By ${item.author}
+                                </div>
+                            </li>
+                        </#list>
+                    </ul>
+                <#else>
+                    <h5> No Items yet.</h5>
+                </#if>
             </div>
         </div>
     </div>

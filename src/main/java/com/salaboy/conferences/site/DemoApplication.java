@@ -74,10 +74,18 @@ class ConferenceSiteController {
             e.printStackTrace();
         }
 
-        ResponseEntity<List<AgendaItem>> agendaItems = null;
+        ResponseEntity<List<AgendaItem>> agendaItemsMonday = null;
+        ResponseEntity<List<AgendaItem>> agendaItemsTuesday = null;
 
         try {
-            agendaItems = restTemplate.exchange(AGENDA_SERVICE, HttpMethod.GET, null, new ParameterizedTypeReference<List<AgendaItem>>() {
+            agendaItemsMonday = restTemplate.exchange(AGENDA_SERVICE+"/day/Monday", HttpMethod.GET, null, new ParameterizedTypeReference<List<AgendaItem>>() {
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
+            agendaItemsTuesday = restTemplate.exchange(AGENDA_SERVICE+"/day/Tuesday", HttpMethod.GET, null, new ParameterizedTypeReference<List<AgendaItem>>() {
             });
         } catch (Exception e) {
             e.printStackTrace();
@@ -94,8 +102,11 @@ class ConferenceSiteController {
 
 
 
-        if (agendaItems != null) {
-            model.addAttribute("agendaItems", agendaItems.getBody());
+        if (agendaItemsMonday != null) {
+            model.addAttribute("agendaItemsMonday", agendaItemsMonday.getBody());
+        }
+        if (agendaItemsMonday != null) {
+            model.addAttribute("agendaItemsTuesday", agendaItemsTuesday.getBody());
         }
 
 
