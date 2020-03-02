@@ -64,9 +64,6 @@
                                 <div class="item-list__title">
                                     ${item.title}
                                 </div>
-                                <div class="item-list__description">
-                                    <#--                                    ${item.description}-->
-                                </div>
                                 <div class="item-list__data">
                                     ${item.time} <br/>
                                     By ${item.author}
@@ -97,9 +94,7 @@
                                 <div class="item-list__title">
                                     ${item.title}
                                 </div>
-                                <div class="item-list__description">
-                                    <#--                                    ${item.description}-->
-                                </div>
+                                
                                 <div class="item-list__data">
                                     ${item.time} <br/>
                                     By ${item.author}

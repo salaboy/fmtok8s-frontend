@@ -1,22 +1,23 @@
 package com.salaboy.conferences.site.models;
 
-import java.util.Date;
-
 public class AgendaItem {
 
     private String id;
     private String author;
     private String title;
-    private Date talkTime;
+    private String day;
+    private String time;
 
     public AgendaItem() {
     }
 
-    public AgendaItem(String id, String author, String title, Date talkTime) {
+    public AgendaItem(String id, String author, String title, String day, String time) {
         this.id = id;
         this.author = author;
         this.title = title;
-        this.talkTime = talkTime;
+        this.day = day;
+        this.time = time;
+
     }
 
     public String getId() {
@@ -43,11 +44,30 @@ public class AgendaItem {
         this.title = title;
     }
 
-    public Date getTalkTime() {
-        return talkTime;
+    public String getDay() {
+        return day;
     }
 
-    public void setTalkTime(Date talkTime) {
-        this.talkTime = talkTime;
+    public void setDay(String day) {
+        this.day = day;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    @Override
+    public String toString() {
+        return "AgendaItem{" +
+                "id='" + id + '\'' +
+                ", author='" + author + '\'' +
+                ", title='" + title + '\'' +
+                ", day='" + day + '\'' +
+                ", time='" + time + '\'' +
+                '}';
     }
 }

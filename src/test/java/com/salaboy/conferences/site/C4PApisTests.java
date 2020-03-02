@@ -39,7 +39,7 @@ public class C4PApisTests {
     public void setupPort() {
         System.out.println("Port from stub:  " + producerPort);
     }
-    
+
 
     @Test
     public void shouldReturnProposalWithIdWhenAProposalIsCreated() throws IOException {
