@@ -39,21 +39,7 @@ public class C4PApisTests {
     public void setupPort() {
         System.out.println("Port from stub:  " + producerPort);
     }
-
-    @Test
-    public void shouldReturnTheC4PInfoWhenIRequestIt() {
-
-        RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<String> response = restTemplate.exchange(RequestEntity
-                        .get(URI.create("http://localhost:" + this.producerPort + "/info"))
-                        .header("Content-Type", ContentType.JSON.getMimeType())
-                        .build(),
-                String.class);
-
-        assertEquals(200, response.getStatusCodeValue());
-        assertTrue(response.getBody().startsWith("C4P v"));
-
-    }
+    
 
     @Test
     public void shouldReturnProposalWithIdWhenAProposalIsCreated() throws IOException {
