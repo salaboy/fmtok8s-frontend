@@ -43,7 +43,7 @@
 </div>
 <div class="bottom-blocks">
     <div class="main-title">
-        <h2><a href="https://github.com/salaboy/fmtok8s-c4p/releases/tag/v${version}">${agenda} v${version}</a></h2>
+        <h2><a href="https://github.com/salaboy/fmtok8s-agenda/releases/tag/v${agenda.version}">${agenda.name} v${agenda.version}</a></h2>
         <h3>Accepted talks</h3>
     </div>
     <div class="agenda">
@@ -94,7 +94,7 @@
                                 <div class="item-list__title">
                                     ${item.title}
                                 </div>
-                                
+
                                 <div class="item-list__data">
                                     ${item.time} <br/>
                                     By ${item.author}
@@ -117,7 +117,7 @@
 <div class="modal" id="modal">
     <div id="modalContent" class="modal__content">
         <div class="modal__content__title">
-            New Proposal ${c4p}
+            New Proposal <a href="https://github.com/salaboy/fmtok8s-c4p/releases/tag/v${c4p.version}">${c4p.name} v${c4p.version}</a>
             <div class="close">
                 <a onclick="toggleModal()">Close</a>
             </div>

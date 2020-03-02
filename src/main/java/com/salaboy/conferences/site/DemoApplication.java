@@ -2,6 +2,7 @@ package com.salaboy.conferences.site;
 
 import com.salaboy.conferences.site.models.AgendaItem;
 import com.salaboy.conferences.site.models.Proposal;
+import com.salaboy.conferences.site.models.ServiceInfo;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,6 +10,7 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -47,28 +49,22 @@ class ConferenceSiteController {
     private RestTemplate restTemplate = new RestTemplate();
 
     @GetMapping("/")
-    public String index(@RequestParam(name = "submitted", required = false, defaultValue = "false") boolean submitted,
-                        @RequestParam(name = "errorMsg", required = false, defaultValue = "") String errorMsg,
-                        Model model) {
+    public String index(Model model) {
 
-        String requiredFields = "The following fields are required: ";
-        if (!errorMsg.equals("")) {
-            requiredFields += errorMsg.substring(0, errorMsg.length()-1);
-            model.addAttribute("required", requiredFields);
-        }
 
-        String agendaInfo = "N/A";
-        String c4pInfo = "N/A";
+
+        ServiceInfo agendaInfo = null;
+        ServiceInfo c4pInfo = null;
 
         try {
-            ResponseEntity<String> agenda = restTemplate.getForEntity(AGENDA_SERVICE + "/info", String.class);
+            ResponseEntity<ServiceInfo> agenda = restTemplate.getForEntity(AGENDA_SERVICE + "/info", ServiceInfo.class);
             agendaInfo = agenda.getBody();
 
         } catch (Exception e) {
             e.printStackTrace();
         }
         try {
-            ResponseEntity<String> sponsors = restTemplate.getForEntity(C4P_SERVICE + "/info", String.class);
+            ResponseEntity<ServiceInfo> sponsors = restTemplate.getForEntity(C4P_SERVICE + "/info", ServiceInfo.class);
             c4pInfo = sponsors.getBody();
         } catch (Exception e) {
             e.printStackTrace();
@@ -78,14 +74,14 @@ class ConferenceSiteController {
         ResponseEntity<List<AgendaItem>> agendaItemsTuesday = null;
 
         try {
-            agendaItemsMonday = restTemplate.exchange(AGENDA_SERVICE+"/day/Monday", HttpMethod.GET, null, new ParameterizedTypeReference<List<AgendaItem>>() {
+            agendaItemsMonday = restTemplate.exchange(AGENDA_SERVICE + "/day/Monday", HttpMethod.GET, null, new ParameterizedTypeReference<List<AgendaItem>>() {
             });
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         try {
-            agendaItemsTuesday = restTemplate.exchange(AGENDA_SERVICE+"/day/Tuesday", HttpMethod.GET, null, new ParameterizedTypeReference<List<AgendaItem>>() {
+            agendaItemsTuesday = restTemplate.exchange(AGENDA_SERVICE + "/day/Tuesday", HttpMethod.GET, null, new ParameterizedTypeReference<List<AgendaItem>>() {
             });
         } catch (Exception e) {
             e.printStackTrace();
@@ -97,9 +93,6 @@ class ConferenceSiteController {
         model.addAttribute("c4pURL", C4P_SERVICE);
         model.addAttribute("agendaURL", AGENDA_SERVICE);
         model.addAttribute("c4p", c4pInfo);
-        model.addAttribute("submitted", submitted);
-
-
 
 
         if (agendaItemsMonday != null) {
@@ -114,12 +107,12 @@ class ConferenceSiteController {
     }
 
     @GetMapping("/backoffice")
-    public String backoffice(@RequestParam(name = "sent", required = false, defaultValue = "false") boolean sent, Model model) {
-        String emailInfo = "N/A";
-        String c4pInfo = "N/A";
+    public String backoffice( Model model) {
+        ServiceInfo emailInfo = null;
+        ServiceInfo c4pInfo = null;
 
         try {
-            ResponseEntity<String> email = restTemplate.getForEntity(EMAIL_SERVICE + "/info", String.class);
+            ResponseEntity<ServiceInfo> email = restTemplate.getForEntity(EMAIL_SERVICE + "/info", ServiceInfo.class);
             emailInfo = email.getBody();
         } catch (Exception e) {
             e.printStackTrace();
@@ -135,8 +128,8 @@ class ConferenceSiteController {
         }
 
         try {
-            ResponseEntity<String> sponsors = restTemplate.getForEntity(C4P_SERVICE + "/info", String.class);
-            c4pInfo = sponsors.getBody();
+            ResponseEntity<ServiceInfo> c4p = restTemplate.getForEntity(C4P_SERVICE + "/info", ServiceInfo.class);
+            c4pInfo = c4p.getBody();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -145,7 +138,6 @@ class ConferenceSiteController {
         model.addAttribute("c4pURL", C4P_SERVICE);
         model.addAttribute("email", emailInfo);
         model.addAttribute("c4p", c4pInfo);
-        model.addAttribute("sent", sent);
 
         if (proposals != null) {
             model.addAttribute("proposals", proposals.getBody());
