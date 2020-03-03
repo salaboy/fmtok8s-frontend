@@ -1,5 +1,6 @@
 buildPack: maven-java11
-pipelines:
+pipelineConfig:
+  pipelines:
     release:
       promote:
         steps:
