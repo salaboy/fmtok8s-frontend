@@ -36,25 +36,25 @@
     </div>
     <div class="header__options">
         <a href="/">
-            Go to Main Site
+            Go to Main Site<span><img src="house.svg" alt=""></span>
         </a>
     </div>
 
 </div>
 <div class="bottom-blocks">
     <div class="main-title">
-        <h2><a href="https://github.com/salaboy/fmtok8s-c4p/releases/tag/v${c4p.version}">${c4p.name} v${c4p.version}</a></h2>
         <h2>Received Proposals</h2>
+        <h5><a href="https://github.com/salaboy/fmtok8s-c4p/releases/tag/v${c4p.version}">${c4p.name}
+                v${c4p.version}</a></h5>
+    </div>
+    <div class="options">
+        <input type="checkbox" id="pending-check" name="pending-check" onchange="togglePending()" ${pending}>
+        <label for="pending-check"> Show Only Pending</label>
     </div>
     <div class="agenda">
         <div class="agenda__day">
             <div class="agenda__day__info">
-                <div class="agenda__day__info__number">
-                    12
-                </div>
-                <div class="agenda__day__info__name">
-                    MON
-                </div>
+
             </div>
             <div class="agenda__day__content">
                 <#if proposals?? && proposals?has_content>
@@ -126,11 +126,11 @@
 <div class="modal" id="modal">
     <div class="modal__content">
         <div class="modal__content__title">
-            <a href="https://github.com/salaboy/fmtok8s-email/releases/tag/v${email.version}">${email.name} v${email.version}</a>
-            <br/>
             Send Email
+            <h5><a href="https://github.com/salaboy/fmtok8s-email/releases/tag/v${email.version}">${email.name}
+                    v${email.version}</a></h5>
             <div class="close">
-                <a onclick="toggleModal()">Close</a>
+                <a onclick="toggleModal()"><img src="close.svg" alt=""></a>
             </div>
         </div>
         <div id="modalBody" class="modal__content__body">
@@ -150,9 +150,11 @@
             </div>
         </div>
         <div id="modalActions" class="modal__content__action">
+            <div id="modalErrorMessage" class="modal__content__action__message">
+            </div>
             <a onclick="sendEmail()" class="button">Send</a>
         </div>
-        <div id="modalMessage" class="modal__content__message_hidden">
+        <div id="modalMessage" class="modal__content__message__hidden">
             <h2>Email Sent.</h2>
             <p>Your email has been sent successfully.</p>
             <p><a onclick="toggleModal()">Continue to the backoffice</a></p>
@@ -168,23 +170,44 @@
 <script src="js/plugins.js"></script>
 <script type="text/javascript">
 
-    function sendEmail() {
-        console.log("sending email");
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "/email/", true);
-        xhr.setRequestHeader('Content-Type', 'application/json');
-        var data = JSON.stringify({
-            title: document.getElementById("title").value,
-            toEmail: document.getElementById("toEmail").value,
-            content: document.getElementById("content").value,
-        });
-        console.log(data);
-        xhr.send(data);
+    function togglePending() {
+        var checked = document.getElementById("pending-check").checked;
+        console.log("Show only pending..." + checked);
+        window.location.href = "/backoffice?pending="+checked;
+    }
 
-        document.getElementById("modalBody").className = "modal__content__body_hidden";
-        document.getElementById("modalActions").className = "modal__content__action_hidden";
-        document.getElementById("modalMessage").className = "modal__content__message";
-        //window.location.href = "/backoffice?sent=true";
+    function sendEmail() {
+        var errorMsg = "Please complete required fields: ";
+        if (document.getElementById("title").value == "") {
+            errorMsg += "title,"
+        }
+        if (document.getElementById("toEmail").value == "") {
+            errorMsg += "toEmail,"
+        }
+        if (document.getElementById("content").value == "") {
+            errorMsg += "content,"
+        }
+        if (errorMsg == "Please complete required fields: ") {
+            console.log("sending email");
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/email/", true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            var data = JSON.stringify({
+                title: document.getElementById("title").value,
+                toEmail: document.getElementById("toEmail").value,
+                content: document.getElementById("content").value,
+            });
+            console.log(data);
+            xhr.send(data);
+
+
+            document.getElementById("modalBody").className = "modal__content__body__hidden";
+            document.getElementById("modalActions").className = "modal__content__action__hidden";
+            document.getElementById("modalMessage").className = "modal__content__message";
+        }else {
+            console.log(errorMsg);
+            document.getElementById("modalErrorMessage").innerHTML = errorMsg.substr(0, errorMsg.length - 1) + ".";
+        }
     }
 
     function approveProposal(id) {
@@ -218,7 +241,7 @@
     function toggleModal() {
         document.getElementById("modalBody").className = "modal__content__body";
         document.getElementById("modalActions").className = "modal__content__action";
-        document.getElementById("modalMessage").className = "modal__content__message_hidden";
+        document.getElementById("modalMessage").className = "modal__content__message__hidden";
         document.getElementById("toEmail").value = "";
         document.getElementById("title").value = "";
         document.getElementById("content").value = "";

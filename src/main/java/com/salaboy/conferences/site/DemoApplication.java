@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 
@@ -50,7 +51,6 @@ class ConferenceSiteController {
 
     @GetMapping("/")
     public String index(Model model) {
-
 
 
         ServiceInfo agendaInfo = null;
@@ -107,9 +107,11 @@ class ConferenceSiteController {
     }
 
     @GetMapping("/backoffice")
-    public String backoffice( Model model) {
+    public String backoffice(@RequestParam(value = "pending", required = false, defaultValue = "false") boolean pending, Model model) {
         ServiceInfo emailInfo = null;
         ServiceInfo c4pInfo = null;
+
+        System.out.println("Get Pending only: " + pending);
 
         try {
             ResponseEntity<ServiceInfo> email = restTemplate.getForEntity(EMAIL_SERVICE + "/info", ServiceInfo.class);
@@ -121,7 +123,7 @@ class ConferenceSiteController {
         ResponseEntity<List<Proposal>> proposals = null;
 
         try {
-            proposals = restTemplate.exchange(C4P_SERVICE, HttpMethod.GET, null, new ParameterizedTypeReference<List<Proposal>>() {
+            proposals = restTemplate.exchange(C4P_SERVICE + "/pending=" + pending, HttpMethod.GET, null, new ParameterizedTypeReference<List<Proposal>>() {
             });
         } catch (Exception e) {
             e.printStackTrace();
@@ -138,6 +140,7 @@ class ConferenceSiteController {
         model.addAttribute("c4pURL", C4P_SERVICE);
         model.addAttribute("email", emailInfo);
         model.addAttribute("c4p", c4pInfo);
+        model.addAttribute("pending", (pending) ? "checked" : "");
 
         if (proposals != null) {
             model.addAttribute("proposals", proposals.getBody());
