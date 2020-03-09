@@ -123,7 +123,7 @@ class ConferenceSiteController {
         ResponseEntity<List<Proposal>> proposals = null;
 
         try {
-            proposals = restTemplate.exchange(C4P_SERVICE + "/pending=" + pending, HttpMethod.GET, null, new ParameterizedTypeReference<List<Proposal>>() {
+            proposals = restTemplate.exchange(C4P_SERVICE + "/?pending=" + pending, HttpMethod.GET, null, new ParameterizedTypeReference<List<Proposal>>() {
             });
         } catch (Exception e) {
             e.printStackTrace();
