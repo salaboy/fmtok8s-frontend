@@ -44,8 +44,15 @@
 <div class="bottom-blocks">
     <div class="main-title">
         <h2>Accepted talks</h2>
-        <h5><a href="https://github.com/salaboy/fmtok8s-agenda/releases/tag/v${agenda.version}">${agenda.name}
-                v${agenda.version}</a></h5>
+        <h5>
+        <#if agenda??>
+        <a href="https://github.com/salaboy/fmtok8s-agenda/releases/tag/v${agenda.version}">${agenda.name}
+                v${agenda.version}</a>
+        <#else>
+            <a href="https://github.com/salaboy/fmtok8s-agenda/">
+                N/A</a>
+        </#if>
+        </h5>
     </div>
     <div class="agenda">
         <div class="agenda__day">
@@ -119,8 +126,15 @@
     <div id="modalContent" class="modal__content">
         <div class="modal__content__title">
             New Proposal
-            <h5><a href="https://github.com/salaboy/fmtok8s-c4p/releases/tag/v${c4p.version}">${c4p.name}
-                    v${c4p.version}</a></h5>
+            <h5>
+            <#if c4p??>
+            <a href="https://github.com/salaboy/fmtok8s-c4p/releases/tag/v${c4p.version}">${c4p.name}
+                    v${c4p.version}</a>
+            <#else>
+                <a href="https://github.com/salaboy/fmtok8s-c4p/">
+                    N/A</a>
+            </#if>
+            </h5>
             <div class="close">
                 <a onclick="toggleModal()">
                     <img src="close.svg" alt="">

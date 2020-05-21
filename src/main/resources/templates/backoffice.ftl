@@ -44,8 +44,14 @@
 <div class="bottom-blocks">
     <div class="main-title">
         <h2>Received Proposals</h2>
-        <h5><a href="https://github.com/salaboy/fmtok8s-c4p/releases/tag/v${c4p.version}">${c4p.name}
-                v${c4p.version}</a></h5>
+        <h5>
+        <#if c4p??>
+            <a href="https://github.com/salaboy/fmtok8s-c4p/releases/tag/v${c4p.version}">${c4p.name}
+                    v${c4p.version}</a>
+        <#else>
+            <a href="https://github.com/salaboy/fmtok8s-c4p/">N/A</a>
+        </#if>
+            </h5>
     </div>
     <div class="options">
         <input type="checkbox" id="pending-check" name="pending-check" onchange="togglePending()" ${pending}>
@@ -127,8 +133,14 @@
     <div class="modal__content">
         <div class="modal__content__title">
             Send Email
-            <h5><a href="https://github.com/salaboy/fmtok8s-email/releases/tag/v${email.version}">${email.name}
-                    v${email.version}</a></h5>
+            <h5>
+                <#if email??>
+                <a href="https://github.com/salaboy/fmtok8s-email/releases/tag/v${email.version}">${email.name}
+                    v${email.version}</a>
+                <#else>
+                    <a href="https://github.com/salaboy/fmtok8s-email/">N/A</a>
+                </#if>
+            </h5>
             <div class="close">
                 <a onclick="toggleModal()"><img src="close.svg" alt=""></a>
             </div>
