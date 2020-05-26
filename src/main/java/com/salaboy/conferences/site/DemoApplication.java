@@ -33,7 +33,7 @@ class ConferenceSiteController {
 
     @GetMapping("/info")
     public String infoWithVersion() {
-        return "{ \"name\" : \"API Gateway / User Interface\", \"version\" : \"" + version + "\", \"source\": \"https://github.com/salaboy/fmtok8s-api-gateway/releases/tag/v"+version+"\"\" }";
+        return "{ \"name\" : \"API Gateway / User Interface\", \"version\" : \"" + version + "\", \"source\": \"https://github.com/salaboy/fmtok8s-api-gateway/releases/tag/v"+version+"\" }";
     }
 
     @Value("${C4P_SERVICE:http://fmtok8s-c4p}")
