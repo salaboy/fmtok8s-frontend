@@ -27,10 +27,10 @@
 <!-- Add your site or application content here -->
 <div class="block header">
     <div class="header__image">
-        <img src="kubecon-logo.png" width="35">
+        <img src="jnation-logo.png" width="235">
     </div>
     <div class="header__title">
-        <h1>Kubecon 2020 <span><a
+        <h1><span><a
                         href="https://github.com/salaboy/fmtok8s-api-gateway/releases/tag/v${version}">v${version}</a></span>
         </h1>
     </div>
