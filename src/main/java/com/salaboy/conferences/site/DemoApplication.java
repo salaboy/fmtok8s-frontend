@@ -10,10 +10,8 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 
@@ -35,7 +33,7 @@ class ConferenceSiteController {
 
     @GetMapping("/info")
     public String infoWithVersion() {
-        return "Site v" + version;
+        return "{ \"name\" : \"API Gateway / User Interface\", \"version\" : \"" + version + "\", \"source\": \"https://github.com/salaboy/fmtok8s-api-gateway/releases/tag/v"+version+"\"\" }";
     }
 
     @Value("${C4P_SERVICE:http://fmtok8s-c4p}")
