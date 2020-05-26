@@ -27,7 +27,7 @@
 <!-- Add your site or application content here -->
 <div class="block header">
     <div class="header__image">
-        <img src="jnation-logo.png" width="235">
+        <img src="jnation-logo.png" width="135">
     </div>
     <div class="header__title">
         <h1><span><a
