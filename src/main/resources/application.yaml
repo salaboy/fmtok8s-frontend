@@ -14,6 +14,12 @@ spring:
         - Path=/email/**
         filters:
           - RewritePath=/email/(?<id>.*), /$\{id}
+      - id: speakers
+        uri: ${SPEAKERS_SERVICE:http://fmtok8s-speakers}
+        predicates:
+          - Path=/speakers/**
+        filters:
+          - RewritePath=/speakers/(?<id>.*), /$\{id}
 management:
   endpoints:
     web:
