@@ -1,31 +1,33 @@
 
-Showing logs for build [32msalaboy-fmtok8s-api-gateway-mas-6rhw2-6[0m stage [32mfrom-build-pack[0m and container [32mstep-credential-initializer-88pmw[0m
-{"level":"info","ts":1593506768.7011635,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/refs/heads/0.8.0-ns-support: no such file or directory"}
-{"level":"info","ts":1593506768.70165,"logger":"fallback-logger","caller":"creds-init/main.go:40","msg":"Credentials initialized."}
+Showing logs for build [32msalaboy-fmtok8s-api-gateway-mas-kc2tw-6[0m stage [32mfrom-build-pack[0m and container [32mstep-credential-initializer-gg5f4[0m
+{"level":"info","ts":1593619715.4187558,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/refs/heads/0.8.0-ns-support: no such file or directory"}
+{"level":"info","ts":1593619715.4194984,"logger":"fallback-logger","caller":"creds-init/main.go:40","msg":"Credentials initialized."}
 
-Showing logs for build [32msalaboy-fmtok8s-api-gateway-mas-6rhw2-6[0m stage [32mfrom-build-pack[0m and container [32mstep-working-dir-initializer-wkkwr[0m
-{"level":"info","ts":1593506769.736805,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
-{"level":"info","ts":1593506769.7383597,"logger":"fallback-logger","caller":"bash/main.go:64","msg":"Successfully executed command \"sh -c mkdir -p /workspace/source\"; output "}
+Showing logs for build [32msalaboy-fmtok8s-api-gateway-mas-kc2tw-6[0m stage [32mfrom-build-pack[0m and container [32mstep-working-dir-initializer-8rz5n[0m
+{"level":"info","ts":1593619716.344602,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1593619716.3460824,"logger":"fallback-logger","caller":"bash/main.go:64","msg":"Successfully executed command \"sh -c mkdir -p /workspace/source\"; output "}
 
-Showing logs for build [32msalaboy-fmtok8s-api-gateway-mas-6rhw2-6[0m stage [32mfrom-build-pack[0m and container [32mstep-place-tools[0m
+Showing logs for build [32msalaboy-fmtok8s-api-gateway-mas-kc2tw-6[0m stage [32mfrom-build-pack[0m and container [32mstep-place-tools[0m
 
-Showing logs for build [32msalaboy-fmtok8s-api-gateway-mas-6rhw2-6[0m stage [32mfrom-build-pack[0m and container [32mstep-git-source-salaboy-fmtok8s-api-gateway-mas-6rhw2-gr2x9[0m
-{"level":"info","ts":1593506775.73446,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/refs/heads/0.8.0-ns-support: no such file or directory"}
-{"level":"info","ts":1593506777.0115705,"logger":"fallback-logger","caller":"git/git.go:103","msg":"Successfully cloned https://github.com/*******/fmtok8s-api-gateway.git @ v0.0.57 in path /workspace/source"}
+Showing logs for build [32msalaboy-fmtok8s-api-gateway-mas-kc2tw-6[0m stage [32mfrom-build-pack[0m and container [32mstep-git-source-salaboy-fmtok8s-api-gateway-mas-kc2tw-n7lj4[0m
+{"level":"info","ts":1593619723.40371,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/refs/heads/0.8.0-ns-support: no such file or directory"}
+{"level":"info","ts":1593619724.7178054,"logger":"fallback-logger","caller":"git/git.go:103","msg":"Successfully cloned https://github.com/*******/fmtok8s-api-gateway.git @ v0.0.59 in path /workspace/source"}
 
-Showing logs for build [32msalaboy-fmtok8s-api-gateway-mas-6rhw2-6[0m stage [32mfrom-build-pack[0m and container [32mstep-git-merge[0m
-Using SHAs from PULL_REFS=master:bcbfe68c724088e192877eec77b0374a738ade4d
+Showing logs for build [32msalaboy-fmtok8s-api-gateway-mas-kc2tw-6[0m stage [32mfrom-build-pack[0m and container [32mstep-setup-builder-home[0m
+
+Showing logs for build [32msalaboy-fmtok8s-api-gateway-mas-kc2tw-6[0m stage [32mfrom-build-pack[0m and container [32mstep-git-merge[0m
+Using SHAs from PULL_REFS=master:32176f4db2703b1626dfaecfc32210fa3fc9c4d5
 WARNING: no SHAs to merge, falling back to initial cloned commit
 
-Showing logs for build [32msalaboy-fmtok8s-api-gateway-mas-6rhw2-6[0m stage [32mfrom-build-pack[0m and container [32mstep-setup-jx-git-credentials[0m
+Showing logs for build [32msalaboy-fmtok8s-api-gateway-mas-kc2tw-6[0m stage [32mfrom-build-pack[0m and container [32mstep-setup-jx-git-credentials[0m
 Generated Git credentials file /workspace/xdg_config/git/credentials
 
-Showing logs for build [32msalaboy-fmtok8s-api-gateway-mas-6rhw2-6[0m stage [32mfrom-build-pack[0m and container [32mstep-build-mvn-deploy[0m
+Showing logs for build [32msalaboy-fmtok8s-api-gateway-mas-kc2tw-6[0m stage [32mfrom-build-pack[0m and container [32mstep-build-mvn-deploy[0m
 Picked up _JAVA_OPTIONS: -XX:+UnlockExperimentalVMOptions -Dsun.zip.disableMemoryMapping=true -XX:+UseParallelGC -XX:MinHeapFreeRatio=5 -XX:MaxHeapFreeRatio=10 -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Xms10m -Xmx192m
 [INFO] Scanning for projects...
 [INFO] 
 [INFO] ----------------< com.*******.conferences:api-gateway >-----------------
-[INFO] Building FMTOK8S :: API Gateway 0.0.57
+[INFO] Building FMTOK8S :: API Gateway 0.0.59
 [INFO] --------------------------------[ jar ]---------------------------------
 [INFO] 
 [INFO] --- maven-clean-plugin:3.1.0:clean (default-clean) @ api-gateway ---
@@ -53,32 +55,32 @@ Picked up _JAVA_OPTIONS: -XX:+UnlockExperimentalVMOptions -Dsun.zip.disableMemor
 [INFO]  T E S T S
 [INFO] -------------------------------------------------------
 [INFO] Running com.*******.conferences.site.C4PApisTests
-08:46:46.891 [main] DEBUG org.springframework.test.context.junit4.SpringJUnit4ClassRunner - SpringJUnit4ClassRunner constructor called with [class com.*******.conferences.site.C4PApisTests]
-08:46:46.920 [main] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating CacheAwareContextLoaderDelegate from class [org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate]
-08:46:46.992 [main] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating BootstrapContext using constructor [public org.springframework.test.context.support.DefaultBootstrapContext(java.lang.Class,org.springframework.test.context.CacheAwareContextLoaderDelegate)]
-08:46:47.143 [main] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating TestContextBootstrapper for test class [com.*******.conferences.site.C4PApisTests] from class [org.springframework.boot.test.context.SpringBootTestContextBootstrapper]
-08:46:47.178 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.*******.conferences.site.C4PApisTests], using SpringBootContextLoader
-08:46:47.194 [main] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [com.*******.conferences.site.C4PApisTests]: class path resource [com/*******/conferences/site/C4PApisTests-context.xml] does not exist
-08:46:47.200 [main] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [com.*******.conferences.site.C4PApisTests]: class path resource [com/*******/conferences/site/C4PApisTestsContext.groovy] does not exist
-08:46:47.204 [main] INFO org.springframework.test.context.support.AbstractContextLoader - Could not detect default resource locations for test class [com.*******.conferences.site.C4PApisTests]: no resource found for suffixes {-context.xml, Context.groovy}.
-08:46:47.208 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.*******.conferences.site.C4PApisTests]: C4PApisTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-08:46:47.400 [main] DEBUG org.springframework.test.context.support.ActiveProfilesUtils - Could not find an 'annotation declaring class' for annotation type [org.springframework.test.context.ActiveProfiles] and class [com.*******.conferences.site.C4PApisTests]
-08:46:47.697 [main] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: file [/workspace/source/target/classes/com/*******/conferences/site/DemoApplication.class]
-08:46:47.712 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.*******.conferences.site.DemoApplication for test class com.*******.conferences.site.C4PApisTests
-08:46:47.981 [main] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - @TestExecutionListeners is not present for class [com.*******.conferences.site.C4PApisTests]: using defaults.
-08:46:47.989 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.cloud.contract.wiremock.WireMockTestExecutionListener, org.springframework.cloud.contract.stubrunner.provider.wiremock.StubRunnerWireMockTestExecutionListener]
-08:46:48.118 [main] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Skipping candidate TestExecutionListener [org.springframework.test.context.transaction.TransactionalTestExecutionListener] due to a missing dependency. Specify custom listener classes or make the default listener classes and their required dependencies available. Offending class: [org/springframework/transaction/TransactionDefinition]
-08:46:48.125 [main] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Skipping candidate TestExecutionListener [org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener] due to a missing dependency. Specify custom listener classes or make the default listener classes and their required dependencies available. Offending class: [org/springframework/transaction/interceptor/TransactionAttribute]
-08:46:48.132 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@be68757, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@7d446ed1, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@12d2ce03, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@7e5c856f, org.springframework.test.context.support.DirtiesContextTestExecutionListener@413f69cc, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@1f53a5dc, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@1b75c2e3, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@1984b1f, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@3bd323e9, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@39ac0c0a, org.springframework.cloud.contract.wiremock.WireMockTestExecutionListener@c7ba306, org.springframework.cloud.contract.stubrunner.provider.wiremock.StubRunnerWireMockTestExecutionListener@4ff8d125]
-08:46:48.147 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [com.*******.conferences.site.C4PApisTests]
-08:46:48.151 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [com.*******.conferences.site.C4PApisTests]
-08:46:48.157 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [com.*******.conferences.site.C4PApisTests]
-08:46:48.164 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [com.*******.conferences.site.C4PApisTests]
-08:46:48.169 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [com.*******.conferences.site.C4PApisTests]
-08:46:48.172 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [com.*******.conferences.site.C4PApisTests]
-08:46:48.179 [main] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener - Before test class: context [DefaultTestContext@106cc338 testClass = C4PApisTests, testInstance = [null], testMethod = [null], testException = [null], mergedContextConfiguration = [ReactiveWebMergedContextConfiguration@7a67e3c6 testClass = C4PApisTests, locations = '{}', classes = '{class com.*******.conferences.site.DemoApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[[ImportsContextCustomizer@6cc558c6 key = [org.springframework.boot.test.autoconfigure.web.servlet.MockMvcAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcSecurityAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebClientAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebDriverAutoConfiguration, org.springframework.boot.test.autoconfigure.json.JsonTestersAutoConfiguration, org.springframework.boot.autoconfigure.gson.GsonAutoConfiguration, org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration, org.springframework.boot.autoconfigure.jsonb.JsonbAutoConfiguration, org.springframework.cloud.contract.stubrunner.spring.StubRunnerConfiguration, org.springframework.cloud.contract.stubrunner.spring.cloud.StubRunnerSpringCloudAutoConfiguration, org.springframework.cloud.contract.stubrunner.spring.cloud.ribbon.StubRunnerRibbonAutoConfiguration, org.springframework.cloud.contract.stubrunner.messaging.integration.StubRunnerIntegrationConfiguration, org.springframework.cloud.contract.stubrunner.messaging.stream.StubRunnerStreamConfiguration, org.springframework.cloud.contract.stubrunner.spring.cloud.zookeeper.StubRunnerSpringCloudZookeeperAutoConfiguration, org.springframework.cloud.contract.stubrunner.spring.cloud.eureka.StubRunnerSpringCloudEurekaAutoConfiguration, org.springframework.cloud.contract.stubrunner.spring.cloud.consul.StubRunnerSpringCloudConsulAutoConfiguration, org.springframework.cloud.contract.stubrunner.messaging.StubRunnerStreamsIntegrationAutoConfiguration, org.springframework.cloud.contract.stubrunner.messaging.camel.StubRunnerCamelConfiguration, org.springframework.cloud.contract.verifier.messaging.stream.ContractVerifierStreamAutoConfiguration, org.springframework.cloud.contract.verifier.messaging.integration.ContractVerifierIntegrationConfiguration, org.springframework.cloud.contract.verifier.messaging.amqp.ContractVerifierAmqpAutoConfiguration, org.springframework.cloud.contract.verifier.messaging.amqp.RabbitMockConnectionFactoryAutoConfiguration, org.springframework.cloud.contract.verifier.messaging.camel.ContractVerifierCamelConfiguration, org.springframework.cloud.contract.verifier.messaging.noop.NoOpContractVerifierAutoConfiguration]], org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@6283d8b8, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@611889f4, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@306e95ec, org.springframework.boot.test.web.reactive.server.WebTestClientContextCustomizer@342c38f8, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@bcd6bc2, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@31fa1761], contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map[[empty]]], class annotated with @DirtiesContext [true] with mode [AFTER_CLASS].
-08:46:48.286 [main] DEBUG org.springframework.test.context.support.TestPropertySourceUtils - Adding inlined properties to environment: {spring.jmx.enabled=false, org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true, server.port=-1}
-2020-06-30 08:46:51.653  INFO 69 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$1742403] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+16:09:18.065 [main] DEBUG org.springframework.test.context.junit4.SpringJUnit4ClassRunner - SpringJUnit4ClassRunner constructor called with [class com.*******.conferences.site.C4PApisTests]
+16:09:18.077 [main] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating CacheAwareContextLoaderDelegate from class [org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate]
+16:09:18.089 [main] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating BootstrapContext using constructor [public org.springframework.test.context.support.DefaultBootstrapContext(java.lang.Class,org.springframework.test.context.CacheAwareContextLoaderDelegate)]
+16:09:18.170 [main] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating TestContextBootstrapper for test class [com.*******.conferences.site.C4PApisTests] from class [org.springframework.boot.test.context.SpringBootTestContextBootstrapper]
+16:09:18.266 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.*******.conferences.site.C4PApisTests], using SpringBootContextLoader
+16:09:18.271 [main] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [com.*******.conferences.site.C4PApisTests]: class path resource [com/*******/conferences/site/C4PApisTests-context.xml] does not exist
+16:09:18.273 [main] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [com.*******.conferences.site.C4PApisTests]: class path resource [com/*******/conferences/site/C4PApisTestsContext.groovy] does not exist
+16:09:18.273 [main] INFO org.springframework.test.context.support.AbstractContextLoader - Could not detect default resource locations for test class [com.*******.conferences.site.C4PApisTests]: no resource found for suffixes {-context.xml, Context.groovy}.
+16:09:18.274 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.*******.conferences.site.C4PApisTests]: C4PApisTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+16:09:18.556 [main] DEBUG org.springframework.test.context.support.ActiveProfilesUtils - Could not find an 'annotation declaring class' for annotation type [org.springframework.test.context.ActiveProfiles] and class [com.*******.conferences.site.C4PApisTests]
+16:09:18.857 [main] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: file [/workspace/source/target/classes/com/*******/conferences/site/DemoApplication.class]
+16:09:18.859 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.*******.conferences.site.DemoApplication for test class com.*******.conferences.site.C4PApisTests
+16:09:19.245 [main] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - @TestExecutionListeners is not present for class [com.*******.conferences.site.C4PApisTests]: using defaults.
+16:09:19.246 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.cloud.contract.wiremock.WireMockTestExecutionListener, org.springframework.cloud.contract.stubrunner.provider.wiremock.StubRunnerWireMockTestExecutionListener]
+16:09:19.263 [main] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Skipping candidate TestExecutionListener [org.springframework.test.context.transaction.TransactionalTestExecutionListener] due to a missing dependency. Specify custom listener classes or make the default listener classes and their required dependencies available. Offending class: [org/springframework/transaction/TransactionDefinition]
+16:09:19.264 [main] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Skipping candidate TestExecutionListener [org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener] due to a missing dependency. Specify custom listener classes or make the default listener classes and their required dependencies available. Offending class: [org/springframework/transaction/interceptor/TransactionAttribute]
+16:09:19.265 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@7d446ed1, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@12d2ce03, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@7e5c856f, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@413f69cc, org.springframework.test.context.support.DirtiesContextTestExecutionListener@1f53a5dc, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@1b75c2e3, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@1984b1f, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@3bd323e9, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@39ac0c0a, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@c7ba306, org.springframework.cloud.contract.wiremock.WireMockTestExecutionListener@4ff8d125, org.springframework.cloud.contract.stubrunner.provider.wiremock.StubRunnerWireMockTestExecutionListener@6d167f58]
+16:09:19.268 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [com.*******.conferences.site.C4PApisTests]
+16:09:19.268 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [com.*******.conferences.site.C4PApisTests]
+16:09:19.270 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [com.*******.conferences.site.C4PApisTests]
+16:09:19.270 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [com.*******.conferences.site.C4PApisTests]
+16:09:19.271 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [com.*******.conferences.site.C4PApisTests]
+16:09:19.271 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [com.*******.conferences.site.C4PApisTests]
+16:09:19.340 [main] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener - Before test class: context [DefaultTestContext@7a67e3c6 testClass = C4PApisTests, testInstance = [null], testMethod = [null], testException = [null], mergedContextConfiguration = [ReactiveWebMergedContextConfiguration@6cc558c6 testClass = C4PApisTests, locations = '{}', classes = '{class com.*******.conferences.site.DemoApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[[ImportsContextCustomizer@15713d56 key = [org.springframework.boot.test.autoconfigure.web.servlet.MockMvcAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcSecurityAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebClientAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebDriverAutoConfiguration, org.springframework.boot.test.autoconfigure.json.JsonTestersAutoConfiguration, org.springframework.boot.autoconfigure.gson.GsonAutoConfiguration, org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration, org.springframework.boot.autoconfigure.jsonb.JsonbAutoConfiguration, org.springframework.cloud.contract.stubrunner.spring.StubRunnerConfiguration, org.springframework.cloud.contract.stubrunner.spring.cloud.StubRunnerSpringCloudAutoConfiguration, org.springframework.cloud.contract.stubrunner.spring.cloud.ribbon.StubRunnerRibbonAutoConfiguration, org.springframework.cloud.contract.stubrunner.messaging.integration.StubRunnerIntegrationConfiguration, org.springframework.cloud.contract.stubrunner.messaging.stream.StubRunnerStreamConfiguration, org.springframework.cloud.contract.stubrunner.spring.cloud.zookeeper.StubRunnerSpringCloudZookeeperAutoConfiguration, org.springframework.cloud.contract.stubrunner.spring.cloud.eureka.StubRunnerSpringCloudEurekaAutoConfiguration, org.springframework.cloud.contract.stubrunner.spring.cloud.consul.StubRunnerSpringCloudConsulAutoConfiguration, org.springframework.cloud.contract.stubrunner.messaging.StubRunnerStreamsIntegrationAutoConfiguration, org.springframework.cloud.contract.stubrunner.messaging.camel.StubRunnerCamelConfiguration, org.springframework.cloud.contract.verifier.messaging.stream.ContractVerifierStreamAutoConfiguration, org.springframework.cloud.contract.verifier.messaging.integration.ContractVerifierIntegrationConfiguration, org.springframework.cloud.contract.verifier.messaging.amqp.ContractVerifierAmqpAutoConfiguration, org.springframework.cloud.contract.verifier.messaging.amqp.RabbitMockConnectionFactoryAutoConfiguration, org.springframework.cloud.contract.verifier.messaging.camel.ContractVerifierCamelConfiguration, org.springframework.cloud.contract.verifier.messaging.noop.NoOpContractVerifierAutoConfiguration]], org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@3b6ddd1d, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@1da2cb77, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@52af26ee, org.springframework.boot.test.web.reactive.server.WebTestClientContextCustomizer@c88a337, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@f1b5ad83, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@957e06], contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map[[empty]]], class annotated with @DirtiesContext [true] with mode [AFTER_CLASS].
+16:09:19.448 [main] DEBUG org.springframework.test.context.support.TestPropertySourceUtils - Adding inlined properties to environment: {spring.jmx.enabled=false, org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true, server.port=-1}
+2020-07-01 16:09:23.367  INFO 71 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$b3f32a1f] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -88,528 +90,168 @@ Picked up _JAVA_OPTIONS: -XX:+UnlockExperimentalVMOptions -Dsun.zip.disableMemor
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::        (v2.1.9.RELEASE)
 
-2020-06-30 08:46:52.219  INFO 69 --- [           main] c.*******.conferences.site.C4PApisTests  : No active profile set, falling back to default profiles: default
-2020-06-30 08:46:55.295  INFO 69 --- [           main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=79161fd1-323f-37f7-8eee-1bf31a8e40e2
-2020-06-30 08:46:55.728  INFO 69 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$1742403] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-06-30 08:46:55.822  INFO 69 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'stubrunner-org.springframework.cloud.contract.stubrunner.spring.StubRunnerProperties' of type [org.springframework.cloud.contract.stubrunner.spring.StubRunnerProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-06-30 08:46:55.831  INFO 69 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.contract.stubrunner.spring.StubRunnerConfiguration' of type [org.springframework.cloud.contract.stubrunner.spring.StubRunnerConfiguration$$EnhancerBySpringCGLIB$$5dddf376] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-06-30 08:46:55.865  INFO 69 --- [           main] o.s.c.c.s.AetherStubDownloaderBuilder    : Will download stubs and contracts via Aether
-2020-06-30 08:46:56.313  INFO 69 --- [           main] o.s.c.c.stubrunner.AetherStubDownloader  : Desired version is [+] - will try to resolve the latest version
-2020-06-30 08:46:57.432  WARN 69 --- [           main] r.c.GenericReactiveWebApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'batchStubRunnerBeanPostProcessor' defined in class path resource [org/springframework/cloud/contract/stubrunner/spring/StubRunnerConfiguration.class]: Unsatisfied dependency expressed through method 'batchStubRunnerBeanPostProcessor' parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'batchStubRunner' defined in class path resource [org/springframework/cloud/contract/stubrunner/spring/StubRunnerConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.cloud.contract.stubrunner.BatchStubRunner]: Factory method 'batchStubRunner' threw exception; nested exception is java.lang.IllegalArgumentException: For groupId [com.*******.conferences] artifactId [fmtok8s-c4p] and classifier [stubs] the version was not resolved! The following exceptions took place [org.eclipse.aether.transfer.MetadataNotFoundException: Could not find metadata com.*******.conferences:fmtok8s-c4p/maven-metadata.xml in local (/tmp/aether-local626256598200302498), org.eclipse.aether.transfer.MetadataTransferException: Could not transfer metadata com.*******.conferences:fmtok8s-c4p/maven-metadata.xml from/to remote0 (http://nexus/repository/maven-group/): status code: 401, reason phrase: Unauthorized (401)]
-2020-06-30 08:46:57.483  INFO 69 --- [           main] ConditionEvaluationReportLoggingListener : 
+2020-07-01 16:09:23.956  INFO 71 --- [           main] c.*******.conferences.site.C4PApisTests  : No active profile set, falling back to default profiles: default
+2020-07-01 16:09:27.169  INFO 71 --- [           main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=79161fd1-323f-37f7-8eee-1bf31a8e40e2
+2020-07-01 16:09:27.456  INFO 71 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$b3f32a1f] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-07-01 16:09:27.557  INFO 71 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'stubrunner-org.springframework.cloud.contract.stubrunner.spring.StubRunnerProperties' of type [org.springframework.cloud.contract.stubrunner.spring.StubRunnerProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-07-01 16:09:27.561  INFO 71 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.contract.stubrunner.spring.StubRunnerConfiguration' of type [org.springframework.cloud.contract.stubrunner.spring.StubRunnerConfiguration$$EnhancerBySpringCGLIB$$105cf992] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-07-01 16:09:27.575  INFO 71 --- [           main] o.s.c.c.s.AetherStubDownloaderBuilder    : Will download stubs and contracts via Aether
+2020-07-01 16:09:27.945  INFO 71 --- [           main] o.s.c.c.stubrunner.AetherStubDownloader  : Desired version is [+] - will try to resolve the latest version
+2020-07-01 16:09:31.205  INFO 71 --- [           main] o.s.c.c.stubrunner.AetherStubDownloader  : Resolved version is [0.0.45]
+2020-07-01 16:09:31.219  INFO 71 --- [           main] o.s.c.c.stubrunner.AetherStubDownloader  : Resolved artifact [com.*******.conferences:fmtok8s-c4p:jar:stubs:0.0.45] to /tmp/aether-local17624402239029199147/com/*******/conferences/fmtok8s-c4p/0.0.45/fmtok8s-c4p-0.0.45-stubs.jar
+2020-07-01 16:09:31.220  INFO 71 --- [           main] o.s.c.c.stubrunner.AetherStubDownloader  : Unpacking stub from JAR [URI: file:/tmp/aether-local17624402239029199147/com/*******/conferences/fmtok8s-c4p/0.0.45/fmtok8s-c4p-0.0.45-stubs.jar]
+2020-07-01 16:09:31.241  INFO 71 --- [           main] o.s.c.c.stubrunner.AetherStubDownloader  : Unpacked file to [/tmp/contracts14638108834863793881]
+2020-07-01 16:09:33.980  INFO 71 --- [           main] wiremock.org.eclipse.jetty.util.log      : Logging initialized @17938ms
+2020-07-01 16:09:34.002  WARN 71 --- [           main] w.o.e.j.s.NetworkTrafficServerConnector  : Acceptors should be <= availableProcessors: NetworkTrafficServerConnector@2ac9e53c{HTTP/1.1}{0.0.0.0:0}
+2020-07-01 16:09:34.160  INFO 71 --- [           main] w.org.eclipse.jetty.server.Server        : jetty-9.2.z-SNAPSHOT
+2020-07-01 16:09:34.179  INFO 71 --- [           main] w.o.e.j.server.handler.ContextHandler    : Started w.o.e.j.s.ServletContextHandler@38ba8b45{/__*****,null,AVAILABLE}
+2020-07-01 16:09:34.239  INFO 71 --- [           main] w.o.e.j.server.handler.ContextHandler    : Started w.o.e.j.s.ServletContextHandler@23933031{/,null,AVAILABLE}
+2020-07-01 16:09:34.254  INFO 71 --- [           main] w.o.e.j.s.NetworkTrafficServerConnector  : Started NetworkTrafficServerConnector@2ac9e53c{HTTP/1.1}{0.0.0.0:12327}
+2020-07-01 16:09:34.255  INFO 71 --- [           main] w.org.eclipse.jetty.server.Server        : Started @18214ms
+2020-07-01 16:09:34.256  INFO 71 --- [           main] o.s.c.contract.stubrunner.StubServer     : Started stub server for project [com.*******.conferences:fmtok8s-c4p:0.0.45:stubs] on port 12327
+2020-07-01 16:09:35.274  INFO 71 --- [ qtp28064367-28] /__*****                                 : RequestHandlerClass from context returned com.github.tomakehurst.wiremock.http.AdminRequestHandler. Normalized mapped under returned 'null'
+2020-07-01 16:09:35.383  INFO 71 --- [ qtp28064367-28] WireMock                                 : Admin request received:
+127.0.0.1 - POST /mappings
 
-Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
-2020-06-30 08:46:57.506 ERROR 69 --- [           main] o.s.boot.SpringApplication               : Application run failed
+Connection: [keep-alive]
+User-Agent: [Apache-HttpClient/4.5.5 (Java/11.0.2)]
+Host: [localhost:12327]
+Content-Length: [225]
+Content-Type: [text/plain; charset=UTF-8]
+{
+  "id" : "a7ebf072-1192-41e4-a6bd-0c73b7e9518f",
+  "request" : {
+    "url" : "/ping",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "body" : "OK"
+  },
+  "uuid" : "a7ebf072-1192-41e4-a6bd-0c73b7e9518f"
+}
 
-org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'batchStubRunnerBeanPostProcessor' defined in class path resource [org/springframework/cloud/contract/stubrunner/spring/StubRunnerConfiguration.class]: Unsatisfied dependency expressed through method 'batchStubRunnerBeanPostProcessor' parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'batchStubRunner' defined in class path resource [org/springframework/cloud/contract/stubrunner/spring/StubRunnerConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.cloud.contract.stubrunner.BatchStubRunner]: Factory method 'batchStubRunner' threw exception; nested exception is java.lang.IllegalArgumentException: For groupId [com.*******.conferences] artifactId [fmtok8s-c4p] and classifier [stubs] the version was not resolved! The following exceptions took place [org.eclipse.aether.transfer.MetadataNotFoundException: Could not find metadata com.*******.conferences:fmtok8s-c4p/maven-metadata.xml in local (/tmp/aether-local626256598200302498), org.eclipse.aether.transfer.MetadataTransferException: Could not transfer metadata com.*******.conferences:fmtok8s-c4p/maven-metadata.xml from/to remote0 (http://nexus/repository/maven-group/): status code: 401, reason phrase: Unauthorized (401)]
-	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:769) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:509) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1321) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1160) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:555) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:204) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.context.support.PostProcessorRegistrationDelegate.registerBeanPostProcessors(PostProcessorRegistrationDelegate.java:240) ~[spring-context-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.context.support.AbstractApplicationContext.registerBeanPostProcessors(AbstractApplicationContext.java:721) ~[spring-context-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:534) ~[spring-context-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:744) ~[spring-boot-2.1.9.RELEASE.jar:2.1.9.RELEASE]
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:391) ~[spring-boot-2.1.9.RELEASE.jar:2.1.9.RELEASE]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:312) ~[spring-boot-2.1.9.RELEASE.jar:2.1.9.RELEASE]
-	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:120) ~[spring-boot-test-2.1.9.RELEASE.jar:2.1.9.RELEASE]
-	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:99) ~[spring-test-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:117) ~[spring-test-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:108) ~[spring-test-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.cloud.contract.wiremock.WireMockTestExecutionListener.applicationContextBroken(WireMockTestExecutionListener.java:107) ~[spring-cloud-contract-wiremock-2.1.4.RELEASE.jar:2.1.4.RELEASE]
-	at org.springframework.cloud.contract.wiremock.WireMockTestExecutionListener.beforeTestClass(WireMockTestExecutionListener.java:40) ~[spring-cloud-contract-wiremock-2.1.4.RELEASE.jar:2.1.4.RELEASE]
-	at org.springframework.test.context.TestContextManager.beforeTestClass(TestContextManager.java:215) ~[spring-test-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:60) ~[spring-test-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:70) ~[spring-test-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:363) ~[junit-4.12.jar:4.12]
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:190) ~[spring-test-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:365) ~[surefire-junit4-3.0.0-M1.jar:3.0.0-M1]
-	at org.apache.maven.surefire.junit4.JUnit4Provider.executeWithRerun(JUnit4Provider.java:273) ~[surefire-junit4-3.0.0-M1.jar:3.0.0-M1]
-	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:238) ~[surefire-junit4-3.0.0-M1.jar:3.0.0-M1]
-	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:159) ~[surefire-junit4-3.0.0-M1.jar:3.0.0-M1]
-	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:384) ~[surefire-booter-3.0.0-M1.jar:3.0.0-M1]
-	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:345) ~[surefire-booter-3.0.0-M1.jar:3.0.0-M1]
-	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:126) ~[surefire-booter-3.0.0-M1.jar:3.0.0-M1]
-	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:418) ~[surefire-booter-3.0.0-M1.jar:3.0.0-M1]
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'batchStubRunner' defined in class path resource [org/springframework/cloud/contract/stubrunner/spring/StubRunnerConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.cloud.contract.stubrunner.BatchStubRunner]: Factory method 'batchStubRunner' threw exception; nested exception is java.lang.IllegalArgumentException: For groupId [com.*******.conferences] artifactId [fmtok8s-c4p] and classifier [stubs] the version was not resolved! The following exceptions took place [org.eclipse.aether.transfer.MetadataNotFoundException: Could not find metadata com.*******.conferences:fmtok8s-c4p/maven-metadata.xml in local (/tmp/aether-local626256598200302498), org.eclipse.aether.transfer.MetadataTransferException: Could not transfer metadata com.*******.conferences:fmtok8s-c4p/maven-metadata.xml from/to remote0 (http://nexus/repository/maven-group/): status code: 401, reason phrase: Unauthorized (401)]
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:627) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:607) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1321) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1160) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:555) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:277) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1255) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1175) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:857) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:760) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	... 34 common frames omitted
-Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.cloud.contract.stubrunner.BatchStubRunner]: Factory method 'batchStubRunner' threw exception; nested exception is java.lang.IllegalArgumentException: For groupId [com.*******.conferences] artifactId [fmtok8s-c4p] and classifier [stubs] the version was not resolved! The following exceptions took place [org.eclipse.aether.transfer.MetadataNotFoundException: Could not find metadata com.*******.conferences:fmtok8s-c4p/maven-metadata.xml in local (/tmp/aether-local626256598200302498), org.eclipse.aether.transfer.MetadataTransferException: Could not transfer metadata com.*******.conferences:fmtok8s-c4p/maven-metadata.xml from/to remote0 (http://nexus/repository/maven-group/): status code: 401, reason phrase: Unauthorized (401)]
-	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:185) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:622) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	... 48 common frames omitted
-Caused by: java.lang.IllegalArgumentException: For groupId [com.*******.conferences] artifactId [fmtok8s-c4p] and classifier [stubs] the version was not resolved! The following exceptions took place [org.eclipse.aether.transfer.MetadataNotFoundException: Could not find metadata com.*******.conferences:fmtok8s-c4p/maven-metadata.xml in local (/tmp/aether-local626256598200302498), org.eclipse.aether.transfer.MetadataTransferException: Could not transfer metadata com.*******.conferences:fmtok8s-c4p/maven-metadata.xml from/to remote0 (http://nexus/repository/maven-group/): status code: 401, reason phrase: Unauthorized (401)]
-	at org.springframework.cloud.contract.stubrunner.AetherStubDownloader.resolveHighestArtifactVersion(AetherStubDownloader.java:269) ~[spring-cloud-contract-stub-runner-2.1.4.RELEASE.jar:2.1.4.RELEASE]
-	at org.springframework.cloud.contract.stubrunner.AetherStubDownloader.getVersion(AetherStubDownloader.java:221) ~[spring-cloud-contract-stub-runner-2.1.4.RELEASE.jar:2.1.4.RELEASE]
-	at org.springframework.cloud.contract.stubrunner.AetherStubDownloader.downloadAndUnpackStubJar(AetherStubDownloader.java:231) ~[spring-cloud-contract-stub-runner-2.1.4.RELEASE.jar:2.1.4.RELEASE]
-	at org.springframework.cloud.contract.stubrunner.CompositeStubDownloader.downloadAndUnpackStubJar(CompositeStubDownloaderBuilder.java:80) ~[spring-cloud-contract-stub-runner-2.1.4.RELEASE.jar:2.1.4.RELEASE]
-	at org.springframework.cloud.contract.stubrunner.StubRunnerFactory.createStubsFromServiceConfiguration(StubRunnerFactory.java:66) ~[spring-cloud-contract-stub-runner-2.1.4.RELEASE.jar:2.1.4.RELEASE]
-	at org.springframework.cloud.contract.stubrunner.BatchStubRunnerFactory.buildBatchStubRunner(BatchStubRunnerFactory.java:69) ~[spring-cloud-contract-stub-runner-2.1.4.RELEASE.jar:2.1.4.RELEASE]
-	at org.springframework.cloud.contract.stubrunner.spring.StubRunnerConfiguration.batchStubRunner(StubRunnerConfiguration.java:84) ~[spring-cloud-contract-stub-runner-2.1.4.RELEASE.jar:2.1.4.RELEASE]
-	at org.springframework.cloud.contract.stubrunner.spring.StubRunnerConfiguration$$EnhancerBySpringCGLIB$$5dddf376.CGLIB$batchStubRunner$0(<generated>) ~[spring-cloud-contract-stub-runner-2.1.4.RELEASE.jar:2.1.4.RELEASE]
-	at org.springframework.cloud.contract.stubrunner.spring.StubRunnerConfiguration$$EnhancerBySpringCGLIB$$5dddf376$$FastClassBySpringCGLIB$$8f6d2529.invoke(<generated>) ~[spring-cloud-contract-stub-runner-2.1.4.RELEASE.jar:2.1.4.RELEASE]
-	at org.springframework.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:244) ~[spring-core-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:363) ~[spring-context-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.cloud.contract.stubrunner.spring.StubRunnerConfiguration$$EnhancerBySpringCGLIB$$5dddf376.batchStubRunner(<generated>) ~[spring-cloud-contract-stub-runner-2.1.4.RELEASE.jar:2.1.4.RELEASE]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:na]
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Method.java:566) ~[na:na]
-	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:154) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	... 49 common frames omitted
+2020-07-01 16:09:35.750  INFO 71 --- [ qtp28064367-29] WireMock                                 : Admin request received:
+127.0.0.1 - POST /mappings
 
-2020-06-30 08:46:57.775  INFO 69 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$1742403] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+Connection: [keep-alive]
+User-Agent: [Apache-HttpClient/4.5.5 (Java/11.0.2)]
+Host: [localhost:12327]
+Content-Length: [227]
+Content-Type: [text/plain; charset=UTF-8]
+{
+  "id" : "dbb7ff23-ba3f-4f99-b3d1-339f612b7865",
+  "request" : {
+    "url" : "/health",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "body" : "OK"
+  },
+  "uuid" : "dbb7ff23-ba3f-4f99-b3d1-339f612b7865"
+}
 
-  .   ____          _            __ _ _
- /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
-( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
- \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
-  '  |____| .__|_| |_|_| |_\__, | / / / /
- =========|_|==============|___/=/_/_/_/
- :: Spring Boot ::        (v2.1.9.RELEASE)
+2020-07-01 16:09:35.871  INFO 71 --- [ qtp28064367-30] WireMock                                 : Admin request received:
+127.0.0.1 - POST /mappings
 
-2020-06-30 08:46:58.067  INFO 69 --- [           main] c.*******.conferences.site.C4PApisTests  : No active profile set, falling back to default profiles: default
-2020-06-30 08:46:58.993  INFO 69 --- [           main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=79161fd1-323f-37f7-8eee-1bf31a8e40e2
-2020-06-30 08:46:59.090  INFO 69 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$1742403] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-06-30 08:46:59.144  INFO 69 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'stubrunner-org.springframework.cloud.contract.stubrunner.spring.StubRunnerProperties' of type [org.springframework.cloud.contract.stubrunner.spring.StubRunnerProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-06-30 08:46:59.152  INFO 69 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.contract.stubrunner.spring.StubRunnerConfiguration' of type [org.springframework.cloud.contract.stubrunner.spring.StubRunnerConfiguration$$EnhancerBySpringCGLIB$$5dddf376] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-06-30 08:46:59.167  INFO 69 --- [           main] o.s.c.c.s.AetherStubDownloaderBuilder    : Will download stubs and contracts via Aether
-2020-06-30 08:46:59.183  INFO 69 --- [           main] o.s.c.c.stubrunner.AetherStubDownloader  : Desired version is [+] - will try to resolve the latest version
-2020-06-30 08:46:59.204  WARN 69 --- [           main] r.c.GenericReactiveWebApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'batchStubRunnerBeanPostProcessor' defined in class path resource [org/springframework/cloud/contract/stubrunner/spring/StubRunnerConfiguration.class]: Unsatisfied dependency expressed through method 'batchStubRunnerBeanPostProcessor' parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'batchStubRunner' defined in class path resource [org/springframework/cloud/contract/stubrunner/spring/StubRunnerConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.cloud.contract.stubrunner.BatchStubRunner]: Factory method 'batchStubRunner' threw exception; nested exception is java.lang.IllegalArgumentException: For groupId [com.*******.conferences] artifactId [fmtok8s-c4p] and classifier [stubs] the version was not resolved! The following exceptions took place [org.eclipse.aether.transfer.MetadataNotFoundException: Could not find metadata com.*******.conferences:fmtok8s-c4p/maven-metadata.xml in local (/tmp/aether-local7502374464928347353), org.eclipse.aether.transfer.MetadataTransferException: Could not transfer metadata com.*******.conferences:fmtok8s-c4p/maven-metadata.xml from/to remote0 (http://nexus/repository/maven-group/): status code: 401, reason phrase: Unauthorized (401)]
-2020-06-30 08:46:59.229  INFO 69 --- [           main] ConditionEvaluationReportLoggingListener : 
+Connection: [keep-alive]
+User-Agent: [Apache-HttpClient/4.5.5 (Java/11.0.2)]
+Host: [localhost:12327]
+Content-Length: [981]
+Content-Type: [text/plain; charset=UTF-8]
+{
+  "id" : "e6eaba46-40ed-4d84-851b-a9aa355131ff",
+  "request" : {
+    "url" : "/",
+    "method" : "POST",
+    "headers" : {
+      "Content-Type" : {
+        "matches" : "application/json.*"
+      }
+    },
+    "bodyPatterns" : [ {
+      "matchesJsonPath" : "$[?(@.['title'] =~ /[\\S\\s]+/)]"
+    }, {
+      "matchesJsonPath" : "$[?(@.['description'] =~ /[\\S\\s]+/)]"
+    }, {
+      "matchesJsonPath" : "$[?(@.['author'] =~ /[\\S\\s]+/)]"
+    }, {
+      "matchesJsonPath" : "$[?(@.['email'] =~ /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}/)]"
+    } ]
+  },
+  "response" : {
+    "status" : 200,
+    "body" : "{\"id\":\"22520127-e19a-4bf1-84ce-54231f576d71\",\"title\":\"JTHUCHCTXUTQARXQFZDX\",\"description\":\"GAYIEXTBYWTXSLCYEATK\",\"author\":\"TJPAIIBNBZKUHQTNJBYH\",\"email\":\"foo@bar-2092912425.com\"}",
+    "headers" : {
+      "Content-Type" : "application/json"
+    },
+    "transformers" : [ "response-template" ]
+  },
+  "uuid" : "e6eaba46-40ed-4d84-851b-a9aa355131ff"
+}
 
-Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
-2020-06-30 08:46:59.244 ERROR 69 --- [           main] o.s.boot.SpringApplication               : Application run failed
+2020-07-01 16:09:36.346  INFO 71 --- [           main] o.s.c.c.stubrunner.StubRunnerExecutor    : All stubs are now running RunningStubs [namesAndPorts={com.*******.conferences:fmtok8s-c4p:0.0.45:stubs=12327}]
+2020-07-01 16:09:36.351  INFO 71 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'batchStubRunner' of type [org.springframework.cloud.contract.stubrunner.BatchStubRunner] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-07-01 16:09:36.362  INFO 71 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.contract.stubrunner.spring.cloud.StubRunnerSpringCloudAutoConfiguration' of type [org.springframework.cloud.contract.stubrunner.spring.cloud.StubRunnerSpringCloudAutoConfiguration$$EnhancerBySpringCGLIB$$d98c73ea] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-07-01 16:09:40.766  INFO 71 --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [After]
+2020-07-01 16:09:40.767  INFO 71 --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Before]
+2020-07-01 16:09:40.768  INFO 71 --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Between]
+2020-07-01 16:09:40.768  INFO 71 --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Cookie]
+2020-07-01 16:09:40.769  INFO 71 --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Header]
+2020-07-01 16:09:40.769  INFO 71 --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Host]
+2020-07-01 16:09:40.770  INFO 71 --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Method]
+2020-07-01 16:09:40.770  INFO 71 --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Path]
+2020-07-01 16:09:40.771  INFO 71 --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Query]
+2020-07-01 16:09:40.772  INFO 71 --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [ReadBodyPredicateFactory]
+2020-07-01 16:09:40.839  INFO 71 --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [RemoteAddr]
+2020-07-01 16:09:40.840  INFO 71 --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Weight]
+2020-07-01 16:09:40.840  INFO 71 --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [CloudFoundryRouteService]
+2020-07-01 16:09:42.483  INFO 71 --- [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 3 endpoint(s) beneath base path '/actuator'
+2020-07-01 16:09:44.382  INFO 71 --- [           main] c.*******.conferences.site.C4PApisTests  : Started C4PApisTests in 24.918 seconds (JVM running for 28.341)
+Port from stub:  12327
+2020-07-01 16:09:45.555  INFO 71 --- [ qtp28064367-28] /                                        : RequestHandlerClass from context returned com.github.tomakehurst.wiremock.http.StubRequestHandler. Normalized mapped under returned 'null'
+2020-07-01 16:09:46.374  INFO 71 --- [ qtp28064367-28] WireMock                                 : Request received:
+127.0.0.1 - POST /
 
-org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'batchStubRunnerBeanPostProcessor' defined in class path resource [org/springframework/cloud/contract/stubrunner/spring/StubRunnerConfiguration.class]: Unsatisfied dependency expressed through method 'batchStubRunnerBeanPostProcessor' parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'batchStubRunner' defined in class path resource [org/springframework/cloud/contract/stubrunner/spring/StubRunnerConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.cloud.contract.stubrunner.BatchStubRunner]: Factory method 'batchStubRunner' threw exception; nested exception is java.lang.IllegalArgumentException: For groupId [com.*******.conferences] artifactId [fmtok8s-c4p] and classifier [stubs] the version was not resolved! The following exceptions took place [org.eclipse.aether.transfer.MetadataNotFoundException: Could not find metadata com.*******.conferences:fmtok8s-c4p/maven-metadata.xml in local (/tmp/aether-local7502374464928347353), org.eclipse.aether.transfer.MetadataTransferException: Could not transfer metadata com.*******.conferences:fmtok8s-c4p/maven-metadata.xml from/to remote0 (http://nexus/repository/maven-group/): status code: 401, reason phrase: Unauthorized (401)]
-	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:769) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:509) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1321) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1160) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:555) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:204) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.context.support.PostProcessorRegistrationDelegate.registerBeanPostProcessors(PostProcessorRegistrationDelegate.java:240) ~[spring-context-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.context.support.AbstractApplicationContext.registerBeanPostProcessors(AbstractApplicationContext.java:721) ~[spring-context-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:534) ~[spring-context-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:744) ~[spring-boot-2.1.9.RELEASE.jar:2.1.9.RELEASE]
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:391) ~[spring-boot-2.1.9.RELEASE.jar:2.1.9.RELEASE]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:312) ~[spring-boot-2.1.9.RELEASE.jar:2.1.9.RELEASE]
-	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:120) ~[spring-boot-test-2.1.9.RELEASE.jar:2.1.9.RELEASE]
-	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:99) ~[spring-test-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:117) ~[spring-test-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:108) ~[spring-test-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.injectDependencies(DependencyInjectionTestExecutionListener.java:118) ~[spring-test-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.prepareTestInstance(DependencyInjectionTestExecutionListener.java:83) ~[spring-test-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener.prepareTestInstance(SpringBootDependencyInjectionTestExecutionListener.java:43) ~[spring-boot-test-autoconfigure-2.1.9.RELEASE.jar:2.1.9.RELEASE]
-	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:246) ~[spring-test-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.createTest(SpringJUnit4ClassRunner.java:227) ~[spring-test-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner$1.runReflectiveCall(SpringJUnit4ClassRunner.java:289) ~[spring-test-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12) ~[junit-4.12.jar:4.12]
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.methodBlock(SpringJUnit4ClassRunner.java:291) ~[spring-test-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:246) ~[spring-test-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:97) ~[spring-test-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290) ~[junit-4.12.jar:4.12]
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71) ~[junit-4.12.jar:4.12]
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288) ~[junit-4.12.jar:4.12]
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58) ~[junit-4.12.jar:4.12]
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268) ~[junit-4.12.jar:4.12]
-	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61) ~[spring-test-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:70) ~[spring-test-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:363) ~[junit-4.12.jar:4.12]
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:190) ~[spring-test-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:365) ~[surefire-junit4-3.0.0-M1.jar:3.0.0-M1]
-	at org.apache.maven.surefire.junit4.JUnit4Provider.executeWithRerun(JUnit4Provider.java:273) ~[surefire-junit4-3.0.0-M1.jar:3.0.0-M1]
-	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:238) ~[surefire-junit4-3.0.0-M1.jar:3.0.0-M1]
-	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:159) ~[surefire-junit4-3.0.0-M1.jar:3.0.0-M1]
-	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:384) ~[surefire-booter-3.0.0-M1.jar:3.0.0-M1]
-	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:345) ~[surefire-booter-3.0.0-M1.jar:3.0.0-M1]
-	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:126) ~[surefire-booter-3.0.0-M1.jar:3.0.0-M1]
-	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:418) ~[surefire-booter-3.0.0-M1.jar:3.0.0-M1]
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'batchStubRunner' defined in class path resource [org/springframework/cloud/contract/stubrunner/spring/StubRunnerConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.cloud.contract.stubrunner.BatchStubRunner]: Factory method 'batchStubRunner' threw exception; nested exception is java.lang.IllegalArgumentException: For groupId [com.*******.conferences] artifactId [fmtok8s-c4p] and classifier [stubs] the version was not resolved! The following exceptions took place [org.eclipse.aether.transfer.MetadataNotFoundException: Could not find metadata com.*******.conferences:fmtok8s-c4p/maven-metadata.xml in local (/tmp/aether-local7502374464928347353), org.eclipse.aether.transfer.MetadataTransferException: Could not transfer metadata com.*******.conferences:fmtok8s-c4p/maven-metadata.xml from/to remote0 (http://nexus/repository/maven-group/): status code: 401, reason phrase: Unauthorized (401)]
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:627) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:607) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1321) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1160) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:555) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:277) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1255) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1175) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:857) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:760) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	... 46 common frames omitted
-Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.cloud.contract.stubrunner.BatchStubRunner]: Factory method 'batchStubRunner' threw exception; nested exception is java.lang.IllegalArgumentException: For groupId [com.*******.conferences] artifactId [fmtok8s-c4p] and classifier [stubs] the version was not resolved! The following exceptions took place [org.eclipse.aether.transfer.MetadataNotFoundException: Could not find metadata com.*******.conferences:fmtok8s-c4p/maven-metadata.xml in local (/tmp/aether-local7502374464928347353), org.eclipse.aether.transfer.MetadataTransferException: Could not transfer metadata com.*******.conferences:fmtok8s-c4p/maven-metadata.xml from/to remote0 (http://nexus/repository/maven-group/): status code: 401, reason phrase: Unauthorized (401)]
-	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:185) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:622) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	... 60 common frames omitted
-Caused by: java.lang.IllegalArgumentException: For groupId [com.*******.conferences] artifactId [fmtok8s-c4p] and classifier [stubs] the version was not resolved! The following exceptions took place [org.eclipse.aether.transfer.MetadataNotFoundException: Could not find metadata com.*******.conferences:fmtok8s-c4p/maven-metadata.xml in local (/tmp/aether-local7502374464928347353), org.eclipse.aether.transfer.MetadataTransferException: Could not transfer metadata com.*******.conferences:fmtok8s-c4p/maven-metadata.xml from/to remote0 (http://nexus/repository/maven-group/): status code: 401, reason phrase: Unauthorized (401)]
-	at org.springframework.cloud.contract.stubrunner.AetherStubDownloader.resolveHighestArtifactVersion(AetherStubDownloader.java:269) ~[spring-cloud-contract-stub-runner-2.1.4.RELEASE.jar:2.1.4.RELEASE]
-	at org.springframework.cloud.contract.stubrunner.AetherStubDownloader.getVersion(AetherStubDownloader.java:221) ~[spring-cloud-contract-stub-runner-2.1.4.RELEASE.jar:2.1.4.RELEASE]
-	at org.springframework.cloud.contract.stubrunner.AetherStubDownloader.downloadAndUnpackStubJar(AetherStubDownloader.java:231) ~[spring-cloud-contract-stub-runner-2.1.4.RELEASE.jar:2.1.4.RELEASE]
-	at org.springframework.cloud.contract.stubrunner.CompositeStubDownloader.downloadAndUnpackStubJar(CompositeStubDownloaderBuilder.java:80) ~[spring-cloud-contract-stub-runner-2.1.4.RELEASE.jar:2.1.4.RELEASE]
-	at org.springframework.cloud.contract.stubrunner.StubRunnerFactory.createStubsFromServiceConfiguration(StubRunnerFactory.java:66) ~[spring-cloud-contract-stub-runner-2.1.4.RELEASE.jar:2.1.4.RELEASE]
-	at org.springframework.cloud.contract.stubrunner.BatchStubRunnerFactory.buildBatchStubRunner(BatchStubRunnerFactory.java:69) ~[spring-cloud-contract-stub-runner-2.1.4.RELEASE.jar:2.1.4.RELEASE]
-	at org.springframework.cloud.contract.stubrunner.spring.StubRunnerConfiguration.batchStubRunner(StubRunnerConfiguration.java:84) ~[spring-cloud-contract-stub-runner-2.1.4.RELEASE.jar:2.1.4.RELEASE]
-	at org.springframework.cloud.contract.stubrunner.spring.StubRunnerConfiguration$$EnhancerBySpringCGLIB$$5dddf376.CGLIB$batchStubRunner$0(<generated>) ~[spring-cloud-contract-stub-runner-2.1.4.RELEASE.jar:2.1.4.RELEASE]
-	at org.springframework.cloud.contract.stubrunner.spring.StubRunnerConfiguration$$EnhancerBySpringCGLIB$$5dddf376$$FastClassBySpringCGLIB$$8f6d2529.invoke(<generated>) ~[spring-cloud-contract-stub-runner-2.1.4.RELEASE.jar:2.1.4.RELEASE]
-	at org.springframework.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:244) ~[spring-core-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:363) ~[spring-context-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.cloud.contract.stubrunner.spring.StubRunnerConfiguration$$EnhancerBySpringCGLIB$$5dddf376.batchStubRunner(<generated>) ~[spring-cloud-contract-stub-runner-2.1.4.RELEASE.jar:2.1.4.RELEASE]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:na]
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Method.java:566) ~[na:na]
-	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:154) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	... 61 common frames omitted
+Accept-Charset: [big5, big5-hkscs, cesu-8, euc-jp, euc-kr, gb18030, gb2312, gbk, ibm-thai, ibm00858, ibm01140, ibm01141, ibm01142, ibm01143, ibm01144, ibm01145, ibm01146, ibm01147, ibm01148, ibm01149, ibm037, ibm1026, ibm1047, ibm273, ibm277, ibm278, ibm280, ibm284, ibm285, ibm290, ibm297, ibm420, ibm424, ibm437, ibm500, ibm775, ibm850, ibm852, ibm855, ibm857, ibm860, ibm861, ibm862, ibm863, ibm864, ibm865, ibm866, ibm868, ibm869, ibm870, ibm871, ibm918, iso-2022-cn, iso-2022-jp, iso-2022-jp-2, iso-2022-kr, iso-8859-1, iso-8859-13, iso-8859-15, iso-8859-16, iso-8859-2, iso-8859-3, iso-8859-4, iso-8859-5, iso-8859-6, iso-8859-7, iso-8859-8, iso-8859-9, jis_x0201, jis_x0212-1990, koi8-r, koi8-u, shift_jis, tis-620, us-ascii, utf-16, utf-16be, utf-16le, utf-32, utf-32be, utf-32le, utf-8, windows-1250, windows-1251, windows-1252, windows-1253, windows-1254, windows-1255, windows-1256, windows-1257, windows-1258, windows-31j, x-big5-hkscs-2001, x-big5-solaris, x-euc-jp-linux, x-euc-tw, x-eucjp-open, x-ibm1006, x-ibm1025, x-ibm1046, x-ibm1097, x-ibm1098, x-ibm1112, x-ibm1122, x-ibm1123, x-ibm1124, x-ibm1166, x-ibm1364, x-ibm1381, x-ibm1383, x-ibm300, x-ibm33722, x-ibm737, x-ibm833, x-ibm834, x-ibm856, x-ibm874, x-ibm875, x-ibm921, x-ibm922, x-ibm930, x-ibm933, x-ibm935, x-ibm937, x-ibm939, x-ibm942, x-ibm942c, x-ibm943, x-ibm943c, x-ibm948, x-ibm949, x-ibm949c, x-ibm950, x-ibm964, x-ibm970, x-iscii91, x-iso-2022-cn-cns, x-iso-2022-cn-gb, x-iso-8859-11, x-jis0208, x-jisautodetect, x-johab, x-macarabic, x-maccentraleurope, x-maccroatian, x-maccyrillic, x-macdingbat, x-macgreek, x-machebrew, x-maciceland, x-macroman, x-macromania, x-macsymbol, x-macthai, x-macturkish, x-macukraine, x-ms932_0213, x-ms950-hkscs, x-ms950-hkscs-xp, x-mswin-936, x-pck, x-sjis_0213, x-utf-16le-bom, x-utf-32be-bom, x-utf-32le-bom, x-windows-50220, x-windows-50221, x-windows-874, x-windows-949, x-windows-950, x-windows-iso2022jp]
+Accept: [text/plain, application/json, application/*+json, */*]
+User-Agent: [Java/11.0.2]
+Connection: [keep-alive]
+Host: [localhost:12327]
+Content-Length: [112]
+Content-Type: [application/json]
+{ "title" : "test title", "description" : "test description", "author": "*******", "email": "*******@mail.com" }
 
-2020-06-30 08:46:59.647  INFO 69 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$1742403] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
 
-  .   ____          _            __ _ _
- /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
-( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
- \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
-  '  |____| .__|_| |_|_| |_\__, | / / / /
- =========|_|==============|___/=/_/_/_/
- :: Spring Boot ::        (v2.1.9.RELEASE)
+Matched response definition:
+{
+  "status" : 200,
+  "body" : "{\"id\":\"22520127-e19a-4bf1-84ce-54231f576d71\",\"title\":\"JTHUCHCTXUTQARXQFZDX\",\"description\":\"GAYIEXTBYWTXSLCYEATK\",\"author\":\"TJPAIIBNBZKUHQTNJBYH\",\"email\":\"foo@bar-2092912425.com\"}",
+  "headers" : {
+    "Content-Type" : "application/json"
+  },
+  "transformers" : [ "response-template" ]
+}
 
-2020-06-30 08:46:59.744  INFO 69 --- [           main] c.*******.conferences.site.C4PApisTests  : No active profile set, falling back to default profiles: default
-2020-06-30 08:47:00.571  INFO 69 --- [           main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=79161fd1-323f-37f7-8eee-1bf31a8e40e2
-2020-06-30 08:47:00.646  INFO 69 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$1742403] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-06-30 08:47:00.688  INFO 69 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'stubrunner-org.springframework.cloud.contract.stubrunner.spring.StubRunnerProperties' of type [org.springframework.cloud.contract.stubrunner.spring.StubRunnerProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-06-30 08:47:00.696  INFO 69 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.contract.stubrunner.spring.StubRunnerConfiguration' of type [org.springframework.cloud.contract.stubrunner.spring.StubRunnerConfiguration$$EnhancerBySpringCGLIB$$5dddf376] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-06-30 08:47:00.715  INFO 69 --- [           main] o.s.c.c.s.AetherStubDownloaderBuilder    : Will download stubs and contracts via Aether
-2020-06-30 08:47:00.727  INFO 69 --- [           main] o.s.c.c.stubrunner.AetherStubDownloader  : Desired version is [+] - will try to resolve the latest version
-2020-06-30 08:47:00.742  WARN 69 --- [           main] r.c.GenericReactiveWebApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'batchStubRunnerBeanPostProcessor' defined in class path resource [org/springframework/cloud/contract/stubrunner/spring/StubRunnerConfiguration.class]: Unsatisfied dependency expressed through method 'batchStubRunnerBeanPostProcessor' parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'batchStubRunner' defined in class path resource [org/springframework/cloud/contract/stubrunner/spring/StubRunnerConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.cloud.contract.stubrunner.BatchStubRunner]: Factory method 'batchStubRunner' threw exception; nested exception is java.lang.IllegalArgumentException: For groupId [com.*******.conferences] artifactId [fmtok8s-c4p] and classifier [stubs] the version was not resolved! The following exceptions took place [org.eclipse.aether.transfer.MetadataNotFoundException: Could not find metadata com.*******.conferences:fmtok8s-c4p/maven-metadata.xml in local (/tmp/aether-local1786776689918276857), org.eclipse.aether.transfer.MetadataTransferException: Could not transfer metadata com.*******.conferences:fmtok8s-c4p/maven-metadata.xml from/to remote0 (http://nexus/repository/maven-group/): status code: 401, reason phrase: Unauthorized (401)]
-2020-06-30 08:47:00.769  INFO 69 --- [           main] ConditionEvaluationReportLoggingListener : 
+Response:
+HTTP/1.1 200
+Content-Type: [application/json]
+Matched-Stub-Id: [e6eaba46-40ed-4d84-851b-a9aa355131ff]
 
-Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
-2020-06-30 08:47:00.777 ERROR 69 --- [           main] o.s.boot.SpringApplication               : Application run failed
 
-org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'batchStubRunnerBeanPostProcessor' defined in class path resource [org/springframework/cloud/contract/stubrunner/spring/StubRunnerConfiguration.class]: Unsatisfied dependency expressed through method 'batchStubRunnerBeanPostProcessor' parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'batchStubRunner' defined in class path resource [org/springframework/cloud/contract/stubrunner/spring/StubRunnerConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.cloud.contract.stubrunner.BatchStubRunner]: Factory method 'batchStubRunner' threw exception; nested exception is java.lang.IllegalArgumentException: For groupId [com.*******.conferences] artifactId [fmtok8s-c4p] and classifier [stubs] the version was not resolved! The following exceptions took place [org.eclipse.aether.transfer.MetadataNotFoundException: Could not find metadata com.*******.conferences:fmtok8s-c4p/maven-metadata.xml in local (/tmp/aether-local1786776689918276857), org.eclipse.aether.transfer.MetadataTransferException: Could not transfer metadata com.*******.conferences:fmtok8s-c4p/maven-metadata.xml from/to remote0 (http://nexus/repository/maven-group/): status code: 401, reason phrase: Unauthorized (401)]
-	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:769) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:509) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1321) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1160) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:555) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:204) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.context.support.PostProcessorRegistrationDelegate.registerBeanPostProcessors(PostProcessorRegistrationDelegate.java:240) ~[spring-context-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.context.support.AbstractApplicationContext.registerBeanPostProcessors(AbstractApplicationContext.java:721) ~[spring-context-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:534) ~[spring-context-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:744) ~[spring-boot-2.1.9.RELEASE.jar:2.1.9.RELEASE]
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:391) ~[spring-boot-2.1.9.RELEASE.jar:2.1.9.RELEASE]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:312) ~[spring-boot-2.1.9.RELEASE.jar:2.1.9.RELEASE]
-	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:120) ~[spring-boot-test-2.1.9.RELEASE.jar:2.1.9.RELEASE]
-	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:99) ~[spring-test-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:117) ~[spring-test-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:108) ~[spring-test-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener.outputConditionEvaluationReport(SpringBootDependencyInjectionTestExecutionListener.java:53) ~[spring-boot-test-autoconfigure-2.1.9.RELEASE.jar:2.1.9.RELEASE]
-	at org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener.prepareTestInstance(SpringBootDependencyInjectionTestExecutionListener.java:46) ~[spring-boot-test-autoconfigure-2.1.9.RELEASE.jar:2.1.9.RELEASE]
-	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:246) ~[spring-test-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.createTest(SpringJUnit4ClassRunner.java:227) ~[spring-test-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner$1.runReflectiveCall(SpringJUnit4ClassRunner.java:289) ~[spring-test-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12) ~[junit-4.12.jar:4.12]
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.methodBlock(SpringJUnit4ClassRunner.java:291) ~[spring-test-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:246) ~[spring-test-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:97) ~[spring-test-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290) ~[junit-4.12.jar:4.12]
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71) ~[junit-4.12.jar:4.12]
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288) ~[junit-4.12.jar:4.12]
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58) ~[junit-4.12.jar:4.12]
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268) ~[junit-4.12.jar:4.12]
-	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61) ~[spring-test-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:70) ~[spring-test-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:363) ~[junit-4.12.jar:4.12]
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:190) ~[spring-test-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:365) ~[surefire-junit4-3.0.0-M1.jar:3.0.0-M1]
-	at org.apache.maven.surefire.junit4.JUnit4Provider.executeWithRerun(JUnit4Provider.java:273) ~[surefire-junit4-3.0.0-M1.jar:3.0.0-M1]
-	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:238) ~[surefire-junit4-3.0.0-M1.jar:3.0.0-M1]
-	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:159) ~[surefire-junit4-3.0.0-M1.jar:3.0.0-M1]
-	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:384) ~[surefire-booter-3.0.0-M1.jar:3.0.0-M1]
-	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:345) ~[surefire-booter-3.0.0-M1.jar:3.0.0-M1]
-	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:126) ~[surefire-booter-3.0.0-M1.jar:3.0.0-M1]
-	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:418) ~[surefire-booter-3.0.0-M1.jar:3.0.0-M1]
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'batchStubRunner' defined in class path resource [org/springframework/cloud/contract/stubrunner/spring/StubRunnerConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.cloud.contract.stubrunner.BatchStubRunner]: Factory method 'batchStubRunner' threw exception; nested exception is java.lang.IllegalArgumentException: For groupId [com.*******.conferences] artifactId [fmtok8s-c4p] and classifier [stubs] the version was not resolved! The following exceptions took place [org.eclipse.aether.transfer.MetadataNotFoundException: Could not find metadata com.*******.conferences:fmtok8s-c4p/maven-metadata.xml in local (/tmp/aether-local1786776689918276857), org.eclipse.aether.transfer.MetadataTransferException: Could not transfer metadata com.*******.conferences:fmtok8s-c4p/maven-metadata.xml from/to remote0 (http://nexus/repository/maven-group/): status code: 401, reason phrase: Unauthorized (401)]
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:627) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:607) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1321) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1160) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:555) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:277) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1255) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1175) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:857) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:760) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	... 45 common frames omitted
-Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.cloud.contract.stubrunner.BatchStubRunner]: Factory method 'batchStubRunner' threw exception; nested exception is java.lang.IllegalArgumentException: For groupId [com.*******.conferences] artifactId [fmtok8s-c4p] and classifier [stubs] the version was not resolved! The following exceptions took place [org.eclipse.aether.transfer.MetadataNotFoundException: Could not find metadata com.*******.conferences:fmtok8s-c4p/maven-metadata.xml in local (/tmp/aether-local1786776689918276857), org.eclipse.aether.transfer.MetadataTransferException: Could not transfer metadata com.*******.conferences:fmtok8s-c4p/maven-metadata.xml from/to remote0 (http://nexus/repository/maven-group/): status code: 401, reason phrase: Unauthorized (401)]
-	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:185) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:622) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	... 59 common frames omitted
-Caused by: java.lang.IllegalArgumentException: For groupId [com.*******.conferences] artifactId [fmtok8s-c4p] and classifier [stubs] the version was not resolved! The following exceptions took place [org.eclipse.aether.transfer.MetadataNotFoundException: Could not find metadata com.*******.conferences:fmtok8s-c4p/maven-metadata.xml in local (/tmp/aether-local1786776689918276857), org.eclipse.aether.transfer.MetadataTransferException: Could not transfer metadata com.*******.conferences:fmtok8s-c4p/maven-metadata.xml from/to remote0 (http://nexus/repository/maven-group/): status code: 401, reason phrase: Unauthorized (401)]
-	at org.springframework.cloud.contract.stubrunner.AetherStubDownloader.resolveHighestArtifactVersion(AetherStubDownloader.java:269) ~[spring-cloud-contract-stub-runner-2.1.4.RELEASE.jar:2.1.4.RELEASE]
-	at org.springframework.cloud.contract.stubrunner.AetherStubDownloader.getVersion(AetherStubDownloader.java:221) ~[spring-cloud-contract-stub-runner-2.1.4.RELEASE.jar:2.1.4.RELEASE]
-	at org.springframework.cloud.contract.stubrunner.AetherStubDownloader.downloadAndUnpackStubJar(AetherStubDownloader.java:231) ~[spring-cloud-contract-stub-runner-2.1.4.RELEASE.jar:2.1.4.RELEASE]
-	at org.springframework.cloud.contract.stubrunner.CompositeStubDownloader.downloadAndUnpackStubJar(CompositeStubDownloaderBuilder.java:80) ~[spring-cloud-contract-stub-runner-2.1.4.RELEASE.jar:2.1.4.RELEASE]
-	at org.springframework.cloud.contract.stubrunner.StubRunnerFactory.createStubsFromServiceConfiguration(StubRunnerFactory.java:66) ~[spring-cloud-contract-stub-runner-2.1.4.RELEASE.jar:2.1.4.RELEASE]
-	at org.springframework.cloud.contract.stubrunner.BatchStubRunnerFactory.buildBatchStubRunner(BatchStubRunnerFactory.java:69) ~[spring-cloud-contract-stub-runner-2.1.4.RELEASE.jar:2.1.4.RELEASE]
-	at org.springframework.cloud.contract.stubrunner.spring.StubRunnerConfiguration.batchStubRunner(StubRunnerConfiguration.java:84) ~[spring-cloud-contract-stub-runner-2.1.4.RELEASE.jar:2.1.4.RELEASE]
-	at org.springframework.cloud.contract.stubrunner.spring.StubRunnerConfiguration$$EnhancerBySpringCGLIB$$5dddf376.CGLIB$batchStubRunner$0(<generated>) ~[spring-cloud-contract-stub-runner-2.1.4.RELEASE.jar:2.1.4.RELEASE]
-	at org.springframework.cloud.contract.stubrunner.spring.StubRunnerConfiguration$$EnhancerBySpringCGLIB$$5dddf376$$FastClassBySpringCGLIB$$8f6d2529.invoke(<generated>) ~[spring-cloud-contract-stub-runner-2.1.4.RELEASE.jar:2.1.4.RELEASE]
-	at org.springframework.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:244) ~[spring-core-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:363) ~[spring-context-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.cloud.contract.stubrunner.spring.StubRunnerConfiguration$$EnhancerBySpringCGLIB$$5dddf376.batchStubRunner(<generated>) ~[spring-cloud-contract-stub-runner-2.1.4.RELEASE.jar:2.1.4.RELEASE]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:na]
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Method.java:566) ~[na:na]
-	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:154) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	... 60 common frames omitted
-
-2020-06-30 08:47:00.799 ERROR 69 --- [           main] o.s.test.context.TestContextManager      : Caught exception while allowing TestExecutionListener [org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@7e5c856f] to prepare test instance [com.*******.conferences.site.C4PApisTests@32caae19]
-
-java.lang.IllegalStateException: Failed to load ApplicationContext
-	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:125) ~[spring-test-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:108) ~[spring-test-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.injectDependencies(DependencyInjectionTestExecutionListener.java:118) ~[spring-test-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.prepareTestInstance(DependencyInjectionTestExecutionListener.java:83) ~[spring-test-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener.prepareTestInstance(SpringBootDependencyInjectionTestExecutionListener.java:43) ~[spring-boot-test-autoconfigure-2.1.9.RELEASE.jar:2.1.9.RELEASE]
-	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:246) ~[spring-test-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.createTest(SpringJUnit4ClassRunner.java:227) ~[spring-test-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner$1.runReflectiveCall(SpringJUnit4ClassRunner.java:289) ~[spring-test-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12) ~[junit-4.12.jar:4.12]
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.methodBlock(SpringJUnit4ClassRunner.java:291) ~[spring-test-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:246) ~[spring-test-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:97) ~[spring-test-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290) ~[junit-4.12.jar:4.12]
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71) ~[junit-4.12.jar:4.12]
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288) ~[junit-4.12.jar:4.12]
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58) ~[junit-4.12.jar:4.12]
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268) ~[junit-4.12.jar:4.12]
-	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61) ~[spring-test-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:70) ~[spring-test-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:363) ~[junit-4.12.jar:4.12]
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:190) ~[spring-test-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:365) ~[surefire-junit4-3.0.0-M1.jar:3.0.0-M1]
-	at org.apache.maven.surefire.junit4.JUnit4Provider.executeWithRerun(JUnit4Provider.java:273) ~[surefire-junit4-3.0.0-M1.jar:3.0.0-M1]
-	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:238) ~[surefire-junit4-3.0.0-M1.jar:3.0.0-M1]
-	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:159) ~[surefire-junit4-3.0.0-M1.jar:3.0.0-M1]
-	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:384) ~[surefire-booter-3.0.0-M1.jar:3.0.0-M1]
-	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:345) ~[surefire-booter-3.0.0-M1.jar:3.0.0-M1]
-	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:126) ~[surefire-booter-3.0.0-M1.jar:3.0.0-M1]
-	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:418) ~[surefire-booter-3.0.0-M1.jar:3.0.0-M1]
-Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'batchStubRunnerBeanPostProcessor' defined in class path resource [org/springframework/cloud/contract/stubrunner/spring/StubRunnerConfiguration.class]: Unsatisfied dependency expressed through method 'batchStubRunnerBeanPostProcessor' parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'batchStubRunner' defined in class path resource [org/springframework/cloud/contract/stubrunner/spring/StubRunnerConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.cloud.contract.stubrunner.BatchStubRunner]: Factory method 'batchStubRunner' threw exception; nested exception is java.lang.IllegalArgumentException: For groupId [com.*******.conferences] artifactId [fmtok8s-c4p] and classifier [stubs] the version was not resolved! The following exceptions took place [org.eclipse.aether.transfer.MetadataNotFoundException: Could not find metadata com.*******.conferences:fmtok8s-c4p/maven-metadata.xml in local (/tmp/aether-local7502374464928347353), org.eclipse.aether.transfer.MetadataTransferException: Could not transfer metadata com.*******.conferences:fmtok8s-c4p/maven-metadata.xml from/to remote0 (http://nexus/repository/maven-group/): status code: 401, reason phrase: Unauthorized (401)]
-	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:769) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:509) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1321) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1160) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:555) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:204) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.context.support.PostProcessorRegistrationDelegate.registerBeanPostProcessors(PostProcessorRegistrationDelegate.java:240) ~[spring-context-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.context.support.AbstractApplicationContext.registerBeanPostProcessors(AbstractApplicationContext.java:721) ~[spring-context-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:534) ~[spring-context-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:744) ~[spring-boot-2.1.9.RELEASE.jar:2.1.9.RELEASE]
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:391) ~[spring-boot-2.1.9.RELEASE.jar:2.1.9.RELEASE]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:312) ~[spring-boot-2.1.9.RELEASE.jar:2.1.9.RELEASE]
-	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:120) ~[spring-boot-test-2.1.9.RELEASE.jar:2.1.9.RELEASE]
-	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:99) ~[spring-test-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:117) ~[spring-test-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	... 28 common frames omitted
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'batchStubRunner' defined in class path resource [org/springframework/cloud/contract/stubrunner/spring/StubRunnerConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.cloud.contract.stubrunner.BatchStubRunner]: Factory method 'batchStubRunner' threw exception; nested exception is java.lang.IllegalArgumentException: For groupId [com.*******.conferences] artifactId [fmtok8s-c4p] and classifier [stubs] the version was not resolved! The following exceptions took place [org.eclipse.aether.transfer.MetadataNotFoundException: Could not find metadata com.*******.conferences:fmtok8s-c4p/maven-metadata.xml in local (/tmp/aether-local7502374464928347353), org.eclipse.aether.transfer.MetadataTransferException: Could not transfer metadata com.*******.conferences:fmtok8s-c4p/maven-metadata.xml from/to remote0 (http://nexus/repository/maven-group/): status code: 401, reason phrase: Unauthorized (401)]
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:627) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:607) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1321) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1160) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:555) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:277) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1255) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1175) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:857) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:760) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	... 46 common frames omitted
-Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.cloud.contract.stubrunner.BatchStubRunner]: Factory method 'batchStubRunner' threw exception; nested exception is java.lang.IllegalArgumentException: For groupId [com.*******.conferences] artifactId [fmtok8s-c4p] and classifier [stubs] the version was not resolved! The following exceptions took place [org.eclipse.aether.transfer.MetadataNotFoundException: Could not find metadata com.*******.conferences:fmtok8s-c4p/maven-metadata.xml in local (/tmp/aether-local7502374464928347353), org.eclipse.aether.transfer.MetadataTransferException: Could not transfer metadata com.*******.conferences:fmtok8s-c4p/maven-metadata.xml from/to remote0 (http://nexus/repository/maven-group/): status code: 401, reason phrase: Unauthorized (401)]
-	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:185) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:622) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	... 60 common frames omitted
-Caused by: java.lang.IllegalArgumentException: For groupId [com.*******.conferences] artifactId [fmtok8s-c4p] and classifier [stubs] the version was not resolved! The following exceptions took place [org.eclipse.aether.transfer.MetadataNotFoundException: Could not find metadata com.*******.conferences:fmtok8s-c4p/maven-metadata.xml in local (/tmp/aether-local7502374464928347353), org.eclipse.aether.transfer.MetadataTransferException: Could not transfer metadata com.*******.conferences:fmtok8s-c4p/maven-metadata.xml from/to remote0 (http://nexus/repository/maven-group/): status code: 401, reason phrase: Unauthorized (401)]
-	at org.springframework.cloud.contract.stubrunner.AetherStubDownloader.resolveHighestArtifactVersion(AetherStubDownloader.java:269) ~[spring-cloud-contract-stub-runner-2.1.4.RELEASE.jar:2.1.4.RELEASE]
-	at org.springframework.cloud.contract.stubrunner.AetherStubDownloader.getVersion(AetherStubDownloader.java:221) ~[spring-cloud-contract-stub-runner-2.1.4.RELEASE.jar:2.1.4.RELEASE]
-	at org.springframework.cloud.contract.stubrunner.AetherStubDownloader.downloadAndUnpackStubJar(AetherStubDownloader.java:231) ~[spring-cloud-contract-stub-runner-2.1.4.RELEASE.jar:2.1.4.RELEASE]
-	at org.springframework.cloud.contract.stubrunner.CompositeStubDownloader.downloadAndUnpackStubJar(CompositeStubDownloaderBuilder.java:80) ~[spring-cloud-contract-stub-runner-2.1.4.RELEASE.jar:2.1.4.RELEASE]
-	at org.springframework.cloud.contract.stubrunner.StubRunnerFactory.createStubsFromServiceConfiguration(StubRunnerFactory.java:66) ~[spring-cloud-contract-stub-runner-2.1.4.RELEASE.jar:2.1.4.RELEASE]
-	at org.springframework.cloud.contract.stubrunner.BatchStubRunnerFactory.buildBatchStubRunner(BatchStubRunnerFactory.java:69) ~[spring-cloud-contract-stub-runner-2.1.4.RELEASE.jar:2.1.4.RELEASE]
-	at org.springframework.cloud.contract.stubrunner.spring.StubRunnerConfiguration.batchStubRunner(StubRunnerConfiguration.java:84) ~[spring-cloud-contract-stub-runner-2.1.4.RELEASE.jar:2.1.4.RELEASE]
-	at org.springframework.cloud.contract.stubrunner.spring.StubRunnerConfiguration$$EnhancerBySpringCGLIB$$5dddf376.CGLIB$batchStubRunner$0(<generated>) ~[spring-cloud-contract-stub-runner-2.1.4.RELEASE.jar:2.1.4.RELEASE]
-	at org.springframework.cloud.contract.stubrunner.spring.StubRunnerConfiguration$$EnhancerBySpringCGLIB$$5dddf376$$FastClassBySpringCGLIB$$8f6d2529.invoke(<generated>) ~[spring-cloud-contract-stub-runner-2.1.4.RELEASE.jar:2.1.4.RELEASE]
-	at org.springframework.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:244) ~[spring-core-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:363) ~[spring-context-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.cloud.contract.stubrunner.spring.StubRunnerConfiguration$$EnhancerBySpringCGLIB$$5dddf376.batchStubRunner(<generated>) ~[spring-cloud-contract-stub-runner-2.1.4.RELEASE.jar:2.1.4.RELEASE]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:na]
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Method.java:566) ~[na:na]
-	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:154) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	... 61 common frames omitted
-
-2020-06-30 08:47:01.134  INFO 69 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$1742403] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-
-  .   ____          _            __ _ _
- /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
-( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
- \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
-  '  |____| .__|_| |_|_| |_\__, | / / / /
- =========|_|==============|___/=/_/_/_/
- :: Spring Boot ::        (v2.1.9.RELEASE)
-
-2020-06-30 08:47:01.300  INFO 69 --- [           main] c.*******.conferences.site.C4PApisTests  : No active profile set, falling back to default profiles: default
-2020-06-30 08:47:02.029  INFO 69 --- [           main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=79161fd1-323f-37f7-8eee-1bf31a8e40e2
-2020-06-30 08:47:02.104  INFO 69 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$1742403] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-06-30 08:47:02.354  INFO 69 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'stubrunner-org.springframework.cloud.contract.stubrunner.spring.StubRunnerProperties' of type [org.springframework.cloud.contract.stubrunner.spring.StubRunnerProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-06-30 08:47:02.363  INFO 69 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.contract.stubrunner.spring.StubRunnerConfiguration' of type [org.springframework.cloud.contract.stubrunner.spring.StubRunnerConfiguration$$EnhancerBySpringCGLIB$$5dddf376] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-06-30 08:47:02.381  INFO 69 --- [           main] o.s.c.c.s.AetherStubDownloaderBuilder    : Will download stubs and contracts via Aether
-2020-06-30 08:47:02.392  INFO 69 --- [           main] o.s.c.c.stubrunner.AetherStubDownloader  : Desired version is [+] - will try to resolve the latest version
-2020-06-30 08:47:02.409  WARN 69 --- [           main] r.c.GenericReactiveWebApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'batchStubRunnerBeanPostProcessor' defined in class path resource [org/springframework/cloud/contract/stubrunner/spring/StubRunnerConfiguration.class]: Unsatisfied dependency expressed through method 'batchStubRunnerBeanPostProcessor' parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'batchStubRunner' defined in class path resource [org/springframework/cloud/contract/stubrunner/spring/StubRunnerConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.cloud.contract.stubrunner.BatchStubRunner]: Factory method 'batchStubRunner' threw exception; nested exception is java.lang.IllegalArgumentException: For groupId [com.*******.conferences] artifactId [fmtok8s-c4p] and classifier [stubs] the version was not resolved! The following exceptions took place [org.eclipse.aether.transfer.MetadataNotFoundException: Could not find metadata com.*******.conferences:fmtok8s-c4p/maven-metadata.xml in local (/tmp/aether-local5167356315234582049), org.eclipse.aether.transfer.MetadataTransferException: Could not transfer metadata com.*******.conferences:fmtok8s-c4p/maven-metadata.xml from/to remote0 (http://nexus/repository/maven-group/): status code: 401, reason phrase: Unauthorized (401)]
-2020-06-30 08:47:02.432  INFO 69 --- [           main] ConditionEvaluationReportLoggingListener : 
-
-Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
-2020-06-30 08:47:02.441 ERROR 69 --- [           main] o.s.boot.SpringApplication               : Application run failed
-
-org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'batchStubRunnerBeanPostProcessor' defined in class path resource [org/springframework/cloud/contract/stubrunner/spring/StubRunnerConfiguration.class]: Unsatisfied dependency expressed through method 'batchStubRunnerBeanPostProcessor' parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'batchStubRunner' defined in class path resource [org/springframework/cloud/contract/stubrunner/spring/StubRunnerConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.cloud.contract.stubrunner.BatchStubRunner]: Factory method 'batchStubRunner' threw exception; nested exception is java.lang.IllegalArgumentException: For groupId [com.*******.conferences] artifactId [fmtok8s-c4p] and classifier [stubs] the version was not resolved! The following exceptions took place [org.eclipse.aether.transfer.MetadataNotFoundException: Could not find metadata com.*******.conferences:fmtok8s-c4p/maven-metadata.xml in local (/tmp/aether-local5167356315234582049), org.eclipse.aether.transfer.MetadataTransferException: Could not transfer metadata com.*******.conferences:fmtok8s-c4p/maven-metadata.xml from/to remote0 (http://nexus/repository/maven-group/): status code: 401, reason phrase: Unauthorized (401)]
-	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:769) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:509) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1321) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1160) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:555) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:204) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.context.support.PostProcessorRegistrationDelegate.registerBeanPostProcessors(PostProcessorRegistrationDelegate.java:240) ~[spring-context-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.context.support.AbstractApplicationContext.registerBeanPostProcessors(AbstractApplicationContext.java:721) ~[spring-context-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:534) ~[spring-context-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:744) ~[spring-boot-2.1.9.RELEASE.jar:2.1.9.RELEASE]
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:391) ~[spring-boot-2.1.9.RELEASE.jar:2.1.9.RELEASE]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:312) ~[spring-boot-2.1.9.RELEASE.jar:2.1.9.RELEASE]
-	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:120) ~[spring-boot-test-2.1.9.RELEASE.jar:2.1.9.RELEASE]
-	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:99) ~[spring-test-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:117) ~[spring-test-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:108) ~[spring-test-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.cloud.contract.wiremock.WireMockTestExecutionListener.applicationContextBroken(WireMockTestExecutionListener.java:107) ~[spring-cloud-contract-wiremock-2.1.4.RELEASE.jar:2.1.4.RELEASE]
-	at org.springframework.cloud.contract.wiremock.WireMockTestExecutionListener.afterTestClass(WireMockTestExecutionListener.java:55) ~[spring-cloud-contract-wiremock-2.1.4.RELEASE.jar:2.1.4.RELEASE]
-	at org.springframework.test.context.TestContextManager.afterTestClass(TestContextManager.java:490) ~[spring-test-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:77) ~[spring-test-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:363) ~[junit-4.12.jar:4.12]
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:190) ~[spring-test-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:365) ~[surefire-junit4-3.0.0-M1.jar:3.0.0-M1]
-	at org.apache.maven.surefire.junit4.JUnit4Provider.executeWithRerun(JUnit4Provider.java:273) ~[surefire-junit4-3.0.0-M1.jar:3.0.0-M1]
-	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:238) ~[surefire-junit4-3.0.0-M1.jar:3.0.0-M1]
-	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:159) ~[surefire-junit4-3.0.0-M1.jar:3.0.0-M1]
-	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:384) ~[surefire-booter-3.0.0-M1.jar:3.0.0-M1]
-	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:345) ~[surefire-booter-3.0.0-M1.jar:3.0.0-M1]
-	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:126) ~[surefire-booter-3.0.0-M1.jar:3.0.0-M1]
-	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:418) ~[surefire-booter-3.0.0-M1.jar:3.0.0-M1]
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'batchStubRunner' defined in class path resource [org/springframework/cloud/contract/stubrunner/spring/StubRunnerConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.cloud.contract.stubrunner.BatchStubRunner]: Factory method 'batchStubRunner' threw exception; nested exception is java.lang.IllegalArgumentException: For groupId [com.*******.conferences] artifactId [fmtok8s-c4p] and classifier [stubs] the version was not resolved! The following exceptions took place [org.eclipse.aether.transfer.MetadataNotFoundException: Could not find metadata com.*******.conferences:fmtok8s-c4p/maven-metadata.xml in local (/tmp/aether-local5167356315234582049), org.eclipse.aether.transfer.MetadataTransferException: Could not transfer metadata com.*******.conferences:fmtok8s-c4p/maven-metadata.xml from/to remote0 (http://nexus/repository/maven-group/): status code: 401, reason phrase: Unauthorized (401)]
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:627) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:607) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1321) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1160) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:555) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:277) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1255) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1175) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:857) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:760) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	... 33 common frames omitted
-Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.cloud.contract.stubrunner.BatchStubRunner]: Factory method 'batchStubRunner' threw exception; nested exception is java.lang.IllegalArgumentException: For groupId [com.*******.conferences] artifactId [fmtok8s-c4p] and classifier [stubs] the version was not resolved! The following exceptions took place [org.eclipse.aether.transfer.MetadataNotFoundException: Could not find metadata com.*******.conferences:fmtok8s-c4p/maven-metadata.xml in local (/tmp/aether-local5167356315234582049), org.eclipse.aether.transfer.MetadataTransferException: Could not transfer metadata com.*******.conferences:fmtok8s-c4p/maven-metadata.xml from/to remote0 (http://nexus/repository/maven-group/): status code: 401, reason phrase: Unauthorized (401)]
-	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:185) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:622) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	... 47 common frames omitted
-Caused by: java.lang.IllegalArgumentException: For groupId [com.*******.conferences] artifactId [fmtok8s-c4p] and classifier [stubs] the version was not resolved! The following exceptions took place [org.eclipse.aether.transfer.MetadataNotFoundException: Could not find metadata com.*******.conferences:fmtok8s-c4p/maven-metadata.xml in local (/tmp/aether-local5167356315234582049), org.eclipse.aether.transfer.MetadataTransferException: Could not transfer metadata com.*******.conferences:fmtok8s-c4p/maven-metadata.xml from/to remote0 (http://nexus/repository/maven-group/): status code: 401, reason phrase: Unauthorized (401)]
-	at org.springframework.cloud.contract.stubrunner.AetherStubDownloader.resolveHighestArtifactVersion(AetherStubDownloader.java:269) ~[spring-cloud-contract-stub-runner-2.1.4.RELEASE.jar:2.1.4.RELEASE]
-	at org.springframework.cloud.contract.stubrunner.AetherStubDownloader.getVersion(AetherStubDownloader.java:221) ~[spring-cloud-contract-stub-runner-2.1.4.RELEASE.jar:2.1.4.RELEASE]
-	at org.springframework.cloud.contract.stubrunner.AetherStubDownloader.downloadAndUnpackStubJar(AetherStubDownloader.java:231) ~[spring-cloud-contract-stub-runner-2.1.4.RELEASE.jar:2.1.4.RELEASE]
-	at org.springframework.cloud.contract.stubrunner.CompositeStubDownloader.downloadAndUnpackStubJar(CompositeStubDownloaderBuilder.java:80) ~[spring-cloud-contract-stub-runner-2.1.4.RELEASE.jar:2.1.4.RELEASE]
-	at org.springframework.cloud.contract.stubrunner.StubRunnerFactory.createStubsFromServiceConfiguration(StubRunnerFactory.java:66) ~[spring-cloud-contract-stub-runner-2.1.4.RELEASE.jar:2.1.4.RELEASE]
-	at org.springframework.cloud.contract.stubrunner.BatchStubRunnerFactory.buildBatchStubRunner(BatchStubRunnerFactory.java:69) ~[spring-cloud-contract-stub-runner-2.1.4.RELEASE.jar:2.1.4.RELEASE]
-	at org.springframework.cloud.contract.stubrunner.spring.StubRunnerConfiguration.batchStubRunner(StubRunnerConfiguration.java:84) ~[spring-cloud-contract-stub-runner-2.1.4.RELEASE.jar:2.1.4.RELEASE]
-	at org.springframework.cloud.contract.stubrunner.spring.StubRunnerConfiguration$$EnhancerBySpringCGLIB$$5dddf376.CGLIB$batchStubRunner$0(<generated>) ~[spring-cloud-contract-stub-runner-2.1.4.RELEASE.jar:2.1.4.RELEASE]
-	at org.springframework.cloud.contract.stubrunner.spring.StubRunnerConfiguration$$EnhancerBySpringCGLIB$$5dddf376$$FastClassBySpringCGLIB$$8f6d2529.invoke(<generated>) ~[spring-cloud-contract-stub-runner-2.1.4.RELEASE.jar:2.1.4.RELEASE]
-	at org.springframework.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:244) ~[spring-core-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:363) ~[spring-context-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	at org.springframework.cloud.contract.stubrunner.spring.StubRunnerConfiguration$$EnhancerBySpringCGLIB$$5dddf376.batchStubRunner(<generated>) ~[spring-cloud-contract-stub-runner-2.1.4.RELEASE.jar:2.1.4.RELEASE]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:na]
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Method.java:566) ~[na:na]
-	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:154) ~[spring-beans-5.1.10.RELEASE.jar:5.1.10.RELEASE]
-	... 48 common frames omitted
-
-[ERROR] Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 16.26 s <<< FAILURE! - in com.*******.conferences.site.C4PApisTests
-[ERROR] shouldReturnProposalWithIdWhenAProposalIsCreated(com.*******.conferences.site.C4PApisTests)  Time elapsed: 0.01 s  <<< ERROR!
-java.lang.IllegalStateException: Failed to load ApplicationContext
-Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'batchStubRunnerBeanPostProcessor' defined in class path resource [org/springframework/cloud/contract/stubrunner/spring/StubRunnerConfiguration.class]: Unsatisfied dependency expressed through method 'batchStubRunnerBeanPostProcessor' parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'batchStubRunner' defined in class path resource [org/springframework/cloud/contract/stubrunner/spring/StubRunnerConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.cloud.contract.stubrunner.BatchStubRunner]: Factory method 'batchStubRunner' threw exception; nested exception is java.lang.IllegalArgumentException: For groupId [com.*******.conferences] artifactId [fmtok8s-c4p] and classifier [stubs] the version was not resolved! The following exceptions took place [org.eclipse.aether.transfer.MetadataNotFoundException: Could not find metadata com.*******.conferences:fmtok8s-c4p/maven-metadata.xml in local (/tmp/aether-local7502374464928347353), org.eclipse.aether.transfer.MetadataTransferException: Could not transfer metadata com.*******.conferences:fmtok8s-c4p/maven-metadata.xml from/to remote0 (http://nexus/repository/maven-group/): status code: 401, reason phrase: Unauthorized (401)]
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'batchStubRunner' defined in class path resource [org/springframework/cloud/contract/stubrunner/spring/StubRunnerConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.cloud.contract.stubrunner.BatchStubRunner]: Factory method 'batchStubRunner' threw exception; nested exception is java.lang.IllegalArgumentException: For groupId [com.*******.conferences] artifactId [fmtok8s-c4p] and classifier [stubs] the version was not resolved! The following exceptions took place [org.eclipse.aether.transfer.MetadataNotFoundException: Could not find metadata com.*******.conferences:fmtok8s-c4p/maven-metadata.xml in local (/tmp/aether-local7502374464928347353), org.eclipse.aether.transfer.MetadataTransferException: Could not transfer metadata com.*******.conferences:fmtok8s-c4p/maven-metadata.xml from/to remote0 (http://nexus/repository/maven-group/): status code: 401, reason phrase: Unauthorized (401)]
-Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.cloud.contract.stubrunner.BatchStubRunner]: Factory method 'batchStubRunner' threw exception; nested exception is java.lang.IllegalArgumentException: For groupId [com.*******.conferences] artifactId [fmtok8s-c4p] and classifier [stubs] the version was not resolved! The following exceptions took place [org.eclipse.aether.transfer.MetadataNotFoundException: Could not find metadata com.*******.conferences:fmtok8s-c4p/maven-metadata.xml in local (/tmp/aether-local7502374464928347353), org.eclipse.aether.transfer.MetadataTransferException: Could not transfer metadata com.*******.conferences:fmtok8s-c4p/maven-metadata.xml from/to remote0 (http://nexus/repository/maven-group/): status code: 401, reason phrase: Unauthorized (401)]
-Caused by: java.lang.IllegalArgumentException: For groupId [com.*******.conferences] artifactId [fmtok8s-c4p] and classifier [stubs] the version was not resolved! The following exceptions took place [org.eclipse.aether.transfer.MetadataNotFoundException: Could not find metadata com.*******.conferences:fmtok8s-c4p/maven-metadata.xml in local (/tmp/aether-local7502374464928347353), org.eclipse.aether.transfer.MetadataTransferException: Could not transfer metadata com.*******.conferences:fmtok8s-c4p/maven-metadata.xml from/to remote0 (http://nexus/repository/maven-group/): status code: 401, reason phrase: Unauthorized (401)]
-
+2020-07-01 16:09:46.552  INFO 71 --- [           main] w.o.e.j.s.NetworkTrafficServerConnector  : Stopped NetworkTrafficServerConnector@2ac9e53c{HTTP/1.1}{0.0.0.0:12327}
+2020-07-01 16:09:46.555  INFO 71 --- [           main] w.o.e.j.server.handler.ContextHandler    : Stopped w.o.e.j.s.ServletContextHandler@23933031{/,null,UNAVAILABLE}
+2020-07-01 16:09:46.556  INFO 71 --- [           main] w.o.e.j.server.handler.ContextHandler    : Stopped w.o.e.j.s.ServletContextHandler@38ba8b45{/__*****,null,UNAVAILABLE}
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 29.21 s - in com.*******.conferences.site.C4PApisTests
 [INFO] Running com.*******.conferences.site.DemoApplicationTests
-2020-06-30 08:47:02.471  INFO 69 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.*******.conferences.site.DemoApplicationTests], using SpringBootContextLoader
-2020-06-30 08:47:02.481  INFO 69 --- [           main] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [com.*******.conferences.site.DemoApplicationTests]: no resource found for suffixes {-context.xml, Context.groovy}.
-2020-06-30 08:47:02.485  INFO 69 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.*******.conferences.site.DemoApplicationTests]: DemoApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2020-06-30 08:47:02.489  INFO 69 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.*******.conferences.site.DemoApplication for test class com.*******.conferences.site.DemoApplicationTests
-2020-06-30 08:47:02.500  INFO 69 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.cloud.contract.wiremock.WireMockTestExecutionListener, org.springframework.cloud.contract.stubrunner.provider.wiremock.StubRunnerWireMockTestExecutionListener]
-2020-06-30 08:47:02.515  INFO 69 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@1cfd6f63, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@1906f982, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@5444f1c3, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@6a5c2d2d, org.springframework.test.context.support.DirtiesContextTestExecutionListener@1dadd172, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@33c9f1ac, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@4070c4ff, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@4bceac99, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@389bc2d3, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@442310fd, org.springframework.cloud.contract.wiremock.WireMockTestExecutionListener@23263ba, org.springframework.cloud.contract.stubrunner.provider.wiremock.StubRunnerWireMockTestExecutionListener@3ca6bd01]
-2020-06-30 08:47:02.767  INFO 69 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$1742403] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-07-01 16:09:46.641  INFO 71 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.*******.conferences.site.DemoApplicationTests], using SpringBootContextLoader
+2020-07-01 16:09:46.645  INFO 71 --- [           main] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [com.*******.conferences.site.DemoApplicationTests]: no resource found for suffixes {-context.xml, Context.groovy}.
+2020-07-01 16:09:46.650  INFO 71 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.*******.conferences.site.DemoApplicationTests]: DemoApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2020-07-01 16:09:46.652  INFO 71 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.*******.conferences.site.DemoApplication for test class com.*******.conferences.site.DemoApplicationTests
+2020-07-01 16:09:46.654  INFO 71 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.cloud.contract.wiremock.WireMockTestExecutionListener, org.springframework.cloud.contract.stubrunner.provider.wiremock.StubRunnerWireMockTestExecutionListener]
+2020-07-01 16:09:46.656  INFO 71 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@5d729af6, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@2052c49f, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@2be83e7e, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@df0b348, org.springframework.test.context.support.DirtiesContextTestExecutionListener@441c2d2a, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@72dc7f0a, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@18ada4e1, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@10cf3e4f, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@359f3401, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@242a3997, org.springframework.cloud.contract.wiremock.WireMockTestExecutionListener@51d50b5f, org.springframework.cloud.contract.stubrunner.provider.wiremock.StubRunnerWireMockTestExecutionListener@38816a6c]
+2020-07-01 16:09:47.352  INFO 71 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$b3f32a1f] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -619,49 +261,140 @@ Caused by: java.lang.IllegalArgumentException: For groupId [com.*******.conferen
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::        (v2.1.9.RELEASE)
 
-2020-06-30 08:47:02.870  INFO 69 --- [           main] c.s.c.site.DemoApplicationTests          : No active profile set, falling back to default profiles: default
-2020-06-30 08:47:03.829  INFO 69 --- [           main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=a3e601c7-abf8-3ee1-b040-18865d8bdd07
-2020-06-30 08:47:04.071  INFO 69 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$1742403] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-06-30 08:47:08.183  INFO 69 --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [After]
-2020-06-30 08:47:08.187  INFO 69 --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Before]
-2020-06-30 08:47:08.192  INFO 69 --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Between]
-2020-06-30 08:47:08.194  INFO 69 --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Cookie]
-2020-06-30 08:47:08.196  INFO 69 --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Header]
-2020-06-30 08:47:08.197  INFO 69 --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Host]
-2020-06-30 08:47:08.198  INFO 69 --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Method]
-2020-06-30 08:47:08.199  INFO 69 --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Path]
-2020-06-30 08:47:08.206  INFO 69 --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Query]
-2020-06-30 08:47:08.208  INFO 69 --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [ReadBodyPredicateFactory]
-2020-06-30 08:47:08.209  INFO 69 --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [RemoteAddr]
-2020-06-30 08:47:08.213  INFO 69 --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Weight]
-2020-06-30 08:47:08.213  INFO 69 --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [CloudFoundryRouteService]
-2020-06-30 08:47:09.704  INFO 69 --- [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 3 endpoint(s) beneath base path '/actuator'
-2020-06-30 08:47:11.326  INFO 69 --- [           main] c.s.c.site.DemoApplicationTests          : Started DemoApplicationTests in 8.791 seconds (JVM running for 25.986)
-[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 8.807 s - in com.*******.conferences.site.DemoApplicationTests
+2020-07-01 16:09:47.955  INFO 71 --- [           main] c.s.c.site.DemoApplicationTests          : No active profile set, falling back to default profiles: default
+2020-07-01 16:09:49.346  INFO 71 --- [           main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=a3e601c7-abf8-3ee1-b040-18865d8bdd07
+2020-07-01 16:09:49.561  INFO 71 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$b3f32a1f] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-07-01 16:09:52.064  INFO 71 --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [After]
+2020-07-01 16:09:52.065  INFO 71 --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Before]
+2020-07-01 16:09:52.065  INFO 71 --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Between]
+2020-07-01 16:09:52.065  INFO 71 --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Cookie]
+2020-07-01 16:09:52.065  INFO 71 --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Header]
+2020-07-01 16:09:52.065  INFO 71 --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Host]
+2020-07-01 16:09:52.065  INFO 71 --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Method]
+2020-07-01 16:09:52.065  INFO 71 --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Path]
+2020-07-01 16:09:52.066  INFO 71 --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Query]
+2020-07-01 16:09:52.066  INFO 71 --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [ReadBodyPredicateFactory]
+2020-07-01 16:09:52.066  INFO 71 --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [RemoteAddr]
+2020-07-01 16:09:52.066  INFO 71 --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Weight]
+2020-07-01 16:09:52.066  INFO 71 --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [CloudFoundryRouteService]
+2020-07-01 16:09:53.241  INFO 71 --- [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 3 endpoint(s) beneath base path '/actuator'
+2020-07-01 16:09:53.863  INFO 71 --- [           main] c.s.c.site.DemoApplicationTests          : Started DemoApplicationTests in 7.204 seconds (JVM running for 37.822)
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 7.124 s - in com.*******.conferences.site.DemoApplicationTests
 [INFO] 
 [INFO] Results:
 [INFO] 
-[ERROR] Errors: 
-[ERROR]   C4PApisTests.shouldReturnProposalWithIdWhenAProposalIsCreated » IllegalState F...
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0
 [INFO] 
-[ERROR] Tests run: 2, Failures: 0, Errors: 1, Skipped: 0
 [INFO] 
+[INFO] --- maven-jar-plugin:3.1.2:jar (default-jar) @ api-gateway ---
+[INFO] Building jar: /workspace/source/target/api-gateway-0.0.59.jar
+[INFO] 
+[INFO] --- spring-boot-maven-plugin:2.1.9.RELEASE:repackage (repackage) @ api-gateway ---
+[INFO] Replacing main artifact with repackaged archive
+[INFO] 
+[INFO] --- maven-install-plugin:2.5.2:install (default-install) @ api-gateway ---
+[INFO] Installing /workspace/source/target/api-gateway-0.0.59.jar to /home/jenkins/.mvnrepository/com/*******/conferences/api-gateway/0.0.59/api-gateway-0.0.59.jar
+[INFO] Installing /workspace/source/pom.xml to /home/jenkins/.mvnrepository/com/*******/conferences/api-gateway/0.0.59/api-gateway-0.0.59.pom
+[INFO] 
+[INFO] --- maven-deploy-plugin:2.8.2:deploy (default-deploy) @ api-gateway ---
+[INFO] Using alternate deployment repository local-nexus::default::http://nexus/repository/maven-releases/
 [INFO] ------------------------------------------------------------------------
-[INFO] BUILD FAILURE
+[INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  50.314 s
-[INFO] Finished at: 2020-06-30T08:47:12Z
+[INFO] Total time:  01:11 min
+[INFO] Finished at: 2020-07-01T16:10:00Z
 [INFO] ------------------------------------------------------------------------
-[ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:3.0.0-M1:test (default-test) on project api-gateway: There are test failures.
-[ERROR] 
-[ERROR] Please refer to /workspace/source/target/surefire-reports for the individual test results.
-[ERROR] Please refer to dump files (if any exist) [date].dump, [date]-jvmRun[N].dump and [date].dumpstream.
-[ERROR] -> [Help 1]
-[ERROR] 
-[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
-[ERROR] Re-run Maven using the -X switch to enable full debug logging.
-[ERROR] 
-[ERROR] For more information about the errors and possible solutions, please read the following articles:
-[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
-[31m
-Pipeline failed on stage 'from-build-pack' : container 'step-build-mvn-deploy'. The execution of the pipeline has stopped.[0m
+
+Showing logs for build [32msalaboy-fmtok8s-api-gateway-mas-kc2tw-6[0m stage [32mfrom-build-pack[0m and container [32mstep-build-skaffold-version[0m
+v1.0.1
+
+Showing logs for build [32msalaboy-fmtok8s-api-gateway-mas-kc2tw-6[0m stage [32mfrom-build-pack[0m and container [32mstep-build-container-build[0m
+E0701 16:10:02.285192      11 aws_credentials.go:77] while getting AWS credentials NoCredentialProviders: no valid providers in chain. Deprecated.
+	For verbose messaging see aws.Config.CredentialsChainVerboseErrors
+[36mINFO[0m[0001] Using dockerignore file: /workspace/source/.dockerignore 
+[36mINFO[0m[0001] Retrieving image manifest openjdk:11-jre-slim 
+E0701 16:10:02.734055      11 metadata.go:154] while reading 'google-dockercfg' metadata: http status code: 404 while fetching url http://metadata.google.internal./computeMetadata/v1/instance/attributes/google-dockercfg
+E0701 16:10:02.740355      11 metadata.go:166] while reading 'google-dockercfg-url' metadata: http status code: 404 while fetching url http://metadata.google.internal./computeMetadata/v1/instance/attributes/google-dockercfg-url
+[36mINFO[0m[0002] Retrieving image manifest openjdk:11-jre-slim 
+[36mINFO[0m[0004] Built cross stage deps: map[]                
+[36mINFO[0m[0004] Retrieving image manifest openjdk:11-jre-slim 
+[36mINFO[0m[0005] Retrieving image manifest openjdk:11-jre-slim 
+[36mINFO[0m[0006] Executing 0 build triggers                   
+[36mINFO[0m[0006] cmd: EXPOSE                                  
+[36mINFO[0m[0006] Adding exposed port: 8080/tcp                
+[36mINFO[0m[0006] Resolving srcs [pom.xml target/lib*]...      
+[36mINFO[0m[0006] Checking for cached layer gcr.io/camunda-researchanddevelopment/cache:d046c4908a79b68adba9493b7693862804efa132c7c9937b0965e5bda39caa8f... 
+[36mINFO[0m[0006] No cached layer found for cmd COPY pom.xml target/lib* /opt/lib/ 
+[36mINFO[0m[0006] Resolving srcs [target/*.jar]...             
+[36mINFO[0m[0006] Unpacking rootfs as cmd COPY pom.xml target/lib* /opt/lib/ requires it. 
+[36mINFO[0m[0011] ENV PORT 8080                                
+[36mINFO[0m[0011] No files changed in this command, skipping snapshotting. 
+[36mINFO[0m[0011] ENV CLASSPATH /opt/lib                       
+[36mINFO[0m[0011] No files changed in this command, skipping snapshotting. 
+[36mINFO[0m[0011] EXPOSE 8080                                  
+[36mINFO[0m[0011] cmd: EXPOSE                                  
+[36mINFO[0m[0011] Adding exposed port: 8080/tcp                
+[36mINFO[0m[0011] No files changed in this command, skipping snapshotting. 
+[36mINFO[0m[0011] Resolving srcs [pom.xml target/lib*]...      
+[36mINFO[0m[0011] COPY pom.xml target/lib* /opt/lib/           
+[36mINFO[0m[0011] Resolving srcs [pom.xml target/lib*]...      
+[36mINFO[0m[0011] Resolving 1 paths                            
+[36mINFO[0m[0011] Taking snapshot of files...                  
+[36mINFO[0m[0011] Resolving srcs [target/*.jar]...             
+[36mINFO[0m[0011] Pushing layer gcr.io/camunda-researchanddevelopment/cache:d046c4908a79b68adba9493b7693862804efa132c7c9937b0965e5bda39caa8f to cache now 
+[36mINFO[0m[0011] COPY target/*.jar /opt/app.jar               
+[36mINFO[0m[0011] Resolving srcs [target/*.jar]...             
+[36mINFO[0m[0011] Resolving 1 paths                            
+[36mINFO[0m[0011] Taking snapshot of files...                  
+[36mINFO[0m[0012] Pushing layer gcr.io/camunda-researchanddevelopment/cache:62826f1ac9700f8dd3adc1198547e6a6e967db08007d0c3901fddc53e82fe529 to cache now 
+[36mINFO[0m[0012] WORKDIR /opt                                 
+[36mINFO[0m[0012] cmd: workdir                                 
+[36mINFO[0m[0012] Changed working directory to /opt            
+[36mINFO[0m[0012] No files changed in this command, skipping snapshotting. 
+[36mINFO[0m[0012] ENTRYPOINT exec java $JAVA_OPTS -jar app.jar 
+[36mINFO[0m[0012] No files changed in this command, skipping snapshotting. 
+
+Showing logs for build [32msalaboy-fmtok8s-api-gateway-mas-kc2tw-6[0m stage [32mfrom-build-pack[0m and container [32mstep-build-post-build[0m
+no CVE provider running in the current ** namespace so skip adding image to be analysed
+
+Showing logs for build [32msalaboy-fmtok8s-api-gateway-mas-kc2tw-6[0m stage [32mfrom-build-pack[0m and container [32mstep-promote-changelog[0m
+Converted /workspace/source/charts/fmtok8s-api-gateway to an unshallow repository
+Generating change log from git ref b7cf67cb7a19271b365cb7d10c5f27202b651286 => e6117fe9f802a01a44d5b30d451790d04ccdc057
+Associating user x-0 in users.jenkins.io with email *******@gmail.com to git GitProvider user with login -0 as emails match
+Adding label jenkins.io/git-github-userid=-0 to user x-0 in users.jenkins.io
+WARNING: Failed to enrich commit 32176f4db2703b1626dfaecfc32210fa3fc9c4d5 with issues: User.jenkins.io "x-0" is invalid: metadata.labels: Invalid value: "-0": a valid label must be an empty string or consist of alphanumeric characters, '-', '_' or '.', and must start and end with an alphanumeric character (e.g. 'MyValue',  or 'my_value',  or '12345', regex used for validation is '(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])?')
+Associating user x-0 in users.jenkins.io with email *******@gmail.com to git GitProvider user with login -0 as emails match
+Adding label jenkins.io/git-github-userid=-0 to user x-0 in users.jenkins.io
+WARNING: Failed to enrich commit 32176f4db2703b1626dfaecfc32210fa3fc9c4d5 with issues: User.jenkins.io "x-0" is invalid: metadata.labels: Invalid value: "-0": a valid label must be an empty string or consist of alphanumeric characters, '-', '_' or '.', and must start and end with an alphanumeric character (e.g. 'MyValue',  or 'my_value',  or '12345', regex used for validation is '(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])?')
+Finding issues in commit messages using git format
+WARNING: No release found for *******/fmtok8s-api-gateway and tag v0.0.59 so creating a new release
+Updated the release information at https://github.com/*******/fmtok8s-api-gateway/releases/tag/v0.0.59
+generated: /workspace/source/charts/fmtok8s-api-gateway/templates/release.yaml
+Created Release fmtok8s-api-gateway-0-0-59 resource in namespace **
+Updating PipelineActivity *******-fmtok8s-api-gateway-master-6 with version 0.0.59
+Updated PipelineActivities *******-fmtok8s-api-gateway-master-6 with release notes URL: https://github.com/*******/fmtok8s-api-gateway/releases/tag/v0.0.59
+
+Showing logs for build [32msalaboy-fmtok8s-api-gateway-mas-kc2tw-6[0m stage [32mfrom-build-pack[0m and container [32mstep-promote-helm-release[0m
+WARNING: No $CHART_REPOSITORY defined so using the default value of: http://jenkins-x-chartmuseum:8080
+Adding missing Helm repo: storage.googleapis.com https://storage.googleapis.com/chartmuseum.jenkins-x.io
+Successfully added Helm repository storage.googleapis.com.
+Adding missing Helm repo: jenkins-x-chartmuseum http://jenkins-x-chartmuseum:8080
+Successfully added Helm repository jenkins-x-chartmuseum.
+WARNING: No $CHART_REPOSITORY defined so using the default value of: http://jenkins-x-chartmuseum:8080
+Uploading chart file fmtok8s-api-gateway-0.0.59.tgz to http://jenkins-x-chartmuseum:8080/api/charts
+Received 201 response: {"saved":true}
+
+Showing logs for build [32msalaboy-fmtok8s-api-gateway-mas-kc2tw-6[0m stage [32mfrom-build-pack[0m and container [32mstep-promote-jx-promote[0m
+WARNING: prow based install so skip waiting for the merge of Pull Requests to go green as currently there is an issue with gettingstatuses from the PR, see https://github.com/jenkins-x/**/issues/2410
+WARNING: No $CHART_REPOSITORY defined so using the default value of: http://jenkins-x-chartmuseum:8080
+Promoting app fmtok8s-api-gateway version 0.0.59 to namespace **-staging
+Created Pull Request: https://github.com/*******/environment-kubecon2020-staging/pull/8
+Added label updatebot to Pull Request https://github.com/*******/environment-kubecon2020-staging/pull/8
+got git provider status pending from PR https://github.com/*******/environment-kubecon2020-staging/pull/8
+Pull Request https://github.com/*******/environment-kubecon2020-staging/pull/8 is merged at sha a54e47ffb9e095b8555db5b8de9976d2d05f74c7
+Pull Request merged but we are not waiting for the update pipeline to complete!
+
+Showing logs for build [32msalaboy-fmtok8s-api-gateway-mas-kc2tw-6[0m stage [32mfrom-build-pack[0m and container [32mstep-promote-step10[0m
+Using https://github.com/*******/fmtok8s-api-gateway as source for change discovered from git repo in /workspace/source
+Updated Pull Request: https://github.com/*******/fmtok8s-kubecon-app/pull/15
+Added label updatebot to Pull Request https://github.com/*******/fmtok8s-kubecon-app/pull/15
