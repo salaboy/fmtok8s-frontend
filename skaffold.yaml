@@ -2,7 +2,7 @@ apiVersion: skaffold/v1beta2
 kind: Config
 build:
   artifacts:
-  - image: camunda-consulting-de/fmtok8s-api-gateway
+  - image: camunda-researchanddevelopment/fmtok8s-api-gateway
     context: .
     docker: {}
   tagPolicy:
