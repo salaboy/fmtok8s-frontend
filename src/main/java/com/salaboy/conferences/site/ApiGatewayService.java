@@ -18,10 +18,10 @@ import org.springframework.web.client.RestTemplate;
 import java.util.List;
 
 @SpringBootApplication
-public class DemoApplication {
+public class ApiGatewayService {
 
     public static void main(String[] args) {
-        SpringApplication.run(DemoApplication.class, args);
+        SpringApplication.run(ApiGatewayService.class, args);
     }
 
 }

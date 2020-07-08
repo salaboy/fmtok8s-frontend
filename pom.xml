@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.salaboy.conferences</groupId>
-    <artifactId>api-gateway</artifactId>
+    <artifactId>fmtok8s-api-gateway</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>FMTOK8S :: API Gateway</name>
     <description>From Monolith to K8s :: API Gateway</description>
