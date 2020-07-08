@@ -31,7 +31,7 @@
     </div>
     <div class="header__title">
         <h1><span><a
-                        href="https://github.com/salaboy/fmtok8s-api-gateway/releases/tag/v${version}">v${version}</a></span>
+                        href="https://github.com/salaboy/fmtok8s-api-gateway/releases/tag/v${version}">API Gateway v${version}</a></span>
         </h1>
     </div>
     <div class="header__options">
