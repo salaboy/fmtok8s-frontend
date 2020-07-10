@@ -168,11 +168,9 @@
             <a onclick="submitProposal()" class="button">Send</a>
         </div>
         <div id="modalMessage" class="modal__content__message__hidden">
-            <h3>Thanks for your submission</h3>
-            <img src="business_cat.jpg" height="400"></img>
+            <h2>Thanks for your submission</h2>
             <p>Your proposal has been sent successfully. The committee will evaluate your proposal and notify you
                 soon.</p>
-
             <p><a onclick="toggleModal()">Continue to the website</a></p>
         </div>
     </div>
