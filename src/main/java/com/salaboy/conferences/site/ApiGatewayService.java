@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
@@ -24,6 +25,59 @@ public class ApiGatewayService {
         SpringApplication.run(ApiGatewayService.class, args);
     }
 
+}
+
+@RestController("util")
+class ConferenceSiteUtilController{
+
+    private RestTemplate restTemplate = new RestTemplate();
+
+    @Value("${C4P_SERVICE:http://fmtok8s-c4p}")
+    private String C4P_SERVICE;
+
+
+    @PostMapping("/test")
+    public void test(){
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        String[] proposals = {
+                "{" +
+                        "\"title\" : \"Microservices 101\"," +
+                        "\"description\" : \"Getting Started with microservices.\"," +
+                        "\"author\" : \"Well Known Speaker \"," +
+                        "\"email\" : \"speaker@wellknown.org\"" +
+                        "}"
+                , "{" +
+                "\"title\" : \"AI/ML Trends 2020\"," +
+                "\"description\" : \"New algorithms and industry trends in applied AI and ML \"," +
+                "\"author\" : \"AI/ML Engineer\"," +
+                "\"email\" : \"ml@unvi.net\"" +
+                "}"
+                , "{" +
+                "\"title\" : \"The future of Cloud Native Computing\"," +
+                "\"description\" : \"What's coming in 2021 and beyond \"," +
+                "\"author\" : \"Conference Organizer\"," +
+                "\"email\" : \"info@conf.com\"" +
+                "}"
+                , "{" +
+                "\"title\" : \"Cloud Events Orchestration\"," +
+                "\"description\" : \"How to orchestrate Cloud Events in a friendly way\"," +
+                "\"author\" : \"Salaboy\"," +
+                "\"email\" : \"salaboy@mail.com\"" +
+                "}"
+
+        };
+        for(String content : proposals) {
+            HttpEntity<String> request =
+                    new HttpEntity<String>(content, headers);
+
+
+            String personResultAsJsonStr =
+                    restTemplate.postForObject(C4P_SERVICE + "/", request, String.class);
+        }
+    }
 }
 
 @Controller
@@ -47,47 +101,7 @@ class ConferenceSiteController {
 
     private RestTemplate restTemplate = new RestTemplate();
 
-    @PostMapping
-    public void test(){
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
 
-        String[] proposals = {
-                "{" +
-                    "\"title\" : \"Microservices 101\"," +
-                    "\"description\" : \"Getting Started with microservices.\"," +
-                    "\"author\" : \"Well Known Speaker \"," +
-                    "\"email\" : \"speaker@wellknown.org\"" +
-                "}"
-                , "{" +
-                    "\"title\" : \"AI/ML Trends 2020\"," +
-                    "\"description\" : \"New algorithms and industry trends in applied AI and ML \"," +
-                    "\"author\" : \"AI/ML Engineer\"," +
-                    "\"email\" : \"ml@unvi.net\"" +
-                "}"
-                , "{" +
-                    "\"title\" : \"The future of Cloud Native Computing\"," +
-                    "\"description\" : \"What's coming in 2021 and beyond \"," +
-                    "\"author\" : \"Conference Organizer\"," +
-                    "\"email\" : \"info@conf.com\"" +
-                "}"
-                , "{" +
-                    "\"title\" : \"Cloud Events Orchestration\"," +
-                    "\"description\" : \"How to orchestrate Cloud Events in a friendly way\"," +
-                    "\"author\" : \"Salaboy\"," +
-                    "\"email\" : \"salaboy@mail.com\"" +
-                "}"
-
-        };
-        for(String content : proposals) {
-            HttpEntity<String> request =
-                    new HttpEntity<String>(content, headers);
-
-
-            String personResultAsJsonStr =
-                    restTemplate.postForObject(C4P_SERVICE + "/", request, String.class);
-        }
-    }
 
     @GetMapping("/")
     public String index(Model model) {
