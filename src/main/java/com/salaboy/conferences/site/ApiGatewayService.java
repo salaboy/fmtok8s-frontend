@@ -7,11 +7,11 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 
@@ -46,6 +46,49 @@ class ConferenceSiteController {
     private String AGENDA_SERVICE;
 
     private RestTemplate restTemplate = new RestTemplate();
+
+    @PostMapping
+    public String test(){
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        String[] proposals = {
+                "{" +
+                    "\"title\" : \"Microservices 101\"," +
+                    "\"description\" : \"Getting Started with microservices.\"," +
+                    "\"author\" : \"Well Known Speaker \"," +
+                    "\"email\" : \"speaker@wellknown.org\"" +
+                "}"
+                , "{" +
+                    "\"title\" : \"AI/ML Trends 2020\"," +
+                    "\"description\" : \"New algorithms and industry trends in applied AI and ML \"," +
+                    "\"author\" : \"AI/ML Engineer\"," +
+                    "\"email\" : \"ml@unvi.net\"" +
+                "}"
+                , "{" +
+                    "\"title\" : \"The future of Cloud Native Computing\"," +
+                    "\"description\" : \"What's coming in 2021 and beyond \"," +
+                    "\"author\" : \"Conference Organizer\"," +
+                    "\"email\" : \"info@conf.com\"" +
+                "}"
+                , "{" +
+                    "\"title\" : \"Cloud Events Orchestration\"," +
+                    "\"description\" : \"How to orchestrate Cloud Events in a friendly way\"," +
+                    "\"author\" : \"Salaboy\"," +
+                    "\"email\" : \"salaboy@mail.com\"" +
+                "}"
+
+        };
+        for(String content : proposals) {
+            HttpEntity<String> request =
+                    new HttpEntity<String>(content, headers);
+
+
+            String personResultAsJsonStr =
+                    restTemplate.postForObject(C4P_SERVICE + "/", request, String.class);
+        }
+        return "Proposals created";
+    }
 
     @GetMapping("/")
     public String index(Model model) {
