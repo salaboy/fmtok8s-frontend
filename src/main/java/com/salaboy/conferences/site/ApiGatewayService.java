@@ -48,7 +48,7 @@ class ConferenceSiteController {
     private RestTemplate restTemplate = new RestTemplate();
 
     @PostMapping
-    public String test(){
+    public void test(){
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
@@ -87,7 +87,6 @@ class ConferenceSiteController {
             String personResultAsJsonStr =
                     restTemplate.postForObject(C4P_SERVICE + "/", request, String.class);
         }
-        return "Proposals created";
     }
 
     @GetMapping("/")
