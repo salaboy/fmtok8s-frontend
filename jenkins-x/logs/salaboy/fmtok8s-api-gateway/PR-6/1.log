@@ -1,0 +1,78 @@
+
+Showing logs for build [32msalaboy-fmtok8s-api-gateway-pr-rqt4x-1[0m stage [32mfrom-build-pack[0m and container [32mstep-credential-initializer-zwpgc[0m
+{"level":"info","ts":1595588449.8932304,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/refs/heads/0.8.0-ns-support: no such file or directory"}
+{"level":"info","ts":1595588449.8958087,"logger":"fallback-logger","caller":"creds-init/main.go:40","msg":"Credentials initialized."}
+
+Showing logs for build [32msalaboy-fmtok8s-api-gateway-pr-rqt4x-1[0m stage [32mfrom-build-pack[0m and container [32mstep-working-dir-initializer-fnv5k[0m
+{"level":"info","ts":1595588450.833215,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1595588450.8347332,"logger":"fallback-logger","caller":"bash/main.go:64","msg":"Successfully executed command \"sh -c mkdir -p /workspace/source\"; output "}
+
+Showing logs for build [32msalaboy-fmtok8s-api-gateway-pr-rqt4x-1[0m stage [32mfrom-build-pack[0m and container [32mstep-place-tools[0m
+
+Showing logs for build [32msalaboy-fmtok8s-api-gateway-pr-rqt4x-1[0m stage [32mfrom-build-pack[0m and container [32mstep-git-source-salaboy-fmtok8s-api-gateway-pr-rqt4x-bshg2[0m
+{"level":"info","ts":1595588457.9481847,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/refs/heads/0.8.0-ns-support: no such file or directory"}
+{"level":"info","ts":1595588459.2729187,"logger":"fallback-logger","caller":"git/git.go:103","msg":"Successfully cloned https://github.com/*******/fmtok8s-api-gateway.git @ master in path /workspace/source"}
+
+Showing logs for build [32msalaboy-fmtok8s-api-gateway-pr-rqt4x-1[0m stage [32mfrom-build-pack[0m and container [32mstep-setup-builder-home[0m
+
+Showing logs for build [32msalaboy-fmtok8s-api-gateway-pr-rqt4x-1[0m stage [32mfrom-build-pack[0m and container [32mstep-git-merge[0m
+Using SHAs from PULL_REFS=master:31306816fe2fb03589362fc616904affbfb33601,6:2522f05954af0ee13dc241a81e34f17e0e9b22ca
+DEBUG: LC_ALL=C JX_LOG_LEVEL=error git fetch origin --unshallow 2522f05954af0ee13dc241a81e34f17e0e9b22ca: 31306816fe2fb03589362fc616904affbfb33601:
+DEBUG: ran git fetch --unshallow origin 2522f05954af0ee13dc241a81e34f17e0e9b22ca: 31306816fe2fb03589362fc616904affbfb33601: in 
+DEBUG: LC_ALL=C JX_LOG_LEVEL=error git branch
+DEBUG: JX_LOG_LEVEL=error LC_ALL=C git checkout master
+DEBUG: ran git checkout master in 
+DEBUG: LC_ALL=C JX_LOG_LEVEL=error git reset --hard 31306816fe2fb03589362fc616904affbfb33601
+DEBUG: ran git reset --hard 31306816fe2fb03589362fc616904affbfb33601 in 
+DEBUG: JX_LOG_LEVEL=error LC_ALL=C git clean -fd .
+DEBUG: ran clean --force -d . in 
+DEBUG: LC_ALL=C JX_LOG_LEVEL=error git merge 2522f05954af0ee13dc241a81e34f17e0e9b22ca
+DEBUG: ran git merge 2522f05954af0ee13dc241a81e34f17e0e9b22ca in 
+DEBUG: LC_ALL=C JX_LOG_LEVEL=error git log --format=%H%x1f%an%x1f%ae%x1f%cn%x1f%ce%x1f%s%n%b%x1e 31306816fe2fb03589362fc616904affbfb33601..HEAD
+Merged SHA 2522f05954af0ee13dc241a81e34f17e0e9b22ca with commit message 'Revert "Making the Website more friendly to our speakers"' into base branch master
+
+Showing logs for build [32msalaboy-fmtok8s-api-gateway-pr-rqt4x-1[0m stage [32mfrom-build-pack[0m and container [32mstep-build-set-version[0m
+Picked up _JAVA_OPTIONS: -XX:+UnlockExperimentalVMOptions -Dsun.zip.disableMemoryMapping=true -XX:+UseParallelGC -XX:MinHeapFreeRatio=5 -XX:MaxHeapFreeRatio=10 -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Xms10m -Xmx192m
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ------------< com.*******.conferences:fmtok8s-api-gateway >-------------
+[INFO] Building FMTOK8S :: API Gateway 0.0.1-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- versions-maven-plugin:2.7:set (default-cli) @ fmtok8s-api-gateway ---
+[INFO] Searching for local aggregator root...
+[INFO] Local aggregation root: /workspace/source
+[INFO] Processing change of com.*******.conferences:fmtok8s-api-gateway:0.0.1-SNAPSHOT -> 0.0.0-SNAPSHOT-PR-6-1
+[INFO] Processing com.*******.conferences:fmtok8s-api-gateway
+[INFO]     Updating project com.*******.conferences:fmtok8s-api-gateway
+[INFO]         from version 0.0.1-SNAPSHOT to 0.0.0-SNAPSHOT-PR-6-1
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  14.590 s
+[INFO] Finished at: 2020-07-24T11:01:21Z
+[INFO] ------------------------------------------------------------------------
+
+Showing logs for build [32msalaboy-fmtok8s-api-gateway-pr-rqt4x-1[0m stage [32mfrom-build-pack[0m and container [32mstep-build-mvn-install[0m
+Picked up _JAVA_OPTIONS: -XX:+UnlockExperimentalVMOptions -Dsun.zip.disableMemoryMapping=true -XX:+UseParallelGC -XX:MinHeapFreeRatio=5 -XX:MaxHeapFreeRatio=10 -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Xms10m -Xmx192m
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ------------< com.*******.conferences:fmtok8s-api-gateway >-------------
+[INFO] Building FMTOK8S :: API Gateway 0.0.0-SNAPSHOT-PR-6-1
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  12.895 s
+[INFO] Finished at: 2020-07-24T11:01:38Z
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal on project fmtok8s-api-gateway: Could not resolve dependencies for project com.*******.conferences:fmtok8s-api-gateway:jar:0.0.0-SNAPSHOT-PR-6-1: Could not transfer artifact org.springframework:spring-web:jar:5.1.10.RELEASE from/to nexus (http://nexus/repository/maven-group/): GET request of: org/springframework/spring-web/5.1.10.RELEASE/spring-web-5.1.10.RELEASE.jar from nexus failed: Connection reset -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/DependencyResolutionException
+[31m
+Pipeline failed on stage 'from-build-pack' : container 'step-build-mvn-install'. The execution of the pipeline has stopped.[0m
