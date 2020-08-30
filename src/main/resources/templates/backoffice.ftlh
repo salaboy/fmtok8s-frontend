@@ -45,13 +45,8 @@
     <div class="main-title">
         <h2>Received Proposals</h2>
         <h5>
-        <#if c4p??>
-            <a href="https://github.com/salaboy/fmtok8s-c4p/releases/tag/v${c4p.version}">${c4p.name}
-                    v${c4p.version}</a>
-        <#else>
-            <a href="https://github.com/salaboy/fmtok8s-c4p/">N/A</a>
-        </#if>
-            </h5>
+            <a href="https://github.com/salaboy/fmtok8s-c4p/releases/tag/v${c4p.version}">${c4p.name} ${c4p.version}</a>
+        </h5>
     </div>
     <div class="options">
         <input type="checkbox" id="pending-check" name="pending-check" onchange="togglePending()" ${pending}>

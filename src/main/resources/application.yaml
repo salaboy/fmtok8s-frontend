@@ -2,18 +2,36 @@ spring:
   cloud:
     gateway:
       routes:
+      - id: agenda
+        uri: ${AGENDA_SERVICE:http://fmtok8s-c4p}
+        predicates:
+          - Path=/agenda/**
+        filters:
+          - RewritePath=/agenda/(?<id>.*), /$\{id}
+          - name: CircuitBreaker
+            args:
+              name: agendaCircuitBreaker
+              fallbackUri: forward:/api/agendaNotAvailable
       - id: c4p
         uri: ${C4P_SERVICE:http://fmtok8s-c4p}
         predicates:
         - Path=/c4p/**
         filters:
           - RewritePath=/c4p/(?<id>.*), /$\{id}
+          - name: CircuitBreaker
+            args:
+              name: c4pCircuitBreaker
+              fallbackUri: forward:/api/c4pNotAvailable
       - id: email
         uri: ${EMAIL_SERVICE:http://fmtok8s-email}
         predicates:
         - Path=/email/**
         filters:
           - RewritePath=/email/(?<id>.*), /$\{id}
+          - name: CircuitBreaker
+            args:
+              name: c4pCircuitBreaker
+              fallbackUri: forward:/api/emailNotAvailable
       - id: speakers
         uri: ${SPEAKERS_SERVICE:http://fmtok8s-speakers}
         predicates:

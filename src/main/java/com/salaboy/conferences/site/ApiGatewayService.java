@@ -10,12 +10,10 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootApplication
@@ -27,17 +25,46 @@ public class ApiGatewayService {
 
 }
 
-@RestController("util")
-class ConferenceSiteUtilController{
+@RestController()
+@RequestMapping("/api/")
+class ConferenceSiteUtilController {
 
     private RestTemplate restTemplate = new RestTemplate();
 
-    @Value("${C4P_SERVICE:http://fmtok8s-c4p}")
-    private String C4P_SERVICE;
+
+    @GetMapping("agendaNotAvailable")
+    public ServiceInfo agendaGetNotAvailable() {
+        return new ServiceInfo("Agenda Service", "N/A");
+    }
+
+    @PostMapping("agendaNotAvailable")
+    public ServiceInfo agendaPostNotAvailable() {
+        return new ServiceInfo("Agenda Service", "N/A");
+    }
+
+    @GetMapping("c4pNotAvailable")
+    public ServiceInfo c4pGetNotAvailable() {
+        return new ServiceInfo("C4P Service", "N/A");
+    }
+
+    @PostMapping("c4pNotAvailable")
+    public ServiceInfo c4pPostNotAvailable() {
+        return new ServiceInfo("C4P Service", "N/A");
+    }
+
+    @PostMapping("emailNotAvailable")
+    public ServiceInfo emailPostNotAvailable() {
+        return new ServiceInfo("Email Service", "N/A");
+    }
+
+    @GetMapping("emailNotAvailable")
+    public ServiceInfo emailGetNotAvailable() {
+        return new ServiceInfo("Email Service", "N/A");
+    }
 
 
     @PostMapping("/test")
-    public void test(){
+    public void test() {
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -69,13 +96,10 @@ class ConferenceSiteUtilController{
                 "}"
 
         };
-        for(String content : proposals) {
+        for (String content : proposals) {
             HttpEntity<String> request =
                     new HttpEntity<String>(content, headers);
-
-
-            String personResultAsJsonStr =
-                    restTemplate.postForObject(C4P_SERVICE + "/", request, String.class);
+            restTemplate.postForObject("http://localhost:8080/cp4/", request, String.class);
         }
     }
 }
@@ -87,38 +111,26 @@ class ConferenceSiteController {
 
     @GetMapping("/info")
     public String infoWithVersion() {
-        return "{ \"name\" : \"API Gateway / User Interface\", \"version\" : \"" + version + "\", \"source\": \"https://github.com/salaboy/fmtok8s-api-gateway/releases/tag/v"+version+"\" }";
+        return "{ \"name\" : \"API Gateway / User Interface\", \"version\" : \"" + version + "\", \"source\": \"https://github.com/salaboy/fmtok8s-api-gateway/releases/tag/v" + version + "\" }";
     }
 
-    @Value("${C4P_SERVICE:http://fmtok8s-c4p}")
-    private String C4P_SERVICE;
-
-    @Value("${EMAIL_SERVICE:http://fmtok8s-email}")
-    private String EMAIL_SERVICE;
-
-    @Value("${AGENDA_SERVICE:http://fmtok8s-agenda}")
-    private String AGENDA_SERVICE;
 
     private RestTemplate restTemplate = new RestTemplate();
 
-
-
     @GetMapping("/")
     public String index(Model model) {
-
-
         ServiceInfo agendaInfo = null;
         ServiceInfo c4pInfo = null;
 
         try {
-            ResponseEntity<ServiceInfo> agenda = restTemplate.getForEntity(AGENDA_SERVICE + "/info", ServiceInfo.class);
+            ResponseEntity<ServiceInfo> agenda = restTemplate.getForEntity("http://localhost:8080/agenda/info", ServiceInfo.class);
             agendaInfo = agenda.getBody();
 
         } catch (Exception e) {
             e.printStackTrace();
         }
         try {
-            ResponseEntity<ServiceInfo> sponsors = restTemplate.getForEntity(C4P_SERVICE + "/info", ServiceInfo.class);
+            ResponseEntity<ServiceInfo> sponsors = restTemplate.getForEntity("http://localhost:8080/c4p/info", ServiceInfo.class);
             c4pInfo = sponsors.getBody();
         } catch (Exception e) {
             e.printStackTrace();
@@ -127,35 +139,45 @@ class ConferenceSiteController {
         ResponseEntity<List<AgendaItem>> agendaItemsMonday = null;
         ResponseEntity<List<AgendaItem>> agendaItemsTuesday = null;
 
-        try {
-            agendaItemsMonday = restTemplate.exchange(AGENDA_SERVICE + "/day/Monday", HttpMethod.GET, null, new ParameterizedTypeReference<List<AgendaItem>>() {
-            });
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        if(!agendaInfo.getVersion().equals("N/A")) {
 
-        try {
-            agendaItemsTuesday = restTemplate.exchange(AGENDA_SERVICE + "/day/Tuesday", HttpMethod.GET, null, new ParameterizedTypeReference<List<AgendaItem>>() {
-            });
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
+            try {
+                agendaItemsMonday = restTemplate.exchange("http://localhost:8080/agenda/day/Monday", HttpMethod.GET, null, new ParameterizedTypeReference<List<AgendaItem>>() {
+                });
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            try {
+                agendaItemsTuesday = restTemplate.exchange("http://localhost:8080/agenda/day/Tuesday", HttpMethod.GET, null, new ParameterizedTypeReference<List<AgendaItem>>() {
+                });
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
 
         model.addAttribute("version", version);
         model.addAttribute("agenda", agendaInfo);
-        model.addAttribute("c4pURL", C4P_SERVICE);
-        model.addAttribute("agendaURL", AGENDA_SERVICE);
         model.addAttribute("c4p", c4pInfo);
+
+
 
 
         if (agendaItemsMonday != null) {
             model.addAttribute("agendaItemsMonday", agendaItemsMonday.getBody());
+        }else{
+            List<AgendaItem> cacheMonday = new ArrayList<>();
+            cacheMonday.add(new AgendaItem("1", "Cached Author", "Bring Monday Agenda Item from Cache", "Monday", "1pm"));
+            model.addAttribute("agendaItemsMonday", cacheMonday);
         }
         if (agendaItemsMonday != null) {
             model.addAttribute("agendaItemsTuesday", agendaItemsTuesday.getBody());
+        }else{
+            List<AgendaItem> cacheTuesday = new ArrayList<>();
+            cacheTuesday.add(new AgendaItem("1", "Cached Author", "Bring Tuesday Agenda Item from Cache", "Tuesday", "1pm"));
+            model.addAttribute("agendaItemsTuesday", cacheTuesday);
         }
-
 
         return "index";
     }
@@ -168,7 +190,7 @@ class ConferenceSiteController {
         System.out.println("Get Pending only: " + pending);
 
         try {
-            ResponseEntity<ServiceInfo> email = restTemplate.getForEntity(EMAIL_SERVICE + "/info", ServiceInfo.class);
+            ResponseEntity<ServiceInfo> email = restTemplate.getForEntity(  "http://localhost:8080/email/info", ServiceInfo.class);
             emailInfo = email.getBody();
         } catch (Exception e) {
             e.printStackTrace();
@@ -177,21 +199,20 @@ class ConferenceSiteController {
         ResponseEntity<List<Proposal>> proposals = null;
 
         try {
-            proposals = restTemplate.exchange(C4P_SERVICE + "/?pending=" + pending, HttpMethod.GET, null, new ParameterizedTypeReference<List<Proposal>>() {
+            proposals = restTemplate.exchange("http://localhost:8080/c4p/?pending=" + pending, HttpMethod.GET, null, new ParameterizedTypeReference<List<Proposal>>() {
             });
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         try {
-            ResponseEntity<ServiceInfo> c4p = restTemplate.getForEntity(C4P_SERVICE + "/info", ServiceInfo.class);
+            ResponseEntity<ServiceInfo> c4p = restTemplate.getForEntity("http://localhost:8080/c4p/info", ServiceInfo.class);
             c4pInfo = c4p.getBody();
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         model.addAttribute("version", version);
-        model.addAttribute("c4pURL", C4P_SERVICE);
         model.addAttribute("email", emailInfo);
         model.addAttribute("c4p", c4pInfo);
         model.addAttribute("pending", (pending) ? "checked" : "");
@@ -202,5 +223,6 @@ class ConferenceSiteController {
 
         return "backoffice";
     }
+
 
 }

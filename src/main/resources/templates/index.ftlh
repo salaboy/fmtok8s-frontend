@@ -45,13 +45,7 @@
     <div class="main-title">
         <h2>Accepted talks</h2>
         <h5>
-        <#if agenda??>
-        <a href="https://github.com/salaboy/fmtok8s-agenda/releases/tag/v${agenda.version}">${agenda.name}
-                v${agenda.version}</a>
-        <#else>
-            <a href="https://github.com/salaboy/fmtok8s-agenda/">
-                N/A</a>
-        </#if>
+            <a href="https://github.com/salaboy/fmtok8s-agenda/releases/tag/v${agenda.version}">${agenda.name} ${agenda.version}</a>
         </h5>
     </div>
     <div class="agenda">
@@ -127,13 +121,7 @@
         <div class="modal__content__title">
             New Proposal
             <h5>
-            <#if c4p??>
-            <a href="https://github.com/salaboy/fmtok8s-c4p/releases/tag/v${c4p.version}">${c4p.name}
-                    v${c4p.version}</a>
-            <#else>
-                <a href="https://github.com/salaboy/fmtok8s-c4p/">
-                    N/A</a>
-            </#if>
+                <a href="https://github.com/salaboy/fmtok8s-c4p/releases/tag/v${c4p.version}">${c4p.name} ${c4p.version}</a>
             </h5>
             <div class="close">
                 <a onclick="toggleModal()">
@@ -171,6 +159,11 @@
             <h2>Thanks for your submission</h2>
             <p>Your proposal has been sent successfully. The committee will evaluate your proposal and notify you
                 soon.</p>
+            <p><a onclick="toggleModal()">Continue to the website</a></p>
+        </div>
+        <div id="modalMessage2" class="modal__content__message__hidden">
+            <h2>Unfortunately your submission was not sent</h2>
+            <p>We are experiencing problems with the site right now, please try again later. </p>
             <p><a onclick="toggleModal()">Continue to the website</a></p>
         </div>
     </div>
@@ -223,15 +216,32 @@
             });
             xhr.setRequestHeader('Content-Type', 'application/json');
             console.log(data);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4) {
+                    callback(xhr.response);
+                }
+            }
+
             xhr.send(data);
 
-            document.getElementById("modalBody").className = "modal__content__body__hidden";
-            document.getElementById("modalActions").className = "modal__content__action__hidden";
-            document.getElementById("modalMessage").className = "modal__content__message";
+
 
         } else {
             console.log(errorMsg);
             document.getElementById("modalErrorMessage").innerHTML = errorMsg.substr(0, errorMsg.length - 1) + ".";
+        }
+    }
+    function callback(response){
+        console.log(response);
+        var response = JSON.parse(response);
+        if(response.version === "N/A"){
+            document.getElementById("modalBody").className = "modal__content__body__hidden";
+            document.getElementById("modalActions").className = "modal__content__action__hidden";
+            document.getElementById("modalMessage2").className = "modal__content__message";
+        }else {
+            document.getElementById("modalBody").className = "modal__content__body__hidden";
+            document.getElementById("modalActions").className = "modal__content__action__hidden";
+            document.getElementById("modalMessage").className = "modal__content__message";
         }
     }
 
