@@ -38,12 +38,26 @@ spring:
           - Path=/speakers/**
         filters:
           - RewritePath=/speakers/(?<id>.*), /$\{id}
+        
 management:
-  health:
-    probes: true
   endpoints:
     web:
       exposure:
-        include: gateway, info, health
+        include: health, gateway
+  endpoint:
+    info:
+      enabled: true
 
+    health:
+      probes:
+        enabled: true
+      enabled: true
+      show-details: always
+      group:
+        liveness:
+          include: livenessState,diskSpace,refreshScope
+          show-details: always
+        readiness:
+          include: readinessState
+          show-details: always
 
