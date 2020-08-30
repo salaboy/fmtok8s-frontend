@@ -6,5 +6,3 @@ spec:
   type: ExternalName
   # Target service DNS name
   externalName: fmtok8s-email.jx-staging.svc.cluster.local
-  ports:
-    - port: 8080
