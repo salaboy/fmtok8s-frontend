@@ -64,12 +64,12 @@ livenessProbe:
   initialDelaySeconds: 20
   periodSeconds: 10
   successThreshold: 1
-  timeoutSeconds: 1
+  timeoutSeconds: 2
 readinessProbe:
-  failureThreshold: 1
+  failureThreshold: 3
   periodSeconds: 12
   successThreshold: 1
-  timeoutSeconds: 1
+  timeoutSeconds: 2
 
 
 # custom ingress annotations on this service
