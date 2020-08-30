@@ -39,6 +39,8 @@ spring:
         filters:
           - RewritePath=/speakers/(?<id>.*), /$\{id}
 management:
+  health:
+    probes: true
   endpoints:
     web:
       exposure:
