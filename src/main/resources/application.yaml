@@ -54,7 +54,7 @@ management:
       show-details: always
       group:
         liveness:
-          include: livenessState,diskSpace,refreshScope
+          include: livenessState
           show-details: always
         readiness:
           include: readinessState
