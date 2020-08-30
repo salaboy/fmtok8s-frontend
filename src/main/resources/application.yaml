@@ -39,14 +39,22 @@ spring:
         filters:
           - RewritePath=/speakers/(?<id>.*), /$\{id}
 management:
+  security:
+    enabled: false
+
   endpoints:
+
     web:
       exposure:
-        include: health, gateway
+        include: health, gateway, info
   endpoint:
+
     info:
       enabled: true
-
+      show-details: always
+    gateway:
+      enabled: true
+      show-details: always
     health:
       probes:
         enabled: true
