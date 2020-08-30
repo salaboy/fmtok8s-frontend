@@ -130,8 +130,8 @@ class ConferenceSiteController {
             e.printStackTrace();
         }
         try {
-            ResponseEntity<ServiceInfo> sponsors = restTemplate.getForEntity("http://localhost:8080/c4p/info", ServiceInfo.class);
-            c4pInfo = sponsors.getBody();
+            ResponseEntity<ServiceInfo> c4p = restTemplate.getForEntity("http://localhost:8080/c4p/info", ServiceInfo.class);
+            c4pInfo = c4p.getBody();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -140,7 +140,6 @@ class ConferenceSiteController {
         ResponseEntity<List<AgendaItem>> agendaItemsTuesday = null;
 
         if(!agendaInfo.getVersion().equals("N/A")) {
-
 
             try {
                 agendaItemsMonday = restTemplate.exchange("http://localhost:8080/agenda/day/Monday", HttpMethod.GET, null, new ParameterizedTypeReference<List<AgendaItem>>() {

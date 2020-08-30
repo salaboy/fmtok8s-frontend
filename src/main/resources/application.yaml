@@ -3,7 +3,7 @@ spring:
     gateway:
       routes:
       - id: agenda
-        uri: ${AGENDA_SERVICE:http://fmtok8s-c4p}
+        uri: ${AGENDA_SERVICE:http://fmtok8s-agenda}
         predicates:
           - Path=/agenda/**
         filters:
