@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Proposal {
-    public enum ProposalStatus {PENDING, DECIDED}
+    public enum ProposalStatus {PENDING, DECIDED, ERROR}
 
     private String id;
     private String title;

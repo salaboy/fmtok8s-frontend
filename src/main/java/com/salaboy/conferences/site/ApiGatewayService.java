@@ -196,15 +196,6 @@ class ConferenceSiteController {
             e.printStackTrace();
         }
 
-        ResponseEntity<List<Proposal>> proposals = null;
-
-        try {
-            proposals = restTemplate.exchange("http://localhost:8080/c4p/?pending=" + pending, HttpMethod.GET, null, new ParameterizedTypeReference<List<Proposal>>() {
-            });
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
         try {
             ResponseEntity<ServiceInfo> c4p = restTemplate.getForEntity("http://localhost:8080/c4p/info", ServiceInfo.class);
             c4pInfo = c4p.getBody();
@@ -212,13 +203,26 @@ class ConferenceSiteController {
             e.printStackTrace();
         }
 
+        List<Proposal> proposals = null;
+
+        if(!c4pInfo.getVersion().equals("N/A")) {
+            try {
+                proposals = restTemplate.exchange("http://localhost:8080/c4p/?pending=" + pending, HttpMethod.GET, null, new ParameterizedTypeReference<List<Proposal>>() {
+                }).getBody();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }else{
+            proposals = new ArrayList<>();
+            proposals.add(new Proposal("Error", "There is no Cache that can save you here.", "Call your System Administrator", false, Proposal.ProposalStatus.ERROR));
+        }
         model.addAttribute("version", version);
         model.addAttribute("email", emailInfo);
         model.addAttribute("c4p", c4pInfo);
         model.addAttribute("pending", (pending) ? "checked" : "");
 
         if (proposals != null) {
-            model.addAttribute("proposals", proposals.getBody());
+            model.addAttribute("proposals", proposals);
         }
 
         return "backoffice";
