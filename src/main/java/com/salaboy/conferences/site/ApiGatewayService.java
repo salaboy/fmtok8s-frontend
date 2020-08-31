@@ -162,7 +162,7 @@ class ConferenceSiteController {
         ResponseEntity<List<AgendaItem>> agendaItemsMonday = null;
         ResponseEntity<List<AgendaItem>> agendaItemsTuesday = null;
 
-        if(agendaInfo != null && !agendaInfo.getVersion().equals("N/A")) {
+        if (agendaInfo != null && !agendaInfo.getVersion().equals("N/A")) {
 
             try {
                 agendaItemsMonday = restTemplate.exchange(AGENDA_SERVICE + "/day/Monday", HttpMethod.GET, null, new ParameterizedTypeReference<List<AgendaItem>>() {
@@ -179,23 +179,21 @@ class ConferenceSiteController {
             }
         }
 
-        model.addAttribute("version", version);
+        model.addAttribute("version", "v" + version);
         model.addAttribute("agenda", agendaInfo);
         model.addAttribute("c4p", c4pInfo);
 
 
-
-
         if (agendaItemsMonday != null) {
             model.addAttribute("agendaItemsMonday", agendaItemsMonday.getBody());
-        }else{
+        } else {
             List<AgendaItem> cacheMonday = new ArrayList<>();
             cacheMonday.add(new AgendaItem("1", "Cached Author", "Bring Monday Agenda Item from Cache", "Monday", "1pm"));
             model.addAttribute("agendaItemsMonday", cacheMonday);
         }
         if (agendaItemsMonday != null) {
             model.addAttribute("agendaItemsTuesday", agendaItemsTuesday.getBody());
-        }else{
+        } else {
             List<AgendaItem> cacheTuesday = new ArrayList<>();
             cacheTuesday.add(new AgendaItem("1", "Cached Author", "Bring Tuesday Agenda Item from Cache", "Tuesday", "1pm"));
             model.addAttribute("agendaItemsTuesday", cacheTuesday);
@@ -212,7 +210,7 @@ class ConferenceSiteController {
         System.out.println("Get Pending only: " + pending);
 
         try {
-            ResponseEntity<ServiceInfo> email = restTemplate.getForEntity(  EMAIL_SERVICE + "/info", ServiceInfo.class);
+            ResponseEntity<ServiceInfo> email = restTemplate.getForEntity(EMAIL_SERVICE + "/info", ServiceInfo.class);
             emailInfo = email.getBody();
         } catch (Exception e) {
             e.printStackTrace();
@@ -227,18 +225,18 @@ class ConferenceSiteController {
 
         List<Proposal> proposals = null;
 
-        if(c4pInfo != null && !c4pInfo.getVersion().equals("N/A")) {
+        if (c4pInfo != null && !c4pInfo.getVersion().equals("N/A")) {
             try {
                 proposals = restTemplate.exchange(C4P_SERVICE + "/?pending=" + pending, HttpMethod.GET, null, new ParameterizedTypeReference<List<Proposal>>() {
                 }).getBody();
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }else{
+        } else {
             proposals = new ArrayList<>();
             proposals.add(new Proposal("Error", "There is no Cache that can save you here.", "Call your System Administrator", false, Proposal.ProposalStatus.ERROR));
         }
-        model.addAttribute("version", version);
+        model.addAttribute("version", "v" + version);
         model.addAttribute("email", emailInfo);
         model.addAttribute("c4p", c4pInfo);
         model.addAttribute("pending", (pending) ? "checked" : "");
