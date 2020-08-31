@@ -31,7 +31,7 @@
     </div>
     <div class="header__title">
         <h1><span><a
-                        href="https://github.com/salaboy/fmtok8s-api-gateway/releases/tag/v${version}">API Gateway v${version}</a></span>
+                        href="https://github.com/salaboy/fmtok8s-api-gateway/releases/tag/${version}">API Gateway v${version}</a></span>
         </h1>
     </div>
     <div class="header__options">
@@ -45,7 +45,7 @@
     <div class="main-title">
         <h2>Received Proposals</h2>
         <h5>
-            <a href="https://github.com/salaboy/fmtok8s-c4p/releases/tag/v${c4p.version}">${c4p.name} ${c4p.version}</a>
+            <a href="https://github.com/salaboy/fmtok8s-c4p/releases/tag/${c4p.version}">${c4p.name} ${c4p.version}</a>
         </h5>
     </div>
     <div class="options">
@@ -129,7 +129,7 @@
         <div class="modal__content__title">
             Send Email
             <h5>
-                <a href="https://github.com/salaboy/fmtok8s-email/releases/tag/v${email.version}">${email.name} ${email.version}</a>
+                <a href="https://github.com/salaboy/fmtok8s-email/releases/tag/${email.version}">${email.name} ${email.version}</a>
             </h5>
             <div class="close">
                 <a onclick="toggleModal()"><img src="close.svg" alt=""></a>
