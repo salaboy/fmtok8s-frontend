@@ -44,35 +44,35 @@ class ConferenceSiteUtilController {
     private RestTemplate restTemplate = new RestTemplate();
 
 
-    @GetMapping("agendaNotAvailable")
-    public ServiceInfo agendaGetNotAvailable() {
-        return new ServiceInfo("Agenda Service", "N/A");
-    }
-
-    @PostMapping("agendaNotAvailable")
-    public ServiceInfo agendaPostNotAvailable() {
-        return new ServiceInfo("Agenda Service", "N/A");
-    }
-
-    @GetMapping("c4pNotAvailable")
-    public ServiceInfo c4pGetNotAvailable() {
-        return new ServiceInfo("C4P Service", "N/A");
-    }
-
-    @PostMapping("c4pNotAvailable")
-    public ServiceInfo c4pPostNotAvailable() {
-        return new ServiceInfo("C4P Service", "N/A");
-    }
-
-    @PostMapping("emailNotAvailable")
-    public ServiceInfo emailPostNotAvailable() {
-        return new ServiceInfo("Email Service", "N/A");
-    }
-
-    @GetMapping("emailNotAvailable")
-    public ServiceInfo emailGetNotAvailable() {
-        return new ServiceInfo("Email Service", "N/A");
-    }
+//    @GetMapping("agendaNotAvailable")
+//    public ServiceInfo agendaGetNotAvailable() {
+//        return new ServiceInfo("Agenda Service", "N/A");
+//    }
+//
+//    @PostMapping("agendaNotAvailable")
+//    public ServiceInfo agendaPostNotAvailable() {
+//        return new ServiceInfo("Agenda Service", "N/A");
+//    }
+//
+//    @GetMapping("c4pNotAvailable")
+//    public ServiceInfo c4pGetNotAvailable() {
+//        return new ServiceInfo("C4P Service", "N/A");
+//    }
+//
+//    @PostMapping("c4pNotAvailable")
+//    public ServiceInfo c4pPostNotAvailable() {
+//        return new ServiceInfo("C4P Service", "N/A");
+//    }
+//
+//    @PostMapping("emailNotAvailable")
+//    public ServiceInfo emailPostNotAvailable() {
+//        return new ServiceInfo("Email Service", "N/A");
+//    }
+//
+//    @GetMapping("emailNotAvailable")
+//    public ServiceInfo emailGetNotAvailable() {
+//        return new ServiceInfo("Email Service", "N/A");
+//    }
 
 
     @PostMapping("/test")
