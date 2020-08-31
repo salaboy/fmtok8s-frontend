@@ -134,7 +134,7 @@ class ConferenceSiteController {
 
     @GetMapping("/info")
     public String infoWithVersion() {
-        return "{ \"name\" : \"API Gateway / User Interface\", \"version\" : \"" + version + "\", \"source\": \"https://github.com/salaboy/fmtok8s-api-gateway/releases/tag/v" + version + "\" }";
+        return "{ \"name\" : \"API Gateway / User Interface\", \"version\" : \"v" + version + "\", \"source\": \"https://github.com/salaboy/fmtok8s-api-gateway/releases/tag/v" + version + "\" }";
     }
 
 
@@ -162,7 +162,7 @@ class ConferenceSiteController {
         ResponseEntity<List<AgendaItem>> agendaItemsMonday = null;
         ResponseEntity<List<AgendaItem>> agendaItemsTuesday = null;
 
-        if(!agendaInfo.getVersion().equals("N/A")) {
+        if(agendaInfo != null && !agendaInfo.getVersion().equals("N/A")) {
 
             try {
                 agendaItemsMonday = restTemplate.exchange(AGENDA_SERVICE + "/day/Monday", HttpMethod.GET, null, new ParameterizedTypeReference<List<AgendaItem>>() {
@@ -227,7 +227,7 @@ class ConferenceSiteController {
 
         List<Proposal> proposals = null;
 
-        if(!c4pInfo.getVersion().equals("N/A")) {
+        if(c4pInfo != null && !c4pInfo.getVersion().equals("N/A")) {
             try {
                 proposals = restTemplate.exchange(C4P_SERVICE + "/?pending=" + pending, HttpMethod.GET, null, new ParameterizedTypeReference<List<Proposal>>() {
                 }).getBody();

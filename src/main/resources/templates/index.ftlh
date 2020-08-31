@@ -27,12 +27,10 @@
 <!-- Add your site or application content here -->
 <div class="block header">
     <div class="header__image">
-        <img src="springone-logo.png" height="50px">
+        <img src="springone-logo.svg" height="50px">
     </div>
     <div class="header__title">
-        <h1><span><a
-                        href="https://github.com/salaboy/fmtok8s-api-gateway/releases/tag/${version}">API Gateway v${version}</a></span>
-        </h1>
+        <h1><span><a href="https://github.com/salaboy/fmtok8s-api-gateway/releases/tag/${version}">API Gateway v${version}</a></span></h1>
     </div>
     <div class="header__options">
         <a href="/backoffice">
@@ -45,7 +43,11 @@
     <div class="main-title">
         <h2>Accepted talks</h2>
         <h5>
+            <#if agenda??>
             <a href="https://github.com/salaboy/fmtok8s-agenda/releases/tag/${agenda.version}">${agenda.name} ${agenda.version}</a>
+            <#else>
+                <a href="https://github.com/salaboy/fmtok8s-agenda/">N/A</a>
+            </#if>
         </h5>
     </div>
     <div class="agenda">
@@ -121,7 +123,11 @@
         <div class="modal__content__title">
             New Proposal
             <h5>
+                <#if c4p??>
                 <a href="https://github.com/salaboy/fmtok8s-c4p/releases/tag/${c4p.version}">${c4p.name} ${c4p.version}</a>
+                <#else>
+                    <a href="https://github.com/salaboy/fmtok8s-c4p/">N/A</a>
+                </#if>
             </h5>
             <div class="close">
                 <a onclick="toggleModal()">
@@ -223,8 +229,6 @@
             }
 
             xhr.send(data);
-
-
 
         } else {
             console.log(errorMsg);

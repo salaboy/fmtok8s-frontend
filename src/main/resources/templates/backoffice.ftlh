@@ -27,7 +27,7 @@
 <!-- Add your site or application content here -->
 <div class="block header">
     <div class="header__image">
-        <img src="springone-logo.png" height="50px">
+        <img src="springone-logo.svg" height="50px">
     </div>
     <div class="header__title">
         <h1><span><a
@@ -45,7 +45,11 @@
     <div class="main-title">
         <h2>Received Proposals</h2>
         <h5>
+            <#if c4p??>
             <a href="https://github.com/salaboy/fmtok8s-c4p/releases/tag/${c4p.version}">${c4p.name} ${c4p.version}</a>
+            <#else>
+                <a href="https://github.com/salaboy/fmtok8s-c4p/">N/A</a>
+            </#if>
         </h5>
     </div>
     <div class="options">
@@ -129,7 +133,11 @@
         <div class="modal__content__title">
             Send Email
             <h5>
-                <a href="https://github.com/salaboy/fmtok8s-email/releases/tag/${email.version}">${email.name} ${email.version}</a>
+                <#if email??>
+                    <a href="https://github.com/salaboy/fmtok8s-email/releases/tag/${email.version}">${email.name} ${email.version}</a>
+                <#else>
+                    <a href="https://github.com/salaboy/fmtok8s-email/">N/A</a>
+                </#if>
             </h5>
             <div class="close">
                 <a onclick="toggleModal()"><img src="close.svg" alt=""></a>
@@ -159,6 +167,11 @@
         <div id="modalMessage" class="modal__content__message__hidden">
             <h2>Email Sent.</h2>
             <p>Your email has been sent successfully.</p>
+            <p><a onclick="toggleModal()">Continue to the backoffice</a></p>
+        </div>
+        <div id="modalMessage2" class="modal__content__message__hidden">
+            <h2>Email Not Sent</h2>
+            <p>Your email was NOT sent. Please Contact the Site Admin</p>
             <p><a onclick="toggleModal()">Continue to the backoffice</a></p>
         </div>
     </div>
@@ -202,13 +215,28 @@
             console.log(data);
             xhr.send(data);
 
-
-            document.getElementById("modalBody").className = "modal__content__body__hidden";
-            document.getElementById("modalActions").className = "modal__content__action__hidden";
-            document.getElementById("modalMessage").className = "modal__content__message";
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4) {
+                    callback(xhr.response);
+                }
+            }
         }else {
             console.log(errorMsg);
             document.getElementById("modalErrorMessage").innerHTML = errorMsg.substr(0, errorMsg.length - 1) + ".";
+        }
+    }
+
+    function callback(response){
+        console.log(response);
+        var response = JSON.parse(response);
+        if(response.version === "N/A"){
+            document.getElementById("modalBody").className = "modal__content__body__hidden";
+            document.getElementById("modalActions").className = "modal__content__action__hidden";
+            document.getElementById("modalMessage2").className = "modal__content__message";
+        }else {
+            document.getElementById("modalBody").className = "modal__content__body__hidden";
+            document.getElementById("modalActions").className = "modal__content__action__hidden";
+            document.getElementById("modalMessage").className = "modal__content__message";
         }
     }
 
