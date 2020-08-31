@@ -49,15 +49,12 @@ management:
     enabled: false
 
   endpoints:
-
     web:
       exposure:
         include: health, gateway, info
   endpoint:
     loggers:
       enabled: true
-
-
     info:
       enabled: true
       show-details: always

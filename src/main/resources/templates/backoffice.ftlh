@@ -129,12 +129,7 @@
         <div class="modal__content__title">
             Send Email
             <h5>
-                <#if email??>
-                <a href="https://github.com/salaboy/fmtok8s-email/releases/tag/v${email.version}">${email.name}
-                    v${email.version}</a>
-                <#else>
-                    <a href="https://github.com/salaboy/fmtok8s-email/">N/A</a>
-                </#if>
+                <a href="https://github.com/salaboy/fmtok8s-email/releases/tag/v${email.version}">${email.name} ${email.version}</a>
             </h5>
             <div class="close">
                 <a onclick="toggleModal()"><img src="close.svg" alt=""></a>
