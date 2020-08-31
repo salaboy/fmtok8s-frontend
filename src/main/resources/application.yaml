@@ -1,6 +1,10 @@
 spring:
   cloud:
     gateway:
+      httpclient:
+        wiretap: true
+      httpserver:
+          wiretap: true
       routes:
       - id: agenda
         uri: ${AGENDA_SERVICE:http://fmtok8s-agenda}
@@ -32,12 +36,12 @@ spring:
             args:
               name: c4pCircuitBreaker
               fallbackUri: forward:/api/emailNotAvailable
-      - id: speakers
-        uri: ${SPEAKERS_SERVICE:http://fmtok8s-speakers}
-        predicates:
-          - Path=/speakers/**
-        filters:
-          - RewritePath=/speakers/(?<id>.*), /$\{id}
+#      - id: speakers
+#        uri: ${SPEAKERS_SERVICE:http://fmtok8s-speakers}
+#        predicates:
+#          - Path=/speakers/**
+#        filters:
+#          - RewritePath=/speakers/(?<id>.*), /$\{id}
 
 
 management:
@@ -73,3 +77,11 @@ management:
           include: readinessState
           show-details: always
 
+logging:
+  level:
+    reactor:
+      netty: INFO
+    org:
+      springframework:
+        cloud:
+          gateway: TRACE
