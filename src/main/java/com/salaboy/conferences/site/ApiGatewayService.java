@@ -43,36 +43,38 @@ class ConferenceSiteUtilController {
 
     private RestTemplate restTemplate = new RestTemplate();
 
+    @Value("${C4P_SERVICE:http://fmtok8s-c4p}")
+    private String C4P_SERVICE;
 
-//    @GetMapping("agendaNotAvailable")
-//    public ServiceInfo agendaGetNotAvailable() {
-//        return new ServiceInfo("Agenda Service", "N/A");
-//    }
-//
-//    @PostMapping("agendaNotAvailable")
-//    public ServiceInfo agendaPostNotAvailable() {
-//        return new ServiceInfo("Agenda Service", "N/A");
-//    }
-//
-//    @GetMapping("c4pNotAvailable")
-//    public ServiceInfo c4pGetNotAvailable() {
-//        return new ServiceInfo("C4P Service", "N/A");
-//    }
-//
-//    @PostMapping("c4pNotAvailable")
-//    public ServiceInfo c4pPostNotAvailable() {
-//        return new ServiceInfo("C4P Service", "N/A");
-//    }
-//
-//    @PostMapping("emailNotAvailable")
-//    public ServiceInfo emailPostNotAvailable() {
-//        return new ServiceInfo("Email Service", "N/A");
-//    }
-//
-//    @GetMapping("emailNotAvailable")
-//    public ServiceInfo emailGetNotAvailable() {
-//        return new ServiceInfo("Email Service", "N/A");
-//    }
+    @GetMapping("agendaNotAvailable")
+    public ServiceInfo agendaGetNotAvailable() {
+        return new ServiceInfo("Agenda Service", "N/A");
+    }
+
+    @PostMapping("agendaNotAvailable")
+    public ServiceInfo agendaPostNotAvailable() {
+        return new ServiceInfo("Agenda Service", "N/A");
+    }
+
+    @GetMapping("c4pNotAvailable")
+    public ServiceInfo c4pGetNotAvailable() {
+        return new ServiceInfo("C4P Service", "N/A");
+    }
+
+    @PostMapping("c4pNotAvailable")
+    public ServiceInfo c4pPostNotAvailable() {
+        return new ServiceInfo("C4P Service", "N/A");
+    }
+
+    @PostMapping("emailNotAvailable")
+    public ServiceInfo emailPostNotAvailable() {
+        return new ServiceInfo("Email Service", "N/A");
+    }
+
+    @GetMapping("emailNotAvailable")
+    public ServiceInfo emailGetNotAvailable() {
+        return new ServiceInfo("Email Service", "N/A");
+    }
 
 
     @PostMapping("/test")
@@ -111,15 +113,24 @@ class ConferenceSiteUtilController {
         for (String content : proposals) {
             HttpEntity<String> request =
                     new HttpEntity<String>(content, headers);
-            restTemplate.postForObject("http://localhost:8080/cp4/", request, String.class);
+            restTemplate.postForObject(C4P_SERVICE, request, String.class);
         }
     }
 }
 
 @Controller
 class ConferenceSiteController {
-    @Value("${version:0}")
+    @Value("${version:0.0.0}")
     private String version;
+
+    @Value("${C4P_SERVICE:http://fmtok8s-c4p}")
+    private String C4P_SERVICE;
+
+    @Value("${EMAIL_SERVICE:http://fmtok8s-email}")
+    private String EMAIL_SERVICE;
+
+    @Value("${AGENDA_SERVICE:http://fmtok8s-agenda}")
+    private String AGENDA_SERVICE;
 
     @GetMapping("/info")
     public String infoWithVersion() {
@@ -135,14 +146,14 @@ class ConferenceSiteController {
         ServiceInfo c4pInfo = null;
 
         try {
-            ResponseEntity<ServiceInfo> agenda = restTemplate.getForEntity("http://localhost:8080/agenda/info", ServiceInfo.class);
+            ResponseEntity<ServiceInfo> agenda = restTemplate.getForEntity(AGENDA_SERVICE + "/info", ServiceInfo.class);
             agendaInfo = agenda.getBody();
 
         } catch (Exception e) {
             e.printStackTrace();
         }
         try {
-            ResponseEntity<ServiceInfo> c4p = restTemplate.getForEntity("http://localhost:8080/c4p/info", ServiceInfo.class);
+            ResponseEntity<ServiceInfo> c4p = restTemplate.getForEntity(C4P_SERVICE + "/info", ServiceInfo.class);
             c4pInfo = c4p.getBody();
         } catch (Exception e) {
             e.printStackTrace();
@@ -154,14 +165,14 @@ class ConferenceSiteController {
         if(!agendaInfo.getVersion().equals("N/A")) {
 
             try {
-                agendaItemsMonday = restTemplate.exchange("http://localhost:8080/agenda/day/Monday", HttpMethod.GET, null, new ParameterizedTypeReference<List<AgendaItem>>() {
+                agendaItemsMonday = restTemplate.exchange(AGENDA_SERVICE + "/day/Monday", HttpMethod.GET, null, new ParameterizedTypeReference<List<AgendaItem>>() {
                 });
             } catch (Exception e) {
                 e.printStackTrace();
             }
 
             try {
-                agendaItemsTuesday = restTemplate.exchange("http://localhost:8080/agenda/day/Tuesday", HttpMethod.GET, null, new ParameterizedTypeReference<List<AgendaItem>>() {
+                agendaItemsTuesday = restTemplate.exchange(AGENDA_SERVICE + "/day/Tuesday", HttpMethod.GET, null, new ParameterizedTypeReference<List<AgendaItem>>() {
                 });
             } catch (Exception e) {
                 e.printStackTrace();
@@ -201,14 +212,14 @@ class ConferenceSiteController {
         System.out.println("Get Pending only: " + pending);
 
         try {
-            ResponseEntity<ServiceInfo> email = restTemplate.getForEntity(  "http://localhost:8080/email/info", ServiceInfo.class);
+            ResponseEntity<ServiceInfo> email = restTemplate.getForEntity(  EMAIL_SERVICE + "/info", ServiceInfo.class);
             emailInfo = email.getBody();
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         try {
-            ResponseEntity<ServiceInfo> c4p = restTemplate.getForEntity("http://localhost:8080/c4p/info", ServiceInfo.class);
+            ResponseEntity<ServiceInfo> c4p = restTemplate.getForEntity(C4P_SERVICE + "/info", ServiceInfo.class);
             c4pInfo = c4p.getBody();
         } catch (Exception e) {
             e.printStackTrace();
@@ -218,7 +229,7 @@ class ConferenceSiteController {
 
         if(!c4pInfo.getVersion().equals("N/A")) {
             try {
-                proposals = restTemplate.exchange("http://localhost:8080/c4p/?pending=" + pending, HttpMethod.GET, null, new ParameterizedTypeReference<List<Proposal>>() {
+                proposals = restTemplate.exchange(C4P_SERVICE + "/?pending=" + pending, HttpMethod.GET, null, new ParameterizedTypeReference<List<Proposal>>() {
                 }).getBody();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -240,19 +251,19 @@ class ConferenceSiteController {
     }
 
 
-    class LoggingFilter implements GlobalFilter {
-        Log log = LogFactory.getLog(getClass());
-
-        @Override
-        public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
-            Set<URI> uris = exchange.getAttributeOrDefault(GATEWAY_ORIGINAL_REQUEST_URL_ATTR, Collections.emptySet());
-            String originalUri = (uris.isEmpty()) ? "Unknown" : uris.iterator().next().toString();
-            Route route = exchange.getAttribute(GATEWAY_ROUTE_ATTR);
-            URI routeUri = exchange.getAttribute(GATEWAY_REQUEST_URL_ATTR);
-            log.info("Incoming request " + originalUri + " is routed to id: " + route.getId()
-                    + ", uri:" + routeUri);
-            return chain.filter(exchange);
-        }
-    }
+//    class LoggingFilter implements GlobalFilter {
+//        Log log = LogFactory.getLog(getClass());
+//
+//        @Override
+//        public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
+//            Set<URI> uris = exchange.getAttributeOrDefault(GATEWAY_ORIGINAL_REQUEST_URL_ATTR, Collections.emptySet());
+//            String originalUri = (uris.isEmpty()) ? "Unknown" : uris.iterator().next().toString();
+//            Route route = exchange.getAttribute(GATEWAY_ROUTE_ATTR);
+//            URI routeUri = exchange.getAttribute(GATEWAY_REQUEST_URL_ATTR);
+//            log.info("Incoming request " + originalUri + " is routed to id: " + route.getId()
+//                    + ", uri:" + routeUri);
+//            return chain.filter(exchange);
+//        }
+//    }
 
 }
