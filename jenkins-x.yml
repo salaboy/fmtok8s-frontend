@@ -1,8 +1,0 @@
-buildPack: maven-java11
-pipelineConfig:
-  pipelines:
-    release:
-      promote:
-        steps:
-        - command: jx step create pr chart --name fmtok8s-api-gateway --version $VERSION  --repo https://github.com/salaboy/fmtok8s-springone-app.git
-

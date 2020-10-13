@@ -1,8 +1,0 @@
-kind: Service
-apiVersion: v1
-metadata:
-  name: fmtok8s-c4p
-spec:
-  type: ExternalName
-  # Target service DNS name
-  externalName: fmtok8s-c4p.jx-staging.svc.cluster.local
