@@ -17,7 +17,6 @@ spec:
     shortNames:
       - rel
     singular: release
-  preserveUnknownFields: true
   scope: Namespaced
   versions:
     - additionalPrinterColumns:
@@ -35,6 +34,7 @@ spec:
           type: string
       name: v1
       schema:
+        x-preserve-unknown-fields: true
         openAPIV3Schema:
           description: Release represents a single version of an app that has been released
           properties:
