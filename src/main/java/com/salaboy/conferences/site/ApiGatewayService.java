@@ -3,6 +3,7 @@ package com.salaboy.conferences.site;
 import com.salaboy.conferences.site.models.AgendaItem;
 import com.salaboy.conferences.site.models.Proposal;
 import com.salaboy.conferences.site.models.ServiceInfo;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -39,6 +40,7 @@ public class ApiGatewayService {
 
 @RestController()
 @RequestMapping("/api/")
+@Slf4j
 class ConferenceSiteUtilController {
 
     private RestTemplate restTemplate = new RestTemplate();
@@ -48,31 +50,37 @@ class ConferenceSiteUtilController {
 
     @GetMapping("agendaNotAvailable")
     public ServiceInfo agendaGetNotAvailable() {
+        log.info(">> agendaGetNotAvailable fallback kicking in.");
         return new ServiceInfo("Agenda Service", "N/A");
     }
 
     @PostMapping("agendaNotAvailable")
     public ServiceInfo agendaPostNotAvailable() {
+        log.info(">> agendaPostNotAvailable fallback kicking in.");
         return new ServiceInfo("Agenda Service", "N/A");
     }
 
     @GetMapping("c4pNotAvailable")
     public ServiceInfo c4pGetNotAvailable() {
+        log.info(">> c4pGetNotAvailable fallback kicking in.");
         return new ServiceInfo("C4P Service", "N/A");
     }
 
     @PostMapping("c4pNotAvailable")
     public ServiceInfo c4pPostNotAvailable() {
+        log.info(">> c4pPostNotAvailable fallback kicking in.");
         return new ServiceInfo("C4P Service", "N/A");
     }
 
     @PostMapping("emailNotAvailable")
     public ServiceInfo emailPostNotAvailable() {
+        log.info(">> emailPostNotAvailable fallback kicking in.");
         return new ServiceInfo("Email Service", "N/A");
     }
 
     @GetMapping("emailNotAvailable")
     public ServiceInfo emailGetNotAvailable() {
+        log.info(">> emailGetNotAvailable fallback kicking in.");
         return new ServiceInfo("Email Service", "N/A");
     }
 

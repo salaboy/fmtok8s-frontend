@@ -249,9 +249,23 @@
             "approved": true
         });
         console.log(data);
-        xhr.send(data);
-        window.location.href = "/backoffice";
+        
+        xhr.onreadystatechange = function(response) {
 
+            if (xhr.readyState === 4) {
+                callbackApprove(xhr.response);
+            }
+        }
+        xhr.send(data);
+    }
+
+    function callbackApprove(response){
+        console.log(response);
+        if(response.version === "N/A"){
+            console.log("fallback is kicking in, so no way to approve!")
+        }else{
+            window.location.href = "/backoffice";
+        }
     }
 
     function rejectProposal(id) {
@@ -263,9 +277,23 @@
             "approved": false
         });
         console.log(data);
+        xhr.onreadystatechange = function(response) {
+            if (xhr.readyState === 4) {
+                callbackReject(xhr.response);
+            }
+        }
         xhr.send(data);
-        window.location.href = "/backoffice";
 
+
+    }
+
+    function callbackReject(response){
+        console.log(response);
+        if(response.version === "N/A"){
+            console.log("fallback is kicking in, so no way to reject!")
+        }else{
+            window.location.href = "/backoffice";
+        }
     }
 
     function toggleModal() {
