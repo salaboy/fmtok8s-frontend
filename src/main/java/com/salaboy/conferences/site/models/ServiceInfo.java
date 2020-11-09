@@ -3,13 +3,15 @@ package com.salaboy.conferences.site.models;
 public class ServiceInfo {
     private String name;
     private String version;
+    private String source;
 
     public ServiceInfo() {
     }
 
-    public ServiceInfo(String name, String version) {
+    public ServiceInfo(String name, String version, String source) {
         this.name = name;
         this.version = version;
+        this.source = source;
     }
 
     public String getName() {
@@ -28,11 +30,20 @@ public class ServiceInfo {
         this.version = version;
     }
 
+    public String getSource() {
+        return source;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
+    }
+
     @Override
     public String toString() {
         return "ServiceInfo{" +
                 "name='" + name + '\'' +
                 ", version='" + version + '\'' +
+                ", source='" + source + '\'' +
                 '}';
     }
 }
