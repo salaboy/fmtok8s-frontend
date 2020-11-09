@@ -44,7 +44,7 @@
         <h2>Accepted talks</h2>
         <h5>
             <#if agenda??>
-            <a href="https://github.com/salaboy/fmtok8s-agenda/releases/tag/${agenda.version}">${agenda.name} ${agenda.version}</a>
+            <a href="${agenda.source}">${agenda.name} ${agenda.version}</a>
             <#else>
                 <a href="https://github.com/salaboy/fmtok8s-agenda/">N/A</a>
             </#if>
@@ -124,7 +124,7 @@
             New Proposal
             <h5>
                 <#if c4p??>
-                <a href="https://github.com/salaboy/fmtok8s-c4p/releases/tag/${c4p.version}">${c4p.name} ${c4p.version}</a>
+                <a href="${c4p.source}">${c4p.name} ${c4p.version}</a>
                 <#else>
                     <a href="https://github.com/salaboy/fmtok8s-c4p/">N/A</a>
                 </#if>

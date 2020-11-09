@@ -31,7 +31,7 @@
     </div>
     <div class="header__title">
         <h1><span><a
-                        href="https://github.com/salaboy/fmtok8s-api-gateway/releases/tag/${version}">API Gateway ${version}</a></span>
+                        href="https://github.com/salaboy/fmtok8s-api-gateway/releases/tag/${source}">API Gateway ${version}</a></span>
         </h1>
     </div>
     <div class="header__options">
@@ -46,7 +46,7 @@
         <h2>Received Proposals</h2>
         <h5>
             <#if c4p??>
-            <a href="https://github.com/salaboy/fmtok8s-c4p/releases/tag/${c4p.version}">${c4p.name} ${c4p.version}</a>
+            <a href="${c4p.source}">${c4p.name} ${c4p.version}</a>
             <#else>
                 <a href="https://github.com/salaboy/fmtok8s-c4p/">N/A</a>
             </#if>
@@ -134,7 +134,7 @@
             Send Email
             <h5>
                 <#if email??>
-                    <a href="https://github.com/salaboy/fmtok8s-email/releases/tag/${email.version}">${email.name} ${email.version}</a>
+                    <a href="${email.source}">${email.name} ${email.version}</a>
                 <#else>
                     <a href="https://github.com/salaboy/fmtok8s-email/">N/A</a>
                 </#if>
@@ -249,7 +249,7 @@
             "approved": true
         });
         console.log(data);
-        
+
         xhr.onreadystatechange = function(response) {
 
             if (xhr.readyState === 4) {
