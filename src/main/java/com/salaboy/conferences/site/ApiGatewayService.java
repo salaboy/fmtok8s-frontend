@@ -51,37 +51,37 @@ class ConferenceSiteUtilController {
     @GetMapping("agendaNotAvailable")
     public ServiceInfo agendaGetNotAvailable() {
         log.info(">> agendaGetNotAvailable fallback kicking in.");
-        return new ServiceInfo("Agenda Service", "N/A");
+        return new ServiceInfo("Agenda Service", "N/A", "N/A");
     }
 
     @PostMapping("agendaNotAvailable")
     public ServiceInfo agendaPostNotAvailable() {
         log.info(">> agendaPostNotAvailable fallback kicking in.");
-        return new ServiceInfo("Agenda Service", "N/A");
+        return new ServiceInfo("Agenda Service", "N/A", "N/A");
     }
 
     @GetMapping("c4pNotAvailable")
     public ServiceInfo c4pGetNotAvailable() {
         log.info(">> c4pGetNotAvailable fallback kicking in.");
-        return new ServiceInfo("C4P Service", "N/A");
+        return new ServiceInfo("C4P Service", "N/A", "N/A");
     }
 
     @PostMapping("c4pNotAvailable")
     public ServiceInfo c4pPostNotAvailable() {
         log.info(">> c4pPostNotAvailable fallback kicking in.");
-        return new ServiceInfo("C4P Service", "N/A");
+        return new ServiceInfo("C4P Service", "N/A", "N/A");
     }
 
     @PostMapping("emailNotAvailable")
     public ServiceInfo emailPostNotAvailable() {
         log.info(">> emailPostNotAvailable fallback kicking in.");
-        return new ServiceInfo("Email Service", "N/A");
+        return new ServiceInfo("Email Service", "N/A", "N/A");
     }
 
     @GetMapping("emailNotAvailable")
     public ServiceInfo emailGetNotAvailable() {
         log.info(">> emailGetNotAvailable fallback kicking in.");
-        return new ServiceInfo("Email Service", "N/A");
+        return new ServiceInfo("Email Service", "N/A", "N/A");
     }
 
 
