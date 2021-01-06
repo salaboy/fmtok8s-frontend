@@ -43,10 +43,34 @@ public class ApiGatewayService {
 @Slf4j
 class ConferenceSiteUtilController {
 
+    @Value("${version:0.0.0}")
+    private String version;
+
+    @Value("${POD_ID}")
+    private String podId;
+
+    @Value("${POD_NODE_NAME}")
+    private String podNodeName;
+
+    @Value("${POD_NAMESPACE}")
+    private String podNamespace;
+
     private RestTemplate restTemplate = new RestTemplate();
 
     @Value("${C4P_SERVICE:http://fmtok8s-c4p}")
     private String C4P_SERVICE;
+
+    @GetMapping("/info")
+    public ServiceInfo info() {
+        return new ServiceInfo(
+                "API Gateway / User Interface",
+                "v"+version,
+                "https://github.com/salaboy/fmtok8s-api-gateway/releases/tag/v" + version,
+                podId,
+                podNamespace,
+                podNodeName);
+        //return "{ \"name\" : \"API Gateway / User Interface\", \"version\" : \"v" + version + "\", \"source\": \"https://github.com/salaboy/fmtok8s-api-gateway/releases/tag/v" + version + "\" }";
+    }
 
     @GetMapping("agendaNotAvailable")
     public ServiceInfo agendaGetNotAvailable() {
@@ -131,6 +155,15 @@ class ConferenceSiteController {
     @Value("${version:0.0.0}")
     private String version;
 
+    @Value("${POD_ID}")
+    private String podId;
+
+    @Value("${POD_NODE_NAME}")
+    private String podNodeName;
+
+    @Value("${POD_NAMESPACE}")
+    private String podNamespace;
+
     @Value("${C4P_SERVICE:http://fmtok8s-c4p}")
     private String C4P_SERVICE;
 
@@ -139,11 +172,6 @@ class ConferenceSiteController {
 
     @Value("${AGENDA_SERVICE:http://fmtok8s-agenda}")
     private String AGENDA_SERVICE;
-
-    @GetMapping("/info")
-    public String infoWithVersion() {
-        return "{ \"name\" : \"API Gateway / User Interface\", \"version\" : \"v" + version + "\", \"source\": \"https://github.com/salaboy/fmtok8s-api-gateway/releases/tag/v" + version + "\" }";
-    }
 
 
     private RestTemplate restTemplate = new RestTemplate();
@@ -188,6 +216,9 @@ class ConferenceSiteController {
         }
 
         model.addAttribute("version", "v" + version);
+        model.addAttribute("podId", podId);
+        model.addAttribute("podNamepsace", podNamespace);
+        model.addAttribute("podNodeName", podNodeName);
         model.addAttribute("agenda", agendaInfo);
         model.addAttribute("c4p", c4pInfo);
 
@@ -245,6 +276,9 @@ class ConferenceSiteController {
             proposals.add(new Proposal("Error", "There is no Cache that can save you here.", "Call your System Administrator", false, Proposal.ProposalStatus.ERROR));
         }
         model.addAttribute("version", "v" + version);
+        model.addAttribute("podId", podId);
+        model.addAttribute("podNamepsace", podNamespace);
+        model.addAttribute("podNodeName", podNodeName);
         model.addAttribute("email", emailInfo);
         model.addAttribute("c4p", c4pInfo);
         model.addAttribute("pending", (pending) ? "checked" : "");
