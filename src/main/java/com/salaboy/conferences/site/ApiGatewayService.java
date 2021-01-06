@@ -46,13 +46,13 @@ class ConferenceSiteUtilController {
     @Value("${version:0.0.0}")
     private String version;
 
-    @Value("${POD_ID}")
+    @Value("${POD_ID:}")
     private String podId;
 
-    @Value("${POD_NODE_NAME}")
+    @Value("${POD_NODE_NAME:}")
     private String podNodeName;
 
-    @Value("${POD_NAMESPACE}")
+    @Value("${POD_NAMESPACE:}")
     private String podNamespace;
 
     private RestTemplate restTemplate = new RestTemplate();
@@ -155,13 +155,13 @@ class ConferenceSiteController {
     @Value("${version:0.0.0}")
     private String version;
 
-    @Value("${POD_ID}")
+    @Value("${POD_ID:}")
     private String podId;
 
-    @Value("${POD_NODE_NAME}")
+    @Value("${POD_NODE_NAME:}")
     private String podNodeName;
 
-    @Value("${POD_NAMESPACE}")
+    @Value("${POD_NAMESPACE:}")
     private String podNamespace;
 
     @Value("${C4P_SERVICE:http://fmtok8s-c4p}")
