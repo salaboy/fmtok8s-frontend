@@ -35,7 +35,7 @@ public class ApiGatewayService {
         public HttpClient customize(HttpClient httpClient) {
             DnsNameResolverBuilder dnsResolverBuilder = new DnsNameResolverBuilder()
                     .channelFactory(EpollDatagramChannel::new)
-                    .resolveCache(new DefaultDnsCache(0, 1, 0));
+                    .resolveCache(new DefaultDnsCache(0, 0, 0));
             httpClient.tcpConfiguration(tcpClient -> tcpClient.resolver(new DnsAddressResolverGroup(dnsResolverBuilder)));
             return httpClient;
         }
