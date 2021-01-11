@@ -27,6 +27,7 @@ public class ApiGatewayService {
 
     public static void main(String[] args) {
         SpringApplication.run(ApiGatewayService.class, args);
+        java.security.Security.setProperty("networkaddress.cache.ttl" , "0");
     }
 
     @Component
