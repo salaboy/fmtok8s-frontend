@@ -69,7 +69,7 @@ class ConferenceSiteUtilController {
                 podId,
                 podNamespace,
                 podNodeName);
-        //return "{ \"name\" : \"API Gateway / User Interface\", \"version\" : \"v" + version + "\", \"source\": \"https://github.com/salaboy/fmtok8s-api-gateway/releases/tag/v" + version + "\" }";
+
     }
 
     @GetMapping("agendaNotAvailable")
