@@ -5,10 +5,15 @@ import com.salaboy.conferences.site.models.Proposal;
 import com.salaboy.conferences.site.models.ServiceInfo;
 import io.netty.channel.epoll.EpollDatagramChannel;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.gateway.config.HttpClientCustomizer;
+import org.springframework.cloud.gateway.filter.GatewayFilterChain;
+import org.springframework.cloud.gateway.filter.GlobalFilter;
+import org.springframework.cloud.gateway.route.Route;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.stereotype.Component;
@@ -16,11 +21,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.server.ServerWebExchange;
+import reactor.core.publisher.Mono;
 import reactor.netty.http.client.HttpClient;
 import io.netty.resolver.dns.*;
 
+import java.net.URI;
+import java.security.Security;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Set;
+
+import static org.springframework.cloud.gateway.support.ServerWebExchangeUtils.*;
 
 @SpringBootApplication
 public class ApiGatewayService {
@@ -28,6 +41,9 @@ public class ApiGatewayService {
     public static void main(String[] args) {
         SpringApplication.run(ApiGatewayService.class, args);
         java.security.Security.setProperty("networkaddress.cache.ttl" , "0");
+        System.out.println(Security.getProperty("networkaddress.cache.ttl"));
+        System.out.println(System.getProperty("networkaddress.cache.ttl"));
+
     }
 
     @Component
@@ -297,19 +313,19 @@ class ConferenceSiteController {
     }
 
 
-//    class LoggingFilter implements GlobalFilter {
-//        Log log = LogFactory.getLog(getClass());
-//
-//        @Override
-//        public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
-//            Set<URI> uris = exchange.getAttributeOrDefault(GATEWAY_ORIGINAL_REQUEST_URL_ATTR, Collections.emptySet());
-//            String originalUri = (uris.isEmpty()) ? "Unknown" : uris.iterator().next().toString();
-//            Route route = exchange.getAttribute(GATEWAY_ROUTE_ATTR);
-//            URI routeUri = exchange.getAttribute(GATEWAY_REQUEST_URL_ATTR);
-//            log.info("Incoming request " + originalUri + " is routed to id: " + route.getId()
-//                    + ", uri:" + routeUri);
-//            return chain.filter(exchange);
-//        }
-//    }
+    class LoggingFilter implements GlobalFilter {
+        Log log = LogFactory.getLog(getClass());
+
+        @Override
+        public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
+            Set<URI> uris = exchange.getAttributeOrDefault(GATEWAY_ORIGINAL_REQUEST_URL_ATTR, Collections.emptySet());
+            String originalUri = (uris.isEmpty()) ? "Unknown" : uris.iterator().next().toString();
+            Route route = exchange.getAttribute(GATEWAY_ROUTE_ATTR);
+            URI routeUri = exchange.getAttribute(GATEWAY_REQUEST_URL_ATTR);
+            log.info("Incoming request " + originalUri + " is routed to id: " + route.getId()
+                    + ", uri:" + routeUri);
+            return chain.filter(exchange);
+        }
+    }
 
 }
