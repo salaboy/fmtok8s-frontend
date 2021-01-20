@@ -22,7 +22,7 @@ spec:
               memory: 512Mi
           workingDir: /workspace/source
         steps:
-        - image: gcr.io/jenkinsxio/jx-boot:3.1.76
+        - image: gcr.io/jenkinsxio/jx-boot:3.1.156
           name: jx-variables
           resources: {}
           script: |
@@ -48,13 +48,13 @@ spec:
             #!/busybox/sh
             source .jx/variables.sh
             cp /tekton/creds-secrets/tekton-container-registry-auth/.dockerconfigjson /kaniko/.docker/config.json
-            /kaniko/executor $KANIKO_FLAGS --context=/workspace/source --dockerfile=/workspace/source/Dockerfile --destination=$DOCKER_REGISTRY/$DOCKER_REGISTRY_ORG/$APP_NAME:$VERSION
-        - image: gcr.io/jenkinsxio/jx-preview:0.0.137
+            /kaniko/executor $KANIKO_FLAGS --context=/workspace/source --dockerfile=Dockerfile --destination=$DOCKER_REGISTRY/$DOCKER_REGISTRY_ORG/$APP_NAME:$VERSION
+        - image: gcr.io/jenkinsxio/jx-preview:0.0.143
           name: promote-jx-preview
           resources: {}
           script: |
             #!/usr/bin/env sh
-            source /workspace/source/.jx/variables.sh
+            source .jx/variables.sh
             jx preview create
 
   podTemplate: {}
