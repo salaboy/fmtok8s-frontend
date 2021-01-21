@@ -48,7 +48,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: health, gateway, info
+        include: health, gateway, info, prometheus, metrics, threaddump
   endpoint:
     loggers:
       enabled: true
