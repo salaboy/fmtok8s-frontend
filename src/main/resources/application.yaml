@@ -1,9 +1,14 @@
+server:
+  port: 8082
 spring:
   application:
     name:
       fmtok8s-api-gateway-service
   cloud:
     gateway:
+      default-filters:
+        - TokenRelay=
+        - RemoveRequestHeader=Cookie
       httpclient:
         wiretap: true
       httpserver:
@@ -45,6 +50,18 @@ spring:
           - Path=/speakers/**
         filters:
           - RewritePath=/speakers/(?<id>.*), /$\{id}
+  security:
+    oauth2:
+      client:
+        provider:
+          oidc:
+            issuer-uri: http://localhost:8080/auth/realms/fmtok8s
+        registration:
+          oidc:
+            client-name: keycloak
+            provider: oidc
+            client-id: gateway
+            client-secret: 7208a758-e57c-4045-8c4a-9831bb2b8144
 
 
 management:
