@@ -1,4 +1,7 @@
 spring:
+  application:
+    name:
+      fmtok8s-api-gateway-service
   cloud:
     gateway:
       httpclient:
