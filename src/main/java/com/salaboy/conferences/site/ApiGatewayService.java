@@ -45,6 +45,7 @@ import java.util.regex.Pattern;
 import static org.springframework.cloud.gateway.support.ServerWebExchangeUtils.*;
 
 @SpringBootApplication
+@Slf4j
 public class ApiGatewayService {
 
     public static void main(String[] args) {
@@ -61,6 +62,7 @@ public class ApiGatewayService {
                 .filters(
                         (List<ExchangeFilterFunction> x) -> new ArrayList<ExchangeFilterFunction>() {{
                             add(new TracingExchangeFilterFunction(tracer, Collections.singletonList(new WebClientSpanDecorator.StandardTags())));
+                            add(logRequest());
                         }})
                 .build();
 
@@ -91,6 +93,14 @@ public class ApiGatewayService {
             httpClient.tcpConfiguration(tcpClient -> tcpClient.resolver(new DnsAddressResolverGroup(dnsResolverBuilder)));
             return httpClient;
         }
+    }
+
+    public static ExchangeFilterFunction logRequest() {
+        return ExchangeFilterFunction.ofRequestProcessor(clientRequest -> {
+            log.info("Request: " + clientRequest.method() + " - " + clientRequest.url());
+            clientRequest.headers().forEach((name, values) -> values.forEach(value -> log.info(name + "=" + value)));
+            return Mono.just(clientRequest);
+        });
     }
 
 }
@@ -252,12 +262,12 @@ class ConferenceSiteController {
     @GetMapping("/")
     public String index(Model model) {
         log.info("STarting INdex processing");
-        WebClient.ResponseSpec agendaInforesponseSpec = webClient
+        WebClient.ResponseSpec agendaInfoResponseSpec = webClient
                 .get()
                 .uri(AGENDA_SERVICE + "/info")
                 .retrieve();
 
-        CompletableFuture<ServiceInfo> agendaInfoCompletableFuture = agendaInforesponseSpec.bodyToMono(ServiceInfo.class)
+        CompletableFuture<ServiceInfo> agendaInfoCompletableFuture = agendaInfoResponseSpec.bodyToMono(ServiceInfo.class)
                 .doOnError(t -> {
                     t.printStackTrace();
                     log.error(">> Error contacting Agenda Service (" + AGENDA_SERVICE + ") Info Endpoint");
@@ -285,8 +295,6 @@ class ConferenceSiteController {
         CompletableFuture<List<AgendaItem>> agendaItemsTuesdayCompletableFuture = null;
         try {
             agendaInfo = agendaInfoCompletableFuture.join();
-
-
         } catch (Exception e) {
             e.printStackTrace();
         }
