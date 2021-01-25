@@ -261,7 +261,9 @@ class ConferenceSiteController {
                 .doOnError(t -> {
                     t.printStackTrace();
                     log.error(">> Error contacting Agenda Service (" + AGENDA_SERVICE + ") Info Endpoint");
-                }).toFuture();
+                }).
+                        doOnSuccess(o -> log.info(">> agendaInfo from Agenda Service (" + AGENDA_SERVICE + ") OK!"))
+                .toFuture();
 
 
         WebClient.ResponseSpec c4pInforesponseSpec = webClient
@@ -274,6 +276,7 @@ class ConferenceSiteController {
                     t.printStackTrace();
                     log.error(">> Error contacting C4P Service (" + C4P_SERVICE + ") Info Endpoint");
                 })
+                .doOnSuccess(o -> log.info(">> c4pInfo from C4p Service (" + C4P_SERVICE + ") OK!"))
                 .toFuture();
 
 
@@ -301,6 +304,7 @@ class ConferenceSiteController {
                         t.printStackTrace();
                         log.error(">> Error contacting Agenda Service (" + AGENDA_SERVICE + ") Monday");
                     })
+                    .doOnSuccess(o -> log.info(">> agenda items Monday from Agenda Service (" + AGENDA_SERVICE + ") OK!"))
                     .toFuture();
 
             WebClient.ResponseSpec agendaItemsTuesdayResponseSpec = webClient
@@ -314,6 +318,7 @@ class ConferenceSiteController {
                         t.printStackTrace();
                         log.error(">> Error contacting Agenda Service (" + AGENDA_SERVICE + ") Tuesday Endpoint");
                     })
+                    .doOnSuccess(o -> log.info(">> agenda items Tuesday from Agenda Service (" + AGENDA_SERVICE + ") OK!"))
                     .toFuture();
 
         }
@@ -370,6 +375,7 @@ class ConferenceSiteController {
                     t.printStackTrace();
                     log.error(">> Error contacting Email Service (" + EMAIL_SERVICE + ") Info Endpoint");
                 })
+                .doOnSuccess(o -> log.info(">> emailInfo  from Email Service (" + EMAIL_SERVICE + ") OK!"))
                 .toFuture();
 
         WebClient.ResponseSpec c4pResponseSpec = webClient
@@ -380,8 +386,9 @@ class ConferenceSiteController {
         CompletableFuture<ServiceInfo> c4pInfoCF = c4pResponseSpec.bodyToMono(ServiceInfo.class)
                 .doOnError(t -> {
                     t.printStackTrace();
-                    log.error(">> Error contacting Email Service (" + EMAIL_SERVICE + ") Info Endpoint");
+                    log.error(">> Error contacting Email Service (" + C4P_SERVICE + ") Info Endpoint");
                 })
+                .doOnSuccess(o -> log.info(">> c4pInfo  from C4p Service (" + C4P_SERVICE + ") OK!"))
                 .toFuture();
 
 
@@ -405,8 +412,9 @@ class ConferenceSiteController {
             })
                     .doOnError(t -> {
                         t.printStackTrace();
-                        log.error(">> Error contacting Email Service (" + EMAIL_SERVICE + ") Info Endpoint");
+                        log.error(">> Error contacting C4p Service (" + C4P_SERVICE + ") Info Endpoint");
                     })
+                    .doOnSuccess(o -> log.info(">> c4p proposals  from C4p Service (" + C4P_SERVICE + ") OK!"))
                     .toFuture();
 
         } else {
