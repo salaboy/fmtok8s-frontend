@@ -277,6 +277,8 @@ class ConferenceSiteController {
 
 
         ServiceInfo agendaInfo = null;
+        CompletableFuture<List<AgendaItem>> agendaItemsMondayCompletableFuture = null;
+        CompletableFuture<List<AgendaItem>> agendaItemsTuesdayCompletableFuture = null;
         try {
             agendaInfo = agendaInfoCompletableFuture.join();
 
@@ -287,7 +289,7 @@ class ConferenceSiteController {
                         .uri(AGENDA_SERVICE + "/day/Monday")
                         .retrieve();
 
-                CompletableFuture<List<AgendaItem>> agendaItemsMondayCompletableFuture = agendaItemsMondayResponseSpec.bodyToMono(new ParameterizedTypeReference<List<AgendaItem>>() {
+                agendaItemsMondayCompletableFuture = agendaItemsMondayResponseSpec.bodyToMono(new ParameterizedTypeReference<List<AgendaItem>>() {
                 })
                         .doOnError(t -> {
                             t.printStackTrace();
@@ -300,7 +302,7 @@ class ConferenceSiteController {
                         .uri(AGENDA_SERVICE + "/day/Tuesday")
                         .retrieve();
 
-                CompletableFuture<List<AgendaItem>> agendaItemsTuesdayCompletableFuture = agendaItemsTuesdayResponseSpec.bodyToMono(new ParameterizedTypeReference<List<AgendaItem>>() {
+                agendaItemsTuesdayCompletableFuture = agendaItemsTuesdayResponseSpec.bodyToMono(new ParameterizedTypeReference<List<AgendaItem>>() {
                 })
                         .doOnError(t -> {
                             t.printStackTrace();
@@ -309,26 +311,29 @@ class ConferenceSiteController {
                         .toFuture();
 
 
-                if (agendaItemsMondayCompletableFuture != null) {
-                    model.addAttribute("agendaItemsMonday", agendaItemsMondayCompletableFuture.join());
-                } else {
-                    List<AgendaItem> cacheMonday = new ArrayList<>();
-                    cacheMonday.add(new AgendaItem("1", "Cached Author", "Bring Monday Agenda Item from Cache", "Monday", "1pm"));
-                    model.addAttribute("agendaItemsMonday", cacheMonday);
-                }
-                if (agendaItemsTuesdayCompletableFuture != null) {
-                    model.addAttribute("agendaItemsTuesday", agendaItemsTuesdayCompletableFuture.join());
-                } else {
-                    List<AgendaItem> cacheTuesday = new ArrayList<>();
-                    cacheTuesday.add(new AgendaItem("1", "Cached Author", "Bring Tuesday Agenda Item from Cache", "Tuesday", "1pm"));
-                    model.addAttribute("agendaItemsTuesday", cacheTuesday);
-                }
-
-
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        try {
+            model.addAttribute("agendaItemsMonday", agendaItemsMondayCompletableFuture.join());
+        } catch (Exception e) {
+            List<AgendaItem> cacheMonday = new ArrayList<>();
+            cacheMonday.add(new AgendaItem("1", "Cached Author", "Bring Monday Agenda Item from Cache", "Monday", "1pm"));
+            model.addAttribute("agendaItemsMonday", cacheMonday);
+        }
+
+
+        try {
+            model.addAttribute("agendaItemsTuesday", agendaItemsTuesdayCompletableFuture.join());
+        } catch (Exception e) {
+            List<AgendaItem> cacheTuesday = new ArrayList<>();
+            cacheTuesday.add(new AgendaItem("1", "Cached Author", "Bring Tuesday Agenda Item from Cache", "Tuesday", "1pm"));
+            model.addAttribute("agendaItemsTuesday", cacheTuesday);
+        }
+
+
         ServiceInfo c4pInfo = null;
         try {
             c4pInfo = c4pInfoCompletableFuture.join();
@@ -423,13 +428,12 @@ class ConferenceSiteController {
         model.addAttribute("pending", (pending) ? "checked" : "");
 
         try {
-            List<Proposal> proposalList = proposalsListCF.join();
-
-            model.addAttribute("proposals", proposalList);
+            proposals = proposalsListCF.join();
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+        model.addAttribute("proposals", proposals);
 
         return "backoffice";
     }
