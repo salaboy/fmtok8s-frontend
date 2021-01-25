@@ -39,6 +39,7 @@ import io.netty.resolver.dns.*;
 import java.net.URI;
 import java.security.Security;
 import java.util.*;
+import java.util.concurrent.CompletableFuture;
 import java.util.regex.Pattern;
 
 import static org.springframework.cloud.gateway.support.ServerWebExchangeUtils.*;
@@ -48,7 +49,7 @@ public class ApiGatewayService {
 
     public static void main(String[] args) {
         SpringApplication.run(ApiGatewayService.class, args);
-        java.security.Security.setProperty("networkaddress.cache.ttl" , "0");
+        java.security.Security.setProperty("networkaddress.cache.ttl", "0");
         System.out.println(Security.getProperty("networkaddress.cache.ttl"));
         System.out.println(System.getProperty("networkaddress.cache.ttl"));
 
@@ -119,7 +120,7 @@ class ConferenceSiteUtilController {
     public ServiceInfo info() {
         return new ServiceInfo(
                 "API Gateway / User Interface",
-                "v"+version,
+                "v" + version,
                 "https://github.com/salaboy/fmtok8s-api-gateway/releases/tag/v" + version,
                 podId,
                 podNamespace,
@@ -250,65 +251,91 @@ class ConferenceSiteController {
 
     @GetMapping("/")
     public String index(Model model) {
-        ServiceInfo agendaInfo = null;
-        ServiceInfo c4pInfo = null;
-
         WebClient.ResponseSpec agendaInforesponseSpec = webClient
                 .get()
                 .uri(AGENDA_SERVICE + "/info")
                 .retrieve();
 
-        agendaInfo = agendaInforesponseSpec.bodyToMono(ServiceInfo.class)
+        CompletableFuture<ServiceInfo> agendaInfoCompletableFuture = agendaInforesponseSpec.bodyToMono(ServiceInfo.class)
                 .doOnError(t -> {
                     t.printStackTrace();
                     log.error(">> Error contacting Agenda Service (" + AGENDA_SERVICE + ") Info Endpoint");
-                })
-                .block();
+                }).toFuture();
+
 
         WebClient.ResponseSpec c4pInforesponseSpec = webClient
                 .get()
                 .uri(C4P_SERVICE + "/info")
                 .retrieve();
 
-        c4pInfo = c4pInforesponseSpec.bodyToMono(ServiceInfo.class)
+        CompletableFuture<ServiceInfo> c4pInfoCompletableFuture = c4pInforesponseSpec.bodyToMono(ServiceInfo.class)
                 .doOnError(t -> {
                     t.printStackTrace();
                     log.error(">> Error contacting C4P Service (" + C4P_SERVICE + ") Info Endpoint");
                 })
-                .block();
+                .toFuture();
 
 
-        List<AgendaItem> agendaItemsMonday = null;
-        List<AgendaItem> agendaItemsTuesday = null;
+        ServiceInfo agendaInfo = null;
+        try {
+            agendaInfo = agendaInfoCompletableFuture.join();
 
-        if (agendaInfo != null && !agendaInfo.getVersion().equals("N/A")) {
+            if (agendaInfo != null && !agendaInfo.getVersion().equals("N/A")) {
 
-            WebClient.ResponseSpec agendaItemsMondayResponseSpec = webClient
-                    .get()
-                    .uri(AGENDA_SERVICE + "/day/Monday")
-                    .retrieve();
+                WebClient.ResponseSpec agendaItemsMondayResponseSpec = webClient
+                        .get()
+                        .uri(AGENDA_SERVICE + "/day/Monday")
+                        .retrieve();
 
-            agendaItemsMonday = agendaItemsMondayResponseSpec.bodyToMono(new ParameterizedTypeReference<List<AgendaItem>>() {})
-                    .doOnError(t -> {
-                        t.printStackTrace();
-                        log.error(">> Error contacting Agenda Service (" + AGENDA_SERVICE + ") Monday");
-                    })
-                    .block();
+                CompletableFuture<List<AgendaItem>> agendaItemsMondayCompletableFuture = agendaItemsMondayResponseSpec.bodyToMono(new ParameterizedTypeReference<List<AgendaItem>>() {
+                })
+                        .doOnError(t -> {
+                            t.printStackTrace();
+                            log.error(">> Error contacting Agenda Service (" + AGENDA_SERVICE + ") Monday");
+                        })
+                        .toFuture();
 
-            WebClient.ResponseSpec agendaItemsTuesdayResponseSpec = webClient
-                    .get()
-                    .uri(AGENDA_SERVICE + "/day/Tuesday")
-                    .retrieve();
+                WebClient.ResponseSpec agendaItemsTuesdayResponseSpec = webClient
+                        .get()
+                        .uri(AGENDA_SERVICE + "/day/Tuesday")
+                        .retrieve();
 
-            agendaItemsTuesday = agendaItemsTuesdayResponseSpec.bodyToMono(new ParameterizedTypeReference<List<AgendaItem>>() {})
-                    .doOnError(t -> {
-                        t.printStackTrace();
-                        log.error(">> Error contacting Agenda Service (" + AGENDA_SERVICE + ") Tuesday Endpoint");
-                    })
-                    .block();
+                CompletableFuture<List<AgendaItem>> agendaItemsTuesdayCompletableFuture = agendaItemsTuesdayResponseSpec.bodyToMono(new ParameterizedTypeReference<List<AgendaItem>>() {
+                })
+                        .doOnError(t -> {
+                            t.printStackTrace();
+                            log.error(">> Error contacting Agenda Service (" + AGENDA_SERVICE + ") Tuesday Endpoint");
+                        })
+                        .toFuture();
 
 
+                if (agendaItemsMondayCompletableFuture != null) {
+                    model.addAttribute("agendaItemsMonday", agendaItemsMondayCompletableFuture.join());
+                } else {
+                    List<AgendaItem> cacheMonday = new ArrayList<>();
+                    cacheMonday.add(new AgendaItem("1", "Cached Author", "Bring Monday Agenda Item from Cache", "Monday", "1pm"));
+                    model.addAttribute("agendaItemsMonday", cacheMonday);
+                }
+                if (agendaItemsTuesdayCompletableFuture != null) {
+                    model.addAttribute("agendaItemsTuesday", agendaItemsTuesdayCompletableFuture.join());
+                } else {
+                    List<AgendaItem> cacheTuesday = new ArrayList<>();
+                    cacheTuesday.add(new AgendaItem("1", "Cached Author", "Bring Tuesday Agenda Item from Cache", "Tuesday", "1pm"));
+                    model.addAttribute("agendaItemsTuesday", cacheTuesday);
+                }
+
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+        ServiceInfo c4pInfo = null;
+        try {
+            c4pInfo = c4pInfoCompletableFuture.join();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
 
         model.addAttribute("version", "v" + version);
         model.addAttribute("podId", podId);
@@ -318,28 +345,11 @@ class ConferenceSiteController {
         model.addAttribute("c4p", c4pInfo);
 
 
-        if (agendaItemsMonday != null) {
-            model.addAttribute("agendaItemsMonday", agendaItemsMonday);
-        } else {
-            List<AgendaItem> cacheMonday = new ArrayList<>();
-            cacheMonday.add(new AgendaItem("1", "Cached Author", "Bring Monday Agenda Item from Cache", "Monday", "1pm"));
-            model.addAttribute("agendaItemsMonday", cacheMonday);
-        }
-        if (agendaItemsMonday != null) {
-            model.addAttribute("agendaItemsTuesday", agendaItemsTuesday);
-        } else {
-            List<AgendaItem> cacheTuesday = new ArrayList<>();
-            cacheTuesday.add(new AgendaItem("1", "Cached Author", "Bring Tuesday Agenda Item from Cache", "Tuesday", "1pm"));
-            model.addAttribute("agendaItemsTuesday", cacheTuesday);
-        }
-
         return "index";
     }
 
     @GetMapping("/backoffice")
     public String backoffice(@RequestParam(value = "pending", required = false, defaultValue = "false") boolean pending, Model model) {
-        ServiceInfo emailInfo = null;
-        ServiceInfo c4pInfo = null;
 
         log.info("Get Pending only: " + pending);
 
@@ -348,47 +358,62 @@ class ConferenceSiteController {
                 .uri(EMAIL_SERVICE + "/info")
                 .retrieve();
 
-        emailInfo = emailInfoResponseSpec.bodyToMono(ServiceInfo.class)
+        CompletableFuture<ServiceInfo> emailInfoCF = emailInfoResponseSpec.bodyToMono(ServiceInfo.class)
                 .doOnError(t -> {
                     t.printStackTrace();
                     log.error(">> Error contacting Email Service (" + EMAIL_SERVICE + ") Info Endpoint");
                 })
-                .block();
+                .toFuture();
 
         WebClient.ResponseSpec c4pResponseSpec = webClient
                 .get()
                 .uri(C4P_SERVICE + "/info")
                 .retrieve();
 
-        c4pInfo = c4pResponseSpec.bodyToMono(ServiceInfo.class)
+        CompletableFuture<ServiceInfo> c4pInfoCF = c4pResponseSpec.bodyToMono(ServiceInfo.class)
                 .doOnError(t -> {
                     t.printStackTrace();
                     log.error(">> Error contacting Email Service (" + EMAIL_SERVICE + ") Info Endpoint");
                 })
-                .block();
-
+                .toFuture();
 
 
         List<Proposal> proposals = null;
+        ServiceInfo c4pInfo = null;
+        CompletableFuture<List<Proposal>> proposalsListCF = null;
+        try {
+            c4pInfo = c4pInfoCF.join();
 
-        if (c4pInfo != null && !c4pInfo.getVersion().equals("N/A")) {
+            if (c4pInfo != null && !c4pInfo.getVersion().equals("N/A")) {
 
-            WebClient.ResponseSpec c4pPendingResponseSpec = webClient
-                    .get()
-                    .uri(C4P_SERVICE + "/?pending=" + pending)
-                    .retrieve();
+                WebClient.ResponseSpec c4pPendingResponseSpec = webClient
+                        .get()
+                        .uri(C4P_SERVICE + "/?pending=" + pending)
+                        .retrieve();
 
-            proposals = c4pPendingResponseSpec.bodyToMono(new ParameterizedTypeReference<List<Proposal>>() {})
-                    .doOnError(t -> {
-                        t.printStackTrace();
-                        log.error(">> Error contacting Email Service (" + EMAIL_SERVICE + ") Info Endpoint");
-                    })
-                    .block();
+                proposalsListCF = c4pPendingResponseSpec.bodyToMono(new ParameterizedTypeReference<List<Proposal>>() {
+                })
+                        .doOnError(t -> {
+                            t.printStackTrace();
+                            log.error(">> Error contacting Email Service (" + EMAIL_SERVICE + ") Info Endpoint");
+                        })
+                        .toFuture();
 
-        } else {
-            proposals = new ArrayList<>();
-            proposals.add(new Proposal("Error", "There is no Cache that can save you here.", "Call your System Administrator", false, Proposal.ProposalStatus.ERROR));
+            } else {
+                proposals = new ArrayList<>();
+                proposals.add(new Proposal("Error", "There is no Cache that can save you here.", "Call your System Administrator", false, Proposal.ProposalStatus.ERROR));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
+        ServiceInfo emailInfo = null;
+        try {
+            emailInfo = emailInfoCF.join();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         model.addAttribute("version", "v" + version);
         model.addAttribute("podId", podId);
         model.addAttribute("podNamepsace", podNamespace);
@@ -397,9 +422,14 @@ class ConferenceSiteController {
         model.addAttribute("c4p", c4pInfo);
         model.addAttribute("pending", (pending) ? "checked" : "");
 
-        if (proposals != null) {
-            model.addAttribute("proposals", proposals);
+        try {
+            List<Proposal> proposalList = proposalsListCF.join();
+
+            model.addAttribute("proposals", proposalList);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
 
         return "backoffice";
     }

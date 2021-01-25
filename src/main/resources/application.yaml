@@ -77,8 +77,8 @@ management:
 logging:
   level:
     reactor:
-      netty: TRACE
+      netty: INFO
     org:
       springframework:
         cloud:
-          gateway: TRACE
+          gateway: INFO
