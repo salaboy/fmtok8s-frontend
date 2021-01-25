@@ -40,6 +40,7 @@ import java.net.URI;
 import java.security.Security;
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 import java.util.regex.Pattern;
 
 import static org.springframework.cloud.gateway.support.ServerWebExchangeUtils.*;
@@ -296,7 +297,7 @@ class ConferenceSiteController {
         CompletableFuture<List<AgendaItem>> agendaItemsMondayCompletableFuture = null;
         CompletableFuture<List<AgendaItem>> agendaItemsTuesdayCompletableFuture = null;
         try {
-            agendaInfo = agendaInfoCompletableFuture.join();
+            agendaInfo = agendaInfoCompletableFuture.get();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -334,7 +335,7 @@ class ConferenceSiteController {
         }
 
         try {
-            model.addAttribute("agendaItemsMonday", agendaItemsMondayCompletableFuture.join());
+            model.addAttribute("agendaItemsMonday", agendaItemsMondayCompletableFuture.get());
         } catch (Exception e) {
             List<AgendaItem> cacheMonday = new ArrayList<>();
             cacheMonday.add(new AgendaItem("1", "Cached Author", "Bring Monday Agenda Item from Cache", "Monday", "1pm"));
@@ -343,7 +344,7 @@ class ConferenceSiteController {
 
 
         try {
-            model.addAttribute("agendaItemsTuesday", agendaItemsTuesdayCompletableFuture.join());
+            model.addAttribute("agendaItemsTuesday", agendaItemsTuesdayCompletableFuture.get());
         } catch (Exception e) {
             List<AgendaItem> cacheTuesday = new ArrayList<>();
             cacheTuesday.add(new AgendaItem("1", "Cached Author", "Bring Tuesday Agenda Item from Cache", "Tuesday", "1pm"));
@@ -353,7 +354,7 @@ class ConferenceSiteController {
 
         ServiceInfo c4pInfo = null;
         try {
-            c4pInfo = c4pInfoCompletableFuture.join();
+            c4pInfo = c4pInfoCompletableFuture.get();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -371,7 +372,7 @@ class ConferenceSiteController {
     }
 
     @GetMapping("/backoffice")
-    public String backoffice(@RequestParam(value = "pending", required = false, defaultValue = "false") boolean pending, Model model) {
+    public String backoffice(@RequestParam(value = "pending", required = false, defaultValue = "false") boolean pending, Model model) throws ExecutionException, InterruptedException {
 
         log.info("Get Pending only: " + pending);
         log.info("Starting backoffice processing");
@@ -405,13 +406,19 @@ class ConferenceSiteController {
 
 
         List<Proposal> proposals = null;
-        ServiceInfo c4pInfo = null;
+
         CompletableFuture<List<Proposal>> proposalsListCF = null;
-        try {
-            c4pInfo = c4pInfoCF.join();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
+
+
+
+
+
+        CompletableFuture.allOf(emailInfoCF, c4pInfoCF ).get();
+
+
+        ServiceInfo emailInfo = emailInfoCF.get();
+        ServiceInfo c4pInfo = c4pInfoCF.join();
 
         if (c4pInfo != null && !c4pInfo.getVersion().equals("N/A")) {
 
@@ -434,13 +441,6 @@ class ConferenceSiteController {
             proposals.add(new Proposal("Error", "There is no Cache that can save you here.", "Call your System Administrator", false, Proposal.ProposalStatus.ERROR));
         }
 
-        ServiceInfo emailInfo = null;
-        try {
-            emailInfo = emailInfoCF.join();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
         model.addAttribute("version", "v" + version);
         model.addAttribute("podId", podId);
         model.addAttribute("podNamepsace", podNamespace);
@@ -450,7 +450,7 @@ class ConferenceSiteController {
         model.addAttribute("pending", (pending) ? "checked" : "");
 
         try {
-            proposals = proposalsListCF.join();
+            proposals = proposalsListCF.get();
         } catch (Exception e) {
             e.printStackTrace();
         }
