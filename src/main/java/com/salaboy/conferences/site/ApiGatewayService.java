@@ -251,6 +251,7 @@ class ConferenceSiteController {
 
     @GetMapping("/")
     public String index(Model model) {
+        log.info("STarting INdex processing");
         WebClient.ResponseSpec agendaInforesponseSpec = webClient
                 .get()
                 .uri(AGENDA_SERVICE + "/info")
@@ -282,38 +283,39 @@ class ConferenceSiteController {
         try {
             agendaInfo = agendaInfoCompletableFuture.join();
 
-            if (agendaInfo != null && !agendaInfo.getVersion().equals("N/A")) {
 
-                WebClient.ResponseSpec agendaItemsMondayResponseSpec = webClient
-                        .get()
-                        .uri(AGENDA_SERVICE + "/day/Monday")
-                        .retrieve();
-
-                agendaItemsMondayCompletableFuture = agendaItemsMondayResponseSpec.bodyToMono(new ParameterizedTypeReference<List<AgendaItem>>() {
-                })
-                        .doOnError(t -> {
-                            t.printStackTrace();
-                            log.error(">> Error contacting Agenda Service (" + AGENDA_SERVICE + ") Monday");
-                        })
-                        .toFuture();
-
-                WebClient.ResponseSpec agendaItemsTuesdayResponseSpec = webClient
-                        .get()
-                        .uri(AGENDA_SERVICE + "/day/Tuesday")
-                        .retrieve();
-
-                agendaItemsTuesdayCompletableFuture = agendaItemsTuesdayResponseSpec.bodyToMono(new ParameterizedTypeReference<List<AgendaItem>>() {
-                })
-                        .doOnError(t -> {
-                            t.printStackTrace();
-                            log.error(">> Error contacting Agenda Service (" + AGENDA_SERVICE + ") Tuesday Endpoint");
-                        })
-                        .toFuture();
-
-
-            }
         } catch (Exception e) {
             e.printStackTrace();
+        }
+
+        if (agendaInfo != null && !agendaInfo.getVersion().equals("N/A")) {
+
+            WebClient.ResponseSpec agendaItemsMondayResponseSpec = webClient
+                    .get()
+                    .uri(AGENDA_SERVICE + "/day/Monday")
+                    .retrieve();
+
+            agendaItemsMondayCompletableFuture = agendaItemsMondayResponseSpec.bodyToMono(new ParameterizedTypeReference<List<AgendaItem>>() {
+            })
+                    .doOnError(t -> {
+                        t.printStackTrace();
+                        log.error(">> Error contacting Agenda Service (" + AGENDA_SERVICE + ") Monday");
+                    })
+                    .toFuture();
+
+            WebClient.ResponseSpec agendaItemsTuesdayResponseSpec = webClient
+                    .get()
+                    .uri(AGENDA_SERVICE + "/day/Tuesday")
+                    .retrieve();
+
+            agendaItemsTuesdayCompletableFuture = agendaItemsTuesdayResponseSpec.bodyToMono(new ParameterizedTypeReference<List<AgendaItem>>() {
+            })
+                    .doOnError(t -> {
+                        t.printStackTrace();
+                        log.error(">> Error contacting Agenda Service (" + AGENDA_SERVICE + ") Tuesday Endpoint");
+                    })
+                    .toFuture();
+
         }
 
         try {
@@ -349,7 +351,7 @@ class ConferenceSiteController {
         model.addAttribute("agenda", agendaInfo);
         model.addAttribute("c4p", c4pInfo);
 
-
+        log.info("Returning INdex processing");
         return "index";
     }
 
@@ -357,7 +359,7 @@ class ConferenceSiteController {
     public String backoffice(@RequestParam(value = "pending", required = false, defaultValue = "false") boolean pending, Model model) {
 
         log.info("Get Pending only: " + pending);
-
+        log.info("Starting backoffice processing");
         WebClient.ResponseSpec emailInfoResponseSpec = webClient
                 .get()
                 .uri(EMAIL_SERVICE + "/info")
@@ -388,28 +390,28 @@ class ConferenceSiteController {
         CompletableFuture<List<Proposal>> proposalsListCF = null;
         try {
             c4pInfo = c4pInfoCF.join();
-
-            if (c4pInfo != null && !c4pInfo.getVersion().equals("N/A")) {
-
-                WebClient.ResponseSpec c4pPendingResponseSpec = webClient
-                        .get()
-                        .uri(C4P_SERVICE + "/?pending=" + pending)
-                        .retrieve();
-
-                proposalsListCF = c4pPendingResponseSpec.bodyToMono(new ParameterizedTypeReference<List<Proposal>>() {
-                })
-                        .doOnError(t -> {
-                            t.printStackTrace();
-                            log.error(">> Error contacting Email Service (" + EMAIL_SERVICE + ") Info Endpoint");
-                        })
-                        .toFuture();
-
-            } else {
-                proposals = new ArrayList<>();
-                proposals.add(new Proposal("Error", "There is no Cache that can save you here.", "Call your System Administrator", false, Proposal.ProposalStatus.ERROR));
-            }
         } catch (Exception e) {
             e.printStackTrace();
+        }
+
+        if (c4pInfo != null && !c4pInfo.getVersion().equals("N/A")) {
+
+            WebClient.ResponseSpec c4pPendingResponseSpec = webClient
+                    .get()
+                    .uri(C4P_SERVICE + "/?pending=" + pending)
+                    .retrieve();
+
+            proposalsListCF = c4pPendingResponseSpec.bodyToMono(new ParameterizedTypeReference<List<Proposal>>() {
+            })
+                    .doOnError(t -> {
+                        t.printStackTrace();
+                        log.error(">> Error contacting Email Service (" + EMAIL_SERVICE + ") Info Endpoint");
+                    })
+                    .toFuture();
+
+        } else {
+            proposals = new ArrayList<>();
+            proposals.add(new Proposal("Error", "There is no Cache that can save you here.", "Call your System Administrator", false, Proposal.ProposalStatus.ERROR));
         }
 
         ServiceInfo emailInfo = null;
@@ -434,6 +436,8 @@ class ConferenceSiteController {
         }
 
         model.addAttribute("proposals", proposals);
+
+        log.info("Returning backoffice processing");
 
         return "backoffice";
     }
