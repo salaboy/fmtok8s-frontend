@@ -268,11 +268,12 @@ class ConferenceSiteController {
                 .retrieve();
 
         CompletableFuture<ServiceInfo> agendaInfoCompletableFuture = agendaInfoResponseSpec.bodyToMono(ServiceInfo.class)
+                .doOnSubscribe( t -> log.info(">> On index agendaInfoResponseSpec Subscribe: "  + t))
                 .doOnError(t -> {
                     t.printStackTrace();
                     log.error(">> Error contacting Agenda Service (" + AGENDA_SERVICE + ") Info Endpoint");
-                }).
-                        doOnSuccess(o -> log.info(">> agendaInfo from Agenda Service (" + AGENDA_SERVICE + ") OK!"))
+                })
+                .doOnSuccess(o -> log.info(">> agendaInfo from Agenda Service (" + AGENDA_SERVICE + ") OK!"))
                 .toFuture();
 
 
@@ -282,6 +283,7 @@ class ConferenceSiteController {
                 .retrieve();
 
         CompletableFuture<ServiceInfo> c4pInfoCompletableFuture = c4pInforesponseSpec.bodyToMono(ServiceInfo.class)
+                .doOnSubscribe( t -> log.info(">> On index c4pInforesponseSpec Subscribe: "  + t))
                 .doOnError(t -> {
                     t.printStackTrace();
                     log.error(">> Error contacting C4P Service (" + C4P_SERVICE + ") Info Endpoint");
@@ -306,8 +308,8 @@ class ConferenceSiteController {
                     .uri(AGENDA_SERVICE + "/day/Monday")
                     .retrieve();
 
-            agendaItemsMondayCompletableFuture = agendaItemsMondayResponseSpec.bodyToMono(new ParameterizedTypeReference<List<AgendaItem>>() {
-            })
+            agendaItemsMondayCompletableFuture = agendaItemsMondayResponseSpec.bodyToMono(new ParameterizedTypeReference<List<AgendaItem>>() {})
+                    .doOnSubscribe( t -> log.info(">> On index agendaItemsMondayResponseSpec Subscribe: "  + t))
                     .doOnError(t -> {
                         t.printStackTrace();
                         log.error(">> Error contacting Agenda Service (" + AGENDA_SERVICE + ") Monday");
@@ -320,8 +322,8 @@ class ConferenceSiteController {
                     .uri(AGENDA_SERVICE + "/day/Tuesday")
                     .retrieve();
 
-            agendaItemsTuesdayCompletableFuture = agendaItemsTuesdayResponseSpec.bodyToMono(new ParameterizedTypeReference<List<AgendaItem>>() {
-            })
+            agendaItemsTuesdayCompletableFuture = agendaItemsTuesdayResponseSpec.bodyToMono(new ParameterizedTypeReference<List<AgendaItem>>() {})
+                    .doOnSubscribe( t -> log.info(">> On index agendaItemsTuesdayResponseSpec Subscribe: "  + t))
                     .doOnError(t -> {
                         t.printStackTrace();
                         log.error(">> Error contacting Agenda Service (" + AGENDA_SERVICE + ") Tuesday Endpoint");
@@ -379,6 +381,7 @@ class ConferenceSiteController {
                 .retrieve();
 
         CompletableFuture<ServiceInfo> emailInfoCF = emailInfoResponseSpec.bodyToMono(ServiceInfo.class)
+                .doOnSubscribe( t -> log.info(">> On backoffice emailInfoResponseSpec Subscribe: "  + t))
                 .doOnError(t -> {
                     t.printStackTrace();
                     log.error(">> Error contacting Email Service (" + EMAIL_SERVICE + ") Info Endpoint");
@@ -392,6 +395,7 @@ class ConferenceSiteController {
                 .retrieve();
 
         CompletableFuture<ServiceInfo> c4pInfoCF = c4pResponseSpec.bodyToMono(ServiceInfo.class)
+                .doOnSubscribe( t -> log.info(">> On backoffice c4pResponseSpec Subscribe: "  + t))
                 .doOnError(t -> {
                     t.printStackTrace();
                     log.error(">> Error contacting Email Service (" + C4P_SERVICE + ") Info Endpoint");
@@ -416,8 +420,8 @@ class ConferenceSiteController {
                     .uri(C4P_SERVICE + "/?pending=" + pending)
                     .retrieve();
 
-            proposalsListCF = c4pPendingResponseSpec.bodyToMono(new ParameterizedTypeReference<List<Proposal>>() {
-            })
+            proposalsListCF = c4pPendingResponseSpec.bodyToMono(new ParameterizedTypeReference<List<Proposal>>() {})
+                    .doOnSubscribe( t -> log.info(">> On backoffice c4pPendingResponseSpec Subscribe: "  + t))
                     .doOnError(t -> {
                         t.printStackTrace();
                         log.error(">> Error contacting C4p Service (" + C4P_SERVICE + ") Info Endpoint");
