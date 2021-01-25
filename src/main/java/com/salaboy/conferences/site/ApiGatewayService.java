@@ -4,9 +4,15 @@ import com.salaboy.conferences.site.models.AgendaItem;
 import com.salaboy.conferences.site.models.Proposal;
 import com.salaboy.conferences.site.models.ServiceInfo;
 import io.netty.channel.epoll.EpollDatagramChannel;
+import io.opentracing.Tracer;
+import io.opentracing.contrib.spring.web.client.TracingExchangeFilterFunction;
+import io.opentracing.contrib.spring.web.client.WebClientSpanDecorator;
+import io.opentracing.contrib.spring.web.webfilter.TracingWebFilter;
+import io.opentracing.contrib.spring.web.webfilter.WebFluxSpanDecorator;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,13 +20,17 @@ import org.springframework.cloud.gateway.config.HttpClientCustomizer;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.cloud.gateway.route.Route;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.web.reactive.function.BodyInserters;
+import org.springframework.web.reactive.function.client.ExchangeFilterFunction;
+import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 import reactor.netty.http.client.HttpClient;
@@ -28,10 +38,8 @@ import io.netty.resolver.dns.*;
 
 import java.net.URI;
 import java.security.Security;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import java.util.regex.Pattern;
 
 import static org.springframework.cloud.gateway.support.ServerWebExchangeUtils.*;
 
@@ -44,6 +52,32 @@ public class ApiGatewayService {
         System.out.println(Security.getProperty("networkaddress.cache.ttl"));
         System.out.println(System.getProperty("networkaddress.cache.ttl"));
 
+    }
+
+    @Bean
+    public WebClient getWebClient(Tracer tracer) {
+        return WebClient.builder()
+                .filters(
+                        (List<ExchangeFilterFunction> x) -> new ArrayList<ExchangeFilterFunction>() {{
+                            add(new TracingExchangeFilterFunction(tracer, Collections.singletonList(new WebClientSpanDecorator.StandardTags())));
+                        }})
+                .build();
+
+    }
+
+
+    @Configuration
+    class TracingConfiguration {
+        @Bean
+        public TracingWebFilter tracingWebFilter(Tracer tracer) {
+            return new TracingWebFilter(
+                    tracer,
+                    Integer.MIN_VALUE,               // Order
+                    Pattern.compile(""),             // Skip pattern
+                    Collections.emptyList(),         // URL patterns, empty list means all
+                    Arrays.asList(new WebFluxSpanDecorator.StandardTags(), new WebFluxSpanDecorator.WebFluxTags())
+            );
+        }
     }
 
     @Component
@@ -77,7 +111,6 @@ class ConferenceSiteUtilController {
     @Value("${POD_NAMESPACE:}")
     private String podNamespace;
 
-    private RestTemplate restTemplate = new RestTemplate();
 
     @Value("${C4P_SERVICE:http://fmtok8s-c4p}")
     private String C4P_SERVICE;
@@ -130,6 +163,8 @@ class ConferenceSiteUtilController {
         return new ServiceInfo("Email Service", "N/A", "N/A");
     }
 
+    @Autowired
+    private WebClient webClient;
 
     @PostMapping("/test")
     public void test() {
@@ -165,14 +200,28 @@ class ConferenceSiteUtilController {
 
         };
         for (String content : proposals) {
-            HttpEntity<String> request =
-                    new HttpEntity<String>(content, headers);
-            restTemplate.postForObject(C4P_SERVICE, request, String.class);
+
+            WebClient.ResponseSpec responseSpec = webClient
+                    .post()
+                    .uri(C4P_SERVICE)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .body(BodyInserters.fromValue(content))
+                    .retrieve();
+            responseSpec.bodyToMono(String.class)
+                    .doOnError(t -> {
+                        t.printStackTrace();
+                        log.error(">> Error contacting C4p Service (" + C4P_SERVICE + ") for test proposal");
+                    })
+                    .doOnSuccess(s -> log.info("> Request Sent to C4p Service (" + C4P_SERVICE + ") for test proposal OK: "))
+                    .subscribe();
+
+
         }
     }
 }
 
 @Controller
+@Slf4j
 class ConferenceSiteController {
     @Value("${version:0.0.0}")
     private String version;
@@ -195,46 +244,70 @@ class ConferenceSiteController {
     @Value("${AGENDA_SERVICE:http://fmtok8s-agenda}")
     private String AGENDA_SERVICE;
 
+    @Autowired
+    private WebClient webClient;
 
-    private RestTemplate restTemplate = new RestTemplate();
 
     @GetMapping("/")
     public String index(Model model) {
         ServiceInfo agendaInfo = null;
         ServiceInfo c4pInfo = null;
 
-        try {
-            ResponseEntity<ServiceInfo> agenda = restTemplate.getForEntity(AGENDA_SERVICE + "/info", ServiceInfo.class);
-            agendaInfo = agenda.getBody();
+        WebClient.ResponseSpec agendaInforesponseSpec = webClient
+                .get()
+                .uri(AGENDA_SERVICE + "/info")
+                .retrieve();
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        try {
-            ResponseEntity<ServiceInfo> c4p = restTemplate.getForEntity(C4P_SERVICE + "/info", ServiceInfo.class);
-            c4pInfo = c4p.getBody();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        agendaInfo = agendaInforesponseSpec.bodyToMono(ServiceInfo.class)
+                .doOnError(t -> {
+                    t.printStackTrace();
+                    log.error(">> Error contacting Agenda Service (" + AGENDA_SERVICE + ") Info Endpoint");
+                })
+                .block();
 
-        ResponseEntity<List<AgendaItem>> agendaItemsMonday = null;
-        ResponseEntity<List<AgendaItem>> agendaItemsTuesday = null;
+        WebClient.ResponseSpec c4pInforesponseSpec = webClient
+                .get()
+                .uri(C4P_SERVICE + "/info")
+                .retrieve();
+
+        c4pInfo = c4pInforesponseSpec.bodyToMono(ServiceInfo.class)
+                .doOnError(t -> {
+                    t.printStackTrace();
+                    log.error(">> Error contacting C4P Service (" + C4P_SERVICE + ") Info Endpoint");
+                })
+                .block();
+
+
+        List<AgendaItem> agendaItemsMonday = null;
+        List<AgendaItem> agendaItemsTuesday = null;
 
         if (agendaInfo != null && !agendaInfo.getVersion().equals("N/A")) {
 
-            try {
-                agendaItemsMonday = restTemplate.exchange(AGENDA_SERVICE + "/day/Monday", HttpMethod.GET, null, new ParameterizedTypeReference<List<AgendaItem>>() {
-                });
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            WebClient.ResponseSpec agendaItemsMondayResponseSpec = webClient
+                    .get()
+                    .uri(AGENDA_SERVICE + "/day/Monday")
+                    .retrieve();
 
-            try {
-                agendaItemsTuesday = restTemplate.exchange(AGENDA_SERVICE + "/day/Tuesday", HttpMethod.GET, null, new ParameterizedTypeReference<List<AgendaItem>>() {
-                });
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            agendaItemsMonday = agendaItemsMondayResponseSpec.bodyToMono(new ParameterizedTypeReference<List<AgendaItem>>() {})
+                    .doOnError(t -> {
+                        t.printStackTrace();
+                        log.error(">> Error contacting Agenda Service (" + AGENDA_SERVICE + ") Monday");
+                    })
+                    .block();
+
+            WebClient.ResponseSpec agendaItemsTuesdayResponseSpec = webClient
+                    .get()
+                    .uri(AGENDA_SERVICE + "/day/Tuesday")
+                    .retrieve();
+
+            agendaItemsTuesday = agendaItemsTuesdayResponseSpec.bodyToMono(new ParameterizedTypeReference<List<AgendaItem>>() {})
+                    .doOnError(t -> {
+                        t.printStackTrace();
+                        log.error(">> Error contacting Agenda Service (" + AGENDA_SERVICE + ") Tuesday Endpoint");
+                    })
+                    .block();
+
+
         }
 
         model.addAttribute("version", "v" + version);
@@ -246,14 +319,14 @@ class ConferenceSiteController {
 
 
         if (agendaItemsMonday != null) {
-            model.addAttribute("agendaItemsMonday", agendaItemsMonday.getBody());
+            model.addAttribute("agendaItemsMonday", agendaItemsMonday);
         } else {
             List<AgendaItem> cacheMonday = new ArrayList<>();
             cacheMonday.add(new AgendaItem("1", "Cached Author", "Bring Monday Agenda Item from Cache", "Monday", "1pm"));
             model.addAttribute("agendaItemsMonday", cacheMonday);
         }
         if (agendaItemsMonday != null) {
-            model.addAttribute("agendaItemsTuesday", agendaItemsTuesday.getBody());
+            model.addAttribute("agendaItemsTuesday", agendaItemsTuesday);
         } else {
             List<AgendaItem> cacheTuesday = new ArrayList<>();
             cacheTuesday.add(new AgendaItem("1", "Cached Author", "Bring Tuesday Agenda Item from Cache", "Tuesday", "1pm"));
@@ -268,31 +341,50 @@ class ConferenceSiteController {
         ServiceInfo emailInfo = null;
         ServiceInfo c4pInfo = null;
 
-        System.out.println("Get Pending only: " + pending);
+        log.info("Get Pending only: " + pending);
 
-        try {
-            ResponseEntity<ServiceInfo> email = restTemplate.getForEntity(EMAIL_SERVICE + "/info", ServiceInfo.class);
-            emailInfo = email.getBody();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        WebClient.ResponseSpec emailInfoResponseSpec = webClient
+                .get()
+                .uri(EMAIL_SERVICE + "/info")
+                .retrieve();
 
-        try {
-            ResponseEntity<ServiceInfo> c4p = restTemplate.getForEntity(C4P_SERVICE + "/info", ServiceInfo.class);
-            c4pInfo = c4p.getBody();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        emailInfo = emailInfoResponseSpec.bodyToMono(ServiceInfo.class)
+                .doOnError(t -> {
+                    t.printStackTrace();
+                    log.error(">> Error contacting Email Service (" + EMAIL_SERVICE + ") Info Endpoint");
+                })
+                .block();
+
+        WebClient.ResponseSpec c4pResponseSpec = webClient
+                .get()
+                .uri(C4P_SERVICE + "/info")
+                .retrieve();
+
+        c4pInfo = c4pResponseSpec.bodyToMono(ServiceInfo.class)
+                .doOnError(t -> {
+                    t.printStackTrace();
+                    log.error(">> Error contacting Email Service (" + EMAIL_SERVICE + ") Info Endpoint");
+                })
+                .block();
+
+
 
         List<Proposal> proposals = null;
 
         if (c4pInfo != null && !c4pInfo.getVersion().equals("N/A")) {
-            try {
-                proposals = restTemplate.exchange(C4P_SERVICE + "/?pending=" + pending, HttpMethod.GET, null, new ParameterizedTypeReference<List<Proposal>>() {
-                }).getBody();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+
+            WebClient.ResponseSpec c4pPendingResponseSpec = webClient
+                    .get()
+                    .uri(C4P_SERVICE + "/?pending=" + pending)
+                    .retrieve();
+
+            proposals = c4pPendingResponseSpec.bodyToMono(new ParameterizedTypeReference<List<Proposal>>() {})
+                    .doOnError(t -> {
+                        t.printStackTrace();
+                        log.error(">> Error contacting Email Service (" + EMAIL_SERVICE + ") Info Endpoint");
+                    })
+                    .block();
+
         } else {
             proposals = new ArrayList<>();
             proposals.add(new Proposal("Error", "There is no Cache that can save you here.", "Call your System Administrator", false, Proposal.ProposalStatus.ERROR));
