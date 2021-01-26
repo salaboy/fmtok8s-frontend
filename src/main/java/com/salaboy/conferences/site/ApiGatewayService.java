@@ -296,34 +296,30 @@ class ConferenceSiteController {
 
         Mono<ServiceInfo> agendaServiceInfo = getAgendaServiceInfo();
         Mono<ServiceInfo> c4PServiceInfo = getC4PServiceInfo();
+
+        Mono<List<AgendaItem>> mondayAgendaItems = getMondayAgendaItems();
+        Mono<List<AgendaItem>> tuesdayAgendaItems = getTuesdayAgendaItems();
+
+        mondayAgendaItems.doOnError(t -> {
+            model.addAttribute("agendaItemsMonday", Collections.singletonList(new AgendaItem("1", "Cached Author", "Bring Monday Agenda Item from Cache", "Monday", "1pm")));
+        });
+
+        tuesdayAgendaItems.doOnError(t -> {
+            model.addAttribute("agendaItemsTuesday", Collections.singletonList(new AgendaItem("1", "Cached Author", "Bring Tuesday Agenda Item from Cache", "Tuesday", "1pm")));
+        });
+
         model.addAttribute("version", "v" + version);
         model.addAttribute("podId", podId);
         model.addAttribute("podNamepsace", podNamespace);
         model.addAttribute("podNodeName", podNodeName);
 
-        return Mono.zip(agendaServiceInfo, c4PServiceInfo, (agendaSI, c4pSI) -> {
+        return Mono.zip(agendaServiceInfo, c4PServiceInfo, mondayAgendaItems, tuesdayAgendaItems).map(t -> {
 
-            model.addAttribute("agenda", agendaSI);
-            model.addAttribute("c4p", c4pSI);
-            if (agendaSI != null && !agendaSI.getVersion().equals("N/A")) {
-                Mono<List<AgendaItem>> mondayAgendaItems = getMondayAgendaItems();
-                Mono<List<AgendaItem>> tuesdayAgendaItems = getTuesdayAgendaItems();
+            model.addAttribute("agenda", t.getT1());
+            model.addAttribute("c4p", t.getT2());
+            model.addAttribute("agendaItemsMonday", t.getT3());
+            model.addAttribute("agendaItemsTuesday", t.getT4());
 
-                mondayAgendaItems.doOnError(t -> {
-                    model.addAttribute("agendaItemsMonday", Collections.singletonList(new AgendaItem("1", "Cached Author", "Bring Monday Agenda Item from Cache", "Monday", "1pm")));
-                });
-
-                tuesdayAgendaItems.doOnError(t -> {
-                    model.addAttribute("agendaItemsTuesday", Collections.singletonList(new AgendaItem("1", "Cached Author", "Bring Tuesday Agenda Item from Cache", "Tuesday", "1pm")));
-                });
-
-
-                Mono.zip(mondayAgendaItems, tuesdayAgendaItems, (m, t) -> {
-                    model.addAttribute("agendaItemsMonday", m);
-                    model.addAttribute("agendaItemsTuesday", t);
-                    return null;
-                });
-            }
 
             return "index";
         });
@@ -369,30 +365,27 @@ class ConferenceSiteController {
 
         Mono<ServiceInfo> c4pServiceInfo = getC4PServiceInfo();
 
+        Mono<List<Proposal>> proposalsList = getProposalsList(pending);
+
+        proposalsList.doOnError(e -> {
+            List<Proposal> proposals = new ArrayList<>();
+            proposals.add(new Proposal("Error",
+                    "There is no Cache that can save you here.",
+                    "Call your System Administrator",
+                    false, Proposal.ProposalStatus.ERROR));
+            model.addAttribute("proposals", proposals);
+        });
+
         model.addAttribute("version", "v" + version);
         model.addAttribute("podId", podId);
         model.addAttribute("podNamepsace", podNamespace);
         model.addAttribute("podNodeName", podNodeName);
         model.addAttribute("pending", (pending) ? "checked" : "");
 
-        return Mono.zip(emailServiceInfo, c4pServiceInfo, (emailSI, c4pSI) -> {
-
-            model.addAttribute("email", emailSI);
-            model.addAttribute("c4p", c4pSI);
-
-            if (c4pSI != null && !c4pSI.getVersion().equals("N/A")) {
-
-                Mono<List<Proposal>> proposalsList = getProposalsList(pending);
-                proposalsList.subscribe(pl -> model.addAttribute("proposals", pl));
-            } else {
-
-                List<Proposal> proposals = new ArrayList<>();
-                proposals.add(new Proposal("Error",
-                        "There is no Cache that can save you here.",
-                        "Call your System Administrator",
-                        false, Proposal.ProposalStatus.ERROR));
-                model.addAttribute("proposals", proposals);
-            }
+        return Mono.zip(emailServiceInfo, c4pServiceInfo, proposalsList).map(tuple -> {
+            model.addAttribute("email", tuple.getT1());
+            model.addAttribute("c4p", tuple.getT2());
+            model.addAttribute("proposals", tuple.getT3());
             return "backoffice";
         });
 
