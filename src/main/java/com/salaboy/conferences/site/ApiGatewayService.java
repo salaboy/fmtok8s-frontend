@@ -32,6 +32,7 @@ import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.ExchangeFilterFunction;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.server.ServerWebExchange;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.netty.http.client.HttpClient;
 import io.netty.resolver.dns.*;
@@ -98,7 +99,7 @@ public class ApiGatewayService {
 
     public static ExchangeFilterFunction logRequest() {
         return ExchangeFilterFunction.ofRequestProcessor(clientRequest -> {
-            log.info("Request: " + clientRequest.method() + " - " + clientRequest.url());
+            log.debug("Request: " + clientRequest.method() + " - " + clientRequest.url());
             clientRequest.headers().forEach((name, values) -> values.forEach(value -> log.info(name + "=" + value)));
             return Mono.just(clientRequest);
         });
@@ -364,99 +365,70 @@ class ConferenceSiteController {
         return "index";
     }
 
-    @GetMapping("/backoffice")
-    public String backoffice(@RequestParam(value = "pending", required = false, defaultValue = "false") boolean pending, Model model) {
-
-        log.info("Get Pending only: " + pending);
-        log.info("Starting backoffice processing");
+    public Mono<ServiceInfo> getEmailServiceInfo(){
         WebClient.ResponseSpec emailInfoResponseSpec = webClient
                 .get()
                 .uri(EMAIL_SERVICE + "/info")
                 .retrieve();
 
-        CompletableFuture<ServiceInfo> emailInfoCF = emailInfoResponseSpec.bodyToMono(ServiceInfo.class).toFuture();
+        return emailInfoResponseSpec.bodyToMono(ServiceInfo.class);
+    }
 
+    public Mono<ServiceInfo> getC4PServiceInfo(){
         WebClient.ResponseSpec c4pResponseSpec = webClient
                 .get()
                 .uri(C4P_SERVICE + "/info")
                 .retrieve();
 
-        CompletableFuture<ServiceInfo> c4pInfoCF = c4pResponseSpec.bodyToMono(ServiceInfo.class).toFuture();
+        return c4pResponseSpec.bodyToMono(ServiceInfo.class);
+    }
 
+    public Mono<List<Proposal>> getProposalsList(boolean pending){
+        WebClient.ResponseSpec c4pPendingResponseSpec = webClient
+                .get()
+                .uri(C4P_SERVICE + "/?pending=" + pending)
+                .retrieve();
 
+        return c4pPendingResponseSpec.bodyToMono(new ParameterizedTypeReference<List<Proposal>>() {});
+    }
 
+    @GetMapping("/backoffice")
+    public Mono<String> backoffice(@RequestParam(value = "pending", required = false, defaultValue = "false") boolean pending, Model model) {
 
-        try {
-            CompletableFuture.allOf(emailInfoCF, c4pInfoCF).get();
-        }catch (Exception e){
-            e.printStackTrace();
-            log.error(">> Allof emailInfo and c4pInfo failed! ");
-        }
+        log.info("Get Pending only: " + pending);
+        log.info("Starting backoffice processing");
 
-        List<Proposal> proposals = new ArrayList<>();
+        Mono<ServiceInfo> emailServiceInfo = getEmailServiceInfo();
 
-        CompletableFuture<List<Proposal>> proposalsListCF = null;
-
-
-        ServiceInfo c4pInfo = null;
-        try {
-            c4pInfo = c4pInfoCF.get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-            log.error(">>> C4pInfo get failed InterruptedException");
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-            log.error(">>> C4pInfo get failed ExecutionException");
-        }
-
-        if (c4pInfo != null && !c4pInfo.getVersion().equals("N/A")) {
-
-            WebClient.ResponseSpec c4pPendingResponseSpec = webClient
-                    .get()
-                    .uri(C4P_SERVICE + "/?pending=" + pending)
-                    .retrieve();
-
-            proposalsListCF = c4pPendingResponseSpec.bodyToMono(new ParameterizedTypeReference<List<Proposal>>() {}).toFuture();
-
-        } else {
-            proposals.add(new Proposal("Error",
-                    "There is no Cache that can save you here.",
-                    "Call your System Administrator",
-                    false, Proposal.ProposalStatus.ERROR));
-        }
-
-        ServiceInfo emailInfo = null;
-        try {
-            emailInfo = emailInfoCF.get();
-        } catch (InterruptedException e) {
-
-            e.printStackTrace();
-            log.error(">> emailInfo get failed InterruptedException!");
-        } catch (ExecutionException e) {
-
-            e.printStackTrace();
-            log.error(">> emailInfo get failed ExecutionException!");
-        }
+        Mono<ServiceInfo> c4pServiceInfo = getC4PServiceInfo();
 
         model.addAttribute("version", "v" + version);
         model.addAttribute("podId", podId);
         model.addAttribute("podNamepsace", podNamespace);
         model.addAttribute("podNodeName", podNodeName);
-        model.addAttribute("email", emailInfo);
-        model.addAttribute("c4p", c4pInfo);
         model.addAttribute("pending", (pending) ? "checked" : "");
 
-        try {
-            proposals = proposalsListCF.get();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        return Mono.zip(emailServiceInfo, c4pServiceInfo, (emailSI, c4pSI) -> {
 
-        model.addAttribute("proposals", proposals);
+            model.addAttribute("email", emailSI);
+            model.addAttribute("c4p", c4pSI);
 
-        log.info("Returning backoffice processing");
+            if (c4pSI != null && !c4pSI.getVersion().equals("N/A")) {
 
-        return "backoffice";
+                Mono<List<Proposal>> proposalsList = getProposalsList(pending);
+                proposalsList.subscribe(pl -> model.addAttribute("proposals", pl));
+            } else {
+
+                List<Proposal> proposals = new ArrayList<>();
+                proposals.add(new Proposal("Error",
+                        "There is no Cache that can save you here.",
+                        "Call your System Administrator",
+                        false, Proposal.ProposalStatus.ERROR));
+                model.addAttribute("proposals", proposals);
+            }
+            return "backoffice";
+        });
+
     }
 
 

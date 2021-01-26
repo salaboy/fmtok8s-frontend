@@ -82,3 +82,7 @@ logging:
       springframework:
         cloud:
           gateway: INFO
+    com:
+      salaboy:
+        conferences:
+          site: DEBUG
