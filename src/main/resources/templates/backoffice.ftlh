@@ -227,8 +227,6 @@
     }
 
     function callback(response){
-        console.log(response);
-        var response = JSON.parse(response);
         if(response.version === "N/A"){
             document.getElementById("modalBody").className = "modal__content__body__hidden";
             document.getElementById("modalActions").className = "modal__content__action__hidden";
