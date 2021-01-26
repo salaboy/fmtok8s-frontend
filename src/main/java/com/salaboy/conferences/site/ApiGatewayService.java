@@ -260,112 +260,78 @@ class ConferenceSiteController {
     @Autowired
     private WebClient webClient;
 
-
-    @GetMapping("/")
-    public String index(Model model) {
-        log.info("STarting INdex processing");
+    public Mono<ServiceInfo> getAgendaServiceInfo() {
         WebClient.ResponseSpec agendaInfoResponseSpec = webClient
                 .get()
                 .uri(AGENDA_SERVICE + "/info")
                 .retrieve();
 
-        CompletableFuture<ServiceInfo> agendaInfoCompletableFuture = agendaInfoResponseSpec.bodyToMono(ServiceInfo.class)
+        return agendaInfoResponseSpec.bodyToMono(ServiceInfo.class);
+    }
 
-                .toFuture();
-
-
-        WebClient.ResponseSpec c4pInforesponseSpec = webClient
+    public Mono<List<AgendaItem>> getMondayAgendaItems() {
+        WebClient.ResponseSpec agendaItemsMondayResponseSpec = webClient
                 .get()
-                .uri(C4P_SERVICE + "/info")
+                .uri(AGENDA_SERVICE + "/day/Monday")
                 .retrieve();
 
-        CompletableFuture<ServiceInfo> c4pInfoCompletableFuture = c4pInforesponseSpec.bodyToMono(ServiceInfo.class)
-//
-                .toFuture();
+        return agendaItemsMondayResponseSpec.bodyToMono(new ParameterizedTypeReference<List<AgendaItem>>() {
+        });
+    }
 
-        try {
-            CompletableFuture.allOf(agendaInfoCompletableFuture, c4pInfoCompletableFuture).get();
-        }catch(Exception e){
-            e.printStackTrace();
-            log.error(">>>All Of Agenda and C4p Future Get failed");
-        }
+    public Mono<List<AgendaItem>> getTuesdayAgendaItems() {
+        WebClient.ResponseSpec agendaItemsMondayResponseSpec = webClient
+                .get()
+                .uri(AGENDA_SERVICE + "/day/Tuesday")
+                .retrieve();
 
+        return agendaItemsMondayResponseSpec.bodyToMono(new ParameterizedTypeReference<List<AgendaItem>>() {
+        });
+    }
 
-        ServiceInfo agendaInfo = null;
-        try {
-            agendaInfo = agendaInfoCompletableFuture.get();
-        }catch(Exception e){
-            e.printStackTrace();
-            log.error(">>>Agenda Future Get failed");
-        }
+    @GetMapping("/")
+    public Mono<String> index(Model model) {
+        log.info("STarting INdex processing");
 
 
-        CompletableFuture<List<AgendaItem>> agendaItemsMondayCompletableFuture = null;
-        CompletableFuture<List<AgendaItem>> agendaItemsTuesdayCompletableFuture = null;
-
-        if (agendaInfo != null && !agendaInfo.getVersion().equals("N/A")) {
-
-            WebClient.ResponseSpec agendaItemsMondayResponseSpec = webClient
-                    .get()
-                    .uri(AGENDA_SERVICE + "/day/Monday")
-                    .retrieve();
-
-            agendaItemsMondayCompletableFuture = agendaItemsMondayResponseSpec.bodyToMono(new ParameterizedTypeReference<List<AgendaItem>>() {}).toFuture();
-
-            WebClient.ResponseSpec agendaItemsTuesdayResponseSpec = webClient
-                    .get()
-                    .uri(AGENDA_SERVICE + "/day/Tuesday")
-                    .retrieve();
-
-            agendaItemsTuesdayCompletableFuture = agendaItemsTuesdayResponseSpec.bodyToMono(new ParameterizedTypeReference<List<AgendaItem>>() {}).toFuture();
-
-        }
-
-        try {
-            CompletableFuture.allOf(agendaItemsMondayCompletableFuture, agendaItemsTuesdayCompletableFuture);
-        } catch (Exception e){
-            e.printStackTrace();
-            log.error(">>>Monday and Tuesday agenda Items allOf failed!");
-        }
-
-        try {
-            model.addAttribute("agendaItemsMonday", agendaItemsMondayCompletableFuture.get());
-        } catch (Exception e) {
-            List<AgendaItem> cacheMonday = new ArrayList<>();
-            cacheMonday.add(new AgendaItem("1", "Cached Author", "Bring Monday Agenda Item from Cache", "Monday", "1pm"));
-            model.addAttribute("agendaItemsMonday", cacheMonday);
-        }
-
-
-        try {
-            model.addAttribute("agendaItemsTuesday", agendaItemsTuesdayCompletableFuture.get());
-        } catch (Exception e) {
-            List<AgendaItem> cacheTuesday = new ArrayList<>();
-            cacheTuesday.add(new AgendaItem("1", "Cached Author", "Bring Tuesday Agenda Item from Cache", "Tuesday", "1pm"));
-            model.addAttribute("agendaItemsTuesday", cacheTuesday);
-        }
-
-
-        ServiceInfo c4pInfo = null;
-        try {
-            c4pInfo = c4pInfoCompletableFuture.get();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-
+        Mono<ServiceInfo> agendaServiceInfo = getAgendaServiceInfo();
+        Mono<ServiceInfo> c4PServiceInfo = getC4PServiceInfo();
         model.addAttribute("version", "v" + version);
         model.addAttribute("podId", podId);
         model.addAttribute("podNamepsace", podNamespace);
         model.addAttribute("podNodeName", podNodeName);
-        model.addAttribute("agenda", agendaInfo);
-        model.addAttribute("c4p", c4pInfo);
 
-        log.info("Returning INdex processing");
-        return "index";
+        return Mono.zip(agendaServiceInfo, c4PServiceInfo, (agendaSI, c4pSI) -> {
+
+            model.addAttribute("agenda", agendaSI);
+            model.addAttribute("c4p", c4pSI);
+            if (agendaSI != null && !agendaSI.getVersion().equals("N/A")) {
+                Mono<List<AgendaItem>> mondayAgendaItems = getMondayAgendaItems();
+                Mono<List<AgendaItem>> tuesdayAgendaItems = getTuesdayAgendaItems();
+
+                mondayAgendaItems.doOnError(t -> {
+                    model.addAttribute("agendaItemsMonday", Collections.singletonList(new AgendaItem("1", "Cached Author", "Bring Monday Agenda Item from Cache", "Monday", "1pm")));
+                });
+
+                tuesdayAgendaItems.doOnError(t -> {
+                    model.addAttribute("agendaItemsTuesday", Collections.singletonList(new AgendaItem("1", "Cached Author", "Bring Tuesday Agenda Item from Cache", "Tuesday", "1pm")));
+                });
+
+
+                Mono.zip(mondayAgendaItems, tuesdayAgendaItems, (m, t) -> {
+                    model.addAttribute("agendaItemsMonday", m);
+                    model.addAttribute("agendaItemsTuesday", t);
+                    return null;
+                });
+            }
+
+            return "index";
+        });
+
+
     }
 
-    public Mono<ServiceInfo> getEmailServiceInfo(){
+    public Mono<ServiceInfo> getEmailServiceInfo() {
         WebClient.ResponseSpec emailInfoResponseSpec = webClient
                 .get()
                 .uri(EMAIL_SERVICE + "/info")
@@ -374,7 +340,7 @@ class ConferenceSiteController {
         return emailInfoResponseSpec.bodyToMono(ServiceInfo.class);
     }
 
-    public Mono<ServiceInfo> getC4PServiceInfo(){
+    public Mono<ServiceInfo> getC4PServiceInfo() {
         WebClient.ResponseSpec c4pResponseSpec = webClient
                 .get()
                 .uri(C4P_SERVICE + "/info")
@@ -383,13 +349,14 @@ class ConferenceSiteController {
         return c4pResponseSpec.bodyToMono(ServiceInfo.class);
     }
 
-    public Mono<List<Proposal>> getProposalsList(boolean pending){
+    public Mono<List<Proposal>> getProposalsList(boolean pending) {
         WebClient.ResponseSpec c4pPendingResponseSpec = webClient
                 .get()
                 .uri(C4P_SERVICE + "/?pending=" + pending)
                 .retrieve();
 
-        return c4pPendingResponseSpec.bodyToMono(new ParameterizedTypeReference<List<Proposal>>() {});
+        return c4pPendingResponseSpec.bodyToMono(new ParameterizedTypeReference<List<Proposal>>() {
+        });
     }
 
     @GetMapping("/backoffice")
