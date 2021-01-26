@@ -269,12 +269,7 @@ class ConferenceSiteController {
                 .retrieve();
 
         CompletableFuture<ServiceInfo> agendaInfoCompletableFuture = agendaInfoResponseSpec.bodyToMono(ServiceInfo.class)
-                .doOnSubscribe( t -> log.info(">> On index agendaInfoResponseSpec Subscribe: "  + t))
-                .doOnError(t -> {
-                    t.printStackTrace();
-                    log.error(">> Error contacting Agenda Service (" + AGENDA_SERVICE + ") Info Endpoint");
-                })
-                .doOnSuccess(o -> log.info(">> agendaInfo from Agenda Service (" + AGENDA_SERVICE + ") OK!"))
+
                 .toFuture();
 
 
@@ -284,23 +279,28 @@ class ConferenceSiteController {
                 .retrieve();
 
         CompletableFuture<ServiceInfo> c4pInfoCompletableFuture = c4pInforesponseSpec.bodyToMono(ServiceInfo.class)
-                .doOnSubscribe( t -> log.info(">> On index c4pInforesponseSpec Subscribe: "  + t))
-                .doOnError(t -> {
-                    t.printStackTrace();
-                    log.error(">> Error contacting C4P Service (" + C4P_SERVICE + ") Info Endpoint");
-                })
-                .doOnSuccess(o -> log.info(">> c4pInfo from C4p Service (" + C4P_SERVICE + ") OK!"))
+//
                 .toFuture();
+
+        try {
+            CompletableFuture.allOf(agendaInfoCompletableFuture, c4pInfoCompletableFuture).get();
+        }catch(Exception e){
+            e.printStackTrace();
+            log.error(">>>All Of Agenda and C4p Future Get failed");
+        }
 
 
         ServiceInfo agendaInfo = null;
-        CompletableFuture<List<AgendaItem>> agendaItemsMondayCompletableFuture = null;
-        CompletableFuture<List<AgendaItem>> agendaItemsTuesdayCompletableFuture = null;
         try {
             agendaInfo = agendaInfoCompletableFuture.get();
-        } catch (Exception e) {
+        }catch(Exception e){
             e.printStackTrace();
+            log.error(">>>Agenda Future Get failed");
         }
+
+
+        CompletableFuture<List<AgendaItem>> agendaItemsMondayCompletableFuture = null;
+        CompletableFuture<List<AgendaItem>> agendaItemsTuesdayCompletableFuture = null;
 
         if (agendaInfo != null && !agendaInfo.getVersion().equals("N/A")) {
 
@@ -309,29 +309,22 @@ class ConferenceSiteController {
                     .uri(AGENDA_SERVICE + "/day/Monday")
                     .retrieve();
 
-            agendaItemsMondayCompletableFuture = agendaItemsMondayResponseSpec.bodyToMono(new ParameterizedTypeReference<List<AgendaItem>>() {})
-                    .doOnSubscribe( t -> log.info(">> On index agendaItemsMondayResponseSpec Subscribe: "  + t))
-                    .doOnError(t -> {
-                        t.printStackTrace();
-                        log.error(">> Error contacting Agenda Service (" + AGENDA_SERVICE + ") Monday");
-                    })
-                    .doOnSuccess(o -> log.info(">> agenda items Monday from Agenda Service (" + AGENDA_SERVICE + ") OK!"))
-                    .toFuture();
+            agendaItemsMondayCompletableFuture = agendaItemsMondayResponseSpec.bodyToMono(new ParameterizedTypeReference<List<AgendaItem>>() {}).toFuture();
 
             WebClient.ResponseSpec agendaItemsTuesdayResponseSpec = webClient
                     .get()
                     .uri(AGENDA_SERVICE + "/day/Tuesday")
                     .retrieve();
 
-            agendaItemsTuesdayCompletableFuture = agendaItemsTuesdayResponseSpec.bodyToMono(new ParameterizedTypeReference<List<AgendaItem>>() {})
-                    .doOnSubscribe( t -> log.info(">> On index agendaItemsTuesdayResponseSpec Subscribe: "  + t))
-                    .doOnError(t -> {
-                        t.printStackTrace();
-                        log.error(">> Error contacting Agenda Service (" + AGENDA_SERVICE + ") Tuesday Endpoint");
-                    })
-                    .doOnSuccess(o -> log.info(">> agenda items Tuesday from Agenda Service (" + AGENDA_SERVICE + ") OK!"))
-                    .toFuture();
+            agendaItemsTuesdayCompletableFuture = agendaItemsTuesdayResponseSpec.bodyToMono(new ParameterizedTypeReference<List<AgendaItem>>() {}).toFuture();
 
+        }
+
+        try {
+            CompletableFuture.allOf(agendaItemsMondayCompletableFuture, agendaItemsTuesdayCompletableFuture);
+        } catch (Exception e){
+            e.printStackTrace();
+            log.error(">>>Monday and Tuesday agenda Items allOf failed!");
         }
 
         try {
@@ -372,7 +365,7 @@ class ConferenceSiteController {
     }
 
     @GetMapping("/backoffice")
-    public String backoffice(@RequestParam(value = "pending", required = false, defaultValue = "false") boolean pending, Model model) throws ExecutionException, InterruptedException {
+    public String backoffice(@RequestParam(value = "pending", required = false, defaultValue = "false") boolean pending, Model model) {
 
         log.info("Get Pending only: " + pending);
         log.info("Starting backoffice processing");
@@ -381,44 +374,40 @@ class ConferenceSiteController {
                 .uri(EMAIL_SERVICE + "/info")
                 .retrieve();
 
-        CompletableFuture<ServiceInfo> emailInfoCF = emailInfoResponseSpec.bodyToMono(ServiceInfo.class)
-                .doOnSubscribe( t -> log.info(">> On backoffice emailInfoResponseSpec Subscribe: "  + t))
-                .doOnError(t -> {
-                    t.printStackTrace();
-                    log.error(">> Error contacting Email Service (" + EMAIL_SERVICE + ") Info Endpoint");
-                })
-                .doOnSuccess(o -> log.info(">> emailInfo  from Email Service (" + EMAIL_SERVICE + ") OK!"))
-                .toFuture();
+        CompletableFuture<ServiceInfo> emailInfoCF = emailInfoResponseSpec.bodyToMono(ServiceInfo.class).toFuture();
 
         WebClient.ResponseSpec c4pResponseSpec = webClient
                 .get()
                 .uri(C4P_SERVICE + "/info")
                 .retrieve();
 
-        CompletableFuture<ServiceInfo> c4pInfoCF = c4pResponseSpec.bodyToMono(ServiceInfo.class)
-                .doOnSubscribe( t -> log.info(">> On backoffice c4pResponseSpec Subscribe: "  + t))
-                .doOnError(t -> {
-                    t.printStackTrace();
-                    log.error(">> Error contacting Email Service (" + C4P_SERVICE + ") Info Endpoint");
-                })
-                .doOnSuccess(o -> log.info(">> c4pInfo  from C4p Service (" + C4P_SERVICE + ") OK!"))
-                .toFuture();
+        CompletableFuture<ServiceInfo> c4pInfoCF = c4pResponseSpec.bodyToMono(ServiceInfo.class).toFuture();
 
 
-        List<Proposal> proposals = null;
+
+
+        try {
+            CompletableFuture.allOf(emailInfoCF, c4pInfoCF).get();
+        }catch (Exception e){
+            e.printStackTrace();
+            log.error(">> Allof emailInfo and c4pInfo failed! ");
+        }
+
+        List<Proposal> proposals = new ArrayList<>();
 
         CompletableFuture<List<Proposal>> proposalsListCF = null;
 
 
-
-
-
-
-        CompletableFuture.allOf(emailInfoCF, c4pInfoCF ).get();
-
-
-        ServiceInfo emailInfo = emailInfoCF.get();
-        ServiceInfo c4pInfo = c4pInfoCF.join();
+        ServiceInfo c4pInfo = null;
+        try {
+            c4pInfo = c4pInfoCF.get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+            log.error(">>> C4pInfo get failed InterruptedException");
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+            log.error(">>> C4pInfo get failed ExecutionException");
+        }
 
         if (c4pInfo != null && !c4pInfo.getVersion().equals("N/A")) {
 
@@ -427,18 +416,26 @@ class ConferenceSiteController {
                     .uri(C4P_SERVICE + "/?pending=" + pending)
                     .retrieve();
 
-            proposalsListCF = c4pPendingResponseSpec.bodyToMono(new ParameterizedTypeReference<List<Proposal>>() {})
-                    .doOnSubscribe( t -> log.info(">> On backoffice c4pPendingResponseSpec Subscribe: "  + t))
-                    .doOnError(t -> {
-                        t.printStackTrace();
-                        log.error(">> Error contacting C4p Service (" + C4P_SERVICE + ") Info Endpoint");
-                    })
-                    .doOnSuccess(o -> log.info(">> c4p proposals  from C4p Service (" + C4P_SERVICE + ") OK!"))
-                    .toFuture();
+            proposalsListCF = c4pPendingResponseSpec.bodyToMono(new ParameterizedTypeReference<List<Proposal>>() {}).toFuture();
 
         } else {
-            proposals = new ArrayList<>();
-            proposals.add(new Proposal("Error", "There is no Cache that can save you here.", "Call your System Administrator", false, Proposal.ProposalStatus.ERROR));
+            proposals.add(new Proposal("Error",
+                    "There is no Cache that can save you here.",
+                    "Call your System Administrator",
+                    false, Proposal.ProposalStatus.ERROR));
+        }
+
+        ServiceInfo emailInfo = null;
+        try {
+            emailInfo = emailInfoCF.get();
+        } catch (InterruptedException e) {
+
+            e.printStackTrace();
+            log.error(">> emailInfo get failed InterruptedException!");
+        } catch (ExecutionException e) {
+
+            e.printStackTrace();
+            log.error(">> emailInfo get failed ExecutionException!");
         }
 
         model.addAttribute("version", "v" + version);
