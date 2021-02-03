@@ -85,4 +85,4 @@ logging:
     com:
       salaboy:
         conferences:
-          site: DEBUG
+          site: INFO

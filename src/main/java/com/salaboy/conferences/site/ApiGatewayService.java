@@ -34,10 +34,14 @@ import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import reactor.function.TupleUtils;
 import reactor.netty.http.client.HttpClient;
 import io.netty.resolver.dns.*;
+import reactor.util.function.Tuple3;
+import reactor.util.function.Tuples;
 
 import java.net.URI;
+import java.net.UnknownHostException;
 import java.security.Security;
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
@@ -52,9 +56,9 @@ public class ApiGatewayService {
 
     public static void main(String[] args) {
         SpringApplication.run(ApiGatewayService.class, args);
-        java.security.Security.setProperty("networkaddress.cache.ttl", "0");
-        System.out.println(Security.getProperty("networkaddress.cache.ttl"));
-        System.out.println(System.getProperty("networkaddress.cache.ttl"));
+//        java.security.Security.setProperty("networkaddress.cache.ttl", "0");
+//        System.out.println(Security.getProperty("networkaddress.cache.ttl"));
+//        System.out.println(System.getProperty("networkaddress.cache.ttl"));
 
     }
 
@@ -64,7 +68,6 @@ public class ApiGatewayService {
                 .filters(
                         (List<ExchangeFilterFunction> x) -> new ArrayList<ExchangeFilterFunction>() {{
                             add(new TracingExchangeFilterFunction(tracer, Collections.singletonList(new WebClientSpanDecorator.StandardTags())));
-                            add(logRequest());
                         }})
                 .build();
 
@@ -313,16 +316,33 @@ class ConferenceSiteController {
         model.addAttribute("podNamepsace", podNamespace);
         model.addAttribute("podNodeName", podNodeName);
 
-        return Mono.zip(agendaServiceInfo, c4PServiceInfo, mondayAgendaItems, tuesdayAgendaItems).map(t -> {
+        return Mono.zipDelayError(agendaServiceInfo, c4PServiceInfo, mondayAgendaItems, tuesdayAgendaItems)
+                .onErrorResume(
+                        (t) -> {
+                            t.printStackTrace();
+                            log.info("Agenda Service Not available hence returning from cache.");
+                            List<AgendaItem> agendaItemsMonday = Collections.singletonList(new AgendaItem("1", "Cached Author", "Bring Monday Agenda Item from Cache", "Monday", "1pm"));
+                            List<AgendaItem> agendaItemsTuesday = Collections.singletonList(new AgendaItem("2", "Cached Author", "Bring Tuesday Agenda Item from Cache", "Tuesday", "1pm"));
+                            model.addAttribute("agendaItemsMonday", agendaItemsMonday);
+                            model.addAttribute("agendaItemsTuesday", agendaItemsTuesday);
+                            return Mono.just(
+                                    Tuples.of(
+                                            new ServiceInfo("Agenda Service", "N/A", "N/A"),
+                                            new ServiceInfo("C4P Service", "N/A", "N/A"),
+                                            agendaItemsMonday,
+                                            agendaItemsTuesday));
+                        }
+                )
+                .map(t -> {
 
-            model.addAttribute("agenda", t.getT1());
-            model.addAttribute("c4p", t.getT2());
-            model.addAttribute("agendaItemsMonday", t.getT3());
-            model.addAttribute("agendaItemsTuesday", t.getT4());
+                    model.addAttribute("agenda", t.getT1());
+                    model.addAttribute("c4p", t.getT2());
+                    model.addAttribute("agendaItemsMonday", t.getT3());
+                    model.addAttribute("agendaItemsTuesday", t.getT4());
 
 
-            return "index";
-        });
+                    return "index";
+                });
 
 
     }
@@ -382,12 +402,31 @@ class ConferenceSiteController {
         model.addAttribute("podNodeName", podNodeName);
         model.addAttribute("pending", (pending) ? "checked" : "");
 
-        return Mono.zip(emailServiceInfo, c4pServiceInfo, proposalsList).map(tuple -> {
-            model.addAttribute("email", tuple.getT1());
-            model.addAttribute("c4p", tuple.getT2());
-            model.addAttribute("proposals", tuple.getT3());
-            return "backoffice";
-        });
+        return Mono.zipDelayError(emailServiceInfo, c4pServiceInfo, proposalsList)
+                .onErrorResume(
+                        (t) -> {
+                            t.printStackTrace();
+                            log.info("C4P Service Not available hence returning from cache.");
+                            List<Proposal> proposals = new ArrayList<>();
+                            proposals.add(new Proposal("Error",
+                                    "There is no Cache that can save you here.",
+                                    "Call your System Administrator",
+                                    false, Proposal.ProposalStatus.ERROR));
+                            model.addAttribute("proposals", proposals);
+
+                            return Mono.just(
+                                    Tuples.of(
+                                            new ServiceInfo("Email Service", "N/A", "N/A"),
+                                            new ServiceInfo("C4P Service", "N/A", "N/A"),
+                                            proposals));
+                        }
+                )
+                .map(tuple -> {
+                    model.addAttribute("email", tuple.getT1());
+                    model.addAttribute("c4p", tuple.getT2());
+                    model.addAttribute("proposals", tuple.getT3());
+                    return "backoffice";
+                });
 
     }
 

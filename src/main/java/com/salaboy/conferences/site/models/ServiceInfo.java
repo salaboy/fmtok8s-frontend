@@ -15,6 +15,9 @@ public class ServiceInfo {
         this.name = name;
         this.version = version;
         this.source = source;
+        this.podId = "N/A";
+        this.podNamepsace = "N/A";
+        this.podNodeName = "N/A";
 
     }
 
