@@ -4,6 +4,10 @@ import com.salaboy.conferences.site.models.AgendaItem;
 import com.salaboy.conferences.site.models.Proposal;
 import com.salaboy.conferences.site.models.ServiceInfo;
 import io.netty.channel.epoll.EpollDatagramChannel;
+import io.netty.resolver.dns.DefaultDnsCache;
+import io.netty.resolver.dns.DnsAddressResolverGroup;
+import io.netty.resolver.dns.DnsCache;
+import io.netty.resolver.dns.DnsNameResolverBuilder;
 import io.opentracing.Tracer;
 import io.opentracing.contrib.spring.web.client.TracingExchangeFilterFunction;
 import io.opentracing.contrib.spring.web.client.WebClientSpanDecorator;
@@ -23,7 +27,8 @@ import org.springframework.cloud.gateway.route.Route;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.*;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,20 +37,13 @@ import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.ExchangeFilterFunction;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.server.ServerWebExchange;
-import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-import reactor.function.TupleUtils;
 import reactor.netty.http.client.HttpClient;
-import io.netty.resolver.dns.*;
-import reactor.util.function.Tuple3;
 import reactor.util.function.Tuples;
 
+import javax.annotation.PostConstruct;
 import java.net.URI;
-import java.net.UnknownHostException;
-import java.security.Security;
 import java.util.*;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
 import java.util.regex.Pattern;
 
 import static org.springframework.cloud.gateway.support.ServerWebExchangeUtils.*;
@@ -54,6 +52,9 @@ import static org.springframework.cloud.gateway.support.ServerWebExchangeUtils.*
 @Slf4j
 public class ApiGatewayService {
 
+
+
+
     public static void main(String[] args) {
         SpringApplication.run(ApiGatewayService.class, args);
 //        java.security.Security.setProperty("networkaddress.cache.ttl", "0");
@@ -61,6 +62,8 @@ public class ApiGatewayService {
 //        System.out.println(System.getProperty("networkaddress.cache.ttl"));
 
     }
+
+
 
     @Bean
     public WebClient getWebClient(Tracer tracer) {
@@ -140,6 +143,12 @@ class ConferenceSiteUtilController {
                 podId,
                 podNamespace,
                 podNodeName);
+
+    }
+
+    @GetMapping
+    public void init(){
+
 
     }
 
