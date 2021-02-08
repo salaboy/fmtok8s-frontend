@@ -1,0 +1,88 @@
+{{- if .Capabilities.APIVersions.Has "jenkins.io/v1/Release" }}
+apiVersion: jenkins.io/v1
+kind: Release
+metadata:
+  creationTimestamp: "2021-02-08T19:49:34Z"
+  deletionTimestamp: null
+  name: '{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}'
+spec:
+  commits:
+  - author:
+      email: jenkins-x@googlegroups.com
+      name: jenkins-x-bot
+    branch: master
+    committer:
+      email: jenkins-x@googlegroups.com
+      name: jenkins-x-bot
+    message: |
+      chore: release 0.0.158
+    sha: 60e58171bc81026328f574766622a190d94d7431
+  - author:
+      email: jenkins-x@googlegroups.com
+      name: jenkins-x-bot
+    branch: master
+    committer:
+      email: jenkins-x@googlegroups.com
+      name: jenkins-x-bot
+    message: |
+      chore: add variables
+    sha: f0ec0d8a8444a254c6cdfafc443a0a76706119e1
+  - author:
+      email: salaboy@gmail.com
+      name: salaboy
+    branch: master
+    committer:
+      email: salaboy@gmail.com
+      name: salaboy
+    message: |
+      touching
+    sha: 29155d36ac24b0395c01fd1b5ad31240c396bac5
+  - author:
+      email: salaboy@gmail.com
+      name: salaboy
+    branch: master
+    committer:
+      email: salaboy@gmail.com
+      name: salaboy
+    message: |
+      touching
+    sha: 0181ab67e908cef416fc3cf98044697674213a84
+  - author:
+      email: salaboy@gmail.com
+      name: salaboy
+    branch: master
+    committer:
+      email: salaboy@gmail.com
+      name: salaboy
+    message: |
+      touch
+    sha: 6e874a42007470518898bad01fac2a1300818468
+  - author:
+      email: salaboy@gmail.com
+      name: salaboy
+    branch: master
+    committer:
+      email: salaboy@gmail.com
+      name: salaboy
+    message: |
+      touch
+    sha: 01babf7b88a62eac087155e8ae4246cee94ac2b1
+  - author:
+      email: salaboy@gmail.com
+      name: salaboy
+    branch: master
+    committer:
+      email: salaboy@gmail.com
+      name: salaboy
+    message: |
+      update jenkins-x (https://github.com/jenkins-x/jx3-pipeline-catalog) from master (0f4869deab149e13d1fbb948f70e8e68513ecd96) to master (86515c6268f55ed5741c7760470dbaa6e42eed20)
+    sha: 362f25fc64d3801743a8757c13129cdfbb5d33e4
+  gitHttpUrl: https://github.com/salaboy/fmtok8s-api-gateway
+  gitOwner: salaboy
+  gitRepository: fmtok8s-api-gateway
+  name: '{{ .Chart.Name }}'
+  releaseNotesURL: https://github.com/salaboy/fmtok8s-api-gateway/releases/tag/v0.0.159
+  version: v0.0.159
+status: {}
+ 
+{{- end }}
