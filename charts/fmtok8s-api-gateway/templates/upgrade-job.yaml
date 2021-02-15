@@ -4,7 +4,7 @@ metadata:
   name: "{{ .Release.Name }}-install"
   labels:
   annotations:
-    "helm.sh/hook": pre-install
+    "helm.sh/hook": post-install
     "helm.sh/hook-weight": "-1"
     "helm.sh/hook-delete-policy": hook-succeeded
 spec:
@@ -16,7 +16,7 @@ spec:
       containers:
         - name: cdf-upgrade-service
           image: gcr.io/camunda-researchanddevelopment/cd-flow:0.0.12
-          command: ["/bin/sh","-c"]
+          command: ["bash","-c"]
           args:
             - echo starting..;
               export CDF_SINK=http://backend.35.204.61.61.xip.io/api/events;
@@ -31,7 +31,7 @@ metadata:
   name: "{{ .Release.Name }}-upgrade"
   labels:
   annotations:
-    "helm.sh/hook": pre-upgrade
+    "helm.sh/hook": post-upgrade
     "helm.sh/hook-weight": "-1"
     "helm.sh/hook-delete-policy": hook-succeeded
 spec:
@@ -43,7 +43,7 @@ spec:
       containers:
         - name: cdf-upgrade-service
           image: gcr.io/camunda-researchanddevelopment/cd-flow:0.0.12
-          command: ["/bin/sh","-c"]
+          command: ["bash","-c"]
           args:
             - echo starting..;
               export CDF_SINK=http://backend.35.204.61.61.xip.io/api/events;
