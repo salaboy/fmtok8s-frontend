@@ -17,7 +17,11 @@ spec:
         - name: cdf-upgrade-service
           image: gcr.io/camunda-researchanddevelopment/cd-flow:0.0.12
           command: ["/bin/sh","-c"]
-          args: ["export CDF_SINK=http://backend.35.204.61.61.xip.io/api/events && cdf service created --env staging --name fmtok8s-api-gateway --version {{ .Release.Version }} || true"]
+          args:
+            - echo starting..;
+              export CDF_SINK=http://backend.35.204.61.61.xip.io/api/events;
+              cdf service created --env staging --name fmtok8s-api-gateway --version {{ .Release.Version }} || true;
+              echo done..;
 
 ---
 
@@ -40,4 +44,8 @@ spec:
         - name: cdf-upgrade-service
           image: gcr.io/camunda-researchanddevelopment/cd-flow:0.0.12
           command: ["/bin/sh","-c"]
-          args: ["export CDF_SINK=http://backend.35.204.61.61.xip.io/api/events && cdf service updated --env staging --name fmtok8s-api-gateway --version {{ .Release.Version }} || true"]
+          args:
+            - echo starting..;
+              export CDF_SINK=http://backend.35.204.61.61.xip.io/api/events;
+              cdf service updated --env staging --name fmtok8s-api-gateway --version {{ .Release.Version }} || true;
+              echo done..;
