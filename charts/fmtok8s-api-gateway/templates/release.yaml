@@ -1,0 +1,48 @@
+{{- if .Capabilities.APIVersions.Has "jenkins.io/v1/Release" }}
+apiVersion: jenkins.io/v1
+kind: Release
+metadata:
+  creationTimestamp: "2021-02-15T15:14:09Z"
+  deletionTimestamp: null
+  name: '{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}'
+spec:
+  commits:
+  - author:
+      email: jenkins-x@googlegroups.com
+      name: jenkins-x-bot
+    branch: master
+    committer:
+      email: jenkins-x@googlegroups.com
+      name: jenkins-x-bot
+    message: |
+      chore: release 0.0.167
+    sha: 0bc502aba606626df71d7cb618386fafd1769238
+  - author:
+      email: jenkins-x@googlegroups.com
+      name: jenkins-x-bot
+    branch: master
+    committer:
+      email: jenkins-x@googlegroups.com
+      name: jenkins-x-bot
+    message: |
+      chore: add variables
+    sha: 4f0d3667f62cc18809398b51fb62ea9105a74ad8
+  - author:
+      email: salaboy@gmail.com
+      name: salaboy
+    branch: master
+    committer:
+      email: salaboy@gmail.com
+      name: salaboy
+    message: |
+      playing with args
+    sha: d6d4c43eae13140ad69453291321d36f3b4a9c5b
+  gitHttpUrl: https://github.com/salaboy/fmtok8s-api-gateway
+  gitOwner: salaboy
+  gitRepository: fmtok8s-api-gateway
+  name: '{{ .Chart.Name }}'
+  releaseNotesURL: https://github.com/salaboy/fmtok8s-api-gateway/releases/tag/v0.0.168
+  version: v0.0.168
+status: {}
+ 
+{{- end }}
