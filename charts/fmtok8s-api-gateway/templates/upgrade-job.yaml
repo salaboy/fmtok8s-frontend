@@ -18,10 +18,10 @@ spec:
           image: gcr.io/camunda-researchanddevelopment/cd-flow:0.0.12
           command: ["bash","-c", "echo", "hello"]
           args:
-            - echo starting..;
+            - echo "CD Flow Starting...";
               export CDF_SINK=http://backend.35.204.61.61.xip.io/api/events;
-              cdf service created --env staging --name fmtok8s-api-gateway --version {{ .Release.Version }} || true;
-              echo done..;
+              cdf service created --env staging --name fmtok8s-api-gateway --version {{ .Chart.Version }} || true;
+              echo "CD Flow Event Sent...";
 
 ---
 
@@ -45,7 +45,7 @@ spec:
           image: gcr.io/camunda-researchanddevelopment/cd-flow:0.0.12
           command: ["bash","-c"]
           args:
-            - echo starting..;
+            - echo "CD Flow Starting...";
               export CDF_SINK=http://backend.35.204.61.61.xip.io/api/events;
-              cdf service updated --env staging --name fmtok8s-api-gateway --version {{ .Release.Version }} || true;
-              echo done..;
+              cdf service updated --env staging --name fmtok8s-api-gateway --version {{ .Chart.Version }} || true;
+              echo "CD Flow Event Sent...";
