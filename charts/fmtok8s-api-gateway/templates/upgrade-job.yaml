@@ -49,3 +49,30 @@ spec:
               export CDF_SINK=http://backend.35.204.61.61.xip.io/api/events;
               cdf service updated --env staging --name fmtok8s-api-gateway --version {{ .Chart.Version }} || true;
               echo "CD Flow Event Sent...";
+
+---
+
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: "{{ .Release.Name }}-delete"
+  labels:
+  annotations:
+    "helm.sh/hook": post-delete
+    "helm.sh/hook-weight": "0"
+    "helm.sh/hook-delete-policy": before-hook-creation
+spec:
+  template:
+    metadata:
+      name: "{{ .Release.Name }}-delete"
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: cdf-upgrade-service
+          image: gcr.io/camunda-researchanddevelopment/cd-flow:0.0.12
+          command: ["bash","-c"]
+          args:
+            - echo "CD Flow Starting...";
+              export CDF_SINK=http://backend.35.204.61.61.xip.io/api/events;
+              cdf service deleted --env staging --name fmtok8s-api-gateway --version {{ .Chart.Version }} || true;
+              echo "CD Flow Event Sent...";
