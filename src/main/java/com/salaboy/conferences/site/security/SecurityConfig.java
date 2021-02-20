@@ -1,6 +1,7 @@
 package com.salaboy.conferences.site.security;
 
 
+import org.springframework.boot.actuate.autoconfigure.security.reactive.EndpointRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
@@ -26,6 +27,9 @@ public class SecurityConfig {
     public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
         return http.csrf().disable()
                 .authorizeExchange()
+                .matchers(EndpointRequest.to("health")).permitAll()
+                .matchers(EndpointRequest.to("info")).permitAll()
+                .matchers(EndpointRequest.to("prometheus")).permitAll()
                 .pathMatchers("/backoffice/**").hasRole("organizer")
                 .anyExchange().permitAll()
                 .and()
