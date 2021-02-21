@@ -26,12 +26,13 @@ public class SecurityConfig {
 
     @Bean
     public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
+
         return http.csrf().disable()
                 .authorizeExchange()
                 .pathMatchers(HttpMethod.GET, "/actuator/health").permitAll()
                 .pathMatchers(HttpMethod.GET, "/actuator/info").permitAll()
                 .pathMatchers(HttpMethod.GET, "/prometheus").permitAll()
-                .pathMatchers("/backoffice**").hasRole("organizer").anyExchange().permitAll()
+                .pathMatchers("/backoffice**").hasRole("organizer").anyExchange().authenticated()
                 .and()
                 .oauth2Login()
                 .and()
@@ -47,6 +48,7 @@ public class SecurityConfig {
         return (userRequest) -> {
             // Delegate to the default implementation for loading a user
             return delegate.loadUser(userRequest).map(user -> {
+                System.out.println("User: " + user.toString());
                 Set<GrantedAuthority> mappedAuthorities = new HashSet<>();
 
                 user.getAuthorities().forEach(authority -> {
@@ -62,7 +64,12 @@ public class SecurityConfig {
     }
 
     public static List<GrantedAuthority> extractAuthorityFromClaims(Map<String, Object> claims) {
-        return mapRolesToGrantedAuthorities(getRolesFromClaims(claims));
+        List<GrantedAuthority> grantedAuthorities = mapRolesToGrantedAuthorities(getRolesFromClaims(claims));
+        for(GrantedAuthority ga : grantedAuthorities){
+            System.out.println("> GrantedAuthority: " + ga.getAuthority());
+        }
+
+        return grantedAuthorities;
     }
 
     @SuppressWarnings("unchecked")
