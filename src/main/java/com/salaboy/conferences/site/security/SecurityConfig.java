@@ -26,13 +26,13 @@ public class SecurityConfig {
 
     @Bean
     public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
-
+        System.out.println("springSecurityFilterChain here!!!!!!!! ");
         return http.csrf().disable()
                 .authorizeExchange()
                 .pathMatchers(HttpMethod.GET, "/actuator/health").permitAll()
                 .pathMatchers(HttpMethod.GET, "/actuator/info").permitAll()
                 .pathMatchers(HttpMethod.GET, "/prometheus").permitAll()
-                .pathMatchers("/backoffice**").hasRole("organizer").anyExchange().authenticated()
+                .pathMatchers("/backoffice**").hasRole("organizer").anyExchange().permitAll()
                 .and()
                 .oauth2Login()
                 .and()
@@ -43,6 +43,7 @@ public class SecurityConfig {
 
     @Bean
     public ReactiveOAuth2UserService<OidcUserRequest, OidcUser> oidcUserService() {
+        System.out.println("oidcUserService here!!!!!!!! ");
         final OidcReactiveOAuth2UserService delegate = new OidcReactiveOAuth2UserService();
 
         return (userRequest) -> {
