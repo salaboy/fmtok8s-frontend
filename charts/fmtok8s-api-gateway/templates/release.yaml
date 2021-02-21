@@ -1,0 +1,66 @@
+{{- if .Capabilities.APIVersions.Has "jenkins.io/v1/Release" }}
+apiVersion: jenkins.io/v1
+kind: Release
+metadata:
+  creationTimestamp: "2021-02-21T16:18:45Z"
+  deletionTimestamp: null
+  name: '{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}'
+spec:
+  commits:
+  - author:
+      email: jenkins-x@googlegroups.com
+      name: jenkins-x-bot
+    branch: master
+    committer:
+      email: jenkins-x@googlegroups.com
+      name: jenkins-x-bot
+    message: |
+      chore: release 0.0.178
+    sha: 87af33e0085f8ecc5f342896e5ba26f0f852666f
+  - author:
+      email: jenkins-x@googlegroups.com
+      name: jenkins-x-bot
+    branch: master
+    committer:
+      email: jenkins-x@googlegroups.com
+      name: jenkins-x-bot
+    message: |
+      chore: add variables
+    sha: 0541187afc0248449f7e0f845134d91735ce9fdf
+  - author:
+      email: Salaboy@gmail.com
+      name: salaboy
+    branch: master
+    committer:
+      email: noreply@github.com
+      name: GitHub
+    message: Update README.md
+    sha: cceae8fd88a19799460c048e17705d273b9bf4d6
+  - author:
+      email: Salaboy@gmail.com
+      name: salaboy
+    branch: master
+    committer:
+      email: noreply@github.com
+      name: GitHub
+    message: Update README.md
+    sha: e2857339557a68519f7e945c6e76b556c1bb809d
+  - author:
+      email: salaboy@gmail.com
+      name: salaboy
+    branch: master
+    committer:
+      email: salaboy@gmail.com
+      name: salaboy
+    message: |
+      adding tracing and security configs
+    sha: 9646aaee8c5e21c61e60b6d9fe20bb1ac308b854
+  gitHttpUrl: https://github.com/salaboy/fmtok8s-api-gateway
+  gitOwner: salaboy
+  gitRepository: fmtok8s-api-gateway
+  name: '{{ .Chart.Name }}'
+  releaseNotesURL: https://github.com/salaboy/fmtok8s-api-gateway/releases/tag/v0.0.179
+  version: v0.0.179
+status: {}
+ 
+{{- end }}
