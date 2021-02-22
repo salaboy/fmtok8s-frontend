@@ -21,6 +21,8 @@ import org.springframework.security.oauth2.core.oidc.user.DefaultOidcUser;
 import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.security.oauth2.core.oidc.user.OidcUserAuthority;
 import org.springframework.security.oauth2.jwt.*;
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
+import org.springframework.security.oauth2.server.resource.authentication.ReactiveJwtAuthenticationConverterAdapter;
 import org.springframework.security.web.server.SecurityWebFilterChain;
 import reactor.core.publisher.Mono;
 
@@ -42,6 +44,7 @@ public class SecurityConfig {
         return http.csrf().disable()
                 .authorizeExchange()
                     .pathMatchers("/").permitAll()
+                    .pathMatchers("/static/**").permitAll()
                     .pathMatchers("/*.*").permitAll()
                     .pathMatchers(HttpMethod.GET, "/actuator/health").permitAll()
                     .pathMatchers(HttpMethod.GET, "/actuator/info").permitAll()
@@ -51,12 +54,22 @@ public class SecurityConfig {
                 .and()
                 .oauth2Login()
                 .and()
+                .oauth2ResourceServer()
+                .jwt()
+                .jwtAuthenticationConverter(grantedAuthoritiesExtractor())
+                .and()
+                .and()
                 .oauth2Client()
                 .and()
                 .build();
     }
 
 
+    Converter<Jwt, Mono<AbstractAuthenticationToken>> grantedAuthoritiesExtractor() {
+        JwtAuthenticationConverter jwtAuthenticationConverter = new JwtAuthenticationConverter();
+        jwtAuthenticationConverter.setJwtGrantedAuthoritiesConverter(new JwtAuthorityExtractor());
+        return new ReactiveJwtAuthenticationConverterAdapter(jwtAuthenticationConverter);
+    }
 
     /**
      * Map authorities from "groups" or "roles" claim in ID Token.
