@@ -65,6 +65,19 @@ public class SecurityConfig {
     }
 
 
+    @Bean
+    ReactiveJwtDecoder jwtDecoder() {
+        NimbusReactiveJwtDecoder jwtDecoder = (NimbusReactiveJwtDecoder)
+                ReactiveJwtDecoders.fromOidcIssuerLocation(issuerUri);
+
+
+        OAuth2TokenValidator<Jwt> withIssuer = JwtValidators.createDefaultWithIssuer(issuerUri);
+
+        jwtDecoder.setJwtValidator(withIssuer);
+
+        return jwtDecoder;
+    }
+
     Converter<Jwt, Mono<AbstractAuthenticationToken>> grantedAuthoritiesExtractor() {
         JwtAuthenticationConverter jwtAuthenticationConverter = new JwtAuthenticationConverter();
         jwtAuthenticationConverter.setJwtGrantedAuthoritiesConverter(new JwtAuthorityExtractor());
