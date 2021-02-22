@@ -4,12 +4,14 @@ package com.salaboy.conferences.site.security;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
+import org.springframework.core.Constants;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.config.annotation.method.configuration.EnableReactiveMethodSecurity;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.client.oidc.userinfo.OidcReactiveOAuth2UserService;
@@ -24,6 +26,9 @@ import org.springframework.security.oauth2.jwt.*;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
 import org.springframework.security.oauth2.server.resource.authentication.ReactiveJwtAuthenticationConverterAdapter;
 import org.springframework.security.web.server.SecurityWebFilterChain;
+import org.springframework.security.web.server.WebFilterExchange;
+import org.springframework.security.web.server.authentication.RedirectServerAuthenticationSuccessHandler;
+import org.springframework.security.web.server.authentication.ServerAuthenticationSuccessHandler;
 import org.springframework.security.web.server.util.matcher.NegatedServerWebExchangeMatcher;
 import org.springframework.security.web.server.util.matcher.OrServerWebExchangeMatcher;
 import reactor.core.publisher.Mono;
@@ -64,6 +69,7 @@ public class SecurityConfig {
                   //  .pathMatchers("/backoffice**").hasAnyAuthority("organizer")
                 .and()
                 .oauth2Login()
+                .authenticationSuccessHandler(this::onAuthenticationSuccess)
                 .and()
                 .oauth2ResourceServer()
                 .jwt()
@@ -78,6 +84,7 @@ public class SecurityConfig {
 
     @Bean
     ReactiveJwtDecoder jwtDecoder() {
+        System.out.println("Jwt decoder called!  ");
         NimbusReactiveJwtDecoder jwtDecoder = (NimbusReactiveJwtDecoder)
                 ReactiveJwtDecoders.fromOidcIssuerLocation(issuerUri);
 
@@ -144,5 +151,16 @@ public class SecurityConfig {
                 .map("ROLE_"::concat)
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());
+    }
+
+    private ServerAuthenticationSuccessHandler redirectServerAuthenticationSuccessHandler = new RedirectServerAuthenticationSuccessHandler();
+
+    private Mono<Void> onAuthenticationSuccess(WebFilterExchange exchange, Authentication authentication) {
+        return redirectServerAuthenticationSuccessHandler.onAuthenticationSuccess(exchange, authentication)
+                .thenReturn(authentication.getPrincipal())
+                .filter(principal -> principal instanceof OidcUser)
+                .map(principal -> ((OidcUser) principal).getPreferredUsername())
+                .filter(login -> !"ROLE_ANONYMOUS".equals(login))
+                .then();
     }
 }

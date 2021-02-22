@@ -17,6 +17,7 @@ public class JwtAuthorityExtractor implements Converter<Jwt, Collection<GrantedA
 
     public JwtAuthorityExtractor() {
         // Bean extracting authority.
+        System.out.println(">>> Created JwtAuthorityExtractor");
     }
 
     @Override
