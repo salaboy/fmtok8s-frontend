@@ -17,10 +17,7 @@ import org.springframework.security.oauth2.core.oidc.user.DefaultOidcUser;
 import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.security.oauth2.core.oidc.user.OidcUserAuthority;
 import org.springframework.security.oauth2.jwt.Jwt;
-import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
-import org.springframework.security.oauth2.server.resource.authentication.ReactiveJwtAuthenticationConverterAdapter;
 import org.springframework.security.web.server.SecurityWebFilterChain;
-import reactor.core.publisher.Mono;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -54,20 +51,9 @@ public class SecurityConfig {
                 .and()
                 .oauth2Login()
                 .and()
-                .oauth2ResourceServer(oauth2 ->
-                        oauth2.jwt(jwt -> jwt.jwtAuthenticationConverter(grantedAuthoritiesExtractor())))
                 .oauth2Client()
                 .and()
                 .build();
-    }
-
-    Converter<Jwt, Mono<AbstractAuthenticationToken>> grantedAuthoritiesExtractor() {
-        JwtAuthenticationConverter jwtAuthenticationConverter =
-                new JwtAuthenticationConverter();
-
-        jwtAuthenticationConverter.setJwtGrantedAuthoritiesConverter(new GrantedAuthoritiesExtractor());
-
-        return new ReactiveJwtAuthenticationConverterAdapter(jwtAuthenticationConverter);
     }
 
     static class GrantedAuthoritiesExtractor implements Converter<Jwt, Collection<GrantedAuthority>> {
@@ -107,9 +93,6 @@ public class SecurityConfig {
         };
     }
 
-
-
-
     public static List<GrantedAuthority> extractAuthorityFromClaims(Map<String, Object> claims) {
         List<GrantedAuthority> grantedAuthorities = mapRolesToGrantedAuthorities(getRolesFromClaims(claims));
         for(GrantedAuthority ga : grantedAuthorities){
@@ -119,7 +102,9 @@ public class SecurityConfig {
         return grantedAuthorities;
     }
 
+    @SuppressWarnings("unchecked")
     private static Collection<String> getRolesFromClaims(Map<String, Object> claims) {
+
         return (Collection<String>) claims.getOrDefault("groups",
                 claims.getOrDefault("roles", new ArrayList<>()));
     }
