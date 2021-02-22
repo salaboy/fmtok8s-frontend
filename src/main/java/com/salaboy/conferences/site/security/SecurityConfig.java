@@ -24,10 +24,14 @@ import org.springframework.security.oauth2.jwt.*;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
 import org.springframework.security.oauth2.server.resource.authentication.ReactiveJwtAuthenticationConverterAdapter;
 import org.springframework.security.web.server.SecurityWebFilterChain;
+import org.springframework.security.web.server.util.matcher.NegatedServerWebExchangeMatcher;
+import org.springframework.security.web.server.util.matcher.OrServerWebExchangeMatcher;
 import reactor.core.publisher.Mono;
 
 import java.util.*;
 import java.util.stream.Collectors;
+
+import static org.springframework.security.web.server.util.matcher.ServerWebExchangeMatchers.pathMatchers;
 
 @Profile("prod")
 @EnableWebFluxSecurity
@@ -41,7 +45,13 @@ public class SecurityConfig {
     @Bean
     public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
         System.out.println("springSecurityFilterChain here!!!!!!!! ");
-        return http.csrf().disable()
+        return http
+                .securityMatcher(new NegatedServerWebExchangeMatcher(new OrServerWebExchangeMatcher(
+                        pathMatchers("/js/**", "/css/**",  "/swagger-ui/index.html"),
+                        pathMatchers(HttpMethod.OPTIONS, "/**")
+                )))
+                .csrf().disable()
+
                 .authorizeExchange()
                     .pathMatchers("/").permitAll()
                     .pathMatchers("/static/**").permitAll()
@@ -49,7 +59,7 @@ public class SecurityConfig {
                     .pathMatchers(HttpMethod.GET, "/actuator/health").permitAll()
                     .pathMatchers(HttpMethod.GET, "/actuator/info").permitAll()
                     .pathMatchers(HttpMethod.GET, "/prometheus").permitAll()
-                    .pathMatchers("/backoffice**").authenticated()
+                    .pathMatchers("/backoffice**").hasAuthority("ROLE_organizer")
                   //  .pathMatchers("/backoffice**").hasAnyRole("organizer")
                   //  .pathMatchers("/backoffice**").hasAnyAuthority("organizer")
                 .and()
