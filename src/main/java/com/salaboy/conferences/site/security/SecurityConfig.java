@@ -1,7 +1,6 @@
 package com.salaboy.conferences.site.security;
 
 
-import org.springframework.boot.actuate.autoconfigure.security.reactive.EndpointRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpMethod;
