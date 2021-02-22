@@ -41,12 +41,13 @@ public class SecurityConfig {
         System.out.println("springSecurityFilterChain here!!!!!!!! ");
         return http.csrf().disable()
                 .authorizeExchange()
-                .pathMatchers(HttpMethod.GET, "/actuator/health").permitAll()
-                .pathMatchers(HttpMethod.GET, "/actuator/info").permitAll()
-                .pathMatchers(HttpMethod.GET, "/prometheus").permitAll()
-                .pathMatchers("/backoffice**").hasAnyRole("organizer")
-                .pathMatchers("/backoffice**").hasAnyAuthority("organizer")
-                .anyExchange().permitAll()
+                    .pathMatchers("/").permitAll()
+                    .pathMatchers("/*.*").permitAll()
+                    .pathMatchers(HttpMethod.GET, "/actuator/health").permitAll()
+                    .pathMatchers(HttpMethod.GET, "/actuator/info").permitAll()
+                    .pathMatchers(HttpMethod.GET, "/prometheus").permitAll()
+                    .pathMatchers("/backoffice**").hasAnyRole("organizer")
+                    .pathMatchers("/backoffice**").hasAnyAuthority("organizer")
                 .and()
                 .oauth2Login()
                 .and()
@@ -69,6 +70,7 @@ public class SecurityConfig {
         return (userRequest) -> {
             // Delegate to the default implementation for loading a user
             return delegate.loadUser(userRequest).map(user -> {
+                System.out.println(">>>>> User: " + user);
                 Set<GrantedAuthority> mappedAuthorities = new HashSet<>();
 
                 user.getAuthorities().forEach(authority -> {
