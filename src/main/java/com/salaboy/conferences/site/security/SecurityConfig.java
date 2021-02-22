@@ -3,75 +3,50 @@ package com.salaboy.conferences.site.security;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Profile;
-import org.springframework.core.Constants;
-import org.springframework.core.convert.converter.Converter;
-import org.springframework.http.HttpMethod;
-import org.springframework.security.authentication.AbstractAuthenticationToken;
-import org.springframework.security.config.annotation.method.configuration.EnableReactiveMethodSecurity;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.client.oidc.userinfo.OidcReactiveOAuth2UserService;
 import org.springframework.security.oauth2.client.oidc.userinfo.OidcUserRequest;
 import org.springframework.security.oauth2.client.userinfo.ReactiveOAuth2UserService;
-import org.springframework.security.oauth2.core.DelegatingOAuth2TokenValidator;
-import org.springframework.security.oauth2.core.OAuth2TokenValidator;
 import org.springframework.security.oauth2.core.oidc.user.DefaultOidcUser;
 import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.security.oauth2.core.oidc.user.OidcUserAuthority;
-import org.springframework.security.oauth2.jwt.*;
-import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
-import org.springframework.security.oauth2.server.resource.authentication.ReactiveJwtAuthenticationConverterAdapter;
 import org.springframework.security.web.server.SecurityWebFilterChain;
-import org.springframework.security.web.server.WebFilterExchange;
-import org.springframework.security.web.server.authentication.RedirectServerAuthenticationSuccessHandler;
-import org.springframework.security.web.server.authentication.ServerAuthenticationSuccessHandler;
-import org.springframework.security.web.server.util.matcher.NegatedServerWebExchangeMatcher;
-import org.springframework.security.web.server.util.matcher.OrServerWebExchangeMatcher;
-import reactor.core.publisher.Mono;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static org.springframework.security.web.server.util.matcher.ServerWebExchangeMatchers.pathMatchers;
-
 @Profile("prod")
 @EnableWebFluxSecurity
-@EnableReactiveMethodSecurity
 public class SecurityConfig {
 
 
     @Value("${spring.security.oauth2.client.provider.oidc.issuer-uri}")
     private String issuerUri;
 
+    @Value("${spring.security.oauth2.client.registration.oidc.client-id}")
+    private String clientId;
+
+    @Value("${spring.security.oauth2.client.registration.oidc.client-secret}")
+    private String clientSecret;
+
     @Bean
     public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
-        System.out.println("springSecurityFilterChain here!!!!!!!! ");
-        return http
-                .csrf().disable()
 
+        System.out.println("Issuer URI: " + issuerUri);
+        System.out.println("Client ID: " + clientId);
+        System.out.println("Client Secret: " + clientSecret);
+        
+
+        return http.csrf().disable()
                 .authorizeExchange()
-                    .pathMatchers("/").permitAll()
-                    .pathMatchers("/js/**").permitAll()
-                    .pathMatchers("/css/**").permitAll()
-                    .pathMatchers("/swagger-ui/index.html").permitAll()
-                    .pathMatchers("/*.*").permitAll()
-                    .pathMatchers(HttpMethod.GET, "/actuator/health").permitAll()
-                    .pathMatchers(HttpMethod.GET, "/actuator/info").permitAll()
-                    .pathMatchers(HttpMethod.GET, "/prometheus").permitAll()
-                    .pathMatchers("/backoffice**").hasAuthority("ROLE_organizer")
+                .pathMatchers("/backoffice/**").hasRole("organizer")
+                .anyExchange().permitAll()
                 .and()
                 .oauth2Login()
-                .authenticationSuccessHandler(this::onAuthenticationSuccess)
-                .and()
-                .oauth2ResourceServer()
-                .jwt()
-                .jwtAuthenticationConverter(grantedAuthoritiesExtractor())
-                .and()
                 .and()
                 .oauth2Client()
                 .and()
@@ -80,38 +55,12 @@ public class SecurityConfig {
 
 
     @Bean
-    ReactiveJwtDecoder jwtDecoder() {
-        System.out.println("Jwt decoder called!  ");
-        NimbusReactiveJwtDecoder jwtDecoder = (NimbusReactiveJwtDecoder)
-                ReactiveJwtDecoders.fromOidcIssuerLocation(issuerUri);
-
-
-        OAuth2TokenValidator<Jwt> withIssuer = JwtValidators.createDefaultWithIssuer(issuerUri);
-
-        jwtDecoder.setJwtValidator(withIssuer);
-
-        return jwtDecoder;
-    }
-
-    Converter<Jwt, Mono<AbstractAuthenticationToken>> grantedAuthoritiesExtractor() {
-        JwtAuthenticationConverter jwtAuthenticationConverter = new JwtAuthenticationConverter();
-        jwtAuthenticationConverter.setJwtGrantedAuthoritiesConverter(new JwtAuthorityExtractor());
-        return new ReactiveJwtAuthenticationConverterAdapter(jwtAuthenticationConverter);
-    }
-
-    /**
-     * Map authorities from "groups" or "roles" claim in ID Token.
-     *
-     * @return a {@link ReactiveOAuth2UserService} that has the groups from the IdP.
-     */
-    @Bean
     public ReactiveOAuth2UserService<OidcUserRequest, OidcUser> oidcUserService() {
         final OidcReactiveOAuth2UserService delegate = new OidcReactiveOAuth2UserService();
 
         return (userRequest) -> {
             // Delegate to the default implementation for loading a user
             return delegate.loadUser(userRequest).map(user -> {
-                System.out.println(">>>>> User: " + user);
                 Set<GrantedAuthority> mappedAuthorities = new HashSet<>();
 
                 user.getAuthorities().forEach(authority -> {
@@ -150,14 +99,5 @@ public class SecurityConfig {
                 .collect(Collectors.toList());
     }
 
-    private ServerAuthenticationSuccessHandler redirectServerAuthenticationSuccessHandler = new RedirectServerAuthenticationSuccessHandler();
 
-    private Mono<Void> onAuthenticationSuccess(WebFilterExchange exchange, Authentication authentication) {
-        return redirectServerAuthenticationSuccessHandler.onAuthenticationSuccess(exchange, authentication)
-                .thenReturn(authentication.getPrincipal())
-                .filter(principal -> principal instanceof OidcUser)
-                .map(principal -> ((OidcUser) principal).getPreferredUsername())
-                .filter(login -> !"ROLE_ANONYMOUS".equals(login))
-                .then();
-    }
 }
