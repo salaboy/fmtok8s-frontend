@@ -3,6 +3,7 @@ package com.salaboy.conferences.site.security;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Profile;
 import org.springframework.core.Constants;
 import org.springframework.core.convert.converter.Converter;
@@ -51,22 +52,18 @@ public class SecurityConfig {
     public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
         System.out.println("springSecurityFilterChain here!!!!!!!! ");
         return http
-                .securityMatcher(new NegatedServerWebExchangeMatcher(new OrServerWebExchangeMatcher(
-                        pathMatchers("/js/**", "/css/**",  "/swagger-ui/index.html"),
-                        pathMatchers(HttpMethod.OPTIONS, "/**")
-                )))
                 .csrf().disable()
 
                 .authorizeExchange()
                     .pathMatchers("/").permitAll()
-                    .pathMatchers("/static/**").permitAll()
+                    .pathMatchers("/js/**").permitAll()
+                    .pathMatchers("/css/**").permitAll()
+                    .pathMatchers("/swagger-ui/index.html").permitAll()
                     .pathMatchers("/*.*").permitAll()
                     .pathMatchers(HttpMethod.GET, "/actuator/health").permitAll()
                     .pathMatchers(HttpMethod.GET, "/actuator/info").permitAll()
                     .pathMatchers(HttpMethod.GET, "/prometheus").permitAll()
                     .pathMatchers("/backoffice**").hasAuthority("ROLE_organizer")
-                  //  .pathMatchers("/backoffice**").hasAnyRole("organizer")
-                  //  .pathMatchers("/backoffice**").hasAnyAuthority("organizer")
                 .and()
                 .oauth2Login()
                 .authenticationSuccessHandler(this::onAuthenticationSuccess)
