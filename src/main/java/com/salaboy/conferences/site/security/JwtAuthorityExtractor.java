@@ -21,6 +21,8 @@ public class JwtAuthorityExtractor implements Converter<Jwt, Collection<GrantedA
 
     @Override
     public Collection<GrantedAuthority> convert(Jwt jwt) {
+        System.out.println("Decoding: " + jwt);
+        System.out.println("Claims: " + jwt.getClaims());
         return extractAuthorityFromClaims(jwt.getClaims());
     }
 
@@ -34,8 +36,13 @@ public class JwtAuthorityExtractor implements Converter<Jwt, Collection<GrantedA
     }
 
     private static Collection<String> getRolesFromClaims(Map<String, Object> claims) {
-        return (Collection<String>) claims.getOrDefault("groups",
+        Collection<String> orDefault = (Collection<String>) claims.getOrDefault("groups",
                 claims.getOrDefault("roles", new ArrayList<>()));
+        System.out.println("Roles or groups empty? " + orDefault.isEmpty());
+        for(String s: orDefault){
+            System.out.println("role or group: " + s);
+        }
+        return orDefault;
     }
 
     private static List<GrantedAuthority> mapRolesToGrantedAuthorities(Collection<String> roles) {
