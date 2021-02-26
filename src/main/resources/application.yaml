@@ -48,7 +48,13 @@ spring:
           - Path=/speakers/**
         filters:
           - RewritePath=/speakers/(?<id>.*), /$\{id}
-
+  security:
+    oauth2:
+      client:
+        registration:
+          oidc-provider:
+            scope:
+              - openid
 
 management:
 

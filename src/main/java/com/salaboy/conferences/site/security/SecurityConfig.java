@@ -36,12 +36,16 @@ public class SecurityConfig {
     @Value("${spring.security.oauth2.client.registration.oidc.client-secret}")
     private String clientSecret;
 
+    @Value("${spring.security.oauth2.client.registration['oidc-provider'].scope[0]}")
+    private String scope;
+
     @Bean
     public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
 
         System.out.println("Issuer URI: " + issuerUri);
         System.out.println("Client ID: " + clientId);
         System.out.println("Client Secret: " + clientSecret);
+        System.out.println("Scope: " + scope);
 
 
         return http.csrf().disable()
