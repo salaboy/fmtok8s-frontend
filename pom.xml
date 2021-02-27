@@ -113,7 +113,7 @@
         <profile>
             <id>prod</id>
             <properties>
-                <spring.profiles.active>prod</spring.profiles.active>
+                <spring.profiles.active>sso,tracing</spring.profiles.active>
             </properties>
         </profile>
 

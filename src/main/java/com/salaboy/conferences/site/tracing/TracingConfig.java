@@ -3,8 +3,9 @@ package com.salaboy.conferences.site.tracing;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 
-@ConditionalOnProperty(value = "opentracing.jaeger.enabled", havingValue = "false", matchIfMissing = false)
+@Profile("tracing")
 @Configuration
 public class TracingConfig {
 

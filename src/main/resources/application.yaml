@@ -52,7 +52,7 @@ spring:
 #    oauth2:
 #      client:
 #        registration:
-#          oidc-provider:
+#          oidc:
 #            scope:
 #              - openid
 
