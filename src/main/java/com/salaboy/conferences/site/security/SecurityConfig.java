@@ -60,22 +60,6 @@ public class SecurityConfig {
                 .build();
     }
 
-    static class GrantedAuthoritiesExtractor implements Converter<Jwt, Collection<GrantedAuthority>> {
-
-        @Override
-        public Collection<GrantedAuthority> convert(Jwt jwt) {
-
-            @SuppressWarnings("unchecked")
-            var roles = (List<String>) jwt.getClaims().getOrDefault("groups", Collections.emptyList());
-
-            return roles.stream()
-                    .map(SimpleGrantedAuthority::new)
-                    .collect(Collectors.toList());
-        }
-    }
-
-
-
     @Bean
     public ReactiveOAuth2UserService<OidcUserRequest, OidcUser> oidcUserService() {
         final OidcReactiveOAuth2UserService delegate = new OidcReactiveOAuth2UserService();
