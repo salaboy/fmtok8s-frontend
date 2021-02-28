@@ -1,0 +1,78 @@
+{{- if .Capabilities.APIVersions.Has "jenkins.io/v1/Release" }}
+apiVersion: jenkins.io/v1
+kind: Release
+metadata:
+  creationTimestamp: "2021-02-28T21:17:35Z"
+  deletionTimestamp: null
+  name: '{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}'
+spec:
+  commits:
+  - author:
+      email: jenkins-x@googlegroups.com
+      name: jenkins-x-bot
+    branch: master
+    committer:
+      email: jenkins-x@googlegroups.com
+      name: jenkins-x-bot
+    message: |
+      chore: release 0.0.198
+    sha: 5259e226d5b57c87cd9ed7c32aa97de6fc1fbe51
+  - author:
+      email: jenkins-x@googlegroups.com
+      name: jenkins-x-bot
+    branch: master
+    committer:
+      email: jenkins-x@googlegroups.com
+      name: jenkins-x-bot
+    message: |
+      chore: add variables
+    sha: 44db16c0eac6fce5472f8327c1b24552b8c7aead
+  - author:
+      email: salaboy@gmail.com
+      name: salaboy
+    branch: master
+    committer:
+      email: salaboy@gmail.com
+      name: salaboy
+    message: |
+      updating profiles
+    sha: 40baac79ce303332ce597b5392d39bff415b73bd
+  - author:
+      email: matheuscruz.dev@gmail.com
+      name: mcruzdev
+    branch: master
+    committer:
+      email: matheuscruz.dev@gmail.com
+      name: mcruzdev
+    message: |
+      Remove unused code
+    sha: 1cb8339b4e56cff26d6b3ee5b53a968b938e70a9
+  - author:
+      email: salaboy@gmail.com
+      name: salaboy
+    branch: master
+    committer:
+      email: salaboy@gmail.com
+      name: salaboy
+    message: |
+      remove props
+    sha: fb9d80e090b0cb9b1e93f1d2b09680c30ec3be6d
+  - author:
+      email: salaboy@gmail.com
+      name: salaboy
+    branch: master
+    committer:
+      email: salaboy@gmail.com
+      name: salaboy
+    message: |
+      baking config into app yaml
+    sha: c1abed2c278094dfdfaec0122e6a8db67f814dd3
+  gitHttpUrl: https://github.com/salaboy/fmtok8s-api-gateway
+  gitOwner: salaboy
+  gitRepository: fmtok8s-api-gateway
+  name: '{{ .Chart.Name }}'
+  releaseNotesURL: https://github.com/salaboy/fmtok8s-api-gateway/releases/tag/v0.0.199
+  version: v0.0.199
+status: {}
+ 
+{{- end }}
