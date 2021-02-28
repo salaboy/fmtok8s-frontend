@@ -1,5 +1,6 @@
-package com.salaboy.conferences.site;
+package com.salaboy.conferences.site.tracing;
 
+import com.salaboy.conferences.site.TextMapAdapter;
 import io.opentracing.Tracer;
 import io.opentracing.contrib.spring.tracer.configuration.TracerAutoConfiguration;
 import io.opentracing.propagation.Format;
@@ -12,8 +13,10 @@ import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 
+@Profile("tracing")
 @Configuration
 @ConditionalOnWebApplication
 @ConditionalOnBean(Tracer.class)
