@@ -3,113 +3,34 @@ package com.salaboy.conferences.site;
 import com.salaboy.conferences.site.models.AgendaItem;
 import com.salaboy.conferences.site.models.Proposal;
 import com.salaboy.conferences.site.models.ServiceInfo;
-import io.netty.channel.epoll.EpollDatagramChannel;
-import io.netty.resolver.dns.DefaultDnsCache;
-import io.netty.resolver.dns.DnsAddressResolverGroup;
-import io.netty.resolver.dns.DnsCache;
-import io.netty.resolver.dns.DnsNameResolverBuilder;
-import io.opentracing.Tracer;
-import io.opentracing.contrib.spring.web.client.TracingExchangeFilterFunction;
-import io.opentracing.contrib.spring.web.client.WebClientSpanDecorator;
-import io.opentracing.contrib.spring.web.webfilter.TracingWebFilter;
-import io.opentracing.contrib.spring.web.webfilter.WebFluxSpanDecorator;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.gateway.config.HttpClientCustomizer;
-import org.springframework.cloud.gateway.filter.GatewayFilterChain;
-import org.springframework.cloud.gateway.filter.GlobalFilter;
-import org.springframework.cloud.gateway.route.Route;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.reactive.function.BodyInserters;
-import org.springframework.web.reactive.function.client.ExchangeFilterFunction;
 import org.springframework.web.reactive.function.client.WebClient;
-import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
-import reactor.netty.http.client.HttpClient;
 import reactor.util.function.Tuples;
 
-import javax.annotation.PostConstruct;
-import java.net.URI;
-import java.util.*;
-import java.util.regex.Pattern;
-
-import static org.springframework.cloud.gateway.support.ServerWebExchangeUtils.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 @SpringBootApplication
 @Slf4j
 public class ApiGatewayService {
 
-
-
-
     public static void main(String[] args) {
         SpringApplication.run(ApiGatewayService.class, args);
-//        java.security.Security.setProperty("networkaddress.cache.ttl", "0");
-//        System.out.println(Security.getProperty("networkaddress.cache.ttl"));
-//        System.out.println(System.getProperty("networkaddress.cache.ttl"));
-
     }
 
-
-
-    @Bean
-    public WebClient getWebClient(Tracer tracer) {
-        return WebClient.builder()
-                .filters(
-                        (List<ExchangeFilterFunction> x) -> new ArrayList<ExchangeFilterFunction>() {{
-                            add(new TracingExchangeFilterFunction(tracer, Collections.singletonList(new WebClientSpanDecorator.StandardTags())));
-                        }})
-                .build();
-
-    }
-
-
-    @Configuration
-    class TracingConfiguration {
-        @Bean
-        public TracingWebFilter tracingWebFilter(Tracer tracer) {
-            return new TracingWebFilter(
-                    tracer,
-                    Integer.MIN_VALUE,               // Order
-                    Pattern.compile(""),             // Skip pattern
-                    Collections.emptyList(),         // URL patterns, empty list means all
-                    Arrays.asList(new WebFluxSpanDecorator.StandardTags(), new WebFluxSpanDecorator.WebFluxTags())
-            );
-        }
-    }
-
-    @Component
-    class RemoveDnsCacheCustomizer implements HttpClientCustomizer {
-        @Override
-        public HttpClient customize(HttpClient httpClient) {
-            DnsNameResolverBuilder dnsResolverBuilder = new DnsNameResolverBuilder()
-                    .channelFactory(EpollDatagramChannel::new)
-                    .resolveCache(new DefaultDnsCache(0, 0, 0));
-            httpClient.tcpConfiguration(tcpClient -> tcpClient.resolver(new DnsAddressResolverGroup(dnsResolverBuilder)));
-            return httpClient;
-        }
-    }
-
-    public static ExchangeFilterFunction logRequest() {
-        return ExchangeFilterFunction.ofRequestProcessor(clientRequest -> {
-            log.debug("Request: " + clientRequest.method() + " - " + clientRequest.url());
-            clientRequest.headers().forEach((name, values) -> values.forEach(value -> log.info(name + "=" + value)));
-            return Mono.just(clientRequest);
-        });
-    }
 
 }
 
@@ -130,9 +51,11 @@ class ConferenceSiteUtilController {
     @Value("${POD_NAMESPACE:}")
     private String podNamespace;
 
-
     @Value("${C4P_SERVICE:http://fmtok8s-c4p}")
     private String C4P_SERVICE;
+
+    @Autowired
+    private WebClient webClient;
 
     @GetMapping("/info")
     public ServiceInfo info() {
@@ -146,11 +69,6 @@ class ConferenceSiteUtilController {
 
     }
 
-    @GetMapping
-    public void init(){
-
-
-    }
 
     @GetMapping("agendaNotAvailable")
     public ServiceInfo agendaGetNotAvailable() {
@@ -188,8 +106,7 @@ class ConferenceSiteUtilController {
         return new ServiceInfo("Email Service", "N/A", "N/A");
     }
 
-    @Autowired
-    private WebClient webClient;
+
 
     @PostMapping("/test")
     public void test() {
@@ -303,8 +220,6 @@ class ConferenceSiteController {
 
     @GetMapping("/")
     public Mono<String> index(Model model) {
-        log.info("STarting INdex processing");
-
 
         Mono<ServiceInfo> agendaServiceInfo = getAgendaServiceInfo();
         Mono<ServiceInfo> c4PServiceInfo = getC4PServiceInfo();
@@ -387,8 +302,6 @@ class ConferenceSiteController {
     @GetMapping("/backoffice")
     public Mono<String> backoffice(@RequestParam(value = "pending", required = false, defaultValue = "false") boolean pending, Model model) {
 
-        log.info("Get Pending only: " + pending);
-        log.info("Starting backoffice processing");
 
         Mono<ServiceInfo> emailServiceInfo = getEmailServiceInfo();
 
@@ -440,19 +353,19 @@ class ConferenceSiteController {
     }
 
 
-    class LoggingFilter implements GlobalFilter {
-        Log log = LogFactory.getLog(getClass());
-
-        @Override
-        public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
-            Set<URI> uris = exchange.getAttributeOrDefault(GATEWAY_ORIGINAL_REQUEST_URL_ATTR, Collections.emptySet());
-            String originalUri = (uris.isEmpty()) ? "Unknown" : uris.iterator().next().toString();
-            Route route = exchange.getAttribute(GATEWAY_ROUTE_ATTR);
-            URI routeUri = exchange.getAttribute(GATEWAY_REQUEST_URL_ATTR);
-            log.info("Incoming request " + originalUri + " is routed to id: " + route.getId()
-                    + ", uri:" + routeUri);
-            return chain.filter(exchange);
-        }
-    }
+//    class LoggingFilter implements GlobalFilter {
+//        Log log = LogFactory.getLog(getClass());
+//
+//        @Override
+//        public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
+//            Set<URI> uris = exchange.getAttributeOrDefault(GATEWAY_ORIGINAL_REQUEST_URL_ATTR, Collections.emptySet());
+//            String originalUri = (uris.isEmpty()) ? "Unknown" : uris.iterator().next().toString();
+//            Route route = exchange.getAttribute(GATEWAY_ROUTE_ATTR);
+//            URI routeUri = exchange.getAttribute(GATEWAY_REQUEST_URL_ATTR);
+//            log.info("Incoming request " + originalUri + " is routed to id: " + route.getId()
+//                    + ", uri:" + routeUri);
+//            return chain.filter(exchange);
+//        }
+//    }
 
 }

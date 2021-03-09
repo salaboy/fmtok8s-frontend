@@ -1,7 +1,6 @@
 package com.salaboy.conferences.site.security;
 
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
@@ -23,12 +22,10 @@ import java.util.stream.Collectors;
 @EnableWebFluxSecurity
 public class SecurityConfig {
 
-
-
     @Bean
     public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
 
-
+        System.out.println("SSO: This is being loaded....");
         return http.csrf().disable()
                 .authorizeExchange()
                 .pathMatchers("/backoffice/**").hasAuthority("organizer")

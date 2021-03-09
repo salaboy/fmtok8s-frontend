@@ -24,6 +24,7 @@ import org.springframework.http.server.reactive.ServerHttpRequest;
 @ConditionalOnClass(GatewayFilter.class)
 @ConditionalOnProperty(name = "opentracing.spring.cloud.gateway.enabled", havingValue = "true", matchIfMissing = true)
 public class GatewayAutoConfiguration {
+
     @Bean
     public GlobalFilter traceIdTransfer(Tracer tracer) {
         return (exchange, chain) -> {

@@ -16,11 +16,14 @@ import org.springframework.test.annotation.DirtiesContext;
 import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.test.context.ActiveProfiles;
+
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 @AutoConfigureMockMvc
 @AutoConfigureJsonTesters
 //@AutoConfigureStubRunner(stubsMode = StubRunnerProperties.StubsMode.REMOTE, repositoryRoot = "http://nexus/repository/maven-group/", ids = "com.salaboy.conferences:fmtok8s-c4p")
 @DirtiesContext
+@ActiveProfiles("dev")
 public class C4PApisTests {
 
 //    @StubRunnerPort("fmtok8s-c4p")
