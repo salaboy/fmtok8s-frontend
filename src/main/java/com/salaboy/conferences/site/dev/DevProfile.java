@@ -28,7 +28,6 @@ public class DevProfile {
 
     @Bean
     public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
-        System.out.println("SSO DEV: This is being loaded....");
         return http.csrf().disable()
                 .authorizeExchange()
                 .anyExchange().permitAll()

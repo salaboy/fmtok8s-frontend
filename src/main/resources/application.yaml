@@ -1,4 +1,6 @@
 spring:
+  profiles:
+    active:
   application:
     name:
       fmtok8s-api-gateway-service
