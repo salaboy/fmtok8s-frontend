@@ -1,0 +1,48 @@
+{{- if .Capabilities.APIVersions.Has "jenkins.io/v1/Release" }}
+apiVersion: jenkins.io/v1
+kind: Release
+metadata:
+  creationTimestamp: "2021-03-11T11:19:51Z"
+  deletionTimestamp: null
+  name: '{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}'
+spec:
+  commits:
+  - author:
+      email: jenkins-x@googlegroups.com
+      name: jenkins-x-bot
+    branch: master
+    committer:
+      email: jenkins-x@googlegroups.com
+      name: jenkins-x-bot
+    message: |
+      chore: release 0.0.204
+    sha: caa960b65049bc675a6671cc10f89355b5a10c4f
+  - author:
+      email: jenkins-x@googlegroups.com
+      name: jenkins-x-bot
+    branch: master
+    committer:
+      email: jenkins-x@googlegroups.com
+      name: jenkins-x-bot
+    message: |
+      chore: add variables
+    sha: 3cf71480d1c6430d192e6cda2b4de30a999cf6ff
+  - author:
+      email: salaboy@gmail.com
+      name: salaboy
+    branch: master
+    committer:
+      email: salaboy@gmail.com
+      name: salaboy
+    message: |
+      adding metrics service to gateway for counting requests
+    sha: 465d95576f9a630174f3a2512b88103af4f7ecef
+  gitHttpUrl: https://github.com/salaboy/fmtok8s-api-gateway
+  gitOwner: salaboy
+  gitRepository: fmtok8s-api-gateway
+  name: '{{ .Chart.Name }}'
+  releaseNotesURL: https://github.com/salaboy/fmtok8s-api-gateway/releases/tag/v0.0.205
+  version: v0.0.205
+status: {}
+ 
+{{- end }}
