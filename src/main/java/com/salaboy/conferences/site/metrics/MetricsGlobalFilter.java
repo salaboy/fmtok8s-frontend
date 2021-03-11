@@ -20,19 +20,21 @@ import java.util.concurrent.ConcurrentHashMap;
 import static org.springframework.cloud.gateway.support.ServerWebExchangeUtils.*;
 
 @Component
-public class MetricsService  implements GlobalFilter {
+public class MetricsGlobalFilter implements GlobalFilter {
     private Log log = LogFactory.getLog(getClass());
 
     private final MeterRegistry meterRegistry;
     private Map<String, Counter> routesCounters = new ConcurrentHashMap<>();
 
-    public MetricsService(MeterRegistry meterRegistry) {
-        System.out.println("Metrics Service loaded... ");
+    public MetricsGlobalFilter(MeterRegistry meterRegistry) {
         this.meterRegistry = meterRegistry;
 
 
     }
 
+    public MeterRegistry getMeterRegistry() {
+        return meterRegistry;
+    }
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
@@ -40,7 +42,7 @@ public class MetricsService  implements GlobalFilter {
         String originalUri = (uris.isEmpty()) ? "Unknown" : uris.iterator().next().toString();
         Route route = exchange.getAttribute(GATEWAY_ROUTE_ATTR);
         URI routeUri = exchange.getAttribute(GATEWAY_REQUEST_URL_ATTR);
-        log.debug("Incoming request " + originalUri + " is routed to id: " + route.getId()
+        log.info("Incoming request " + originalUri + " is routed to id: " + route.getId()
                 + ", uri:" + routeUri);
         if(routesCounters.get(routeUri.toString()) == null){
             System.out.println("Creating counter:  " + routeUri.toString() );
