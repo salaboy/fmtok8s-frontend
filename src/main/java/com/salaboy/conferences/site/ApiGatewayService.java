@@ -1,6 +1,6 @@
 package com.salaboy.conferences.site;
 
-import com.salaboy.conferences.site.metrics.MetricsGlobalFilter;
+import com.salaboy.conferences.site.metrics.MetricsGatewayGlobalFilter;
 import com.salaboy.conferences.site.models.AgendaItem;
 import com.salaboy.conferences.site.models.Proposal;
 import com.salaboy.conferences.site.models.ServiceInfo;
@@ -34,10 +34,10 @@ public class ApiGatewayService {
     }
 
     @Autowired
-    private MetricsGlobalFilter globalFilter;
+    private MetricsGatewayGlobalFilter globalFilter;
 
     @Bean
-    public MetricsGlobalFilter getGlobalFilter(){
+    public MetricsGatewayGlobalFilter getGlobalFilter(){
         return globalFilter;
     }
 }

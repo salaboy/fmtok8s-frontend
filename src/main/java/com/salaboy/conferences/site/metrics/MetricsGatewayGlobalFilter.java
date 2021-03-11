@@ -22,13 +22,13 @@ import java.util.concurrent.ConcurrentHashMap;
 import static org.springframework.cloud.gateway.support.ServerWebExchangeUtils.*;
 
 @Component
-public class MetricsGlobalFilter implements GlobalFilter, Ordered {
+public class MetricsGatewayGlobalFilter implements GlobalFilter, Ordered {
     private Log log = LogFactory.getLog(getClass());
 
     private final MeterRegistry meterRegistry;
     private Map<String, Counter> routesCounters = new ConcurrentHashMap<>();
 
-    public MetricsGlobalFilter(MeterRegistry meterRegistry) {
+    public MetricsGatewayGlobalFilter(MeterRegistry meterRegistry) {
         this.meterRegistry = meterRegistry;
 
 
