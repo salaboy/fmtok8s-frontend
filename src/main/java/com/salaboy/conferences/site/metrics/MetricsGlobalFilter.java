@@ -40,26 +40,19 @@ public class MetricsGlobalFilter implements GlobalFilter, Ordered {
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
-        Set<URI> uris = exchange.getAttributeOrDefault(GATEWAY_ORIGINAL_REQUEST_URL_ATTR, Collections.emptySet());
-        for(String key : exchange.getAttributes().keySet()){
-            System.out.println("\t>> Exchange Key: "  + key + " Value: " + exchange.getAttribute(key));
-        }
-
-        String originalUri = (uris.isEmpty()) ? "Unknown" : uris.iterator().next().toString();
         Route route = exchange.getAttribute(GATEWAY_ROUTE_ATTR);
-        URI routeUri = exchange.getAttribute(GATEWAY_REQUEST_URL_ATTR);
-        log.info("Incoming request " + originalUri + " is routed to id: " + route.getId()
-                + ", uri:" + routeUri);
-        if(routeUri != null) {
-            if (routesCounters.get(routeUri.toString()) == null) {
-                System.out.println("Creating counter:  " + routeUri.toString());
-                routesCounters.put(routeUri.toString(), Counter.builder("routes")
-                        .tag("type", routeUri.toString())
+        log.info("Routed to id: " + route.getId()
+                + ", uri:" + route.getUri());
+        if(route != null) {
+            if (routesCounters.get(route.getId()) == null) {
+                System.out.println("Creating counter:  " + route.getId());
+                routesCounters.put(route.getId(), Counter.builder("routes")
+                        .tag("type", route.getId())
                         .description("The number of request to the service")
                         .register(meterRegistry));
             } else {
-                System.out.println("Incrementing counter:  " + routeUri.toString());
-                routesCounters.get(routeUri.toString()).increment();
+                System.out.println("Incrementing counter:  " + route.getId());
+                routesCounters.get(route.getId()).increment();
             }
         }
         return chain.filter(exchange);
