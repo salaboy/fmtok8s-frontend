@@ -46,15 +46,17 @@ public class MetricsGlobalFilter implements GlobalFilter, Ordered {
         URI routeUri = exchange.getAttribute(GATEWAY_REQUEST_URL_ATTR);
         log.info("Incoming request " + originalUri + " is routed to id: " + route.getId()
                 + ", uri:" + routeUri);
-        if(routesCounters.get(routeUri.toString()) == null){
-            System.out.println("Creating counter:  " + routeUri.toString() );
-            routesCounters.put(routeUri.toString(), Counter.builder("routes")
-                    .tag("type", routeUri.toString())
-                    .description("The number of request to the service")
-                    .register(meterRegistry));
-        }else{
-            System.out.println("Incrementing counter:  " + routeUri.toString() );
-            routesCounters.get(routeUri.toString()).increment();
+        if(routeUri != null) {
+            if (routesCounters.get(routeUri.toString()) == null) {
+                System.out.println("Creating counter:  " + routeUri.toString());
+                routesCounters.put(routeUri.toString(), Counter.builder("routes")
+                        .tag("type", routeUri.toString())
+                        .description("The number of request to the service")
+                        .register(meterRegistry));
+            } else {
+                System.out.println("Incrementing counter:  " + routeUri.toString());
+                routesCounters.get(routeUri.toString()).increment();
+            }
         }
         return chain.filter(exchange);
     }
