@@ -24,8 +24,6 @@ public class SecurityConfig {
 
     @Bean
     public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
-
-        System.out.println("SSO: This is being loaded....");
         return http.csrf().disable()
                 .authorizeExchange()
                 .pathMatchers("/backoffice/**").hasAuthority("organizer")
