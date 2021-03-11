@@ -7,6 +7,8 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.cloud.gateway.route.Route;
+import org.springframework.context.annotation.Bean;
+import org.springframework.core.Ordered;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
@@ -20,7 +22,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import static org.springframework.cloud.gateway.support.ServerWebExchangeUtils.*;
 
 @Component
-public class MetricsGlobalFilter implements GlobalFilter {
+public class MetricsGlobalFilter implements GlobalFilter, Ordered {
     private Log log = LogFactory.getLog(getClass());
 
     private final MeterRegistry meterRegistry;
@@ -55,5 +57,10 @@ public class MetricsGlobalFilter implements GlobalFilter {
             routesCounters.get(routeUri.toString()).increment();
         }
         return chain.filter(exchange);
+    }
+
+    @Override
+    public int getOrder() {
+        return 0;
     }
 }

@@ -1,5 +1,6 @@
 package com.salaboy.conferences.site;
 
+import com.salaboy.conferences.site.metrics.MetricsGlobalFilter;
 import com.salaboy.conferences.site.models.AgendaItem;
 import com.salaboy.conferences.site.models.Proposal;
 import com.salaboy.conferences.site.models.ServiceInfo;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -31,6 +33,13 @@ public class ApiGatewayService {
         SpringApplication.run(ApiGatewayService.class, args);
     }
 
+    @Autowired
+    private MetricsGlobalFilter globalFilter;
+
+    @Bean
+    public MetricsGlobalFilter getGlobalFilter(){
+        return globalFilter;
+    }
 }
 
 @RestController()
