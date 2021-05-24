@@ -19,6 +19,8 @@ spec:
         - image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
+          - name: SPRING_PROFILES_ACTIVE
+            value: dev
           - name: VERSION
             value: {{ .Chart.Version }}
 {{- range $pkey, $pval := .Values.env }}
