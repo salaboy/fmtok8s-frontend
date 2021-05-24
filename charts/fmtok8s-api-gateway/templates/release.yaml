@@ -1,0 +1,47 @@
+{{- if .Capabilities.APIVersions.Has "jenkins.io/v1/Release" }}
+apiVersion: jenkins.io/v1
+kind: Release
+metadata:
+  creationTimestamp: "2021-05-24T09:12:43Z"
+  deletionTimestamp: null
+  name: '{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}'
+spec:
+  commits:
+  - author:
+      email: jenkins-x@googlegroups.com
+      name: jenkins-x-bot
+    branch: master
+    committer:
+      email: jenkins-x@googlegroups.com
+      name: jenkins-x-bot
+    message: |
+      chore: release 0.0.211
+    sha: 15d2f057354c356348ba1e46c78c77091e49c55b
+  - author:
+      email: jenkins-x@googlegroups.com
+      name: jenkins-x-bot
+    branch: master
+    committer:
+      email: jenkins-x@googlegroups.com
+      name: jenkins-x-bot
+    message: |
+      chore: add variables
+    sha: 6826222b54e638de8ce27c298b09f5b52b203627
+  - author:
+      email: Salaboy@gmail.com
+      name: salaboy
+    branch: master
+    committer:
+      email: noreply@github.com
+      name: GitHub
+    message: Update ksvc.yaml
+    sha: efe8822368ce1885e3eeab063be74e6f53fa0935
+  gitHttpUrl: https://github.com/salaboy/fmtok8s-api-gateway
+  gitOwner: salaboy
+  gitRepository: fmtok8s-api-gateway
+  name: '{{ .Chart.Name }}'
+  releaseNotesURL: https://github.com/salaboy/fmtok8s-api-gateway/releases/tag/v0.0.212
+  version: v0.0.212
+status: {}
+ 
+{{- end }}
