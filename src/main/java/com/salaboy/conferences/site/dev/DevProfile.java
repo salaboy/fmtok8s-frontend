@@ -11,6 +11,7 @@ import org.springframework.boot.actuate.metrics.web.reactive.client.DefaultWebCl
 import org.springframework.boot.actuate.metrics.web.reactive.client.MetricsWebClientFilterFunction;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -29,6 +30,7 @@ public class DevProfile {
     private MeterRegistry meterRegistry;
 
     @Bean
+    @LoadBalanced
     public WebClient getWebClient() {
         MetricsWebClientFilterFunction webClientMetrics = new MetricsWebClientFilterFunction(meterRegistry,
                 new DefaultWebClientExchangeTagsProvider(),
