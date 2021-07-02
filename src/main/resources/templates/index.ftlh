@@ -27,7 +27,7 @@
 <!-- Add your site or application content here -->
 <div class="block header">
     <div class="header__image">
-        <img src="kcd-spain.jpg" height="50px">
+        <img src="jbcnconf.png" height="50px">
     </div>
     <div class="header__title">
         <h1><span><a href="https://github.com/salaboy/fmtok8s-api-gateway/releases/tag/${version}">API Gateway ${version} - ${podId} - ${podNodeName}</a></span></h1>
