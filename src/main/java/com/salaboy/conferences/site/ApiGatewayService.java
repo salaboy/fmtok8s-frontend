@@ -37,7 +37,7 @@ public class ApiGatewayService {
     private MetricsGatewayGlobalFilter globalFilter;
 
     @Bean
-    public MetricsGatewayGlobalFilter getGlobalFilter(){
+    public MetricsGatewayGlobalFilter getGlobalFilter() {
         return globalFilter;
     }
 }
@@ -115,7 +115,6 @@ class ConferenceSiteUtilController {
     }
 
 
-
     @PostMapping("/test")
     public void test() {
 
@@ -185,6 +184,9 @@ class ConferenceSiteController {
     @Value("${POD_NAMESPACE:}")
     private String podNamespace;
 
+    @Value("${KNATIVE_ENABLED:false}")
+    private String KNATIVE_ENABLED;
+
     @Value("${C4P_SERVICE:http://fmtok8s-c4p}")
     private String C4P_SERVICE;
 
@@ -244,9 +246,12 @@ class ConferenceSiteController {
         });
 
         model.addAttribute("version", "v" + version);
+
         model.addAttribute("podId", podId);
         model.addAttribute("podNamepsace", podNamespace);
         model.addAttribute("podNodeName", podNodeName);
+        model.addAttribute("knativeEnabled", KNATIVE_ENABLED);
+
 
         return Mono.zipDelayError(agendaServiceInfo, c4PServiceInfo, mondayAgendaItems, tuesdayAgendaItems)
                 .onErrorResume(
@@ -311,7 +316,7 @@ class ConferenceSiteController {
     public Mono<String> backoffice(@RequestParam(value = "pending", required = false, defaultValue = "false") boolean pending, Model model) {
 
 
-        Mono<ServiceInfo> emailServiceInfo = getEmailServiceInfo();
+//        Mono<ServiceInfo> emailServiceInfo = getEmailServiceInfo();
 
         Mono<ServiceInfo> c4pServiceInfo = getC4PServiceInfo();
 
@@ -330,9 +335,11 @@ class ConferenceSiteController {
         model.addAttribute("podId", podId);
         model.addAttribute("podNamepsace", podNamespace);
         model.addAttribute("podNodeName", podNodeName);
+        model.addAttribute("knativeEnabled", KNATIVE_ENABLED);
+
         model.addAttribute("pending", (pending) ? "checked" : "");
 
-        return Mono.zipDelayError(emailServiceInfo, c4pServiceInfo, proposalsList)
+        return Mono.zipDelayError(c4pServiceInfo, proposalsList)
                 .onErrorResume(
                         (t) -> {
                             t.printStackTrace();
@@ -346,15 +353,14 @@ class ConferenceSiteController {
 
                             return Mono.just(
                                     Tuples.of(
-                                            new ServiceInfo("Email Service", "N/A", "N/A"),
                                             new ServiceInfo("C4P Service", "N/A", "N/A"),
                                             proposals));
                         }
                 )
                 .map(tuple -> {
-                    model.addAttribute("email", tuple.getT1());
-                    model.addAttribute("c4p", tuple.getT2());
-                    model.addAttribute("proposals", tuple.getT3());
+                    model.addAttribute("email", new ServiceInfo("Email Service Fn", "N/A", "http://github.com/salaboy/fmtok8s-email-rest/"));
+                    model.addAttribute("c4p", tuple.getT1());
+                    model.addAttribute("proposals", tuple.getT2());
                     return "backoffice";
                 });
 

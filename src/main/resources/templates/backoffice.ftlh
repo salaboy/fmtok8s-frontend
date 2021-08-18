@@ -27,13 +27,20 @@
 <!-- Add your site or application content here -->
 <div class="block header">
     <div class="header__image">
-        <img src="jbcnconf.png" height="50px">
+        <img src="jump.png" height="50px">
     </div>
     <div class="header__title">
         <h1><span><a
-                        href="https://github.com/salaboy/fmtok8s-api-gateway/releases/tag/${version}">API Gateway ${version} - ${podId} - ${podNodeName}</a></span>
+                        href="https://github.com/salaboy/fmtok8s-api-gateway/releases/tag/${version}">API Gateway ${version}</a> Service Info: Pod IP: ${podId} - Pod Name: ${podNodeName}</span>
         </h1>
     </div>
+    <#if knativeEnabled == "true">
+        <div class="header__image">
+            <img src="knative-logo-rgb.png" height="50px">
+        </div>
+    <#else>
+
+    </#if>
     <div class="header__options">
         <a href="/">
             Go to Main Site<span><img src="house.svg" alt=""></span>
@@ -46,7 +53,7 @@
         <h2>Received Proposals</h2>
         <h5>
             <#if c4p??>
-            <a href="${c4p.source}">${c4p.name} ${c4p.version} - ${c4p.podId} - ${c4p.podNodeName}</a>
+            <a href="${c4p.source}">${c4p.name} ${c4p.version}</a><span> Service Info: Pod IP: ${c4p.podId} - Pod Name: ${c4p.podNodeName}
             <#else>
                 <a href="https://github.com/salaboy/fmtok8s-c4p/">N/A</a>
             </#if>
@@ -134,7 +141,7 @@
             Send Email
             <h5>
                 <#if email??>
-                    <a href="${email.source}">${email.name} ${email.version} - ${email.podId} - ${email.podNodeName}</a>
+                    <a href="${email.source}">${email.name} ${email.version}</a> Service Info: Pod IP: ${email.podId} - Pod Name: ${email.podNodeName}
                 <#else>
                     <a href="https://github.com/salaboy/fmtok8s-email/">N/A</a>
                 </#if>

@@ -27,11 +27,20 @@
 <!-- Add your site or application content here -->
 <div class="block header">
     <div class="header__image">
-        <img src="jbcnconf.png" height="50px">
+        <img src="jump.png" height="50px">
     </div>
     <div class="header__title">
-        <h1><span><a href="https://github.com/salaboy/fmtok8s-api-gateway/releases/tag/${version}">API Gateway ${version} - ${podId} - ${podNodeName}</a></span></h1>
+        <h1>
+            <span><a href="https://github.com/salaboy/fmtok8s-api-gateway/releases/tag/${version}">API Gateway ${version} </a> Info: Pod IP: ${podId} - Pod Name: ${podNodeName}</span>
+        </h1>
     </div>
+    <#if knativeEnabled == "true">
+        <div class="header__image">
+            <img src="knative-logo-rgb.png" height="50px">
+        </div>
+    <#else>
+
+    </#if>
     <div class="header__options">
         <a href="/backoffice">
             Go to Back Office <span><img src="arrow_white.svg" alt=""></span>
@@ -44,7 +53,7 @@
         <h2>Accepted talks</h2>
         <h5>
             <#if agenda??>
-            <a href="${agenda.source}">${agenda.name} ${agenda.version} - ${agenda.podId} - ${agenda.podNodeName}</a>
+                <a href="${agenda.source}">${agenda.name} ${agenda.version} </a> Service Info: Pod IP: ${agenda.podId} - Pod Name: ${agenda.podNodeName}
             <#else>
                 <a href="https://github.com/salaboy/fmtok8s-agenda/">N/A</a>
             </#if>
@@ -54,10 +63,10 @@
         <div class="agenda__day">
             <div class="agenda__day__info">
                 <div class="agenda__day__info__number">
-                    12
+                    20
                 </div>
                 <div class="agenda__day__info__name">
-                    MON
+                    FRI
                 </div>
             </div>
             <div class="agenda__day__content">
@@ -84,10 +93,10 @@
         <div class="agenda__day">
             <div class="agenda__day__info">
                 <div class="agenda__day__info__number">
-                    13
+                    21
                 </div>
                 <div class="agenda__day__info__name">
-                    TUE
+                    SAT
                 </div>
             </div>
             <div class="agenda__day__content">
@@ -124,7 +133,8 @@
             New Proposal
             <h5>
                 <#if c4p??>
-                <a href="${c4p.source}">${c4p.name} ${c4p.version}</a>
+                    <a href="${c4p.source}">${c4p.name} ${c4p.version}</a>
+                    Service Info: Pod IP: ${c4p.podId} - Pod Name: ${c4p.podNodeName}
                 <#else>
                     <a href="https://github.com/salaboy/fmtok8s-c4p/">N/A</a>
                 </#if>
@@ -222,7 +232,7 @@
             });
             xhr.setRequestHeader('Content-Type', 'application/json');
             console.log(data);
-            xhr.onreadystatechange = function() {
+            xhr.onreadystatechange = function () {
                 if (xhr.readyState === 4) {
                     callback(xhr.response);
                 }
@@ -235,14 +245,15 @@
             document.getElementById("modalErrorMessage").innerHTML = errorMsg.substr(0, errorMsg.length - 1) + ".";
         }
     }
-    function callback(response){
+
+    function callback(response) {
         console.log(response);
         var response = JSON.parse(response);
-        if(response.version === "N/A"){
+        if (response.version === "N/A") {
             document.getElementById("modalBody").className = "modal__content__body__hidden";
             document.getElementById("modalActions").className = "modal__content__action__hidden";
             document.getElementById("modalMessage2").className = "modal__content__message";
-        }else {
+        } else {
             document.getElementById("modalBody").className = "modal__content__body__hidden";
             document.getElementById("modalActions").className = "modal__content__action__hidden";
             document.getElementById("modalMessage").className = "modal__content__message";
