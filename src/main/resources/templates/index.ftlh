@@ -29,18 +29,7 @@
     <div class="header__image">
         <img src="jump.png" height="50px">
     </div>
-    <div class="header__title">
-        <h1>
-            <span><a href="https://github.com/salaboy/fmtok8s-api-gateway/releases/tag/${version}">API Gateway ${version} </a> Info: Pod IP: ${podId} - Pod Name: ${podNodeName}</span>
-        </h1>
-    </div>
-    <#if knativeEnabled == "true">
-        <div class="header__image">
-            <img src="knative-logo-rgb.png" height="50px">
-        </div>
-    <#else>
 
-    </#if>
     <div class="header__options">
         <a href="/backoffice">
             Go to Back Office <span><img src="arrow_white.svg" alt=""></span>
@@ -51,13 +40,7 @@
 <div class="bottom-blocks">
     <div class="main-title">
         <h2>Accepted talks</h2>
-        <h5>
-            <#if agenda??>
-                <a href="${agenda.source}">${agenda.name} ${agenda.version} </a> Service Info: Pod IP: ${agenda.podId} - Pod Name: ${agenda.podNodeName}
-            <#else>
-                <a href="https://github.com/salaboy/fmtok8s-agenda/">N/A</a>
-            </#if>
-        </h5>
+
     </div>
     <div class="agenda">
         <div class="agenda__day">
@@ -131,14 +114,6 @@
     <div id="modalContent" class="modal__content">
         <div class="modal__content__title">
             New Proposal
-            <h5>
-                <#if c4p??>
-                    <a href="${c4p.source}">${c4p.name} ${c4p.version}</a>
-                    Service Info: Pod IP: ${c4p.podId} - Pod Name: ${c4p.podNodeName}
-                <#else>
-                    <a href="https://github.com/salaboy/fmtok8s-c4p/">N/A</a>
-                </#if>
-            </h5>
             <div class="close">
                 <a onclick="toggleModal()">
                     <img src="close.svg" alt="">
