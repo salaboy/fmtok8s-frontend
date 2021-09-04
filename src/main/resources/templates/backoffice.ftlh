@@ -27,7 +27,7 @@
 <!-- Add your site or application content here -->
 <div class="block header">
     <div class="header__image">
-        <img src="jump.png" height="50px">
+        <img src="cloud-native-groups.png" height="50px">
     </div>
     <div class="header__options">
         <a href="/">
