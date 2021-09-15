@@ -15,7 +15,7 @@ function DebugItem({name, podNodeName, podId, podNameSpace, source, version, sta
             </div>
             <div className="DebugItem__pod">
                 <div className="DebugItem__pod__name">
-                    <span>Pod:</span> {podNameSpace}
+                    <span>Namespace:</span> {podNameSpace}
                 </div>
                 <div className="DebugItem__pod__info">
                     <span>Id:</span> {podId}<br/>
