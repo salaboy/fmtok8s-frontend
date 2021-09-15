@@ -1,0 +1,61 @@
+@import 'styles/_foundations.scss';
+.DebugItem {
+  border: 1px solid color(black, light);
+  display: inline-block;
+  padding: spacing(4);
+  margin: spacing(4);
+  border-radius: spacing(2);
+  display: inline-block;
+  position: relative;
+  .DebugItem__header {
+    font-family: font-family(display);
+    a {
+      color: color(white);
+      font-weight: 700;
+      text-decoration: none;
+      transition: transition(fast);
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+  .DebugItem__pod {
+    font-size: font-size(xs);
+    line-height: line-height(xs);
+    color: color(white);
+    opacity: .75;
+    span {
+      font-weight: 700;
+    }
+  }
+  &:before {
+    position: absolute;
+    width: spacing(1);
+    content: '';
+    height: 100%;
+    background-color: color(green);
+    top: 0;
+    left: 0;
+    border-radius: spacing(1);
+  }
+  &.--down {
+    border: 1px solid color(red);
+    &:before {
+      background-color: color(red);
+    }
+    .DebugItem__header {
+      opacity: 1;
+      color: color(red);
+      a {
+        color: color(red);
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+    .DebugItem__pod {
+      opacity: 1;
+      color: color(red);
+    }
+  }
+}

@@ -7,7 +7,7 @@ import About from 'pages/About/About';
 import Speakers from 'pages/Speakers/Speakers';
 import Proposals from 'pages/Proposals/Proposals';
 import FullAgenda from 'pages/FullAgenda/FullAgenda';
-
+import Debug from 'components/Debug/Debug';
 import BackOffice from 'pages/BackOffice/BackOffice';
 import Nav from 'components/Nav/Nav';
 import AppContext from 'contexts/AppContext';
@@ -28,6 +28,9 @@ function App() {
               setCurrentSection: setCurrentSection,
               currentSection : currentSection,
            }}>
+              <div className="debug">
+                  Debug
+              </div>
           <LocomotiveScrollProvider
             options={{
                 smooth: true,
@@ -39,6 +42,7 @@ function App() {
             <div  className =  {  cn({
                 ["App"]: true,
               })}>
+                <Debug />
               <Nav />
               <main data-scroll-container ref={containerRef}>
                 <AnimatePresence exitBeforeEnter>
