@@ -2,7 +2,7 @@
 bin/
 dist/
 lib/
-build/
+**/build/
 # editors
 *.swp
 .idea/

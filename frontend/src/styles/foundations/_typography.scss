@@ -1,17 +1,17 @@
 //FONT SIZE
-$basicFontSize: 22px;
+$basicFontSize: 24px;
 
 //TYPE
 $font-family-map: (
-  base: #{'Inter', sans-serif},
-  display: #{'Space Grotesk', sans-serif},
-  mono: #{'Space Mono', monospace}
+        base: #{'Crimson Pro', serif},
+        display: #{'DM Serif Display', serif},
+        mono: #{'DM Serif Display', serif}
 );
 
 $font-size-map: (
   base: rem(22px),
   s: rem(18px),
-  xs: rem(12px),
+  xs: rem(14px),
   b: rem(36px),
 
 );
