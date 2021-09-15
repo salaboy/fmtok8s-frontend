@@ -1,0 +1,60 @@
+@import '../_foundations.scss';
+//Paragraphs
+
+p {
+  font-size: font-size();
+  line-height: line-height();
+  margin-top: 0;
+  margin-bottom: line-height() / 2;
+  padding-top: 0;
+  padding-bottom: 0;
+  max-width: 600px;
+  position: relative;
+  font-feature-settings: 'ss03';
+  &.p-italic {
+    font-weight: 300;
+    font-style: italic;
+  }
+  //Mobile
+  @media only screen and (max-width: breakpoint(tabletSD)) {
+    font-size: font-size(s);
+    line-height: line-height(s);
+  }
+
+  &.p-s {
+    font-size: font-size(s);
+    line-height: line-height(s);
+    max-width: 600px;
+    //Mobile
+    @media only screen and (max-width: breakpoint(tabletSD)) {
+
+    }
+  }
+
+  &.p-b {
+    font-size: font-size(b);
+    line-height: line-height(b);
+    font-weight: 300;
+    max-width: 90%;
+    font-family: font-family(display);
+    font-feature-settings: 'liga' on;
+
+    //Mobile
+    @media only screen and (max-width: breakpoint(tabletSD)) {
+      font-size: font-size();
+      line-height: line-height();
+    }
+  }
+
+  &.p-fluid {
+    max-width: 100% !important;
+  }
+
+
+}
+//Tablet
+@media only screen and (max-width: breakpoint(tabletHD)) {
+}
+//Mobile
+@media only screen and (max-width: breakpoint(mobileHD)) {
+}

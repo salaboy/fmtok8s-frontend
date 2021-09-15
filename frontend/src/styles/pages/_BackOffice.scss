@@ -1,0 +1,8 @@
+@import '../_foundations.scss';
+.back-office {
+  background-color: color(black);
+  color: color(white);
+  a {
+    color: color(red);
+  }
+}

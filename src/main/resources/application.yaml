@@ -50,6 +50,12 @@ spring:
           - Path=/speakers/**
         filters:
           - RewritePath=/speakers/(?<id>.*), /$\{id}
+      - id: sponsors
+        uri: ${SPONSORS_SERVICE:http://fmtok8s-sponsors}
+        predicates:
+          - Path=/sponsors/**
+        filters:
+          - RewritePath=/sponsors/(?<id>.*), /$\{id}
 #  security:
 #    oauth2:
 #      client:

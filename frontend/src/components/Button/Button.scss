@@ -1,0 +1,114 @@
+@import 'styles/_foundations.scss';
+.Button {
+  display: inline-block;
+  overflow: hidden;
+  border-radius: spacing(2,10);
+  margin-left: - spacing(1);
+   .__container, a{
+     display: inline-block;
+     border: 2px solid color(black);
+     background-color: color(white);
+     padding: 0 spacing(6);
+     height: spacing(2, 10);
+     position: relative;
+     font-size: font-size();
+     line-height: spacing(2, 9.5);
+     border-radius: spacing(2,10);
+     font-family: font-family();
+     color: color(black);
+     cursor: pointer;
+     text-decoration: none;
+     font-weight: 400;
+     transition: transition(slow);
+
+     box-sizing: border-box;
+     -webkit-user-select: none;  /* Chrome all / Safari all */
+     -moz-user-select: none;     /* Firefox all */
+     -ms-user-select: none;      /* IE 10+ */
+     user-select: none;
+
+
+     &:hover {
+       opacity: 1 !important;
+       border: 2px solid color(black);
+       color: color(white, light);
+
+        &:before {
+          width: 100%;
+        }
+
+     }
+     span {
+       position: relative;
+       z-index: 10;
+     }
+     &:before {
+       content: '';
+       position: absolute;
+       top: -2px;
+       left: 0;
+       width: 0%;
+       transition: transition(basic, bounce);
+       height: spacing(2, 10);
+       background-color: color(black);
+       border-radius: spacing(2,9);
+       box-sizing: border-box;
+     }
+   }
+
+   &.--inline {
+     display: inline-block;
+     margin-right: spacing(2);
+   }
+   &.--main {
+     .__container, a{
+       background-color: color(green);
+     }
+   }
+   &.--disabled {
+     .__container, a{
+       background-color: color(white);
+       pointer-events: none;
+       color: transparentize(color(black), .3);
+     }
+   }
+
+   &.--inverted {
+     .__container, a{
+       background-color: color(black);
+       border: 2px solid color(white);
+       color: color(white);
+       &:before {
+         content: '';
+         background-color: color(white);
+       }
+       &:hover {
+         opacity: 1 !important;
+         color: color(black);
+
+          &:before {
+            width: 100%;
+          }
+
+       }
+     }
+
+   }
+   &.--active {
+      .__container, a{
+       background-color: color(yellow);
+       border: 2px solid color(yellow);
+       color: color(black);
+       pointer-events: none;
+     }
+   }
+
+   &.--small {
+      .__container, a{
+       padding: (spacing(1) - 1) spacing(2);
+       font-size: font-size(s);
+       line-height: line-height(s);
+     }
+   }
+
+}

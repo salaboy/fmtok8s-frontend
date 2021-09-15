@@ -1,0 +1,86 @@
+//FONT SIZE
+$basicFontSize: 22px;
+
+//TYPE
+$font-family-map: (
+  base: #{'Inter', sans-serif},
+  display: #{'Space Grotesk', sans-serif},
+  mono: #{'Space Mono', monospace}
+);
+
+$font-size-map: (
+  base: rem(22px),
+  s: rem(18px),
+  xs: rem(12px),
+  b: rem(36px),
+
+);
+
+$line-height-map: (
+  base: rem(30px),
+  s: rem(24px),
+  xs: rem(20px),
+  b: rem(48px)
+);
+
+$heading-font-size-map: (
+  h1: rem(140px),
+  h2: rem(72px),
+  h3: rem(28px)
+
+);
+
+$heading-line-height-map: (
+  h1: rem(144px),
+  h2: rem(72px),
+  h3: rem(32px)
+
+);
+
+@function font-size($size: base) {
+  $fetched-value: map-get($font-size-map, $size);
+
+  @if $fetched-value != null {
+    @return $fetched-value;
+  } @else {
+    @error 'Font size `#{$size}` not found. Available font sizes: #{available-names($font-size-map)}';
+  }
+}
+@function line-height($size: base) {
+  $fetched-value: map-get($line-height-map, $size);
+
+  @if $fetched-value != null {
+    @return $fetched-value;
+  } @else {
+    @error 'Font size `#{$size}` not found. Available font sizes: #{available-names($font-size-map)}';
+  }
+}
+
+@function font-family($family: base) {
+  $fetched-value: map-get($font-family-map, $family);
+
+  @if $fetched-value != null {
+    @return $fetched-value;
+  } @else {
+    @error 'Font family `#{$family}` not found. Available font families: #{available-names($font-family-map)}';
+  }
+}
+
+@function heading-font-size($heading: h3) {
+  $fetched-value: map-get($heading-font-size-map, $heading);
+
+  @if $fetched-value != null {
+    @return $fetched-value;
+  } @else {
+    @error 'Heading Font size `#{$heading}` not found. Available heading font sizes: #{available-names($heading-font-size-map)}';
+  }
+}
+@function heading-line-height($heading: h3) {
+  $fetched-value: map-get($heading-line-height-map, $heading);
+
+  @if $fetched-value != null {
+    @return $fetched-value;
+  } @else {
+    @error 'Heading line height `#{$heading}` not found. Available heading line heights: #{available-names($heading-line-height-map)}';
+  }
+}

@@ -1,0 +1,25 @@
+$desktopHD: 1600px;
+$desktopSD: 1280px;
+$tabletHD: 1024px;
+$tabletSD: 768px;
+$mobileHD: 560px;
+$mobileSD: 320px;
+
+$breakpoints-map: (
+  desktopHD: $desktopHD,
+  desktopSD: $desktopSD,
+  tabletHD: $tabletHD,
+  tabletSD: $tabletSD,
+  mobileHD: $mobileHD,
+  mobileSD: $mobileSD
+);
+
+@function breakpoint($variant) {
+  $fetched-value: map-get($breakpoints-map, $variant);
+
+  @if type-of($fetched-value) == number {
+    @return $fetched-value;
+  } @else {
+    @error 'breakpoint variant `#{$variant}` not found. Available variants: #{available-names($breakpoints-map)}';
+  }
+}

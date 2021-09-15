@@ -1,0 +1,15 @@
+@import 'styles/_foundations.scss';
+.ProposalForm {
+  h3 {
+    margin-bottom: spacing(4,4); 
+  }
+  padding: spacing(2,10);
+  background-color: color(white,light);
+  border: 2px solid color(black);
+  .form {
+    .form-field {
+      margin-bottom: spacing(4);
+    }
+  }
+
+}

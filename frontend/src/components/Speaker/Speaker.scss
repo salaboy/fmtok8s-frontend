@@ -1,0 +1,97 @@
+@import 'styles/_foundations.scss';
+.Speaker {
+  background-color: color(white, light);
+  border: 2px solid color(black);
+  padding: spacing(6,2);
+  position: relative;
+  .Speaker__image {
+    position: absolute;
+    top: spacing(4,3);right: spacing(4,3);
+    border-radius:  0 spacing(2,7.5) 0 0 ;
+    overflow: hidden;
+    width: spacing(2,20);
+    height: spacing(2,20);
+    .Speaker__avatar{
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      border: 2px solid color(black);
+      display: inline-block;
+      transition: transition(slow, bounce);
+      background-color: color(black);
+      transition-delay: .5s;
+      position: absolute;
+      top: 0;
+      right: 0;
+      z-index: 20;
+
+
+
+      &:before {
+        position: absolute;
+        top: -2px;right: -2px;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        border: 8px solid color(black);
+        display: inline-block;
+        transition: transition(slow, bounce);
+
+        transition-delay: .3s;
+
+        content: '';
+        box-sizing: border-box;
+
+      }
+      &:after {
+        content: '';
+
+        position: absolute;
+        top: -2px;right: -2px;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        border: 4px solid color(black);
+        display: inline-block;
+        transition: transition(slow, bounce);
+
+        transition-delay: .4s;
+        box-sizing: border-box;
+
+      }
+    }
+  }
+  .Speaker__title {
+    padding-bottom: spacing(6, 2);
+    h3 {
+      padding: 0;
+      margin: 0;
+    }
+    h5 {
+      padding: 0;
+      margin: 0;
+      color: color(red);
+    }
+  }
+}
+.Speaker-container {
+  margin: 0 0 spacing(2,10) 0;
+  display: inline-block;
+  width: 100%;
+}
+
+.Speaker-container.--visible .Speaker {
+  .Speaker__image {
+    .Speaker__avatar{
+      width: spacing(2,15);
+      height: spacing(2,15);
+
+      &:before, &:after {
+        width: spacing(2,15);
+        height: spacing(2,15);
+        border-width: 2px;
+
+      }
+    }
+  }
+}

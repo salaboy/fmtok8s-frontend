@@ -1,0 +1,121 @@
+@import '../_foundations.scss';
+//Headings
+h1,
+h2,
+h3,
+h4,
+h5,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5 {
+  font-family: font-family(display);
+  font-weight: 400;
+  margin-top: 0;
+  padding-top: 0;
+  position: relative;
+  font-feature-settings: 'liga' on;
+  &.fluid {
+    max-width: 100% !important;
+  }
+
+}
+
+h1,
+.h1 {
+  font-size: heading-font-size(h1);
+  line-height: heading-line-height(h1);
+  margin: heading-line-height(h1) 0 heading-line-height(h1) / 2;
+  letter-spacing: 0em;
+  font-weight: 400;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  //Mobile
+  @media only screen and (max-width: breakpoint(tabletSD)) {
+    font-size: heading-font-size(h2);
+    line-height: heading-line-height(h2);
+    margin: heading-line-height(h2) 0 heading-line-height(h2) / 2;
+    letter-spacing: -0.01em;
+    max-width: 780px;
+  }
+}
+
+h2,
+.h2 {
+  font-size: heading-font-size(h2);
+  line-height: heading-line-height(h2);
+  margin: heading-line-height(h2) 0 heading-line-height(h2) / 2;
+  letter-spacing:0em;
+  font-weight: 300;
+  max-width: 780px;
+  &:first-child {
+    margin-top: 0;
+  }
+  //Mobile
+  @media only screen and (max-width: breakpoint(tabletSD)) {
+    font-size: heading-font-size(h3);
+    line-height: heading-line-height(h3);
+    margin: heading-line-height(h3) 0 heading-line-height(h3) / 2;
+    max-width: 720px;
+  }
+}
+
+h3,
+.h3.big {
+  font-size: heading-font-size(h3)*1.5;
+  line-height: heading-line-height(h3)*1.4;
+  margin: heading-line-height(h3) 0 heading-line-height(h3) / 2;
+  font-weight: 500;
+  max-width: 720px;
+  &:first-child {
+    margin-top: 0;
+  }
+  & + h1,
+  & + h2,
+  & + .h1,
+  & + .h2 {
+    margin-top: 0;
+  }
+  //Mobile
+  @media only screen and (max-width: breakpoint(tabletSD)) {
+
+  }
+}
+
+h3,
+.h3 {
+  font-size: heading-font-size(h3);
+  line-height: heading-line-height(h3);
+  margin: heading-line-height(h3) 0 heading-line-height(h3) / 2;
+  font-weight: 500;
+  max-width: 720px;
+  &:first-child {
+    margin-top: 0;
+  }
+  & + h1,
+  & + h2,
+  & + .h1,
+  & + .h2 {
+    margin-top: 0;
+  }
+  //Mobile
+  @media only screen and (max-width: breakpoint(tabletSD)) {
+
+  }
+}
+
+
+
+.hanging-punctuation {
+  position: absolute;
+    left: -1.5rem;
+    top: 0;
+}
+.no-wrap {
+  word-break: keep-all;
+  white-space: nowrap;
+}

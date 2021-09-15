@@ -1,0 +1,59 @@
+/// Slightly lighten a color
+@function lightenColor($color, $percentage) {
+  @return mix(#fff, $color, $percentage);
+}
+
+/// Slightly darken a color
+@function darkenColor($color, $percentage) {
+  @return mix(#000, $color, $percentage);
+}
+
+///CALC
+@mixin calc($property, $expression) {
+  #{$property}: calc(#{$expression});
+}
+
+//Value to rem
+@function rem($value) {
+  $unit: unit($value);
+
+  @if $unit == 'rem' {
+    @return $value;
+  } @else if $unit == 'px' {
+    @return $value / $basicFontSize * 1rem;
+  } @else if $unit == 'em' {
+    @return $unit / 1em * 1rem;
+  } @else {
+    @error 'Value must be in px, em, or rem.';
+  }
+}
+
+//MAP KEY AVAILABILITY
+@function available-names($map, $level: 1) {
+  @if type-of($map) != 'map' {
+    @return null;
+  }
+
+  $output: '';
+  $newline: '\A ';
+
+  @if $level == 1 {
+    @each $key, $value in $map {
+      $output: $output +
+        '#{$newline}- #{$key} #{available-names($value, $level + 1)}';
+    }
+  } @else {
+    $output: '(';
+    $i: 1;
+
+    @each $key, $value in $map {
+      $sep: if($i < length($map), ', ', '');
+      $output: $output + '#{$key}#{$sep}#{available-names($value, $level + 1)}';
+      $i: $i + 1;
+    }
+
+    $output: $output + ')';
+  }
+
+  @return $output;
+}

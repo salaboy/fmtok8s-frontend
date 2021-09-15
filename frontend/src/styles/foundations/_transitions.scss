@@ -1,0 +1,29 @@
+$animation-speed-map: (
+  basic: 0.3s,
+  slow: .6s,
+  fast: 0.1s
+);
+
+$animation-easing-map: (
+  basic: ease-in-out,
+  system: linear,
+  enter: ease-in,
+  exit: ease-out,
+  bounce: cubic-bezier(0.495, 0.000, 0.295, 1.410)
+);
+
+@function transition($speed: basic, $easing: basic, $properties: all) {
+  $speed-fetched-value: map-get($animation-speed-map, $speed);
+  $easing-fetched-value: map-get($animation-easing-map, $easing);
+
+  @if type-of($speed-fetched-value) == number {
+    //@return  all 1s ease-in-out;
+    @if type-of($easing-fetched-value) == string {
+      @return $properties $speed-fetched-value $easing-fetched-value;
+    } @else {
+      @error 'Easing variant `#{$easing}` not found. Available variants: #{available-names($animation-easing-map)}';
+    }
+  } @else {
+    @error 'Speed variant `#{$speed}` not found. Available variants: #{available-names($animation-speed-map)}';
+  }
+}

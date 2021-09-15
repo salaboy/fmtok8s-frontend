@@ -1,0 +1,13 @@
+@import '../_foundations.scss';
+.proposals {
+  .proposals__body {
+    display: flex;
+    .proposals__form {
+      min-width: 600px;
+      margin-right: spacing(2,10);
+    }
+    .proposals__info {
+      padding-top: spacing(2, 10);
+    }
+  }
+}

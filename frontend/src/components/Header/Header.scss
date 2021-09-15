@@ -1,0 +1,21 @@
+@import 'styles/_foundations.scss';
+.Header {
+  position: absolute;
+  padding: spacing(2,12) spacing(2,20);
+  z-index: 100;
+  .Header__logo {
+    img {
+      width: spacing(2, 11);
+    }
+  }
+  &.--home {
+    .Header__logo {
+      img {
+        width: spacing(2, 20);
+      }
+    }
+  }
+  & + section {
+    padding-top: spacing(2,30);
+  }
+}

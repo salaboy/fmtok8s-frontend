@@ -1,0 +1,39 @@
+@import 'styles/_foundations.scss';
+.SectionHero {
+  padding-top: spacing(2,30);
+
+
+
+  section {
+
+    .SectionHero__title {
+      display: inline-block;
+      width: 100%;
+      min-height: spacing(2, 20);
+      position: relative;
+      h1 {
+        max-width: 80%;
+        span {
+          font-family: font-family(mono);
+          font-style: italic;
+        }
+      }
+      h2 {
+        max-width: 90%;
+        margin: 0;
+      }
+    }
+
+
+
+
+  }
+  &.--small {
+    section {
+      padding: spacing(2,8) spacing(2,20);
+      .SectionHero__title {
+        min-height: 0;
+      }
+    }
+  }
+}
