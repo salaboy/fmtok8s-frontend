@@ -1,9 +1,8 @@
 import "./Speakers.scss";
 import React, { useEffect, useState, useContext, useRef } from "react";
-import axios from 'axios'
 import Speaker from 'components/Speaker/Speaker'
-import Element from 'components/Element/Element'
 import cn from 'classnames';
+
 
 function Speakers() {
     const speakersMock = [
@@ -11,33 +10,34 @@ function Speakers() {
             "id": "6a621e56-c7af-4443-9ef4-cf70725c2e57",
             "name": "Salaboy",
             "position": "Staff Engineer @VMware.",
-            "image": "imagefile.png",
-            "description": "Curabitur sed tempor velit. Morbi libero dui, porttitor congue egestas eget, lacinia quis ligula. Curabitur dui lorem, suscipit tempor porttitor sed, lobortis ut nulla."
+            "image": "salaboy.png",
+            "description": "@Kubernetesio-addict, @KnativeProject fan."
         },
         {
             "id": "0016b52d-10f0-4dc3-822a-0c2da3d23c6e",
             "name": "AI/ML Engineer",
-            "position": "Engineer @Apple.",
-            "image": "imagefile.png",
-            "description": "Curabitur sed tempor velit. Morbi libero dui, porttitor congue egestas eget, lacinia quis ligula. Curabitur dui lorem, suscipit tempor porttitor sed, lobortis ut nulla.Curabitur sed tempor velit. Morbi libero dui, porttitor congue egestas eget, lacinia quis ligula. Curabitur dui lorem, suscipit tempor porttitor sed, lobortis ut nulla."
+            "position": "Engineer @PlugTree.",
+            "image": "ai.png",
+            "description": "Passionate about AI and ML. Training models on the weekends."
         },
         {
             "id": "6a621e56-c7af-4443-9ef4-cf70725c2e57",
-            "name": "Salaboy",
-            "position": "Staff Engineer @VMware.",
-            "image": "imagefile.png",
-            "description": "Curabitur sed tempor velit. "
+            "name": "Doom Guy",
+            "position": "Player One @IDSoftware.",
+            "image": "doom.png",
+            "description": "I used to kill deamons, now I am a patient person. "
         },
         {
             "id": "0016b52d-10f0-4dc3-822a-0c2da3d23c6e",
-            "name": "AI/ML Engineer",
-            "position": "Engineer @Apple.",
-            "image": "imagefile.png",
-            "description": "Curabitur sed tempor velit. Morbi libero dui, porttitor congue egestas eget, lacinia quis ligula. Curabitur dui lorem, suscipit tempor porttitor sed, titor sed, lobortis ut nulla."
+            "name": "The Trainer",
+            "position": "Kubernetes Trainer @LearnK8s",
+            "image": "learnk8s.png",
+            "description": "Teaching people about Kubernetes since before Kubernetes was a thing."
         }
 
     ]
     const [speakerItems, setSpeakerItems] = useState(speakersMock) // state hook
+
 
     // useEffect(() => {                           // side effect hook
     //
@@ -68,7 +68,7 @@ function Speakers() {
                 name={item.name}
                 position={item.position}
                 description={item.description}
-                authorImage={item.authorImage}
+                authorImage={item.image}
                 key={index}
               />
           ))}

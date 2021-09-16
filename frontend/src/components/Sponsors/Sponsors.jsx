@@ -1,55 +1,73 @@
 import "./Sponsors.scss";
-import React, { useEffect, useState, useContext, useRef } from "react";
+import React, {useEffect, useState, useContext, useRef} from "react";
 import axios from 'axios'
 import Sponsor from 'components/Sponsor/Sponsor'
 import Element from 'components/Element/Element'
 import cn from 'classnames';
 
 function Sponsors() {
-    
-    const [sponsorsItem, setSponsorsItem] = useState([]) // state hook
 
-    useEffect(() => {                           // side effect hook
-    
-        axios({
-          "method": "GET",
-          "url": "/sponsors/", // This is going throw the proxy in package.json
-          "headers": {
-    
-          }, "params": {
-    
-          }
-        })
-        .then((response) => {
-            setSponsorsItem(response.data)
-        })
-        .catch((error) => {
-          console.log(error)
-        })
-    }, [sponsorsItem])
+    const sponsorsMock = [
+        {
+            "Id": "123",
+            "Name": "LearnK8s",
+            "ImagePath": "/images/learnk8s.png",
+
+        },
+        {
+            "Id": "456",
+            "Name": "Knative",
+            "ImagePath": "/images/knative.png",
+
+        },
+        {
+            "Id": "789",
+            "Name": "Kubernetes",
+            "ImagePath": "/images/kubernetes.png",
+
+        }
+    ]
+
+    const [sponsorsItem, setSponsorsItem] = useState(sponsorsMock) // state hook
+
+    // useEffect(() => {                           // side effect hook
+    //
+    //     axios({
+    //         "method": "GET",
+    //         "url": "/sponsors/", // This is going throw the proxy in package.json
+    //         "headers": {}, "params": {}
+    //     })
+    //         .then((response) => {
+    //             setSponsorsItem(response.data)
+    //         })
+    //         .catch((error) => {
+    //             console.log(error)
+    //         })
+    // }, [sponsorsItem])
+
 
     return (
-      <div className={  cn({
-          ["Sponsors"]: true,
+        <div className={cn({
+            ["Sponsors"]: true,
         })}>
 
-          {sponsorsItem && sponsorsItem.map((item,index)=>(
-              <Sponsor
-                name={item.Name}
-                logo={item.ImagePath}
+            {sponsorsItem && sponsorsItem.map((item, index) => (
+                <Sponsor
+                    name={item.Name}
+                    logo={item.ImagePath}
+                    key={item.Id}
+                />
+            ))}
+            {
+                sponsorsItem && sponsorsItem.length == 0 && (
+                    <span>No sponsors yet.</span>
+                )
+            }
 
-                key={item.Id}
-              />
-          ))}
-          {
-              sponsorsItem && sponsorsItem.length == 0 && (
-                  <span>No sponsors yet.</span>
-              )
-          }
 
-
-      </div>
+        </div>
     );
 
 }
+
 export default Sponsors;

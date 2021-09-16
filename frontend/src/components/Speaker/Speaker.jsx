@@ -7,7 +7,7 @@ import cn from 'classnames';
 
 function Speaker({name, position, description, authorImage}) {
     const {  currentSection } = useContext(AppContext);
-
+    var image = window.location.origin + "/" + authorImage
     return (
       <Element customClass="Speaker-container" >
         <div className={  cn({
@@ -15,7 +15,7 @@ function Speaker({name, position, description, authorImage}) {
           })}>
           <div className="Speaker__image">
             <div className="Speaker__avatar">
-              {authorImage}
+                <img src={image} />
             </div>
           </div>
           <div className="Speaker__title">
