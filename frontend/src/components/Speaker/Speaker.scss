@@ -24,7 +24,14 @@
       top: 0;
       right: 0;
       z-index: 20;
-
+      img{
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        transition: transition(slow, bounce);
+        object-fit: cover;
+        opacity: 0;
+      }
 
 
       &:before {
@@ -85,7 +92,12 @@
     .Speaker__avatar{
       width: spacing(2,15);
       height: spacing(2,15);
-
+      img {
+        width: spacing(2,15) - 4px;
+        height: spacing(2,15) - 4px;
+        transition-delay: .9;
+        opacity: 1;
+      }
       &:before, &:after {
         width: spacing(2,15);
         height: spacing(2,15);

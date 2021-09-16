@@ -17,21 +17,21 @@ function Speakers() {
             "id": "0016b52d-10f0-4dc3-822a-0c2da3d23c6e",
             "name": "AI/ML Engineer",
             "position": "Engineer @PlugTree.",
-            "image": "ai.png",
+            "image": "avatar.png",
             "description": "Passionate about AI and ML. Training models on the weekends."
         },
         {
             "id": "6a621e56-c7af-4443-9ef4-cf70725c2e57",
             "name": "Doom Guy",
             "position": "Player One @IDSoftware.",
-            "image": "doom.png",
+            "image": "avatar.png",
             "description": "I used to kill deamons, now I am a patient person. "
         },
         {
             "id": "0016b52d-10f0-4dc3-822a-0c2da3d23c6e",
             "name": "The Trainer",
             "position": "Kubernetes Trainer @LearnK8s",
-            "image": "learnk8s.png",
+            "image": "avatar.png",
             "description": "Teaching people about Kubernetes since before Kubernetes was a thing."
         }
 
