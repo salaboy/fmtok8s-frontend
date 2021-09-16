@@ -5,9 +5,9 @@ import AppContext from 'contexts/AppContext';
 import Element from 'components/Element/Element'
 import cn from 'classnames';
 
-function Sponsor({id, name, imagePath}) {
+function Sponsor({name, imagePath, id }) {
     const {  currentSection } = useContext(AppContext);
-
+    var image = process.env.PUBLIC_URL + "/" + imagePath
     return (
 
         <div className={  cn({
@@ -15,10 +15,7 @@ function Sponsor({id, name, imagePath}) {
           })}>
           <Element>
           <div className="Sponsor__image">
-              {id}
-              {name}
-              {imagePath}
-
+              {<img src={image} />}
           </div>
           </Element>
 

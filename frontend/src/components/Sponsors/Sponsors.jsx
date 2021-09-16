@@ -11,19 +11,19 @@ function Sponsors() {
         {
             "Id": "123",
             "Name": "LearnK8s",
-            "ImagePath": "/images/learnk8s.png",
+            "ImagePath": "kubernetes.png",
 
         },
         {
             "Id": "456",
             "Name": "Knative",
-            "ImagePath": "/images/knative.png",
+            "ImagePath": "kubernetes.png",
 
         },
         {
             "Id": "789",
             "Name": "Kubernetes",
-            "ImagePath": "/images/kubernetes.png",
+            "ImagePath": "kubernetes.png",
 
         }
     ]
@@ -54,8 +54,8 @@ function Sponsors() {
             {sponsorsItem && sponsorsItem.map((item, index) => (
                 <Sponsor
                     name={item.Name}
-                    logo={item.ImagePath}
-                    key={item.Id}
+                    imagePath={item.ImagePath}
+                    id={item.Id}
                 />
             ))}
             {

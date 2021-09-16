@@ -8,7 +8,11 @@
     height: spacing(2,20);
     border-radius: spacing(2,10);
     font-size: 0;
-    background-color: color(black);
+    img {
+      width: spacing(2,20);
+      height: spacing(2,20);
+      object-fit: cover;
+    }
   }
 }
 .Sponsor-container {
@@ -19,6 +23,5 @@
 
 .Sponsor-container.--visible .Sponsor {
   .Sponsor__image {
-
   }
 }
