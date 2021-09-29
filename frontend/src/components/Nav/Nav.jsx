@@ -25,6 +25,9 @@ function Nav() {
                 <NavLink activeClassName='--active' to='/speakers' exact> Speakers</NavLink>
               </span>
               <span>
+                <NavLink activeClassName='--active' to='/tickets' exact> Tickets</NavLink>
+              </span>
+              <span>
                 <NavLink activeClassName='--active' to='/proposals' exact> Proposals</NavLink>
               </span>
               <span>

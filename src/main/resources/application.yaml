@@ -56,6 +56,30 @@ spring:
           - Path=/sponsors/**
         filters:
           - RewritePath=/sponsors/(?<id>.*), /$\{id}
+      - id: tickets
+        uri: ${TICKETS_SERVICE:http://tickets-service}
+        predicates:
+          - Path=/tickets/**
+        filters:
+          - RewritePath=/tickets/(?<id>.*), /$\{id}
+      - id: payments
+        uri: ${PAYMENTS_SERVICE:http://payments-service.default.svc.cluster.local}
+        predicates:
+          - Path=/payments/**
+        filters:
+          - RewritePath=/payments/(?<id>.*), /$\{id}
+      - id: queue
+        uri: ${QUEUE_SERVICE:http://queue-service.default.svc.cluster.local}
+        predicates:
+          - Path=/queue/**
+        filters:
+          - RewritePath=/queue/(?<id>.*), /$\{id}
+      - id: broker
+        uri: ${K_SINK:http://broker-ingress.knative-eventing.svc.cluster.local}
+        predicates:
+          - Path=/broker
+        filters:
+          - RewritePath=/broker, /default/default
 #  security:
 #    oauth2:
 #      client:

@@ -1,0 +1,54 @@
+apiVersion: eventing.knative.dev/v1
+kind: Trigger
+metadata:
+  name: ui-queue-exit-trigger
+  namespace: default
+spec:
+  broker: default
+  filter:
+    attributes:
+      type: Queue.CustomerExited
+  subscriber:
+    uri: http://fmtok8s-api-gateway.default.svc.cluster.local/api/
+
+---
+apiVersion: eventing.knative.dev/v1
+kind: Trigger
+metadata:
+  name: ui-tickets-payment-authorized-trigger
+  namespace: default
+spec:
+  broker: default
+  filter:
+    attributes:
+      type: Tickets.PaymentsAuthorized
+  subscriber:
+    uri: http://fmtok8s-api-gateway.default.svc.cluster.local/api/
+
+---
+apiVersion: eventing.knative.dev/v1
+kind: Trigger
+metadata:
+  name: ui-tickets-reservation-oneminnotification-trigger
+  namespace: default
+spec:
+  broker: default
+  filter:
+    attributes:
+      type: Tickets.Reservation1MExpired
+  subscriber:
+    uri: http://fmtok8s-api-gateway.default.svc.cluster.local/api/
+
+---
+apiVersion: eventing.knative.dev/v1
+kind: Trigger
+metadata:
+  name: ui-tickets-reservation-timedout-trigger
+  namespace: default
+spec:
+  broker: default
+  filter:
+    attributes:
+      type: Tickets.ReservationTimedOut
+  subscriber:
+    uri: http://fmtok8s-api-gateway.default.svc.cluster.local/api/

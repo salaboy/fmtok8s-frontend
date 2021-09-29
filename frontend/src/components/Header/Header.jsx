@@ -19,10 +19,10 @@ function Header() {
         <div className="Header__logo">
           <Element>
             {currentSection !== "back-office" && (
-              <NavLink  to='/' exact> <img src={Logo} alt="Fantasy Conf 2022"/></NavLink>
+              <NavLink  to='/' exact> <img src={Logo} alt="Cloud Conf 2025"/></NavLink>
             )}
             {currentSection === "back-office" && (
-              <NavLink  to='/' exact> <img src={LogoWhite} alt="Fantasy Conf 2022"/></NavLink>
+              <NavLink  to='/' exact> <img src={LogoWhite} alt="Cloud Conf 2025"/></NavLink>
             )}
           </Element>
         </div>
