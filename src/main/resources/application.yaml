@@ -6,7 +6,12 @@ spring:
       fmtok8s-api-gateway-service
   cloud:
     gateway:
+      #filter: #https://cloud.spring.io/spring-cloud-gateway/reference/html/#the-secureheaders-gatewayfilter-factory
+      filter:
+        secure-headers:
+          enabled: true
       default-filters:
+        - SecureHeaders
         - TokenRelay=
         - RemoveRequestHeader=Cookie
       httpclient:
@@ -68,6 +73,7 @@ spring:
           - Path=/payments/**
         filters:
           - RewritePath=/payments/(?<id>.*), /$\{id}
+          - AddResponseHeader=X-Frame-Options, SAMEORIGIN
       - id: queue
         uri: ${QUEUE_SERVICE:http://queue-service.default.svc.cluster.local}
         predicates:
