@@ -7,6 +7,7 @@ import Footer from 'components/Footer/Footer'
 import cn from 'classnames';
 import ProposalList from "components/ProposalList/ProposalList";
 import SectionHero from 'components/SectionHero/SectionHero'
+import TicketsQueue from "../../components/TicketsQueue/TicketsQueue";
 
 function BackOffice() {
   const {  currentSection, setCurrentSection } = useContext(AppContext);
@@ -50,6 +51,10 @@ function BackOffice() {
       <section>
         <h4>Proposals to Review </h4>
         <ProposalList></ProposalList>
+      </section>
+      <section>
+        <h4>Tickets Queue</h4>
+        <TicketsQueue></TicketsQueue>
       </section>
       <Footer/>
     </div>

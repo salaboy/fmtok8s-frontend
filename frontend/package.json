@@ -32,7 +32,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://localhost:8080",
+  "proxy": "http://fmtok8s-api-gateway.default.34.65.77.156.sslip.io",
   "eslintConfig": {
     "extends": [
       "react-app",
