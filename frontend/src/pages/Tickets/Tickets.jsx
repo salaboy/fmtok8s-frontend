@@ -18,6 +18,13 @@ import Bank from "../../components/Bank/Bank";
 
 function Tickets() {
 
+    function createMyGuid() {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+            var r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
+            return v.toString(16);
+        });
+    }
+
     const {ticketsState} = useContext(TicketsContext)
     const [state, dispatch] = useReducer(ticketsStateReducer, ticketsState)
     const {currentSection, setCurrentSection} = useContext(AppContext);
@@ -82,7 +89,7 @@ function Tickets() {
         setLoading(true);
 
         const event = new CloudEvent({
-            id: state.sessionID,
+            id: createMyGuid(),
             type: "Queue.CustomerJoined",
             source: "website",
             correlationkey: state.sessionID,
@@ -291,7 +298,7 @@ function Tickets() {
                     {state.inQueue && (
 
                             <div>
-                                <p>{positionInQueue} , {waitTimeInQueue}, {queueSize}</p>
+                                <p>Your Position: {positionInQueue} , People Queueing: {queueSize}, {waitTimeInQueue} minutes (approx. wait time.)</p>
                                 <Button main clickHandler={handleAbandon}
                                         disabled={loading}>{loading ? 'Loading...' : 'Abandon Queue'}</Button>
                             </div>
