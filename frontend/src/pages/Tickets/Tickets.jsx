@@ -47,6 +47,29 @@ function Tickets() {
     }
 
     const handleAbandon = () => {
+        const event = new CloudEvent({
+            id: createMyGuid(),
+            type: "Queue.CustomerAbandoned",
+            source: "website",
+            correlationkey: state.sessionID,
+            data: {
+                sessionId: state.sessionID
+            },
+        });
+
+        const message = HTTP.binary(event);
+        console.log("Sending Post to Broker!")
+        axios.post('/broker', message.body, {headers: message.headers}).then(res => {
+            dispatch({type: "abandoned", payload: true})
+            setIsError(false);
+
+        }).catch(err => {
+            setIsError(true);
+
+            console.log(err)
+            console.log(err.response.data.message)
+            console.log(err.response.data)
+        });
 
     }
 

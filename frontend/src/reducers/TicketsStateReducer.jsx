@@ -1,5 +1,20 @@
 //https://stackoverflow.com/questions/55301495/issues-with-usereducer-not-synchronously-updating-the-state
 export const ticketsStateReducer = (currentState, action) => {
+    if (action.type === 'abandoned') {
+        console.log("ACTION abandoned")
+        return {
+            landed: true,
+            sessionID: "",
+            reservationID:"",
+            inQueue: false,
+            outQueue: false,
+            reservingTickets: false,
+            payingTickets: false,
+            ticketsPayed: false,
+            ticketsEmitted: false
+        }
+    }
+
     if (action.type === 'sessionIdCreated') {
 
         console.log("ACTION sessionIdCreated")
