@@ -84,6 +84,15 @@ function Tickets() {
         dispatch({type: "reservingTickets", payload: true})
     }
 
+    //Hack para probar local borrar
+    const dispatchOutQueue = () => {
+        dispatch({type: "exitedQueue", payload: true})
+    }
+
+    const dispatchPaymentAuthorized = () => {
+        dispatch({type: "ticketsPayed", payload: true})
+    }
+    //END - Hack para probar local borrar
 
     const handleJoin = () => {
         setLoading(true);
@@ -270,6 +279,8 @@ function Tickets() {
                                 <p>Your Position: {positionInQueue} , People Queueing: {queueSize}, {waitTimeInQueue} minutes (approx. wait time.)</p>
                                 <Button main clickHandler={handleAbandon}
                                         disabled={loading}>{loading ? 'Loading...' : 'Abandon Queue'}</Button>
+                                <Button main clickHandler={dispatchOutQueue}
+                                        disabled={loading}>{loading ? 'Loading...' : 'Pasar'}</Button>
                             </div>
 
                     )}
@@ -296,6 +307,8 @@ function Tickets() {
                     {state.payingTickets && (
                         <TicketsContext.Provider value={{state, dispatch}}>
                             <Bank/>
+                            <Button main clickHandler={dispatchPaymentAuthorized}
+                                    disabled={loading}>{loading ? 'Loading...' : 'Pago recibido'}</Button>
                         </TicketsContext.Provider>
                     )}
                     {state.ticketsPayed && (
