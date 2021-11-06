@@ -113,7 +113,6 @@ function Tickets() {
 
             setLoading(false);
             setIsError(true);
-            dispatch({type: "joinedQueue", payload: true})
             console.log(err)
             console.log(err.response.data.message)
             console.log(err.response.data)
@@ -167,32 +166,34 @@ function Tickets() {
     }, [wsUrl]);
 
     useEffect(() => {
-        axios.interceptors.request.use(request => {
-            console.log('Starting Request', JSON.stringify(request, null, 2))
-            return request
-        })
+        if(state.sessionID === "") {
+            // axios.interceptors.request.use(request => {
+            //     console.log('Starting Request', JSON.stringify(request, null, 2))
+            //     return request
+            // })
+            //
+            // axios.interceptors.response.use(response => {
+            //     console.log('Response:', JSON.stringify(response, null, 2))
+            //     return response
+            // })
 
-        axios.interceptors.response.use(response => {
-            console.log('Response:', JSON.stringify(response, null, 2))
-            return response
-        })
+            axios.post('/api/session').then(res => {
+                console.log("Session Id From Post: " + res)
+                dispatch({type: "sessionIdCreated", payload: res.data})
 
-        axios.post('/api/session').then(res => {
-            console.log("Session Id From Post: " + res)
-            dispatch({type: "sessionIdCreated", payload: res.data})
+                console.log("Protocol: " + document.location.protocol);
+                let wsURL = "ws://" + document.location.host + "/ws?sessionId=" + res.data;
+                if (document.location.protocol === 'https:') {
+                    wsURL = "wss://" + document.location.host + "/ws?sessionId=" + res.data;
+                }
+                console.log("WS URL: " + wsURL);
+                setWsUrl(wsURL)
+            }).catch(err => {
+                console.log(err)
+            });
+        }
 
-            console.log("Protocol: " + document.location.protocol);
-            let wsURL = "ws://" + document.location.host + "/ws?sessionId=" + res.data;
-            if (document.location.protocol === 'https:') {
-                wsURL = "wss://" + document.location.host + "/ws?sessionId=" + res.data;
-            }
-            console.log("WS URL: " + wsURL);
-            setWsUrl(wsURL)
-        }).catch(err => {
-            console.log(err)
-        });
-
-    }, [])
+    }, [state.sessionID])
 
     useEffect(() => {
         if (ws.current) {
@@ -205,22 +206,10 @@ function Tickets() {
                 if (event.type === "Queue.CustomerExited") {
                     dispatch({type: "exitedQueue", payload: true})
 
-                    // sessionId = data.sessionId;
-                    // readyToBuy = true;
-                    // var queueList = document.getElementById('queue-list');
-                    // var queueTitle = document.getElementById('queueTitle');
-                    // var waitingLabel = document.getElementById('waitingLabel');
-                    // queueList.className = "queue-list-hidden";
-                    // queueTitle.innerHTML = "Reserve your tickets now!";
-                    // waitingLabel.innerHTML = "";
-                    // document.getElementById('proceed').className = "main-button";
                 } else if (event.type === "Tickets.PaymentsAuthorized") {
                     console.log("Tickets.PaymentsAuthorized")
                     dispatch({type: "ticketsPayed", payload: true})
-                    // var data = JSON.parse(ce["data"]);
-                    // console.log(data);
-                    // document.getElementById("nextButton").className = "main-button";
-                    // document.getElementById("payButton").className = "main-button hidden";
+
 
                 } else if (event.type === "Tickets.Reservation1MExpired") {
                     // makeYourPaymentReminderToast();
@@ -229,27 +218,7 @@ function Tickets() {
                     console.log("Tickets.ReservationTimedOut")
 
                 }
-                // paymentTimedOutToast();
-                // var xhr = new XMLHttpRequest();
-                // xhr.open("POST", "/broker", true);
-                // var data = JSON.stringify(
-                //     {
-                //         sessionId:  "${sessionId}",
-                //     }
-                // );
-                // xhr.setRequestHeader('Content-Type', 'application/json');
-                // xhr.setRequestHeader('Ce-Id', 'CE-' +  "${sessionId}");
-                // xhr.setRequestHeader('Ce-Type', 'Queue.CustomerAbandoned');
-                // xhr.setRequestHeader('Ce-Source', 'website');
-                // xhr.setRequestHeader('Ce-Specversion', '1.0');
-                // xhr.setRequestHeader('correlationKey',  "${sessionId}");
-                //
-                //
-                // xhr.onreadystatechange = function () {
-                //     if (xhr.readyState === 4) {
-                //         callbackClose(xhr.response);
-                //     }
-                // }
+
 
             };
         }
@@ -331,7 +300,8 @@ function Tickets() {
                     )}
                     {state.ticketsPayed && (
                         <TicketsContext.Provider value={{state, dispatch}}>
-                            <div>{state.sessionID}</div>
+                            <div>Tickets Successfully Purchased: {state.sessionID}</div>
+
                         </TicketsContext.Provider>
                     )}
 

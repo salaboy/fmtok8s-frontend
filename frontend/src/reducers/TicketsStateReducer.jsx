@@ -5,13 +5,6 @@ export const ticketsStateReducer = (currentState, action) => {
         return {
             landed: true,
             sessionID: "",
-            reservationID:"",
-            inQueue: false,
-            outQueue: false,
-            reservingTickets: false,
-            payingTickets: false,
-            ticketsPayed: false,
-            ticketsEmitted: false
         }
     }
 

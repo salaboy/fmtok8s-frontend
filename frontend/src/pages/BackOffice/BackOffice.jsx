@@ -48,6 +48,7 @@ function BackOffice() {
     >
       <Header/>
       <SectionHero small title="Welcome Conference Organizers" />
+      <h1>{process.env.TICKETS_ENABLED}</h1>
       <section>
         <h4>Proposals to Review </h4>
         <ProposalList></ProposalList>
