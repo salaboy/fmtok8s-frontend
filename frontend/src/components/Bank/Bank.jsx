@@ -14,8 +14,8 @@ function Bank(props) {
     console.log("URL for Iframe: " + paymentIframeString)
     return (
         <div className={cn({
-            ["page"]: true,
-            ["bank"]: true
+
+            ["Bank"]: true
         })}
         >
             <div>{ ReactHtmlParser(paymentIframeString) } </div>

@@ -62,12 +62,11 @@ function Payment() {
 
     return (
         <div className={cn({
-            ["page"]: true,
-            ["payment"]: true
+
+            ["Payment"]: true
         })}
         >
-            <label>SessionID: {state.sessionID}</label>
-            <label>ReservationID: {state.reservationID}</label>
+
             <br/>
 
             <div>
@@ -112,6 +111,8 @@ function Payment() {
                 <Button main clickHandler={handleCheckout}
                         disabled={loading}>{loading ? 'Loading...' : 'Pay'}</Button>
             </div>
+            <small>SessionID: {state.sessionID}</small><br/>
+            <small>ReservationID: {state.reservationID}</small>
 
         </div>
     );

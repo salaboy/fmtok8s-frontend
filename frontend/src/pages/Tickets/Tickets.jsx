@@ -312,21 +312,26 @@ function Tickets() {
 
                     {state.checkingOut && (
                         <TicketsContext.Provider value={{state, dispatch}}>
+                          <TicketsQueueUI>
                             <Payment/>
+                          </TicketsQueueUI>
                         </TicketsContext.Provider>
                     )}
 
                     {state.payingTickets && (
                         <TicketsContext.Provider value={{state, dispatch}}>
+                          <TicketsQueueUI>
                             <Bank/>
                             <Button main clickHandler={dispatchPaymentAuthorized}
                                     disabled={loading}>{loading ? 'Loading...' : 'Pago recibido'}</Button>
+                          </TicketsQueueUI>
                         </TicketsContext.Provider>
                     )}
                     {state.ticketsPayed && (
                         <TicketsContext.Provider value={{state, dispatch}}>
+                          <TicketsQueueUI>
                             <div>Tickets Successfully Purchased: {state.sessionID}</div>
-
+                            </TicketsQueueUI>
                         </TicketsContext.Provider>
                     )}
 
