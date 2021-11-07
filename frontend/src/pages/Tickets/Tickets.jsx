@@ -7,7 +7,8 @@ import Header from 'components/Header/Header'
 import cn from 'classnames';
 import Button from "../../components/Button/Button";
 import ReserveTickets from "../../components/ReserveTickets/ReserveTickets";
-
+import TicketsQueueUI from "../../components/TicketsQueueUI/TicketsQueueUI"
+import Queue from "../../components/Queue/Queue"
 
 import axios from "axios";
 import {HTTP, CloudEvent} from "cloudevents";
@@ -264,8 +265,12 @@ function Tickets() {
                 <section>
 
                     <h1>Buy your In-Person Conference Tickets here. </h1>
-                    <p>Meet face to face with amazing speakers and get the most out of the conference.
-                        Limited tickets available here at 9:00 am GMT Monday.</p>
+
+                    {state.landed && (
+                      <p>Meet face to face with amazing speakers and get the most out of the conference.
+                          Limited tickets available here at 9:00 am GMT Monday.</p>
+
+                    )}
 
 
                     {state.landed && (
@@ -274,14 +279,16 @@ function Tickets() {
                     )}
 
                     {state.inQueue && (
-
+                        <TicketsQueueUI>
                             <div>
-                                <p>Your Position: {positionInQueue} , People Queueing: {queueSize}, {waitTimeInQueue} minutes (approx. wait time.)</p>
+                                <Queue position={positionInQueue} size={queueSize} time={waitTimeInQueue}/>
+                              
                                 <Button main clickHandler={handleAbandon}
                                         disabled={loading}>{loading ? 'Loading...' : 'Abandon Queue'}</Button>
                                 <Button main clickHandler={dispatchOutQueue}
                                         disabled={loading}>{loading ? 'Loading...' : 'Pasar'}</Button>
                             </div>
+                        </TicketsQueueUI>
 
                     )}
 

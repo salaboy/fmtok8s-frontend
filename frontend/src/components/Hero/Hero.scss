@@ -14,9 +14,9 @@
       min-height: spacing(2, 60);
       position: relative;
       .Hero__title__container {
-        font-size: heading-font-size(h1);
+        font-size: heading-font-size(mainH1);
         font-family: font-family(display);
-        line-height: heading-line-height(h1);
+        line-height: heading-line-height(mainH1);
         position: absolute;
         bottom: spacing(2,10);
         span {
