@@ -6,13 +6,13 @@ import Element from 'components/Element/Element'
 import cn from 'classnames';
 
 function TicketsQueueUI({children}) {
-  
+
 
     return (
       <div className={  cn({
           ["TicketsQueueUI"]: true
         })}>
-          <h3>Tickets Queue</h3>
+        
           {children}
 
       </div>

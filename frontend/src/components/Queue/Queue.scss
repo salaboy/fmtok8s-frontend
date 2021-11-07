@@ -3,4 +3,53 @@
   padding: spacing(2,10);
   background-color: color(white,light);
   border: 2px solid color(black);
+  h3 {
+    padding: 0;
+    margin: 0;
+  }
+  small {
+    font-size: font-size(xs);
+    line-height: line-height(xs);
+    color: color(black, medium);
+  }
+  .Queue__People {
+    padding: spacing(2,8) 0;
+    .Queue__Person {
+      display: inline-block;
+      width: spacing(2,8);
+      height: spacing(2,8);
+      position: relative;
+      margin-right: spacing(2, 2);
+      overflow: hidden;
+
+      &:before {
+        display: inline-block;
+        width: spacing(2,3);
+        height: spacing(2,3);
+        content: '';
+        position: absolute;
+        top: spacing(2,1.5);
+        left: spacing(2,2);
+        border: 2px solid color(black);
+        border-radius: spacing(2,2);
+      }
+      &:after {
+        display: inline-block;
+        width: spacing(2,6);
+        height: spacing(2,6);
+        content: '';
+        position: absolute;
+        top: spacing(2,5);
+        left: spacing(1,1);
+        border: 2px solid color(black);
+        border-radius: spacing(2,3);
+      }
+      &.--user {
+        &:after, &:before {
+          background-color: color(red);
+        }
+      }
+
+    }
+  }
 }
