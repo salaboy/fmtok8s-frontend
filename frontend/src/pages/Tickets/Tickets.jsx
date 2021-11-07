@@ -282,7 +282,7 @@ function Tickets() {
                         <TicketsQueueUI>
                             <div>
                                 <Queue position={positionInQueue} size={queueSize} time={waitTimeInQueue}/>
-                              
+
                                 <Button main clickHandler={handleAbandon}
                                         disabled={loading}>{loading ? 'Loading...' : 'Abandon Queue'}</Button>
                                 <Button main clickHandler={dispatchOutQueue}
@@ -293,15 +293,20 @@ function Tickets() {
                     )}
 
                     {state.outQueue && (
+                      <TicketsQueueUI>
+                          <h3>It's your turn</h3>
+                          <br/>
 
                             <Button main clickHandler={handleReserve}
                                     disabled={loading}>{loading ? 'Loading...' : 'Reserve Tickets'}</Button>
-
+                      </TicketsQueueUI>
                     )}
 
                     {state.reservingTickets && (
                         <TicketsContext.Provider value={{state, dispatch}}>
-                            <ReserveTickets/>
+                            <TicketsQueueUI>
+                              <ReserveTickets/>
+                            </TicketsQueueUI>
                         </TicketsContext.Provider>
                     )}
 

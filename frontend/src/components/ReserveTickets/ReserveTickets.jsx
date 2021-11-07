@@ -6,6 +6,8 @@ import cn from 'classnames';
 import Button from "../Button/Button";
 import {CloudEvent, HTTP} from "cloudevents";
 import TicketsContext from 'contexts/TicketsContext';
+import TextField from 'components/Form/TextField/TextField'
+import Select from 'components/Form/Select/Select'
 import {ticketsStateReducer} from "../../reducers/TicketsStateReducer";
 
 function ReserveTickets() {
@@ -79,31 +81,36 @@ function ReserveTickets() {
 
     return (
         <div className={cn({
-            ["page"]: true,
-            ["reserveTickets"]: true
+            ["ReserveTickets"]: true
         })}
         >
-            <label>SessionID: {state.sessionID}</label>
-            <label>ReservationID: {state.reservationID}</label>
-            <br/>
+            <h3>Select your tickets</h3>
 
-            <div>
-                <label>Type</label>
-                <select name="ticketsType" ref={ticketsTypeRef} id="ticketsType">
+            <br/>
+            <div className="form">
+
+
+              
+                <div className="form-field">
+                  <Select label="Ticket Type" name="ticketsType" small  reference={ticketsTypeRef}>
                     <option value="standing">Standing</option>
                     <option value="balcony 1">Balcony Left</option>
                     <option value="balcony 2">Balcony Right</option>
                     <option value="far away">Far Away</option>
-                </select>
-                <br/>
+                  </Select>
+                </div>
+                <div className="form-field">
+                  <TextField label="Quantity" name="ticketsQuantity" reference={ticketsQuantityRef} number type="number"  />
+                </div>
 
-                <label>Quantity</label>
-                <input type="number" ref={ticketsQuantityRef} id="ticketsQuantity"/>
 
 
                 <Button main clickHandler={handleMakeReservation}
                         disabled={loading}>{loading ? 'Loading...' : 'Reserve Your Tickets'}</Button>
             </div>
+
+            <small>SessionID: {state.sessionID}</small><br/>
+            <small>ReservationID: {state.reservationID}</small>
 
 
         </div>

@@ -1,5 +1,5 @@
 @import 'styles/_foundations.scss';
-.TextField {
+.Select {
   label {
     display: block;
     font-size: font-size(xs);
@@ -8,7 +8,7 @@
     padding: 0;
     margin: 0;
   }
-  input {
+  select {
     border: 0;
     margin-top: spacing(2);
     border: 2px solid color(black);
@@ -26,8 +26,9 @@
       background-color: color(white);
     }
   }
-  &.--number {
-    max-width: 100px;
+  &.--small {
+    max-width: 240px;
   }
+
   margin-bottom: spacing(4,3);
 }
