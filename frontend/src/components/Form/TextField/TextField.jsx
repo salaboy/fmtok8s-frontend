@@ -3,7 +3,7 @@ import React, { useEffect, useState, useContext, useRef } from "react";
 
 import cn from 'classnames';
 
-function TextField({name, label, value, changeHandler, error, help, reference, type, number}) {
+function TextField({name, label, value, changeHandler, error, help, reference, type, number, small, maxLenght, placeholder}) {
 
     var typeElement;
     if(type){
@@ -24,11 +24,12 @@ function TextField({name, label, value, changeHandler, error, help, reference, t
     return (
       <div className={  cn({
           ["TextField"]: true,
-          ["--number"]: number === true
+          ["--number"]: number === true,
+          ["--small"]: small === true
 
         })}>
         <label>{label}</label>
-        <input id={name} type={typeElement} value={value} onChange={changeHandler} ref={reference}/>
+        <input id={name} type={typeElement} value={value} onChange={changeHandler} ref={reference} placeholder={placeholder} maxLength={maxLenght}/>
         {errorElement}
         {helpElement}
       </div>

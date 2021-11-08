@@ -18,7 +18,9 @@ function Bank(props) {
             ["Bank"]: true
         })}
         >
-            <div>{ ReactHtmlParser(paymentIframeString) } </div>
+            <h3>Validate your payment</h3>
+            <br/>
+            <div className="Bank__iframe">{ ReactHtmlParser(paymentIframeString) } </div>
 
         </div>
     );

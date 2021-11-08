@@ -1,5 +1,5 @@
 @import 'styles/_foundations.scss';
-.TextField {
+.CardNumberField {
   label {
     display: block;
     font-size: font-size(xs);
@@ -8,6 +8,7 @@
     padding: 0;
     margin: 0;
   }
+
   input {
     border: 0;
     margin-top: spacing(2);
@@ -26,12 +27,14 @@
       background-color: color(white);
     }
   }
-  &.--number {
-    max-width: 100px;
-  }
-  &.--small {
+  .CardNumberField__FieldGroup {
     input {
-      max-width: 80px;
+      display: inline-block;
+      max-width: 90px;
+
+      & + input {
+        margin-left: spacing(1);
+      }
     }
   }
   margin-bottom: spacing(4,3);

@@ -1,0 +1,13 @@
+.Form {
+  .FormField {
+    margin-bottom: spacing(4);
+  }
+  .FormGroup{
+    &.--inline {
+      display: flex;
+      .FormField + .FormField {
+        margin-left: spacing();
+      }
+    }
+  }
+}

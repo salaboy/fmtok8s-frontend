@@ -3,6 +3,9 @@ import React, {useEffect, useState, useContext, useReducer} from "react";
 import axios from 'axios'
 
 import cn from 'classnames';
+import CardNumberField from "../Form/CardNumberField/CardNumberField"
+import CardExpirationField from "../Form/CardExpirationField/CardExpirationField"
+import TextField from 'components/Form/TextField/TextField'
 import Button from "../Button/Button";
 import {CloudEvent, HTTP} from "cloudevents";
 
@@ -67,39 +70,21 @@ function Payment() {
         })}
         >
 
+            <h3>Enter your payment information</h3>
             <br/>
-
-            <div>
-                <div id="ccFormFields" className="form-field">
-                    <label>Credit Card Number</label>
-                    <div className="form-field quarter">
-                        <input id="ccNumber" ref={ccNumberRef} type="number" maxLength="4" value="1111"/>
-                    </div>
-                    <div className="form-field quarter">
-                        <input type="number" maxLength="4" value="2222"/>
-                    </div>
-                    <div className="form-field quarter">
-                        <input type="number" maxLength="4" value="3333"/>
-                    </div>
-                    <div className="form-field quarter">
-                        <input type="number" maxLength="4" value="4444"/>
-                    </div>
+            <div className="Form">
+                <div id="ccFormFields" className="FormField">
+                  <CardNumberField label="Card Number" name="ccNumber" reference={ccNumberRef}   />
                 </div>
-                <div id="ccFormFieldsHalf1" className="form-field half">
-                    <label>Expiration Date</label>
-                    <div className="form-field xsmall">
-                        <input placeholder="MM" type="number" maxLength="2" max="31" value="11"/>
-                    </div>
-                    <div className="form-field xsmall">
-                        <input placeholder="YY" type="number" maxLength="2" max="12" value="22"/>
-                    </div>
-                </div>
-                <div id="ccFormFieldsHalf2" className="form-field half">
-                    <label>Security Code</label>
-                    <div className="form-field small">
-                        <input type="password" maxLength="3" value="123"/>
-                    </div>
+                <div className="FormGroup --inline">
+                  <div id="ccFormFieldsHalf1" className="FormField --half">
+                  <CardExpirationField label="Expiration Date"  />
 
+                  </div>
+                  <div id="ccFormFieldsHalf2" className="FormField --half">
+                    <TextField small label="Security Code" maxLength="4" placeholder="000"  />
+
+                  </div>
                 </div>
                 <br/>
                 <div id="ccFormFields2" className="form-field">

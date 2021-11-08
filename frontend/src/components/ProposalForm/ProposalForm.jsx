@@ -52,17 +52,17 @@ function ProposalForm() {
         {!sended && (
           <>
           <h3>Submit your proposal</h3>
-          <div className="form">
-            <div className="form-field">
+          <div className="Form">
+            <div className="FormField">
               <TextField label="Title" name="title" value={title}  changeHandler={e => setTitle(e.target.value)} />
             </div>
-            <div className="form-field">
+            <div className="FormField">
               <TextField label="Author" name="author" value={author} changeHandler={e => setAuthor(e.target.value)} />
             </div>
-            <div className="form-field">
+            <div className="FormField">
               <TextField label="Email" name="email" value={email} changeHandler={e => setEmail(e.target.value)} />
             </div>
-            <div className="form-field">
+            <div className="FormField">
               <TextArea label="Abstract" name="description" value={description} changeHandler={e => setDescription(e.target.value)} />
             </div>
             {isError && <small className="mt-3 d-inline-block text-danger">Something went wrong. Please try again later.</small>}
@@ -85,4 +85,3 @@ function ProposalForm() {
 
 }
 export default ProposalForm;
-
