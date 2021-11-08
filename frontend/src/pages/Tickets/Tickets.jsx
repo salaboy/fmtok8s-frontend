@@ -7,7 +7,8 @@ import Header from 'components/Header/Header'
 import cn from 'classnames';
 import Button from "../../components/Button/Button";
 import ReserveTickets from "../../components/ReserveTickets/ReserveTickets";
-import TicketsQueueUI from "../../components/TicketsQueueUI/TicketsQueueUI"
+import TicketsQueueUI from "../../components/TicketsQueueUI/TicketsQueueUI";
+import Ticket from "../../components/Ticket/Ticket"
 import Queue from "../../components/Queue/Queue"
 
 import axios from "axios";
@@ -330,7 +331,12 @@ function Tickets() {
                     {state.ticketsPayed && (
                         <TicketsContext.Provider value={{state, dispatch}}>
                           <TicketsQueueUI>
-                            <div>Tickets Successfully Purchased: {state.sessionID}</div>
+                            <h3>Here are your tickets!</h3>
+                            <small>Tickets Successfully Purchased</small>
+                            <br/>
+                            <Ticket sessionID={state.sessionID} />
+                            <br/>
+                            <Button main >Download</Button> <Button >Buy more tickets </Button>
                             </TicketsQueueUI>
                         </TicketsContext.Provider>
                     )}

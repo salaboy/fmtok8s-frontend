@@ -1,4 +1,15 @@
 @import 'styles/_foundations.scss';
 .Payment {
-  
+  .cards {
+    display: inline-block;
+    height: spacing(2,10);
+    line-height: spacing(2,10);
+    vertical-align: top;
+    padding-top: spacing(2,2);
+    padding-left: spacing(2,2);
+    img {
+      height: spacing(2,6);
+
+    }
+  }
 }

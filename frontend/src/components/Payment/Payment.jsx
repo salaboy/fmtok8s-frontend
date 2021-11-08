@@ -8,6 +8,7 @@ import CardExpirationField from "../Form/CardExpirationField/CardExpirationField
 import TextField from 'components/Form/TextField/TextField'
 import Button from "../Button/Button";
 import {CloudEvent, HTTP} from "cloudevents";
+import CardsImage from 'images/cards.png'
 
 import TicketsContext from "../../contexts/TicketsContext";
 
@@ -86,15 +87,12 @@ function Payment() {
 
                   </div>
                 </div>
-                <br/>
-                <div id="ccFormFields2" className="form-field">
-                    <div className="cards">
-                        <img src="cards.png" alt=""/>
-                    </div>
-                </div>
+              
 
                 <Button main clickHandler={handleCheckout}
-                        disabled={loading}>{loading ? 'Loading...' : 'Pay'}</Button>
+                        disabled={loading}>{loading ? 'Loading...' : 'Pay'}</Button> <div className="cards">
+                            <img src={CardsImage} alt="Cards accepted"/>
+                        </div>
             </div>
             <small>SessionID: {state.sessionID}</small><br/>
             <small>ReservationID: {state.reservationID}</small>

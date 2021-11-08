@@ -1,0 +1,50 @@
+@import 'styles/_foundations.scss';
+.Ticket {
+  margin: spacing(2,10) 0 ;
+  .Ticket__Container {
+    background-color: color(yellow);
+    display: inline-block;
+    max-width: 720px;
+    min-height: 240px;
+    padding: spacing(2,10) spacing(2,15);
+    position: relative;
+    &:before {
+      content: '';
+      width: spacing(2,10);
+      height: spacing(2,10);
+      background-color: color(white, light);
+      position: absolute;
+      border-radius: spacing(2,5);
+      top: 124px;
+      left: -30px;
+    }
+    &:after {
+      content: '';
+      width: spacing(2,10);
+      height: spacing(2,10);
+      background-color: color(white, light);
+      position: absolute;
+      border-radius: spacing(2,5);
+      top: 124px;
+      right: -30px;
+    }
+    .Ticket__Location {
+      font-size: font-size(s);
+      line-height: line-height(s);
+      margin-top: spacing(4);
+      padding-top: spacing(4);
+      border-top: 2px solid color(black);
+    }
+    .Ticket__Date {
+      font-size: font-size(s);
+      line-height: line-height(s);
+    }
+    .Ticket__Data {
+      margin-top: spacing(4);
+      padding-top: spacing(4);
+      border-top: 2px solid color(black);
+      font-size: font-size(xs);
+      line-height: line-height(xs);
+    }
+  }
+}
