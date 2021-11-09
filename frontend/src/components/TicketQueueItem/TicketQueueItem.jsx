@@ -51,14 +51,15 @@ function TicketQueueItem({id}) {
                 ["TicketQueueItem"]: true,
 
             })}>
-                <div className="ProposalItem__id">
-                    <h3>{id}</h3>
+                <div className="TicketQueueItem__Id">
+                  <strong>PersonID:</strong> <br/>
+                    {id}
                 </div>
 
 
-                <div className="ProposalItem__actions">
+                <div className="TicketQueueItem__Actions">
                     <div>
-                        <Button clickHandler={() => handleUnQueue(id)}>Unqueue</Button>
+                        <Button inverted clickHandler={() => handleUnQueue(id)}>Unqueue</Button>
                     </div>
 
                 </div>

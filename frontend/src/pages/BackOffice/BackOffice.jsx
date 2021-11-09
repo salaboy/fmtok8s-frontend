@@ -21,6 +21,9 @@ function BackOffice() {
     if(scroll){
       scroll.destroy();
       scroll.init();
+      if(subSection){
+        scroll.scrollTo(".back-office__Layout", { duration:0 , disableLerp: true})
+      }
     }
   }, [scroll]);
 
@@ -50,7 +53,7 @@ function BackOffice() {
           })}
     >
       <Header/>
-      <SectionHero small title="Welcome Conference Organizers" />
+      <SectionHero  title="Welcome Conference Organizers" />
       <h1>{process.env.TICKETS_ENABLED}</h1>
 
       <section className="back-office__Layout">
@@ -61,13 +64,13 @@ function BackOffice() {
         <div className="back-office__Layout__Content">
             {(subSection === "proposals" || subSection === undefined) && (
               <>
-                <h4>Proposals to Review </h4>
+                <h2>Proposals to Review </h2>
                 <ProposalList></ProposalList>
               </>
             )}
             {subSection === "tickets" && (
               <>
-              <h4>Tickets Queue</h4>
+              <h2>Tickets Queue Admin</h2>
               <TicketsQueue></TicketsQueue>
               </>
             )}

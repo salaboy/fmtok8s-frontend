@@ -82,20 +82,26 @@ function TicketsQueue() {
             ["TicketsQueue"]: true,
         })}>
             <div>
-                <Button disabled={loading}
+                <Button main inverted disabled={loading}
                         clickHandler={() => AddToQueue()}>{loading ? 'Loading...' : 'Create Batch'}</Button>
             </div>
+            <div className="TicketsQueue__List">
+              {queueItems && queueItems.map((item, index) => (
 
-            {queueItems && queueItems.map((item, index) => (
-                <TicketQueueItem id={item.sessionId}/>
-            ))
-            }
+                  <TicketQueueItem id={item.sessionId}/>
 
-            {
-                queueItems && queueItems.length == 0 && (
-                    <span>There are no users in queue.</span>
-                )
-            }
+              ))
+              }
+              {
+                  queueItems && queueItems.length == 0 && (
+                    <div className="TicketsQueue__Empty">
+                      <span>There are no users in queue.</span>
+                    </div>
+                  )
+              }
+            </div>
+
+
 
 
         </div>

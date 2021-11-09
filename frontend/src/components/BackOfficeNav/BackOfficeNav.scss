@@ -1,6 +1,6 @@
 @import 'styles/_foundations.scss';
 .BackOfficeNav {
-  
+
   a {
     color: color(white);
     text-decoration: none;
@@ -10,6 +10,6 @@
 
   }
   .--active, .--default {
-    opacity: .3;
+    color: color(yellow);
   }
 }

@@ -100,9 +100,12 @@ function ProposalList() {
       <div className={  cn({
           ["ProposalList"]: true,
         })}>
-        <div className="ProposalList__filters">
-          <Button inverted state={isPendingFilter ? "inactive" : "active"} clickHandler={() => AllFilter()}>All</Button> <Button inverted state={isPendingFilter ? "active" : "inactive" } clickHandler={() => PendingFilter()}>Pending</Button>
-        </div>
+
+            <div className="ProposalList__filters">
+              <Button inverted state={isPendingFilter ? "inactive" : "active"} clickHandler={() => AllFilter()}>All</Button> <Button inverted state={isPendingFilter ? "active" : "inactive" } clickHandler={() => PendingFilter()}>Pending</Button>
+            </div>
+        
+
         <div>
         {
         proposalItems && proposalItems.map((item,index)=>(
@@ -123,12 +126,12 @@ function ProposalList() {
           ))
         }
         {
-          proposalItems && proposalItems.length == 0 && isPendingFilter == true && (
+          proposalItems && proposalItems.length === 0 && isPendingFilter === true && (
             <span>There are no pending proposals.</span>
           )
         }
         {
-          proposalItems && proposalItems.length == 0 && isPendingFilter == false && (
+          proposalItems && proposalItems.length === 0 && isPendingFilter === false && (
             <span>There are no proposals.</span>
           )
         }

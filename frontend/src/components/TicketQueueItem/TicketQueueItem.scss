@@ -1,77 +1,25 @@
 @import 'styles/_foundations.scss';
-.ProposalItem {
-  background-color: color(white, light);
-  border: 2px solid color(black);
-  border-top: 0;
-  color: color(black);
-  padding: spacing(6,2);
-  position: relative;
-  .ProposalItem__id {
-    font-size: font-size(xs);
-    line-height: line-height(xs);
-    opacity: .5;
-  }
-  .ProposalItem__header {
-    padding-bottom: spacing(6);
-    h3, h5 {
-      margin-bottom: 0;
-      padding-bottom: 0;
-    }
-    .ProposalItem__status {
-      font-size: font-size(xs);
-      line-height: line-height(xs);
+.TicketQueueItem {
+  display: flex;
+  border-bottom: 2px solid color(white);
+  padding-top: spacing(2);
+  .TicketQueueItem__Id {
+    width: 100%;
+    font-size: font-size(s);
+    line-height: line-height(s);
+    padding-top: spacing(2);
+    strong {
+      font-weight: 700;
+      
     }
   }
-  .ProposalItem__actions {
-    position: absolute;
-    top: spacing(6,2);
-    right: spacing(6,2);
+  .TicketQueueItem__Actions {
+    opacity: 0;
+    text-align: right;
   }
-  .ProposalItem__status-info {
-    position: absolute;
-    top: spacing(6,2);
-    right: 0;
-    .ProposalItem__badge {
-      display: inline-block;
-      height: spacing(2,10);
-      line-height: spacing(2,10);
-      padding: 0 spacing(2,4) 0 spacing(2,5);
-      border-radius: spacing(2,5) 0 0 spacing(2,5);
-      background-color: color(black);
-      color: color(white);
-      &.--approved {
-        background-color: color(green);
-        color: color(black);
-      }
-      &.--rejected {
-        background-color: color(red);
-        color: color(black);
-      }
+  &:hover {
+    .TicketQueueItem__Actions {
+      opacity: 1;
     }
   }
-  &.--decided {
-    .ProposalItem__header {
-      .ProposalItem__status {
-        color: mix(color(black), color(green), 20%);
-      }
-    }
-
-  }
-  &.--rejected {
-    background-color: color(white);
-    .ProposalItem__header, .ProposalItem__description {
-      color: mix(color(black), color(white), 50%);
-    }
-  }
-  &.--pending {
-    .ProposalItem__header {
-      .ProposalItem__status {
-        color: mix(color(black), color(yellow), 20%)
-      }
-    }
-  }
-}
-
-.--visible > .ProposalItem {
-
 }

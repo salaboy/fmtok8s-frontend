@@ -92,6 +92,25 @@
 
        }
      }
+     &.--main {
+       .__container, a{
+         border: 2px solid color(green);
+         color: color(green);
+         &:before {
+           content: '';
+           background-color: color(green);
+         }
+         &:hover {
+           opacity: 1 !important;
+           color: color(black);
+
+            &:before {
+              width: 100%;
+            }
+
+         }
+       }
+     }
 
    }
    &.--active {
