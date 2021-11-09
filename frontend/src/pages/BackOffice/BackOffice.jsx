@@ -8,9 +8,12 @@ import cn from 'classnames';
 import ProposalList from "components/ProposalList/ProposalList";
 import SectionHero from 'components/SectionHero/SectionHero'
 import TicketsQueue from "../../components/TicketsQueue/TicketsQueue";
+import BackOfficeNav from "../../components/BackOfficeNav/BackOfficeNav";
+import { useParams } from "react-router-dom";
 
 function BackOffice() {
   const {  currentSection, setCurrentSection } = useContext(AppContext);
+  let { subSection } = useParams();
   //scroll
   const { scroll } = useLocomotiveScroll();
   useEffect(() => {
@@ -24,8 +27,8 @@ function BackOffice() {
   //Handle advanced page transitions
   const pageVariants = {
     visible: { opacity: 1 },
-    hidden: { opacity: 0 },
-    exit: { opacity: 0 , transition:{ duration: .5}}
+    hidden: { opacity: 1 },
+    exit: { opacity: 1 , transition:{ duration: .2}}
   }
   const pageAnimationStart = e => {
   };
@@ -49,14 +52,31 @@ function BackOffice() {
       <Header/>
       <SectionHero small title="Welcome Conference Organizers" />
       <h1>{process.env.TICKETS_ENABLED}</h1>
-      <section>
-        <h4>Proposals to Review </h4>
-        <ProposalList></ProposalList>
+
+      <section className="back-office__Layout">
+
+        <div className="back-office__Layout__Nav">
+          <BackOfficeNav currentSubSection={subSection}/>
+        </div>
+        <div className="back-office__Layout__Content">
+            {(subSection === "proposals" || subSection === undefined) && (
+              <>
+                <h4>Proposals to Review </h4>
+                <ProposalList></ProposalList>
+              </>
+            )}
+            {subSection === "tickets" && (
+              <>
+              <h4>Tickets Queue</h4>
+              <TicketsQueue></TicketsQueue>
+              </>
+            )}
+
+
+
+        </div>
       </section>
-      <section>
-        <h4>Tickets Queue</h4>
-        <TicketsQueue></TicketsQueue>
-      </section>
+
       <Footer/>
     </div>
   </motion.div>

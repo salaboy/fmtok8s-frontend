@@ -63,7 +63,10 @@ function App() {
                                     <About/>
                                 </Route>
 
-                                <Route path="/back-office" exact>
+                                <Route path="/back-office/:subSection" >
+                                    <BackOffice/>
+                                </Route>
+                                <Route path="/back-office" exact >
                                     <BackOffice/>
                                 </Route>
 

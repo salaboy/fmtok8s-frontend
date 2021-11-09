@@ -82,7 +82,6 @@ function TicketsQueue() {
             ["TicketsQueue"]: true,
         })}>
             <div>
-                <h1>QUEUE ADMIN</h1>
                 <Button disabled={loading}
                         clickHandler={() => AddToQueue()}>{loading ? 'Loading...' : 'Create Batch'}</Button>
             </div>

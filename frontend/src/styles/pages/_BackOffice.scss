@@ -5,4 +5,15 @@
   a {
     color: color(red);
   }
+  .back-office__Layout {
+    display: flex;
+    .back-office__Layout__Nav {
+      width: spacing(2,50);
+
+    }
+    .back-office__Layout__Content {
+      border-left: 2px solid color(white);
+      padding-left: spacing(2,10);
+    }
+  }
 }
