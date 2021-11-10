@@ -286,8 +286,8 @@ function Tickets() {
 
                                 <Button main clickHandler={handleAbandon}
                                         disabled={loading}>{loading ? 'Loading...' : 'Abandon Queue'}</Button>
-                                <Button main clickHandler={dispatchOutQueue}
-                                        disabled={loading}>{loading ? 'Loading...' : 'Pasar'}</Button>
+                                {/*<Button main clickHandler={dispatchOutQueue}*/}
+                                {/*        disabled={loading}>{loading ? 'Loading...' : 'Pasar'}</Button>*/}
                             </div>
                         </TicketsQueueUI>
 
@@ -323,8 +323,8 @@ function Tickets() {
                         <TicketsContext.Provider value={{state, dispatch}}>
                           <TicketsQueueUI>
                             <Bank/>
-                            <Button main clickHandler={dispatchPaymentAuthorized}
-                                    disabled={loading}>{loading ? 'Loading...' : 'Pago recibido'}</Button>
+                            {/*<Button main clickHandler={dispatchPaymentAuthorized}*/}
+                            {/*        disabled={loading}>{loading ? 'Loading...' : 'Pago recibido'}</Button>*/}
                           </TicketsQueueUI>
                         </TicketsContext.Provider>
                     )}
