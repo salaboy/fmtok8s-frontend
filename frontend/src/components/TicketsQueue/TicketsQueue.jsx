@@ -1,8 +1,8 @@
 import "./TicketsQueue.scss";
-import React, {useEffect, useState, useContext, useRef} from "react";
+import React, { useState } from "react";
 import axios from 'axios'
 import cn from 'classnames';
-import Button from 'components/Button/Button'
+import Button from '../../components/Button/Button'
 import useInterval from "../../hooks/useInterval";
 import {CloudEvent, HTTP} from "cloudevents";
 import TicketQueueItem from "../TicketQueueItem/TicketQueueItem";

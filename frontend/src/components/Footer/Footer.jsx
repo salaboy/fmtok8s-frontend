@@ -1,10 +1,7 @@
 import "./Footer.scss";
-import React, { useEffect, useState, useContext, useRef } from "react";
-import { NavLink} from 'react-router-dom'
-import Logo from 'images/logo.svg';
-import LogoWhite from 'images/logo-white.svg';
-import AppContext from 'contexts/AppContext';
-import Element from 'components/Element/Element'
+import React, { useContext } from "react";
+import AppContext from '../../contexts/AppContext';
+import Element from '../../components/Element/Element'
 import cn from 'classnames';
 
 function Footer() {

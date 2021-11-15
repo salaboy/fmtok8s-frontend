@@ -1,12 +1,12 @@
 import React, { useEffect, useState, useContext, useRef } from "react";
 import { motion } from "framer-motion"
 import { useLocomotiveScroll } from 'react-locomotive-scroll';
-import AppContext from 'contexts/AppContext';
-import Header from 'components/Header/Header'
-import Footer from 'components/Footer/Footer'
+import AppContext from '../../contexts/AppContext';
+import Header from '../../components/Header/Header'
+import Footer from '../../components/Footer/Footer'
 import cn from 'classnames';
-import ProposalList from "components/ProposalList/ProposalList";
-import SectionHero from 'components/SectionHero/SectionHero'
+import ProposalList from "../../components/ProposalList/ProposalList";
+import SectionHero from '../../components/SectionHero/SectionHero'
 import TicketsQueue from "../../components/TicketsQueue/TicketsQueue";
 import BackOfficeNav from "../../components/BackOfficeNav/BackOfficeNav";
 import { useParams } from "react-router-dom";

@@ -1,9 +1,8 @@
 import "./ProposalItem.scss";
-import React, { useEffect, useState, useContext, useRef } from "react";
-import { NavLink} from 'react-router-dom'
+import React from "react";
 
-import Element from 'components/Element/Element'
-import Button from 'components/Button/Button'
+import Element from '../../components/Element/Element'
+import Button from '../../components/Button/Button'
 import cn from 'classnames';
 
 function ProposalItem({title, author, id, status, approved, email, description, actionHandler}) {

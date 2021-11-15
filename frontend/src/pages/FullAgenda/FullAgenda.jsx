@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useContext, useRef } from "react";
 import { motion } from "framer-motion"
 import { useLocomotiveScroll } from 'react-locomotive-scroll';
-import AppContext from 'contexts/AppContext';
-import Header from 'components/Header/Header'
+import AppContext from '../../contexts/AppContext';
+import Header from '../../components/Header/Header'
 import cn from 'classnames';
-import Agenda from 'components/Agenda/Agenda'
+import Agenda from '../../components/Agenda/Agenda'
 
 function FullAgenda() {
   const {  currentSection, setCurrentSection } = useContext(AppContext);

@@ -1,14 +1,13 @@
 import "./ReserveTickets.scss";
-import React, {useEffect, useState, useContext, useReducer} from "react";
+import React, {useEffect, useState, useContext} from "react";
 import axios from 'axios'
 
 import cn from 'classnames';
 import Button from "../Button/Button";
 import {CloudEvent, HTTP} from "cloudevents";
-import TicketsContext from 'contexts/TicketsContext';
-import TextField from 'components/Form/TextField/TextField'
-import Select from 'components/Form/Select/Select'
-import {ticketsStateReducer} from "../../reducers/TicketsStateReducer";
+import TicketsContext from '../../contexts/TicketsContext';
+import TextField from '../../components/Form/TextField/TextField'
+import Select from '../../components/Form/Select/Select'
 
 function ReserveTickets() {
 

@@ -1,9 +1,7 @@
 import "./Ticket.scss";
-import React, {useEffect, useState, useContext, useRef} from "react";
-import ReactHtmlParser from 'react-html-parser';
+import React from "react";
 
 import cn from 'classnames';
-import TicketsContext from "../../contexts/TicketsContext";
 
 
 function Ticket({sessionID}) {

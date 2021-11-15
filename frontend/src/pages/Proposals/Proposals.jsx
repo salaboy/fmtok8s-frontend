@@ -1,12 +1,12 @@
 import React, { useEffect, useState, useContext, useRef } from "react";
 import { motion } from "framer-motion"
 import { useLocomotiveScroll } from 'react-locomotive-scroll';
-import AppContext from 'contexts/AppContext';
-import Header from 'components/Header/Header'
-import SectionHero from 'components/SectionHero/SectionHero'
-import Footer from 'components/Footer/Footer'
+import AppContext from '../../contexts/AppContext';
+import Header from '../../components/Header/Header'
+import SectionHero from '../../components/SectionHero/SectionHero'
+import Footer from '../../components/Footer/Footer'
 import cn from 'classnames';
-import ProposalForm from 'components/ProposalForm/ProposalForm'
+import ProposalForm from '../../components/ProposalForm/ProposalForm'
 
 function Proposals() {
   const {  currentSection, setCurrentSection } = useContext(AppContext);

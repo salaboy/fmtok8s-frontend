@@ -5,10 +5,10 @@ import axios from 'axios'
 import cn from 'classnames';
 import CardNumberField from "../Form/CardNumberField/CardNumberField"
 import CardExpirationField from "../Form/CardExpirationField/CardExpirationField"
-import TextField from 'components/Form/TextField/TextField'
+import TextField from '../../components/Form/TextField/TextField'
 import Button from "../Button/Button";
 import {CloudEvent, HTTP} from "cloudevents";
-import CardsImage from 'images/cards.png'
+import CardsImage from '../../images/cards.png'
 
 import TicketsContext from "../../contexts/TicketsContext";
 

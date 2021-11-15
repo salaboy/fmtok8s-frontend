@@ -1,15 +1,15 @@
 import React, { useEffect, useState, useContext, useRef } from "react";
 import { motion } from "framer-motion"
 import { useLocomotiveScroll } from 'react-locomotive-scroll';
-import AppContext from 'contexts/AppContext';
-import Agenda from 'components/Agenda/Agenda'
-import Speakers from 'components/Speakers/Speakers'
-import Sponsors from 'components/Sponsors/Sponsors'
-import Header from 'components/Header/Header'
-import Footer from 'components/Footer/Footer'
-import Element from 'components/Element/Element'
-import Hero from 'components/Hero/Hero'
-import Button from 'components/Button/Button'
+import AppContext from '../../contexts/AppContext';
+import Agenda from '../../components/Agenda/Agenda'
+import Speakers from '../../components/Speakers/Speakers'
+import Sponsors from '../../components/Sponsors/Sponsors'
+import Header from '../../components/Header/Header'
+import Footer from '../../components/Footer/Footer'
+import Element from '../../components/Element/Element'
+import Hero from '../../components/Hero/Hero'
+import Button from '../../components/Button/Button'
 
 import cn from 'classnames';
 

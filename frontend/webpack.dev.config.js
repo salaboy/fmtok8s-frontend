@@ -2,7 +2,7 @@ const htmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require("webpack");
 
 module.exports = {
-    mode: 'production',
+    mode: 'development',
     resolve: {
         extensions: ['.js', '.jsx'],
     },
@@ -49,6 +49,7 @@ module.exports = {
         }),
         new webpack.DefinePlugin({
             'process.env.PUBLIC_URL': JSON.stringify(process.env.PUBLIC_URL),
-            'process.env.TICKETS_ENABLED': JSON.stringify(process.env.TICKETS_ENABLED)})
+            'process.env.TICKETS_ENABLED': JSON.stringify(process.env.TICKETS_ENABLED)
+        })
     ],
 }

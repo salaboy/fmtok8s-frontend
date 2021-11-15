@@ -1,8 +1,7 @@
 import "./Agenda.scss";
 import React, {useEffect, useState, useContext, useRef} from "react";
 import axios from 'axios'
-import AgendaItem from 'components/AgendaItem/AgendaItem'
-import Element from 'components/Element/Element'
+import AgendaItem from '../../components/AgendaItem/AgendaItem'
 import cn from 'classnames';
 
 function Agenda(props) {

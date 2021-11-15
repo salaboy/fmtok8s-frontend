@@ -1,8 +1,8 @@
 import "./Sponsors.scss";
-import React, {useEffect, useState, useContext, useRef} from "react";
-import axios from 'axios'
-import Sponsor from 'components/Sponsor/Sponsor'
-import Element from 'components/Element/Element'
+import React, { useState } from "react";
+
+import Sponsor from '../../components/Sponsor/Sponsor'
+import KubernetesImage from '../../images/kubernetes.png'
 import cn from 'classnames';
 
 function Sponsors() {
@@ -11,19 +11,19 @@ function Sponsors() {
         {
             "Id": "123",
             "Name": "LearnK8s",
-            "ImagePath": "kubernetes.png",
+            "ImagePath": "../../images/kubernetes.png",
 
         },
         {
             "Id": "456",
             "Name": "Knative",
-            "ImagePath": "kubernetes.png",
+            "ImagePath": "../../images/kubernetes.png",
 
         },
         {
             "Id": "789",
             "Name": "Kubernetes",
-            "ImagePath": "kubernetes.png",
+            "ImagePath": "../../images/kubernetes.png",
 
         }
     ]

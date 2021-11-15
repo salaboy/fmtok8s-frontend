@@ -1,9 +1,9 @@
 import React, {useEffect, useState, useContext, useRef, useReducer} from "react";
 import {motion} from "framer-motion"
 import {useLocomotiveScroll} from 'react-locomotive-scroll';
-import AppContext from 'contexts/AppContext';
-import TicketsContext from 'contexts/TicketsContext';
-import Header from 'components/Header/Header'
+import AppContext from '../../contexts/AppContext';
+import TicketsContext from '../../contexts/TicketsContext';
+import Header from '../../components/Header/Header'
 import cn from 'classnames';
 import Button from "../../components/Button/Button";
 import ReserveTickets from "../../components/ReserveTickets/ReserveTickets";
@@ -13,7 +13,7 @@ import Queue from "../../components/Queue/Queue"
 
 import axios from "axios";
 import {HTTP, CloudEvent} from "cloudevents";
-import useInterval from "hooks/useInterval"
+import useInterval from "../../hooks/useInterval"
 import {ticketsStateReducer} from "../../reducers/TicketsStateReducer";
 import Payment from "../../components/Payment/Payment";
 import Bank from "../../components/Bank/Bank";

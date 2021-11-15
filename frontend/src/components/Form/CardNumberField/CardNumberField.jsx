@@ -1,5 +1,5 @@
 import "./CardNumberField.scss";
-import React, { useEffect, useState, useContext, useRef } from "react";
+import React from "react";
 
 import cn from 'classnames';
 

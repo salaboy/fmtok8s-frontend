@@ -1,11 +1,9 @@
 import "./Speaker.scss";
-import React, { useEffect, useState, useContext, useRef } from "react";
-import AppContext from 'contexts/AppContext';
-import Element from 'components/Element/Element'
+import React from "react";
+import Element from '../../components/Element/Element'
 import cn from 'classnames';
 
 function Speaker({name, position, description, authorImage}) {
-    const {  currentSection } = useContext(AppContext);
     var image = process.env.PUBLIC_URL + "/" + authorImage
     return (
       <Element customClass="Speaker-container" >

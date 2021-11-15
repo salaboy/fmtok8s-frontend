@@ -1,10 +1,10 @@
 import "./ProposalForm.scss";
-import React, { useEffect, useState, useContext, useRef } from "react";
+import React, { useState } from "react";
 import axios from 'axios'
 import cn from 'classnames';
-import Button from 'components/Button/Button'
-import TextField from 'components/Form/TextField/TextField'
-import TextArea from 'components/Form/TextArea/TextArea'
+import Button from '../../components/Button/Button'
+import TextField from '../../components/Form/TextField/TextField'
+import TextArea from '../../components/Form/TextArea/TextArea'
 
 function ProposalForm() {
 

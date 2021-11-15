@@ -2,8 +2,8 @@ import "./ProposalList.scss";
 import React, { useEffect, useState, useContext, useRef } from "react";
 import axios from 'axios'
 import cn from 'classnames';
-import Button from 'components/Button/Button'
-import ProposalItem from 'components/ProposalItem/ProposalItem'
+import Button from '../../components/Button/Button'
+import ProposalItem from '../../components/ProposalItem/ProposalItem'
 
 
 

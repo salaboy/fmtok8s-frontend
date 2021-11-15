@@ -1,7 +1,7 @@
 import "./BackOfficeNav.scss";
 import React, { useEffect, useState, useContext, useRef } from "react";
 import { NavLink} from 'react-router-dom'
-import AppContext from 'contexts/AppContext';
+import AppContext from '../../contexts/AppContext';
 import cn from 'classnames';
 
 function BackOfficeNav({currentSubSection}) {

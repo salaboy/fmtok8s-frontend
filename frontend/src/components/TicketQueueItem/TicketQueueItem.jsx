@@ -1,9 +1,9 @@
 import "./TicketQueueItem.scss";
-import React, {useEffect, useState, useContext, useRef} from "react";
-import {NavLink} from 'react-router-dom'
+import React, { useState } from "react";
 
-import Element from 'components/Element/Element'
-import Button from 'components/Button/Button'
+
+import Element from '../../components/Element/Element'
+import Button from '../../components/Button/Button'
 import cn from 'classnames';
 import {CloudEvent, HTTP} from "cloudevents";
 import axios from "axios";

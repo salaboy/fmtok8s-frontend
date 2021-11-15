@@ -2,15 +2,15 @@ import React, {useEffect, useState, useContext, useRef} from "react";
 import {Switch, Route, useLocation, useHistory} from "react-router-dom";
 import {LocomotiveScrollProvider} from 'react-locomotive-scroll';
 import {AnimatePresence} from "framer-motion";
-import Home from 'pages/Home/Home';
-import About from 'pages/About/About';
-import Speakers from 'pages/Speakers/Speakers';
-import Proposals from 'pages/Proposals/Proposals';
-import FullAgenda from 'pages/FullAgenda/FullAgenda';
-import Tickets from 'pages/Tickets/Tickets';
-import BackOffice from 'pages/BackOffice/BackOffice';
-import Nav from 'components/Nav/Nav';
-import AppContext from 'contexts/AppContext';
+import Home from './pages/Home/Home';
+import About from './pages/About/About';
+import Speakers from './pages/Speakers/Speakers';
+import Proposals from './pages/Proposals/Proposals';
+import FullAgenda from './pages/FullAgenda/FullAgenda';
+import Tickets from './pages/Tickets/Tickets';
+import BackOffice from './pages/BackOffice/BackOffice';
+import Nav from './components/Nav/Nav';
+import AppContext from './contexts/AppContext';
 import cn from 'classnames';
 
 function App() {
