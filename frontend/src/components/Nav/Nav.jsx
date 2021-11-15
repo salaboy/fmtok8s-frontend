@@ -30,9 +30,11 @@ function Nav() {
                     <NavLink activeClassName='--active' to='/tickets' exact> Tickets</NavLink>
                   </span>
                 )}
+                { c4pEnabled && (
               <span>
                 <NavLink activeClassName='--active' to='/proposals' exact> Proposals</NavLink>
               </span>
+                )}
               <span>
                 <NavLink activeClassName='--active' to='/about' exact> About</NavLink>
               </span>
