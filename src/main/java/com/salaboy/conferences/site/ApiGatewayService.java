@@ -12,20 +12,23 @@ import io.cloudevents.spring.http.CloudEventHttpUtils;
 import io.cloudevents.spring.webflux.CloudEventHttpMessageReader;
 import io.cloudevents.spring.webflux.CloudEventHttpMessageWriter;
 import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.codec.CodecCustomizer;
+import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.event.ContextRefreshedEvent;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.codec.CodecConfigurer;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.stereotype.Component;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.reactive.HandlerMapping;
 import org.springframework.web.reactive.handler.SimpleUrlHandlerMapping;
@@ -40,9 +43,15 @@ import reactor.core.publisher.EmitterProcessor;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.logging.Logger;
+
+import static org.slf4j.LoggerFactory.*;
 
 @SpringBootApplication
 @Slf4j
@@ -51,6 +60,7 @@ public class ApiGatewayService {
     public static void main(String[] args) {
         SpringApplication.run(ApiGatewayService.class, args);
     }
+
 
     @Autowired
     private MetricsGatewayGlobalFilter globalFilter;
@@ -98,13 +108,14 @@ class ReactiveWebSocketHandler implements WebSocketHandler {
     private Map<String, EmitterProcessor<String>> processors = new ConcurrentHashMap<>();
 
 
-    public ReactiveWebSocketHandler() { }
+    public ReactiveWebSocketHandler() {
+    }
 
     public EmitterProcessor<String> getEmitterProcessor(String id) {
         return processors.get(id);
     }
 
-    public Set<String> getProcessors(){
+    public Set<String> getProcessors() {
         return processors.keySet();
     }
 
@@ -213,6 +224,7 @@ class ApiGatewayController {
     public String createSession() {
         return UUID.randomUUID().toString();
     }
+
     @PostMapping("reservation")
     public String createReservation() {
         return UUID.randomUUID().toString();

@@ -7,8 +7,8 @@ import cn from 'classnames';
 function Nav() {
   const {  currentSection } = useContext(AppContext);
 
-    let ticketsEnabled = process.env.TICKETS_ENABLED
-    let c4pEnabled = process.env.C4P_ENABLED
+    let ticketsEnabled = window._env_.FEATURE_TICKETS_ENABLED
+    let c4pEnabled = window._env_.FEATURE_C4P_ENABLED
 
     return (
       <div className={  cn({

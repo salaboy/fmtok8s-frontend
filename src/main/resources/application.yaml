@@ -1,4 +1,9 @@
 spring:
+  web:
+    resources:
+      static-locations: "file:static/" #for dev file:./target/static/ for docker static/
+  webflux:
+    static-path-pattern: "/**" # https://github.com/spring-cloud/spring-cloud-gateway/issues/1339
   profiles:
     active:
   application:
@@ -85,7 +90,8 @@ spring:
         predicates:
           - Path=/broker
         filters:
-          - RewritePath=/broker, /default/default
+          - RewritePath=/broker, ${K_SINK_POST_FIX:default/default}
+
 #  security:
 #    oauth2:
 #      client:

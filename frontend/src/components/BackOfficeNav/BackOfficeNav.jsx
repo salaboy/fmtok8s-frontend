@@ -1,40 +1,44 @@
 import "./BackOfficeNav.scss";
-import React, { useEffect, useState, useContext, useRef } from "react";
-import { NavLink} from 'react-router-dom'
+import React, {useContext} from "react";
+import {NavLink} from 'react-router-dom'
 import AppContext from '../../contexts/AppContext';
 import cn from 'classnames';
 
 function BackOfficeNav({currentSubSection}) {
-  const {  currentSection } = useContext(AppContext);
+    const {currentSection} = useContext(AppContext);
 
-
+    let ticketsEnabled = window._env_.FEATURE_TICKETS_ENABLED
+    let c4pEnabled = window._env_.FEATURE_C4P_ENABLED
 
     return (
-      <div className={  cn({
-          ["BackOfficeNav"]: true,
-          ["--backoffice"]: currentSection === "back-office",
+        <div className={cn({
+            ["BackOfficeNav"]: true,
+            ["--backoffice"]: currentSection === "back-office",
         })}>
-        <div className="BackOfficeNav__container">
-
-
-
-              <div>
-                <NavLink
-                  className={ cn({
-                    ["--default"]: !currentSubSection,
-                  })}
-                  activeClassName='--active' to='/back-office/proposals' exact> Proposals
-                </NavLink>
-              </div>
-              <div>
-                <NavLink activeClassName='--active' to='/back-office/tickets' exact> Tickets Queue</NavLink>
-              </div>
-
-
-
+            <div className="BackOfficeNav__container">
+                <div>
+                    <NavLink
+                        className={cn({
+                            ["--default"]: !currentSubSection,
+                        })}
+                        activeClassName='--active' to='/back-office/features' exact> Features
+                    </NavLink>
+                </div>
+                {c4pEnabled && (
+                        <div>
+                            <NavLink activeClassName='--active' to='/back-office/proposals' exact> Proposals
+                            </NavLink>
+                        </div>
+                )}
+                {ticketsEnabled && (
+                    <div>
+                        <NavLink activeClassName='--active' to='/back-office/tickets' exact> Tickets Queue</NavLink>
+                    </div>
+                )}
+            </div>
         </div>
-      </div>
     );
 
 }
+
 export default BackOfficeNav;

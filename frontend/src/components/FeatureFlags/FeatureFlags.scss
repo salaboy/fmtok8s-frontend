@@ -1,0 +1,14 @@
+@import '../../styles/_foundations.scss';
+.TicketsQueue {
+  padding-bottom: spacing(2,10);
+
+  .TicketsQueue__List {
+    padding: spacing(2,10) 0;
+  }
+  .TicketsQueue__Empty {
+    
+    span {
+      opacity: .5;
+    }
+  }
+}

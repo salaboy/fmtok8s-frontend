@@ -48,9 +48,7 @@ module.exports = {
             template: './src/index.html',
         }),
         new webpack.DefinePlugin({
-            'process.env.PUBLIC_URL': JSON.stringify(process.env.PUBLIC_URL),
-            'process.env.TICKETS_ENABLED': JSON.stringify(process.env.TICKETS_ENABLED),
-            'process.env.C4P_ENABLED': JSON.stringify(process.env.C4P_ENABLED)
+            'process.env.PUBLIC_URL': JSON.stringify(process.env.PUBLIC_URL)
         })
     ],
 }
