@@ -90,7 +90,7 @@ spring:
         predicates:
           - Path=/broker
         filters:
-          - RewritePath=/broker, ${K_SINK_POST_FIX:default/default}
+          - RewritePath=${K_SINK_POST_FIX:"/broker, default/default"}
 
 #  security:
 #    oauth2:
