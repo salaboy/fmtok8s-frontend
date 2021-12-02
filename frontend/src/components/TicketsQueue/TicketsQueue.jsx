@@ -1,5 +1,5 @@
 import "./TicketsQueue.scss";
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import axios from 'axios'
 import cn from 'classnames';
 import Button from '../../components/Button/Button'
@@ -15,7 +15,8 @@ function TicketsQueue() {
     let [queueBatchCount, setQueueBatchCount] = useState(10);
     const [loading, setLoading] = useState(false);
     const [isError, setIsError] = useState(false);
-    let [queueItems, setQueueItems] = useState([]);
+    const [isPolling, setIsPolling] = useState(true);
+    const [queueItems, setQueueItems] = useState([]);
 
     function handleDelayChange(e) {
         setDelay(Number(e.target.value));
@@ -47,7 +48,7 @@ function TicketsQueue() {
 
             const message = HTTP.binary(event);
             console.log("Sending Post to Broker!")
-            axios.post('/broker', message.body, {headers: message.headers}).then(res => {
+            axios.post('/broker/', message.body, {headers: message.headers}).then(res => {
 
                 setIsError(false);
 
@@ -62,20 +63,24 @@ function TicketsQueue() {
         setLoading(false);
     }
 
+    useEffect(() => {
+        console.log("queue length: " + queueItems.length)
+        for (let i = 0; i < queueItems.length; i++) {
+            console.log("queue item: " + JSON.stringify(queueItems[i]));
+        }
+    }, [queueItems]);
 
     useInterval(() => {
 
-        axios.get("/queue/").then(
-            (response) => {
-                setQueueItems(response.data)
-                console.log("queue: " + JSON.stringify(response.data));
-                for (let i = 0; i < response.data.length; i++) {
-                    console.log("queue item: " + JSON.stringify(response.data[i]));
+            axios.get("/queue/").then(
+                (response) => {
+                    setQueueItems(response.data)
+                    console.log("Response data: " + response.data)
                 }
-            }
-        );
+            );
 
     }, delay);
+
 
     return (
         <div className={cn({
@@ -85,21 +90,21 @@ function TicketsQueue() {
                 <Button main inverted disabled={loading}
                         clickHandler={() => AddToQueue()}>{loading ? 'Loading...' : 'Create Batch'}</Button>
             </div>
-            <div className="TicketsQueue__List">
-              {queueItems && queueItems.map((item, index) => (
-
-                  <TicketQueueItem id={item.sessionId}/>
-
+            {queueItems && queueItems.map((item, index) => (
+                <div className="TicketsQueue__List">
+                    <TicketQueueItem id={item.sessionId}/>
+                </div>
               ))
               }
+
               {
-                  queueItems && queueItems.length == 0 && (
+                  queueItems && queueItems.length === 0 && (
                     <div className="TicketsQueue__Empty">
                       <span>There are no users in queue.</span>
                     </div>
                   )
               }
-            </div>
+
 
 
 

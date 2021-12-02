@@ -42,7 +42,7 @@ function Payment() {
         const message = HTTP.binary(event);
 
         console.log("Sending Post to Broker!")
-        axios.post('/broker', message.body, {headers: message.headers}).then(res => {
+           axios.post('/broker/', message.body, {headers: message.headers}).then(res => {
 
             setLoading(false);
             setIsError(false);

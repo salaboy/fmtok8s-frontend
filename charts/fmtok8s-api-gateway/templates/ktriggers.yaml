@@ -9,7 +9,7 @@ spec:
     attributes:
       type: Queue.CustomerExited
   subscriber:
-    uri: http://fmtok8s-api-gateway.default.svc.cluster.local/api/
+    uri: http://fmtok8s-api-gateway.default.svc.cluster.local/api/events
 
 ---
 apiVersion: eventing.knative.dev/v1
@@ -23,7 +23,7 @@ spec:
     attributes:
       type: Tickets.PaymentsAuthorized
   subscriber:
-    uri: http://fmtok8s-api-gateway.default.svc.cluster.local/api/
+    uri: http://fmtok8s-api-gateway.default.svc.cluster.local/api/events
 
 ---
 apiVersion: eventing.knative.dev/v1
@@ -37,7 +37,7 @@ spec:
     attributes:
       type: Tickets.Reservation1MExpired
   subscriber:
-    uri: http://fmtok8s-api-gateway.default.svc.cluster.local/api/
+    uri: http://fmtok8s-api-gateway.default.svc.cluster.local/api/events
 
 ---
 apiVersion: eventing.knative.dev/v1
@@ -51,4 +51,4 @@ spec:
     attributes:
       type: Tickets.ReservationTimedOut
   subscriber:
-    uri: http://fmtok8s-api-gateway.default.svc.cluster.local/api/
+    uri: http://fmtok8s-api-gateway.default.svc.cluster.local/api/events

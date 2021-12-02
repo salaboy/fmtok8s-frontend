@@ -31,7 +31,7 @@ function TicketQueueItem({id}) {
 
         const message = HTTP.binary(event);
         console.log("Sending Post to Broker!")
-        axios.post('/broker', message.body, {headers: message.headers}).then(res => {
+           axios.post('/broker/', message.body, {headers: message.headers}).then(res => {
 
             setIsError(false);
 

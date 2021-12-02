@@ -88,9 +88,10 @@ spring:
       - id: broker
         uri: ${K_SINK:http://broker-ingress.knative-eventing.svc.cluster.local}
         predicates:
-          - Path=/broker
+          - Path=/broker/**
         filters:
-          - RewritePath=${K_SINK_POST_FIX:"/broker, default/default"}
+          - RewritePath=${K_SINK_POST_FIX:/broker/, /default/default}
+
 
 #  security:
 #    oauth2:
