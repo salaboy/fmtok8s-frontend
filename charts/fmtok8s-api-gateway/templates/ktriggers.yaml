@@ -1,3 +1,4 @@
+{{- if .Values.knativeDeploy }}
 apiVersion: eventing.knative.dev/v1
 kind: Trigger
 metadata:
@@ -52,3 +53,4 @@ spec:
       type: Tickets.ReservationTimedOut
   subscriber:
     uri: http://fmtok8s-api-gateway.default.svc.cluster.local/api/events
+{{- end }}

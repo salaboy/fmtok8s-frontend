@@ -1,5 +1,5 @@
 import "./TicketsQueue.scss";
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import axios from 'axios'
 import cn from 'classnames';
 import Button from '../../components/Button/Button'
@@ -17,6 +17,17 @@ function TicketsQueue() {
     const [isError, setIsError] = useState(false);
     const [isPolling, setIsPolling] = useState(true);
     const [queueItems, setQueueItems] = useState([]);
+    let [count, setCount] = useState(0);
+
+    const mounted = useRef(false);
+
+    useEffect(() => {
+        mounted.current = true;
+
+        return () => {
+            mounted.current = false;
+        };
+    }, []);
 
     function handleDelayChange(e) {
         setDelay(Number(e.target.value));
@@ -64,20 +75,27 @@ function TicketsQueue() {
     }
 
     useEffect(() => {
-        console.log("queue length: " + queueItems.length)
-        for (let i = 0; i < queueItems.length; i++) {
-            console.log("queue item: " + JSON.stringify(queueItems[i]));
+        if(mounted.current) {
+            console.log("-> count is: " + count)
+            console.log(" -> queue length: " + queueItems.length + " - at: " + new Date() )
+            for (let i = 0; i < queueItems.length; i++) {
+                console.log("queue item: " + JSON.stringify(queueItems[i]));
+            }
         }
-    }, [queueItems]);
+    }, [count]);
 
     useInterval(() => {
-
+        if(mounted.current) {
             axios.get("/queue/").then(
                 (response) => {
+                    console.log("-> before changing queue items " + new Date())
                     setQueueItems(response.data)
-                    console.log("Response data: " + response.data)
+                    console.log("-> after changing queue items " + new Date())
+                    setCount(count + 1);
                 }
             );
+
+        }
 
     }, delay);
 
@@ -90,15 +108,14 @@ function TicketsQueue() {
                 <Button main inverted disabled={loading}
                         clickHandler={() => AddToQueue()}>{loading ? 'Loading...' : 'Create Batch'}</Button>
             </div>
-            {queueItems && queueItems.map((item, index) => (
+            {queueItems && queueItems.length > 0 && queueItems.map((item, index) => (
                 <div className="TicketsQueue__List">
                     <TicketQueueItem id={item.sessionId}/>
                 </div>
               ))
               }
 
-              {
-                  queueItems && queueItems.length === 0 && (
+              {queueItems && queueItems.length === 0 && (
                     <div className="TicketsQueue__Empty">
                       <span>There are no users in queue.</span>
                     </div>
