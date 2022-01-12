@@ -39,13 +39,6 @@ spec:
           - name: {{ $pkey }}
             value: {{ quote $pval }}
 {{- end }}
-          livenessProbe:
-            httpGet:
-              path: {{ .Values.probePath }}
-            initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }}
-            periodSeconds: {{ .Values.livenessProbe.periodSeconds }}
-            successThreshold: {{ .Values.livenessProbe.successThreshold }}
-            timeoutSeconds: {{ .Values.livenessProbe.timeoutSeconds }}
           readinessProbe:
             failureThreshold: {{ .Values.readinessProbe.failureThreshold }}
             httpGet:
