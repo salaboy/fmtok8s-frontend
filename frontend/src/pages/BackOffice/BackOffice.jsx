@@ -22,10 +22,10 @@ function BackOffice() {
   let ticketsEnabled = window._env_.FEATURE_TICKETS_ENABLED
   let c4pEnabled = window._env_.FEATURE_C4P_ENABLED
 
-  const TicketsFeature = lazy(() => import('../../components/TicketsQueue/TicketsQueue'));
+  const TicketsFeature = React.useMemo( () => lazy(() => import('../../components/TicketsQueue/TicketsQueue')), []);
   // const ticketsFeature = props => <TicketsQueue {...props} />;
 
-  const ProposalsFeature = lazy(() => import('../../components/ProposalList/ProposalList'));
+  const ProposalsFeature = React.useMemo( () => lazy(() => import('../../components/ProposalList/ProposalList')), []);
   // const proposalsFeature = props => <ProposalList {...props} />;
 
   useEffect(() => {

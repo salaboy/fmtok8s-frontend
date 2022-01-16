@@ -6,25 +6,12 @@ import Button from '../../components/Button/Button'
 import ProposalItem from '../../components/ProposalItem/ProposalItem'
 
 
-
-export function useIsMounted() {
-  const isMounted = useRef(false);
-
-  useEffect(() => {
-    isMounted.current = true;
-    return () => isMounted.current = false;
-  }, []);
-
-  return isMounted;
-}
-
 function ProposalList() {
     const [loading, setLoading] = useState(false);
     const [isError, setIsError] = useState(false);
-    const [isDecisionMade, setIsDecisionMade] = useState(false)
+    const [decisionsMade, setDecisionsMade] = useState(1)
     const [isPendingFilter, setIsPendingFilter] = useState(false)
     const [proposalItems, setProposalItems] = useState([]) // state hook
-    const isMounted = useIsMounted();
 
     const handleApproval = (id, approved) => {
       setLoading(true);
@@ -33,10 +20,9 @@ function ProposalList() {
         approved: approved,
       }
       axios.post('/c4p/' + id + "/decision", data).then(res => {
-        setIsDecisionMade(true)
+        setDecisionsMade(decisionsMade+1)
         setLoading(false);
       }).catch(err => {
-        setIsDecisionMade(false)
         setLoading(false);
         setIsError(true);
       });
@@ -64,8 +50,6 @@ function ProposalList() {
 
     function PendingFilter(){
       setIsPendingFilter(true)
-
-
     }
 
     function AllFilter(){
@@ -73,7 +57,7 @@ function ProposalList() {
     }
 
     useEffect(() => {
-      if (isMounted.current){
+
         axios({
           "method": "GET",
           "url": "/c4p/?pending="+isPendingFilter, // This is going through the proxy in package.json
@@ -86,15 +70,12 @@ function ProposalList() {
         .then((response) => {
           console.log("calling get proposals!" + "-> /c4p/?pending="+isPendingFilter)
           setProposalItems(response.data)
-          setIsDecisionMade(false)
         })
         .catch((error) => {
           console.log(error)
         })
-      } else{
-        console.log("no action")
-      }
-    }, [isDecisionMade, isPendingFilter])
+
+    }, [decisionsMade, isPendingFilter])
 
     return (
       <div className={  cn({
@@ -121,8 +102,6 @@ function ProposalList() {
                 actionHandler={ItemAction}
               />
 
-
-
           ))
         }
         {
@@ -142,5 +121,3 @@ function ProposalList() {
 }
 export default ProposalList;
 
-//  {isError && <small className="mt-3 d-inline-block text-danger">Something went wrong. Please try again later.</small>}
-//{ApprovalButtons(item)}
