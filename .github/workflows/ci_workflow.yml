@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: Logging
-        run: echo "Building ${{ github.repository }} application, branch ${{ github.ref_name }}."
+        run: echo "Building ${{ github.repository }} application, branch/tag ${{ github.ref_name }}."
       - uses: actions/checkout@v2
       - name: Set up JDK 11
         uses: actions/setup-java@v2
