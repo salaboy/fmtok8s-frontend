@@ -22,5 +22,5 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Publish Docker Image
         run: |
-          docker build . --tag ghcr.io/mcruzdev/fmtok8s-api-gateway:0.1.0
+          docker build . --tag ghcr.io/${{ github.actor }}/fmtok8s-api-gateway:0.1.0
           docker push ghcr.io/mcruzdev/fmtok8s-api-gateway:0.1.0
