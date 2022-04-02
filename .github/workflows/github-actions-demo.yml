@@ -19,7 +19,7 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ secrets.GH_PAT }}
+          password: ${{ secrets.GITHUB_TOKEN }}
       - name: Publish Docker Image
         run: |
           docker build . --tag ghcr.io/mcruzdev/fmtok8s-api-gateway:0.1.0
