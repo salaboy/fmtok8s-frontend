@@ -3,6 +3,7 @@ package com.salaboy.conferences.site;
 import com.salaboy.conferences.site.models.Proposal;
 
 import com.salaboy.conferences.site.security.SecurityConfig;
+import org.junit.jupiter.api.Assertions;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.json.AutoConfigureJsonTesters;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -39,6 +40,7 @@ public class C4PApisTests {
 
     @Test
     public void shouldReturnProposalWithIdWhenAProposalIsCreated() throws IOException {
+        Assertions.assertTrue(false);
     }
 
 //    @Test
