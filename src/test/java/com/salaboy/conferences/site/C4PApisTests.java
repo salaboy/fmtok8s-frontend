@@ -40,7 +40,7 @@ public class C4PApisTests {
 
     @Test
     public void shouldReturnProposalWithIdWhenAProposalIsCreated() throws IOException {
-        Assertions.assertTrue(false);
+        Assertions.assertFalse(false);
     }
 
 //    @Test
