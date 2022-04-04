@@ -1,4 +1,4 @@
-name: GitHub Actions Demo
+name: Github Actions
 on: [push]
 jobs:
   Build-Application:
@@ -28,6 +28,6 @@ jobs:
         uses: helm/chart-releaser-action@v1.1.0
         with:
           charts_dir: charts
-          charts_repo: https://github.com/salaboy/helm
+          charts_repo_url: https://github.com/salaboy/helm
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
