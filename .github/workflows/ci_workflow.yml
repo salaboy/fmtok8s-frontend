@@ -27,7 +27,8 @@ jobs:
       - name: Helm Chart Release
         uses: helm/chart-releaser-action@v1.1.0
         with:
-          charts_dir: charts
+          charts_dir: charts/fmtok8s-api-gateway
           charts_repo_url: https://github.com/salaboy/helm
+          branch: main
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
