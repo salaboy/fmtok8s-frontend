@@ -24,3 +24,10 @@ jobs:
         run: |
           docker build . --tag ghcr.io/${{ github.repository }}:${{ github.ref_name }}
           docker push ghcr.io/${{ github.repository }}:${{ github.ref_name }}
+      - name: Helm Chart Release
+        uses: helm/chart-releaser-action@v1.1.0
+        with:
+          charts_dir: charts
+          charts_repo: https://github.com/salaboy/helm
+        env:
+          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
