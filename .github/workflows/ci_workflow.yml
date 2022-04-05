@@ -27,7 +27,7 @@ jobs:
       - name: Helm Chart Release
         uses: stefanprodan/helm-gh-pages@master
         with:
-          charts_dir: helm/fmtok8s-api-gateway
+          charts_dir: helm
           token: ${{ secrets.GITHUB_TOKEN }}
           repository: helm
           branch: gh-pages
