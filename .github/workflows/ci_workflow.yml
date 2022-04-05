@@ -24,6 +24,14 @@ jobs:
         run: |
           docker build . --tag ghcr.io/${{ github.repository }}:${{ github.ref_name }}
           docker push ghcr.io/${{ github.repository }}:${{ github.ref_name }}
+      - name: Update Chart.yaml
+        uses: fjogeleit/yaml-update-action@main
+        with:
+          valueFile: 'helm/fmtok8s-api-gateway/Charts.yaml'
+          propertyPath: 'version'
+          value: ${{ github.ref_name }}
+          commitChange: false
+          updateFile: true
       - name: Helm Chart Release
         uses: stefanprodan/helm-gh-pages@master
         with:
