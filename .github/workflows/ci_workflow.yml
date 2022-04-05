@@ -29,7 +29,7 @@ jobs:
         with:
           valueFile: 'helm/fmtok8s-api-gateway/Chart.yaml'
           propertyPath: 'version'
-          value: ${{ github.ref_name }}
+          value: '${{ github.ref_name }}'
           commitChange: false
           updateFile: true
       - name: Helm Chart Release
