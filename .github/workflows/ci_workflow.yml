@@ -33,4 +33,4 @@ jobs:
           branch: gh-pages
           owner: salaboy
         env:
-          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          CR_TOKEN: "${{ secrets.PACKAGE_TOKEN }}"
