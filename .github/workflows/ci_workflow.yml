@@ -28,9 +28,7 @@ jobs:
         uses: stefanprodan/helm-gh-pages@master
         with:
           charts_dir: helm
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PACKAGE_TOKEN }}
           repository: helm
           branch: gh-pages
           owner: salaboy
-        env:
-          CR_TOKEN: "${{ secrets.PACKAGE_TOKEN }}"
