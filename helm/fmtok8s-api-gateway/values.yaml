@@ -4,7 +4,7 @@
 replicaCount: 1
 image:
   repository: salaboy/fmtok8s-api-gateway
-  tag: 0.1.0
+  tag: 0.1.0-test-1
   pullPolicy: IfNotPresent
 
 # optional list of image pull secrets to use to pull images
