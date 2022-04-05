@@ -26,6 +26,7 @@ jobs:
           docker push ghcr.io/${{ github.repository }}:${{ github.ref_name }}
       - name: Update Chart.yaml
         uses: fjogeleit/yaml-update-action@main
+        if: startsWith(github.ref, 'refs/tags/v')
         with:
           valueFile: 'helm/fmtok8s-api-gateway/Chart.yaml'
           propertyPath: 'version'
