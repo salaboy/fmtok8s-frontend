@@ -27,7 +27,7 @@ jobs:
       - name: Update Chart.yaml
         uses: fjogeleit/yaml-update-action@main
         with:
-          valueFile: '../helm/fmtok8s-api-gateway/Charts.yaml'
+          valueFile: '../helm/fmtok8s-api-gateway/Chart.yaml'
           propertyPath: 'version'
           value: ${{ github.ref_name }}
           commitChange: false
