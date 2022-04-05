@@ -25,9 +25,12 @@ jobs:
           docker build . --tag ghcr.io/${{ github.repository }}:${{ github.ref_name }}
           docker push ghcr.io/${{ github.repository }}:${{ github.ref_name }}
       - name: Helm Chart Release
-        uses: helm/chart-releaser-action@v1.1.0
+        uses: stefanprodan/helm-gh-pages@master
         with:
-          charts_dir: charts
-          charts_repo_url: https://github.com/salaboy/helm
+          charts_dir: helm/fmtok8s-api-gateway
+          token: ${{ secrets.GITHUB_TOKEN }}
+          repository: helm
+          branch: gh-pages
+          owner: salaboy
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
