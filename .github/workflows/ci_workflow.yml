@@ -32,6 +32,7 @@ jobs:
           value: ${{ github.ref_name }}
           commitChange: false
           updateFile: true
+          workdir: 'fmtok8s-api-gateway'
       - name: Helm Chart Release
         uses: stefanprodan/helm-gh-pages@master
         with:
