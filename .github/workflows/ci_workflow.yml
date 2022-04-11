@@ -1,4 +1,4 @@
-name: GitHub Actions Demo
+name: Github Actions
 on: [push]
 jobs:
   Build-Application:
@@ -24,3 +24,20 @@ jobs:
         run: |
           docker build . --tag ghcr.io/${{ github.repository }}:${{ github.ref_name }}
           docker push ghcr.io/${{ github.repository }}:${{ github.ref_name }}
+      - name: Update Chart.yaml
+        uses: fjogeleit/yaml-update-action@main
+        if: startsWith(github.ref, 'refs/tags/v')
+        with:
+          valueFile: 'helm/fmtok8s-api-gateway/Chart.yaml'
+          propertyPath: 'version'
+          value: '${{ github.ref_name }}'
+          commitChange: false
+          updateFile: true
+      - name: Helm Chart Release
+        uses: stefanprodan/helm-gh-pages@master
+        with:
+          charts_dir: helm
+          token: ${{ secrets.PACKAGE_TOKEN }}
+          repository: helm
+          branch: gh-pages
+          owner: salaboy
