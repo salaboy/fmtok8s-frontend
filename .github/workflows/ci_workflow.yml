@@ -38,6 +38,7 @@ jobs:
         with:
           context: .
           platforms: linux/amd64,linux/arm64
+          push: true
           tags: ${{ github.repository }}:${{ github.ref_name }}-1
       - name: Update Chart.yaml
         uses: fjogeleit/yaml-update-action@main
