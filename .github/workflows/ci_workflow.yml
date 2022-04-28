@@ -31,9 +31,11 @@ jobs:
         run: mvn package
 
       - name: Docker meta
+        id: docker_meta
         uses: docker/metadata-action@v3
         with:
-          images: ghcr.io/${{ github.repository }}:${{ github.ref_name }}
+          images: |
+            ghcr.io/${{ github.repository }}
 
       - name: Login to Github Container Registry
         uses: docker/login-action@v1
