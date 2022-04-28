@@ -28,7 +28,7 @@ jobs:
         with:
           registry: ghcr.io
           username: salaboy
-          password: ${{ secrets.GITHUB_TOKEN }}
+          password: ${{ secrets.PACKAGE_TOKEN }}
       - name: Docker meta
         uses: docker/metadata-action@v3
         with:
