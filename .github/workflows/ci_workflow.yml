@@ -1,5 +1,9 @@
 name: Github Actions
 on: [push]
+
+permissions:
+  packages: write
+
 jobs:
   Build-Application:
     runs-on: ubuntu-20.04
@@ -33,6 +37,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
+          push: true
           platforms: linux/amd64,linux/arm64
       - name: Update Chart.yaml
         uses: fjogeleit/yaml-update-action@main
