@@ -174,7 +174,7 @@ class ApiGatewayController {
 
     @GetMapping("info")
     public String infoWithVersion() {
-        return "{ \"name\" : \"User Interface\", \"version\" : \"" + version + "\", \"source\": \"https://github.com/salaboy/fmtok8s-api-gateway/releases/tag/v" + version + "\" }";
+        return "{ \"name\" : \"User Interface\", \"version\" : \"" + version + "\", \"source\": \"https://github.com/salaboy/fmtok8s-frontend/releases/tag/v" + version + "\" }";
     }
 
     @Configuration

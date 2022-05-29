@@ -9,12 +9,12 @@ mvn package
 ```
 
 ```
-docker build -t salaboy/fmtok8s-api-gateway:0.1.0
-docker push salaboy/fmtok8s-api-gateway:0.1.0
+docker build -t salaboy/fmtok8s-frontend:0.1.0
+docker push salaboy/fmtok8s-frontend:0.1.0
 ```
 
 ```
-cd charts/fmtok8s-api-gateway
+cd charts/fmtok8s-frontend
 helm package .
 ```
 

@@ -20,7 +20,7 @@ spec:
           args:
             - echo "CD Flow Starting...";
               export CDF_SINK=http://backend.35.204.61.61.xip.io/api/events;
-              cdf service created --env staging --name fmtok8s-api-gateway --version {{ .Chart.Version }} || true;
+              cdf service created --env staging --name fmtok8s-frontend --version {{ .Chart.Version }} || true;
               echo "CD Flow Event Sent...";
 
 ---
@@ -47,7 +47,7 @@ spec:
           args:
             - echo "CD Flow Starting...";
               export CDF_SINK=http://backend.35.204.61.61.xip.io/api/events;
-              cdf service updated --env staging --name fmtok8s-api-gateway --version {{ .Chart.Version }} || true;
+              cdf service updated --env staging --name fmtok8s-frontend --version {{ .Chart.Version }} || true;
               echo "CD Flow Event Sent...";
 
 ---
@@ -74,5 +74,5 @@ spec:
           args:
             - echo "CD Flow Starting...";
               export CDF_SINK=http://backend.35.204.61.61.xip.io/api/events;
-              cdf service deleted --env staging --name fmtok8s-api-gateway --version {{ .Chart.Version }} || true;
+              cdf service deleted --env staging --name fmtok8s-frontend --version {{ .Chart.Version }} || true;
               echo "CD Flow Event Sent...";

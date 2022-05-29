@@ -3,8 +3,8 @@
 # Declare variables to be passed into your templates.
 replicaCount: 1
 image:
-  repository: salaboy/fmtok8s-api-gateway
-  tag: 0.1.0
+  repository: ghcr.io/salaboy/fmtok8s-frontend
+  tag: main
   pullPolicy: IfNotPresent
 
 # optional list of image pull secrets to use to pull images
@@ -45,7 +45,7 @@ canary:
   host: ""
 
 service:
-  name: fmtok8s-api-gateway
+  name: fmtok8s-frontend
   type: ClusterIP
   externalPort: 80
   internalPort: 8080

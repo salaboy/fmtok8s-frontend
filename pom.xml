@@ -5,21 +5,22 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.5.4</version>
+        <version>2.6.7</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.salaboy.conferences</groupId>
-    <artifactId>fmtok8s-api-gateway</artifactId>
+    <artifactId>fmtok8s-frontend</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>FMTOK8S :: API Gateway</name>
-    <description>From Monolith to K8s :: API Gateway</description>
+    <name>FMTOK8S :: Frontend</name>
+    <description>From Monolith to K8s :: Frontend</description>
 
     <properties>
-        <java.version>11</java.version>
+        <java.version>17</java.version>
         <node.version>v16.6.1</node.version>
         <yarn.version>v1.22.10</yarn.version>
         <frontend-maven-plugin.version>1.12.0</frontend-maven-plugin.version>
-        <cloudevents.version>2.2.0</cloudevents.version>
+        <cloudevents.version>2.3.0</cloudevents.version>
+        <spring-cloud.version>2021.0.2</spring-cloud.version>
     </properties>
 
     <dependencyManagement>
@@ -27,7 +28,7 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>2020.0.4</version>
+                <version>${spring-cloud.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>

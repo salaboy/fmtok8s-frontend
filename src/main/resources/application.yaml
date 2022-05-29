@@ -8,7 +8,7 @@ spring:
     active:
   application:
     name:
-      fmtok8s-api-gateway-service
+      fmtok8s-frontend
   cloud:
     gateway:
       #filter: #https://cloud.spring.io/spring-cloud-gateway/reference/html/#the-secureheaders-gatewayfilter-factory
