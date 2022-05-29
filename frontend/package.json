@@ -33,7 +33,6 @@
     "test": "echo 'tests running'",
     "eject": "echo 'eject'"
   },
-  "proxy": "http://fmtok8s-api-gateway.default.34.65.77.156.sslip.io",
   "eslintConfig": {
     "extends": [
       "react-app",

@@ -6,6 +6,16 @@ module.exports = {
     resolve: {
         extensions: ['.js', '.jsx'],
     },
+    devServer: {
+        proxy: {
+
+            // '/default': {
+            //     //k port-forward svc/broker-ingress -n knative-eventing 8081:80
+            //     target: 'http://localhost:8081/default',
+            // },
+
+        },
+    },
     module: {
         rules: [{test: /\.(js|jsx)$/, exclude: /node_modules/, use: 'babel-loader'},
             {

@@ -135,7 +135,7 @@ function Tickets() {
             axios.get("/queue/" + state.sessionID).then(
                 (response) => {
                     console.log("position: " + response.data.position);
-                    setPositionInQueue(response.data.position);
+                    setPositionInQueue(response.data.position + 1);
                     console.log("size: " + response.data.size);
                     setQueueSize(response.data.size);
                     console.log("waitTime: " + response.data.waitTime);
@@ -287,7 +287,7 @@ function Tickets() {
                                 <Button main clickHandler={handleAbandon}
                                         disabled={loading}>{loading ? 'Loading...' : 'Abandon Queue'}</Button>
                                 {/*<Button main clickHandler={dispatchOutQueue}*/}
-                                {/*        disabled={loading}>{loading ? 'Loading...' : 'Pasar'}</Button>*/}
+                                {/*        disabled={loading}>{loading ? 'Loading...' : 'Skip'}</Button>*/}
                             </div>
                         </TicketsQueueUI>
 

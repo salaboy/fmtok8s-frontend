@@ -3,6 +3,6 @@ This project contains a new user interface based on React for the Conference Pla
 
 
 To start this project: 
-
+`yarn install`
 `yarn start`
 
