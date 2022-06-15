@@ -31,6 +31,8 @@ spec:
             value: dev
           - name: VERSION
             value: {{ .Chart.Version }}
+          - name: FEATURE_C4P_ENABLED
+            value: "true"
           - name: POD_NODE_NAME
             valueFrom:
               fieldRef:
