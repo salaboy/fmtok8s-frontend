@@ -21,7 +21,7 @@
         <frontend-maven-plugin.version>1.12.0</frontend-maven-plugin.version>
         <cloudevents.version>2.3.0</cloudevents.version>
         <spring-cloud.version>2021.0.3</spring-cloud.version>
-        <spring-native.version>0.12.0</spring-native.version>
+<!--        <spring-native.version>0.12.0</spring-native.version>-->
     </properties>
 
     <dependencyManagement>
@@ -40,10 +40,10 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-gateway</artifactId>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.cloud</groupId>-->
-<!--            <artifactId>spring-cloud-starter-circuitbreaker-reactor-resilience4j</artifactId>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-circuitbreaker-reactor-resilience4j</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
@@ -83,11 +83,16 @@
             <artifactId>reactor-test</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.experimental</groupId>
-            <artifactId>spring-native</artifactId>
-            <version>${spring-native.version}</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.experimental</groupId>-->
+<!--            <artifactId>spring-native</artifactId>-->
+<!--            <version>${spring-native.version}</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.experimental</groupId>-->
+<!--            <artifactId>spring-native-configuration</artifactId>-->
+<!--            <version>${spring-native.version}</version>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>io.micrometer</groupId>
             <artifactId>micrometer-registry-prometheus</artifactId>
@@ -136,39 +141,40 @@
                 <spring.profiles.active>sso,tracing</spring.profiles.active>
             </properties>
         </profile>
-        <profile>
-            <id>native</id>
-            <properties>
-                <repackage.classifier>exec</repackage.classifier>
-                <native-buildtools.version>0.9.11</native-buildtools.version>
-            </properties>
-            <dependencies>
-                <dependency>
-                    <groupId>org.junit.platform</groupId>
-                    <artifactId>junit-platform-launcher</artifactId>
-                    <scope>test</scope>
-                </dependency>
-            </dependencies>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.graalvm.buildtools</groupId>
-                        <artifactId>native-maven-plugin</artifactId>
-                        <version>${native-buildtools.version}</version>
-                        <extensions>true</extensions>
-                        <executions>
-                            <execution>
-                                <id>build-native</id>
-                                <phase>package</phase>
-                                <goals>
-                                    <goal>build</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
+        <!-- SPRING CLOUD GATEWAY DOESNT SUPPORT SPRING-NATIVE YET-->
+<!--        <profile>-->
+<!--            <id>native</id>-->
+<!--            <properties>-->
+<!--                <repackage.classifier>exec</repackage.classifier>-->
+<!--                <native-buildtools.version>0.9.11</native-buildtools.version>-->
+<!--            </properties>-->
+<!--            <dependencies>-->
+<!--                <dependency>-->
+<!--                    <groupId>org.junit.platform</groupId>-->
+<!--                    <artifactId>junit-platform-launcher</artifactId>-->
+<!--                    <scope>test</scope>-->
+<!--                </dependency>-->
+<!--            </dependencies>-->
+<!--            <build>-->
+<!--                <plugins>-->
+<!--                    <plugin>-->
+<!--                        <groupId>org.graalvm.buildtools</groupId>-->
+<!--                        <artifactId>native-maven-plugin</artifactId>-->
+<!--                        <version>${native-buildtools.version}</version>-->
+<!--                        <extensions>true</extensions>-->
+<!--                        <executions>-->
+<!--                            <execution>-->
+<!--                                <id>build-native</id>-->
+<!--                                <phase>package</phase>-->
+<!--                                <goals>-->
+<!--                                    <goal>build</goal>-->
+<!--                                </goals>-->
+<!--                            </execution>-->
+<!--                        </executions>-->
+<!--                    </plugin>-->
+<!--                </plugins>-->
+<!--            </build>-->
+<!--        </profile>-->
     </profiles>
     <build>
         <finalName>app</finalName>
@@ -273,19 +279,19 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>org.springframework.experimental</groupId>
-                <artifactId>spring-aot-maven-plugin</artifactId>
-                <version>${spring-native.version}</version>
-                <executions>
-                    <execution>
-                        <id>generate</id>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+<!--            <plugin>-->
+<!--                <groupId>org.springframework.experimental</groupId>-->
+<!--                <artifactId>spring-aot-maven-plugin</artifactId>-->
+<!--                <version>${spring-native.version}</version>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <id>generate</id>-->
+<!--                        <goals>-->
+<!--                            <goal>generate</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
@@ -293,13 +299,13 @@
                     <profiles>
                         <profile>dev</profile>
                     </profiles>
-                    <image>
-                        <builder>paketobuildpacks/builder:tiny</builder>
-                        <env>
-                            <BP_NATIVE_IMAGE>true</BP_NATIVE_IMAGE>
-                            <BP_JVM_VERSION>17</BP_JVM_VERSION>
-                        </env>
-                    </image>
+<!--                    <image>-->
+<!--                        <builder>paketobuildpacks/builder:tiny</builder>-->
+<!--                        <env>-->
+<!--                            <BP_NATIVE_IMAGE>true</BP_NATIVE_IMAGE>-->
+<!--                            <BP_JVM_VERSION>17</BP_JVM_VERSION>-->
+<!--                        </env>-->
+<!--                    </image>-->
                 </configuration>
             </plugin>
 
