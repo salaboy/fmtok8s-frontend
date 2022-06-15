@@ -2,7 +2,6 @@ package com.salaboy.conferences.site;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.salaboy.conferences.site.metrics.MetricsGatewayGlobalFilter;
 import com.salaboy.conferences.site.models.ClientSession;
 import io.cloudevents.CloudEvent;
 import io.cloudevents.core.format.EventFormat;
@@ -11,24 +10,19 @@ import io.cloudevents.jackson.JsonFormat;
 import io.cloudevents.spring.http.CloudEventHttpUtils;
 import io.cloudevents.spring.webflux.CloudEventHttpMessageReader;
 import io.cloudevents.spring.webflux.CloudEventHttpMessageWriter;
-import lombok.extern.slf4j.Slf4j;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.codec.CodecCustomizer;
-import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.event.ContextRefreshedEvent;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.codec.CodecConfigurer;
 import org.springframework.stereotype.Component;
-import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.reactive.HandlerMapping;
 import org.springframework.web.reactive.handler.SimpleUrlHandlerMapping;
@@ -43,18 +37,11 @@ import reactor.core.publisher.EmitterProcessor;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.logging.Logger;
-
-import static org.slf4j.LoggerFactory.*;
 
 @SpringBootApplication
-@Slf4j
 public class ApiGatewayService {
 
     public static void main(String[] args) {
@@ -62,13 +49,13 @@ public class ApiGatewayService {
     }
 
 
-    @Autowired
-    private MetricsGatewayGlobalFilter globalFilter;
-
-    @Bean
-    public MetricsGatewayGlobalFilter getGlobalFilter() {
-        return globalFilter;
-    }
+//    @Autowired
+//    private MetricsGatewayGlobalFilter globalFilter;
+//
+//    @Bean
+//    public MetricsGatewayGlobalFilter getGlobalFilter() {
+//        return globalFilter;
+//    }
 
     @Autowired
     private WebSocketHandler webSocketHandler;
@@ -101,8 +88,9 @@ public class ApiGatewayService {
 }
 
 @Component
-@Slf4j
 class ReactiveWebSocketHandler implements WebSocketHandler {
+
+    private static final Logger log = LoggerFactory.getLogger(ReactiveWebSocketHandler.class);
 
     private List<String> sessions = new CopyOnWriteArrayList<>();
     private Map<String, EmitterProcessor<String>> processors = new ConcurrentHashMap<>();
@@ -122,7 +110,6 @@ class ReactiveWebSocketHandler implements WebSocketHandler {
     public List<String> getSessionsId() {
         return sessions;
     }
-
 
     @Override
     public Mono<Void> handle(WebSocketSession webSocketSession) {
@@ -160,8 +147,9 @@ class ReactiveWebSocketHandler implements WebSocketHandler {
 
 @RestController
 @RequestMapping("/api/")
-@Slf4j
 class ApiGatewayController {
+
+    private static final Logger log = LoggerFactory.getLogger(ApiGatewayController.class);
 
     @Value("${version:0.0.0}")
     private String version;
@@ -204,17 +192,17 @@ class ApiGatewayController {
         CloudEvent cloudEvent = CloudEventHttpUtils.fromHttp(headers).withData(clientSessionString.getBytes()).build();
         logCloudEvent(cloudEvent);
 
-        log.info("Client Session from Cloud Event Data: " + clientSession.getSessionId());
-        if (!clientSession.getSessionId().contains("mock")) {
+        log.info("Client Session from Cloud Event Data: " + clientSession.sessionId());
+        if (!clientSession.sessionId().contains("mock")) {
             byte[] serialized = EventFormatProvider
                     .getInstance()
                     .resolveFormat(JsonFormat.CONTENT_TYPE)
                     .serialize(cloudEvent);
             String serializedCloudEvent = new String(serialized);
             log.info("Cloud Event Serialized: " + serializedCloudEvent);
-            handler.getEmitterProcessor(clientSession.getSessionId()).onNext(serializedCloudEvent);
+            handler.getEmitterProcessor(clientSession.sessionId()).onNext(serializedCloudEvent);
         } else {
-            log.info("session id contained mock, not sending to websocket: " + clientSession.getSessionId());
+            log.info("session id contained mock, not sending to websocket: " + clientSession.sessionId());
         }
         return ResponseEntity.ok().build();
     }

@@ -1,4 +1,4 @@
 
 Get the application URL by running these commands:
 
-kubectl get ingress {{ template "fullname" . }}
+You can access the Frontend by doing `kubectl port-forward svc/fmtok8s-frontend -n {{ .Release.Namespace }} 8080:80`

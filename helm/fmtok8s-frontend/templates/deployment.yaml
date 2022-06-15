@@ -11,10 +11,7 @@ spec:
   selector:
     matchLabels:
       app: {{ template "fullname" . }}
-{{- if .Values.hpa.enabled }}
-{{- else }}
   replicas: {{ .Values.replicaCount }}
-{{- end }}
   template:
     metadata:
       labels:
@@ -73,8 +70,4 @@ spec:
         resources:
 {{ toYaml .Values.resources | indent 12 }}
       terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds }}
-      imagePullSecrets:
-{{- range $pval := .Values.jx.imagePullSecrets }}
-      - name: {{ quote $pval }}
-{{- end }}
 {{- end }}

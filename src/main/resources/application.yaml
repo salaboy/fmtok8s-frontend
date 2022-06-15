@@ -4,25 +4,23 @@ spring:
       static-locations: "file:static/" #for dev file:./target/static/ for docker static/
   webflux:
     static-path-pattern: "/**" # https://github.com/spring-cloud/spring-cloud-gateway/issues/1339
-  profiles:
-    active:
   application:
     name:
       fmtok8s-frontend
   cloud:
     gateway:
       #filter: #https://cloud.spring.io/spring-cloud-gateway/reference/html/#the-secureheaders-gatewayfilter-factory
-      filter:
-        secure-headers:
-          enabled: true
-      default-filters:
-        - SecureHeaders
-        - TokenRelay=
-        - RemoveRequestHeader=Cookie
-      httpclient:
-        wiretap: true
-      httpserver:
-          wiretap: true
+#      filter:
+#        secure-headers:
+#          enabled: true
+#      default-filters:
+#        - SecureHeaders
+#        - TokenRelay=
+#        - RemoveRequestHeader=Cookie
+#      httpclient:
+#        wiretap: true
+#      httpserver:
+#          wiretap: true
       routes:
       - id: agenda
         uri: ${AGENDA_SERVICE:http://fmtok8s-agenda}
@@ -30,30 +28,30 @@ spring:
           - Path=/agenda/**
         filters:
           - RewritePath=/agenda/(?<id>.*), /$\{id}
-          - name: CircuitBreaker
-            args:
-              name: agendaCircuitBreaker
-              fallbackUri: forward:/api/agendaNotAvailable
+#          - name: CircuitBreaker
+#            args:
+#              name: agendaCircuitBreaker
+#              fallbackUri: forward:/api/agendaNotAvailable
       - id: c4p
         uri: ${C4P_SERVICE:http://fmtok8s-c4p}
         predicates:
         - Path=/c4p/**
         filters:
           - RewritePath=/c4p/(?<id>.*), /$\{id}
-          - name: CircuitBreaker
-            args:
-              name: c4pCircuitBreaker
-              fallbackUri: forward:/api/c4pNotAvailable
+#          - name: CircuitBreaker
+#            args:
+#              name: c4pCircuitBreaker
+#              fallbackUri: forward:/api/c4pNotAvailable
       - id: email
         uri: ${EMAIL_SERVICE:http://fmtok8s-email}
         predicates:
         - Path=/email/**
         filters:
           - RewritePath=/email/(?<id>.*), /$\{id}
-          - name: CircuitBreaker
-            args:
-              name: c4pCircuitBreaker
-              fallbackUri: forward:/api/emailNotAvailable
+#          - name: CircuitBreaker
+#            args:
+#              name: c4pCircuitBreaker
+#              fallbackUri: forward:/api/emailNotAvailable
       - id: speakers
         uri: ${SPEAKERS_SERVICE:http://fmtok8s-speakers}
         predicates:
@@ -91,8 +89,6 @@ spring:
           - Path=/broker/**
         filters:
           - RewritePath=${K_SINK_POST_FIX:/broker/, /default/default}
-
-
 #  security:
 #    oauth2:
 #      client:
@@ -136,7 +132,7 @@ logging:
     org:
       springframework:
         cloud:
-          gateway: INFO
+          gateway: DEBUG
     com:
       salaboy:
         conferences:
