@@ -1,5 +1,5 @@
-name: On Commit Stage
-on: [push]
+name: From Monolith to K8s (Github Actions)
+on: [ push ]
 
 env:
   OWNER: salaboy
@@ -12,38 +12,37 @@ jobs:
   setup:
     runs-on: ubuntu-20.04
     steps:
-      # Info [LOGGER]
-      # It shows what branch or tag name that triggered the workflow run.
       - name: Info
         run: echo "Building ${{ github.repository }} application, branch/tag ${{ github.ref_name}}"
-
-      # Set up Docker Meta [UTIL] https://github.com/docker/metadata-action
-      # GitHub Action to extract metadata from Git reference and GitHub events.
-      # This action is used with Docker Build Push action to tag and label Docker images.
+      - name: From Monolith to K8S CI
+        id: fmtok8s_ci
+        uses: salaboy/fmtok8s-ci@main
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          default_branch: main
       - name: Set up Docker Meta
         id: docker_meta
         uses: docker/metadata-action@v3
         with:
           images: |
             ghcr.io/${{ github.repository }}
-          #  About tag inputs: https://github.com/docker/metadata-action#tags-input
-          #  This action uses 'type=semver' and 'type=ref' to create tag name with the branch or tag name.
           tags: |
             type=ref,event=branch
             type=ref,event=pr,
             type=semver,pattern={{raw}}
-
       - name: Docker Meta Output
         run: echo "Docker meta tags ${{ steps.docker_meta.outputs.tags }}"
     outputs:
       docker_tags: ${{ steps.docker_meta.outputs.tags }}
       docker_labels: ${{ steps.docker_meta.outputs.labels }}
+      execute_helm_publish: ${{ steps.fmtok8s_ci.outputs.execute_helm_publish }}
+      execute_docker_publish: ${{ steps.fmtok8s_ci.outputs.execute_docker_publish }}
+      execute_native_publish: ${{ steps.fmtok8s_ci.outputs.execute_native_publish }}
+      version_to_use: ${{ steps.fmtok8s_ci.outputs.version_to_use }}
   build:
-    needs: [setup]
+    needs: [ setup ]
     runs-on: ubuntu-20.04
     steps:
-      # Checkout and Set up JDK 17 [CHECKOUT, SETUP] https://github.com/actions/setup-java
-      # Github Action to set up JDK 17
       - name: Checkout and Set up JDK 17 Temurin
         uses: actions/checkout@v3
       - name: Set up JDK 17
@@ -60,8 +59,11 @@ jobs:
           name: app-target
           path: target/
   publish:
-    needs: [setup, build]
+    needs: [ setup, build ]
     runs-on: ubuntu-20.04
+    if: ${{ needs.setup.outputs.execute_docker_publish == 'true' }}
+    #    TODO: verify if is necessary to publish when the push is not on 'main' branch
+    #    TODO: know which we will use for
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -69,30 +71,19 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: app-target
-          path: target/
-      # Set up QEMU [SETUP] https://github.com/docker/setup-qemu-action
-      # GitHub Action to install QEMU static binaries
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
-      # Set up Docker Buildx [SETUP] https://github.com/docker/setup-buildx-action
-      # GitHub Action to set up Docker Buildx.
       - name: Set up Docker Buildx
         id: buildx
         uses: docker/setup-buildx-action@v1
 #      - name: Set up app.jar
 #        run: mkdir target && mv app.jar target/app.jar
-      # Login to Github Container Registry [AUTH] https://github.com/docker/login-action
-      # GitHub Action to login against a Docker registry.
       - name: Login to Github Container Registry
         uses: docker/login-action@v1
         with:
           registry: ghcr.io
           username: ${{ env.OWNER }}
-          # It needs to be added on Github repository
-          # https://github.com/salaboy/fmtok8s-frontend/settings/secrets/actions
           password: ${{ secrets.PACKAGE_TOKEN }}
-      # Build and Push Docker Image [BUILD, PUBLISH] https://github.com/docker/build-push-action
-      # GitHub Action to build and push Docker images with Buildx.
       - name: Build and Push Docker Image
         uses: docker/build-push-action@v2
         with:
@@ -101,61 +92,33 @@ jobs:
           push: true
           tags: ${{ needs.setup.outputs.docker_tags }}
           labels: ${{ needs.setup.outputs.docker_labels }}
-# -- SPRING CLOUD GATEWAY DOESN'T SUPPORT SPRING NATIVE YET
-#  build_publish_native:
-#    runs-on: ubuntu-20.04
-#    if: ${{ github.ref == 'refs/heads/main' }}
-#    needs: [setup, build]
-#    steps:
-#      - name: Checkout
-#        uses: actions/checkout@v3
-#      - name: Set up GraalVM 22.1.0
-#        uses: graalvm/setup-graalvm@v1
-#        with:
-#          version: '22.1.0'
-#          java-version: '17'
-#          components: 'native-image'
-#          github-token: ${{ secrets.GITHUB_TOKEN }}
-#      - name: Build native image
-#        run: mvn spring-boot:build-image -Dspring-boot.build-image.imageName=${{ needs.setup.outputs.docker_tags }}-native
-#      # Login to Github Container Registry [AUTH] https://github.com/docker/login-action
-#      # GitHub Action to login against a Docker registry.
-#      - name: Login to Github Container Registry
-#        uses: docker/login-action@v1
-#        with:
-#          registry: ghcr.io
-#          username: ${{ env.OWNER }}
-#          # It needs to be added on Github repository
-#          # https://github.com/salaboy/fmtok8s-c4p-rest/settings/secrets/actions
-#          password: ${{ secrets.PACKAGE_TOKEN }}
-#      - name: Publish native image
-#        run: docker push ${{ needs.setup.outputs.docker_tags }}-native
   publish_chart:
     runs-on: ubuntu-20.04
-    needs: [setup, build]
+    needs: [ setup, build ]
+    if: ${{ needs.setup.outputs.execute_helm_publish == 'true' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      # Change Chart.yml [UTIL] https://github.com/fjogeleit/yaml-update-action
-      # Github Action to change a local YAML file without commiting the change.
       - name: Change Chart.yml
         uses: fjogeleit/yaml-update-action@main
-        # This is necessary because the property 'version' on Chart.yml must be a valid Semver 2 version.
-        if: startsWith(github.ref, 'refs/tags/v')
         with:
           valueFile: 'helm/fmtok8s-frontend/Chart.yaml'
           propertyPath: 'version'
-          value: '${{ github.ref_name }}'
+          value: '${{ needs.setup.outputs.version_to_use }}'
           commitChange: false
           updateFile: true
-      # Release Helm Chart [BUILD, PUBLISH] https://github.com/stefanprodan/helm-gh-pages
-      # A GitHub Action for publishing Helm charts with Github Pages.
+      - name: Change values.yml
+        uses: fjogeleit/yaml-update-action@main
+        with:
+          valueFile: 'helm/fmtok8s-frontend/values.yaml'
+          propertyPath: 'image.tag'
+          value: '${{ needs.setup.outputs.version_to_use }}'
+          commitChange: false
+          updateFile: true
       - name: Release Helm Chart
         uses: stefanprodan/helm-gh-pages@master
         with:
           charts_dir: helm
-          # It needs to be added on Github repository
-          # https://github.com/salaboy/fmtok8s-frontend/settings/secrets/actions
           token: ${{ secrets.PACKAGE_TOKEN }}
           repository: helm
           branch: ${{ env.GH_PAGES_BRANCH_NAME }}
