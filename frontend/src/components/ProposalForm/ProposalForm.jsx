@@ -32,7 +32,7 @@ function ProposalForm() {
 
   function generate(){
     setDescription(lorem.generateParagraphs(2));
-    setTitle(lorem.generateSentences(5));
+    setTitle(lorem.generateWords(5));
     setAuthor(lorem.generateWords(2));
     setEmail(lorem.generateWords(1)+"@mail.com");
     setGenerated(true);
