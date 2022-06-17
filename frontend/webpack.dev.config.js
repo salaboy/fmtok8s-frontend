@@ -3,10 +3,14 @@ const webpack = require("webpack");
 
 module.exports = {
     mode: 'development',
+    output: {
+        publicPath: '/'
+    },
     resolve: {
         extensions: ['.js', '.jsx'],
     },
     devServer: {
+        historyApiFallback: true,
         proxy: {
 
             // '/default': {

@@ -3,6 +3,9 @@ const webpack = require("webpack");
 
 module.exports = {
     mode: 'production',
+    output: {
+        publicPath: '/'
+    },
     resolve: {
         extensions: ['.js', '.jsx'],
     },
@@ -42,6 +45,9 @@ module.exports = {
                 include: __dirname,
             },
         ],
+    },
+    devServer: {
+        historyApiFallback: true,
     },
     plugins: [
         new htmlWebpackPlugin({
