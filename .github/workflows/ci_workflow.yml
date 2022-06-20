@@ -37,7 +37,6 @@ jobs:
       docker_labels: ${{ steps.docker_meta.outputs.labels }}
       execute_helm_publish: ${{ steps.fmtok8s_ci.outputs.execute_helm_publish }}
       execute_docker_publish: ${{ steps.fmtok8s_ci.outputs.execute_docker_publish }}
-      execute_native_publish: ${{ steps.fmtok8s_ci.outputs.execute_native_publish }}
       version_to_use: ${{ steps.fmtok8s_ci.outputs.version_to_use }}
   build:
     needs: [ setup ]
