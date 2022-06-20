@@ -30,8 +30,6 @@ jobs:
             type=ref,event=branch
             type=ref,event=pr,
             type=semver,pattern={{raw}}
-      - name: Docker Meta Output
-        run: echo "Docker meta tags ${{ steps.docker_meta.outputs.tags }}"
     outputs:
       docker_tags: ${{ steps.docker_meta.outputs.tags }}
       docker_labels: ${{ steps.docker_meta.outputs.labels }}
@@ -94,7 +92,7 @@ jobs:
           context: .
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: ${{ needs.setup.outputs.docker_tags }}
+          tags: ghcr.io/salaboy/fmtok8s-frontend:${{ needs.setup.outputs.docker_tags }}
           labels: ${{ needs.setup.outputs.docker_labels }}
   publish_chart:
     runs-on: ubuntu-20.04
