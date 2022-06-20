@@ -90,7 +90,7 @@ jobs:
           context: .
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: ghcr.io/${{ github.repository }}:${{ needs.setup.outputs.docker_tags }}
+          tags: ghcr.io/${{ github.repository }}:${{ needs.setup.outputs.version_to_use }}
           labels: ${{ needs.setup.outputs.docker_labels }}
   publish_chart:
     runs-on: ubuntu-20.04
