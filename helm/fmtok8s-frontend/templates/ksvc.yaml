@@ -48,6 +48,8 @@ spec:
             timeoutSeconds: {{ .Values.readinessProbe.timeoutSeconds }}
           resources:
 {{ toYaml .Values.resources | indent 14 }}
+{{- if .Values.knative.traffic }}
   traffic:
 {{ toYaml .Values.knative.traffic | indent 2 }}
+{{- end }}
 {{- end }}
