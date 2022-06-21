@@ -21,6 +21,8 @@ spec:
           env:
           - name: SPRING_PROFILES_ACTIVE
             value: dev
+          - name: FEATURE_C4P_ENABLED
+            value: "true"
           - name: VERSION
             value: {{ .Chart.Version }}
           - name: POD_NODE_NAME
