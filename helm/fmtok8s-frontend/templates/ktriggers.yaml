@@ -1,4 +1,4 @@
-{{- if .Values.knativeDeploy }}
+{{- if .Values.knative.eventing.enabled }}
 apiVersion: eventing.knative.dev/v1
 kind: Trigger
 metadata:
