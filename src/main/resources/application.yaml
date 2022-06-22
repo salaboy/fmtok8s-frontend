@@ -23,7 +23,7 @@ spring:
 #          wiretap: true
       routes:
       - id: agenda
-        uri: ${AGENDA_SERVICE:http://fmtok8s-agenda}
+        uri: ${FRONTEND_AGENDA_SERVICE:http://fmtok8s-agenda}
         predicates:
           - Path=/agenda/**
         filters:
@@ -33,7 +33,7 @@ spring:
               name: agendaCircuitBreaker
               fallbackUri: forward:/api/agendaNotAvailable
       - id: c4p
-        uri: ${C4P_SERVICE:http://fmtok8s-c4p}
+        uri: ${FRONTEND_C4P_SERVICE:http://fmtok8s-c4p}
         predicates:
         - Path=/c4p/**
         filters:
@@ -43,7 +43,7 @@ spring:
               name: c4pCircuitBreaker
               fallbackUri: forward:/api/c4pNotAvailable
       - id: email
-        uri: ${EMAIL_SERVICE:http://fmtok8s-email}
+        uri: ${FRONTEND_EMAIL_SERVICE:http://fmtok8s-email}
         predicates:
         - Path=/email/**
         filters:
@@ -53,32 +53,32 @@ spring:
               name: c4pCircuitBreaker
               fallbackUri: forward:/api/emailNotAvailable
       - id: speakers
-        uri: ${SPEAKERS_SERVICE:http://fmtok8s-speakers}
+        uri: ${FRONTEND_SPEAKERS_SERVICE:http://fmtok8s-speakers}
         predicates:
           - Path=/speakers/**
         filters:
           - RewritePath=/speakers/(?<id>.*), /$\{id}
       - id: sponsors
-        uri: ${SPONSORS_SERVICE:http://fmtok8s-sponsors}
+        uri: ${FRONTEND_SPONSORS_SERVICE:http://fmtok8s-sponsors}
         predicates:
           - Path=/sponsors/**
         filters:
           - RewritePath=/sponsors/(?<id>.*), /$\{id}
       - id: tickets
-        uri: ${TICKETS_SERVICE:http://tickets-service}
+        uri: ${FRONTEND_TICKETS_SERVICE:http://tickets-service}
         predicates:
           - Path=/tickets/**
         filters:
           - RewritePath=/tickets/(?<id>.*), /$\{id}
       - id: payments
-        uri: ${PAYMENTS_SERVICE:http://payments-service.default.svc.cluster.local}
+        uri: ${FRONTEND_PAYMENTS_SERVICE:http://payments-service.default.svc.cluster.local}
         predicates:
           - Path=/payments/**
         filters:
           - RewritePath=/payments/(?<id>.*), /$\{id}
           - AddResponseHeader=X-Frame-Options, SAMEORIGIN
       - id: queue
-        uri: ${QUEUE_SERVICE:http://queue-service.default.svc.cluster.local}
+        uri: ${FRONTEND_QUEUE_SERVICE:http://queue-service.default.svc.cluster.local}
         predicates:
           - Path=/queue/**
         filters:
