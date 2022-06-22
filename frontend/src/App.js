@@ -47,26 +47,26 @@ function App() {
                                 <Route path="/" exact>
                                     <Home/>
                                 </Route>
-                                <Route path="/agenda" exact>
+                                <Route path="/agenda-page" exact>
                                     <FullAgenda/>
                                 </Route>
-                                <Route path="/proposals" exact>
+                                <Route path="/proposals-page" exact>
                                     <Proposals/>
                                 </Route>
-                                <Route path="/speakers" exact>
+                                <Route path="/speakers-page" exact>
                                     <Speakers/>
                                 </Route>
-                                <Route path="/tickets" exact>
+                                <Route path="/tickets-page" exact>
                                     <Tickets/>
                                 </Route>
-                                <Route path="/about" exact>
+                                <Route path="/about-page" exact>
                                     <About/>
                                 </Route>
 
-                                <Route path="/back-office/:subSection" >
+                                <Route path="/back-office-page/:subSection" >
                                     <BackOffice/>
                                 </Route>
-                                <Route path="/back-office" exact >
+                                <Route path="/back-office-page" exact >
                                     <BackOffice/>
                                 </Route>
 

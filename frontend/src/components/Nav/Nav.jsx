@@ -7,6 +7,7 @@ import cn from 'classnames';
 function Nav() {
   const {  currentSection } = useContext(AppContext);
 
+    let speakersEnabled = window._env_.FEATURE_SPEAKERS_ENABLED
     let ticketsEnabled = window._env_.FEATURE_TICKETS_ENABLED
     let c4pEnabled = window._env_.FEATURE_C4P_ENABLED
 
@@ -20,30 +21,32 @@ function Nav() {
             <div className="Nav__main">
 
               <span>
-                <NavLink activeClassName='--active' to='/agenda' exact> Agenda</NavLink>
+                <NavLink activeClassName='--active' to='/agenda-page' exact> Agenda</NavLink>
               </span>
               <span>
-                <NavLink activeClassName='--active' to='/speakers' exact> Speakers</NavLink>
+                   { speakersEnabled && (
+                <NavLink activeClassName='--active' to='/speakers-page' exact> Speakers</NavLink>
+                   )}
               </span>
                 { ticketsEnabled && (
                   <span>
-                    <NavLink activeClassName='--active' to='/tickets' exact> Tickets</NavLink>
+                    <NavLink activeClassName='--active' to='/tickets-page' exact> Tickets</NavLink>
                   </span>
                 )}
                 { c4pEnabled && (
               <span>
-                <NavLink activeClassName='--active' to='/proposals' exact> Proposals</NavLink>
+                <NavLink activeClassName='--active' to='/proposals-page' exact> Proposals</NavLink>
               </span>
                 )}
               <span>
-                <NavLink activeClassName='--active' to='/about' exact> About</NavLink>
+                <NavLink activeClassName='--active' to='/about-page' exact> About</NavLink>
               </span>
             </div>
           )}
           <div className="Nav__back-office">
             {currentSection !== "back-office" && (
               <span>
-                <NavLink activeClassName='--active' to='/back-office' exact> -> </NavLink>
+                <NavLink activeClassName='--active' to='/back-office-page' exact> -> </NavLink>
               </span>
             )}
             {currentSection === "back-office" && (

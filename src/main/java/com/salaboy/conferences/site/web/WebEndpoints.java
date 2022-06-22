@@ -19,17 +19,17 @@ public class WebEndpoints {
     @Bean
     public RouterFunction<ServerResponse> indexRouter() {
         return route()
-                .GET("/proposals", request ->
+                .GET("/proposals-page", request ->
                         ServerResponse.ok().contentType(MediaType.TEXT_HTML).bodyValue(getIndexPage()))
-                .GET("/speakers", request ->
+                .GET("/speakers-page", request ->
                         ServerResponse.ok().contentType(MediaType.TEXT_HTML).bodyValue(getIndexPage()))
-                .GET("/back-office", request ->
+                .GET("/back-office-page", request ->
                         ServerResponse.ok().contentType(MediaType.TEXT_HTML).bodyValue(getIndexPage()))
-                .GET("/agenda", request ->
+                .GET("/agenda-page", request ->
                         ServerResponse.ok().contentType(MediaType.TEXT_HTML).bodyValue(getIndexPage()))
-                .GET("/sponsors", request ->
+                .GET("/sponsors-page", request ->
                         ServerResponse.ok().contentType(MediaType.TEXT_HTML).bodyValue(getIndexPage()))
-                .GET("/about", request ->
+                .GET("/about-page", request ->
                         ServerResponse.ok().contentType(MediaType.TEXT_HTML).bodyValue(getIndexPage()))
                 .build();
     }
