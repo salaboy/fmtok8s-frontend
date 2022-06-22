@@ -21,6 +21,7 @@ function BackOffice() {
 
   let ticketsEnabled = window._env_.FEATURE_TICKETS_ENABLED
   let c4pEnabled = window._env_.FEATURE_C4P_ENABLED
+  let speakersEnabled = window._env_.FEATURE_SPEAKERS_ENABLED
 
   const TicketsFeature = React.useMemo( () => lazy(() => import('../../components/TicketsQueue/TicketsQueue')), []);
   // const ticketsFeature = props => <TicketsQueue {...props} />;
@@ -74,12 +75,6 @@ function BackOffice() {
           <BackOfficeNav currentSubSection={subSection}/>
         </div>
         <div className="back-office__Layout__Content">
-            {(subSection === "features" || subSection === undefined) && (
-                <>
-                  <h2>Feature Flags</h2>
-                  <FeatureFlags></FeatureFlags>
-                </>
-            )}
             {(subSection === "proposals" && c4pEnabled) &&
               <>
                 <h2>Proposals to Review </h2>
@@ -88,6 +83,12 @@ function BackOffice() {
                 </Suspense>
               </>
             }
+          {(subSection === "features" || subSection === undefined) && (
+              <>
+                <h2>Feature Flags</h2>
+                <FeatureFlags></FeatureFlags>
+              </>
+          )}
             {subSection === "tickets" && ticketsEnabled && (
               <>
               <h2>Tickets Queue Admin</h2>

@@ -9,6 +9,7 @@ function BackOfficeNav({currentSubSection}) {
 
     let ticketsEnabled = window._env_.FEATURE_TICKETS_ENABLED
     let c4pEnabled = window._env_.FEATURE_C4P_ENABLED
+    let speakersEnabled = window._env_.FEATURE_SPEAKERS_ENABLED
 
     return (
         <div className={cn({
@@ -21,18 +22,18 @@ function BackOfficeNav({currentSubSection}) {
                         className={cn({
                             ["--default"]: !currentSubSection,
                         })}
-                        activeClassName='--active' to='/back-office/features' exact> Features
+                        activeClassName='--active' to='/back-office-page/features' exact> Features
                     </NavLink>
                 </div>
                 {c4pEnabled && (
                         <div>
-                            <NavLink activeClassName='--active' to='/back-office/proposals' exact> Proposals
+                            <NavLink activeClassName='--active' to='/back-office-page/proposals' exact> Proposals
                             </NavLink>
                         </div>
                 )}
                 {ticketsEnabled && (
                     <div>
-                        <NavLink activeClassName='--active' to='/back-office/tickets' exact> Tickets Queue</NavLink>
+                        <NavLink activeClassName='--active' to='/back-office-page/tickets' exact> Tickets Queue</NavLink>
                     </div>
                 )}
             </div>
