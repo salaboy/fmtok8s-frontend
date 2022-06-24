@@ -67,14 +67,14 @@ function Home() {
       </section>
 
 
-      <section className="section border">
+      <section className="section white small">
         <Element>
           <h4>Speakers</h4>
           <Speakers/>
 
         </Element>
       </section>
-      <section className="section white small">
+      <section className="section  ">
         <Element>
           <h4>Call for Proposals</h4>
           <h2>Are you interested in presenting in this year edition, submit your proposals here. </h2>
@@ -84,13 +84,13 @@ function Home() {
           </Element>
         </Element>
       </section>
-      <section className="section  small">
+      <section className="section yellow  small">
         <Element>
           <h4>Our Sponsors</h4>
           <Sponsors />
         </Element>
       </section>
-      <section className="section border nopadding">
+      <section className="section border yellow nopadding">
         <Footer/>
       </section>
 

@@ -95,9 +95,13 @@ function ProposalForm() {
               } value={description} />
             </div>
             {isError && <small className="mt-3 d-inline-block text-danger">Something went wrong. Please try again later.</small>}
-            <Button main clickHandler={generate} disabled={generated}>Generate</Button>
-            <Button main clickHandler={handleSubmit} disabled={loading || !generated}>{loading ? 'Loading...' : 'Submit'}</Button>
 
+            {!generated && (  
+              <Button main inline clickHandler={generate} disabled={generated}>Generate</Button>
+            )}
+            {generated && (
+              <Button main inline clickHandler={handleSubmit} disabled={loading || !generated}>{loading ? 'Loading...' : 'Submit'}</Button>
+            )}
 
 
 

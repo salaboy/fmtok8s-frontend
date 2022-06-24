@@ -4,6 +4,7 @@ import { useLocomotiveScroll } from 'react-locomotive-scroll';
 import AppContext from '../../contexts/AppContext';
 import Header from '../../components/Header/Header'
 import cn from 'classnames';
+import Footer from '../../components/Footer/Footer'
 import Agenda from '../../components/Agenda/Agenda'
 
 function FullAgenda() {
@@ -51,11 +52,15 @@ function FullAgenda() {
 
         <h1>Conference Agenda</h1>
         <br/>
-        <h3>Monday's sessions</h3>
+        <h4>Monday's sessions</h4>
         <Agenda day="Monday"></Agenda>
-        <h3>Tuesday's sessions</h3>
+        <h4>Tuesday's sessions</h4>
         <Agenda day="Tuesday"></Agenda>
       </section>
+      <section className="section  yellow nopadding">
+        <Footer/>
+      </section>
+
     </div>
   </motion.div>
   )

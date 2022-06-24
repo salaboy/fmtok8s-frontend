@@ -4,6 +4,15 @@
   border: 2px solid color(black);
   padding: spacing(6,2);
   position: relative;
+  &.--small {
+    padding: spacing(2,6);
+    .Speaker__title {
+      padding-bottom: spacing(2, 2);
+    }
+    .Speaker__image {
+      top: spacing(2,4);right: spacing(2,4);
+    }
+  }
   .Speaker__image {
     position: absolute;
     top: spacing(4,3);right: spacing(4,3);
@@ -82,7 +91,7 @@
   }
 }
 .Speaker-container {
-  margin: 0 0 spacing(2,10) 0;
+  margin: 0 0 spacing(2,5) 0;
   display: inline-block;
   width: 100%;
 }

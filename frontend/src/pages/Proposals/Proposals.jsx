@@ -50,7 +50,7 @@ function Proposals() {
           })}
     >
       <Header/>
-      <SectionHero title="Join us as a speaker" />
+
       <section data-scroll id="fixed-target">
 
 
@@ -59,12 +59,15 @@ function Proposals() {
             <ProposalForm />
           </div>
           <div className="proposals__info" data-scroll data-scroll-sticky data-scroll-target="#fixed-target" data-scroll-speed="2">
+            <h4>Join us as a speaker</h4>
             <p data-scroll data-scroll-speed="2" className="p p-b">Are you passionate about Cloud, Kubernetes, Docker or other technologies related with the Cloud. Submit your proposal to share your knowledge with our amazing community!</p>
           </div>
         </div>
 
       </section>
-      <Footer/>
+      <section className="section  yellow nopadding">
+        <Footer/>
+      </section>
     </div>
   </motion.div>
   )

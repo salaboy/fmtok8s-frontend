@@ -35,11 +35,13 @@ function AgendaItem({name, day, time, author, authorImage, position}) {
           <p className="p p-s"> {author}</p>
 
         </div>
-        <div className="AgendaItem__image">
-          <div className="AgendaItem__avatar">
-            {authorImage}
+        {authorImage && (
+          <div className="AgendaItem__image">
+            <div className="AgendaItem__avatar">
+              {authorImage}
+            </div>
           </div>
-        </div>
+        )}
       </div>
       </Element>
     );

@@ -64,7 +64,7 @@ function Agenda(props) {
                         key={index}
                         position={index}
                         author={item.author}
-                        authorImage="{item.authorImage}"
+                        authorImage={item.authorImage}
 
                     />
 

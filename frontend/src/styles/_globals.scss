@@ -29,6 +29,9 @@ section {
   &.section.white {
     background-color: color(white, light);
   }
+  &.section.yellow {
+    background-color: color(yellow);
+  }
   &.section.small {
     padding: spacing(2,8) spacing(2,20);
   }
