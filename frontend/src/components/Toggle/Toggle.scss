@@ -1,0 +1,30 @@
+@import '../../styles/_foundations.scss';
+.Toggle {
+  background-color: color(black, medium);
+  display: inline-block;
+  width: spacing(2,10);
+  height: spacing(2,5);
+  border-radius: spacing(2,4);
+  border: 2px solid color(white);
+  position: relative;
+  top: spacing(2);
+  margin: 0 spacing(2);
+  &.--on {
+    background-color: color(green);
+    border: 2px solid color(green);
+    .Toggle-handle {
+      position: absolute;
+      left: calc(100% - spacing(2,5) + 3px );
+    }
+  }
+  .Toggle-handle {
+    width: spacing(2,5) - 4px;
+    height: spacing(2,5)  - 4px;;
+    border-radius: spacing(2,4);
+    border: 2px solid color(black);
+    background-color: color(white);
+    transition: transition();
+    position: absolute;
+    left: 0;
+  }
+}

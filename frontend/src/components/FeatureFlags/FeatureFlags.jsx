@@ -1,6 +1,7 @@
 import "./FeatureFlags.scss";
 import React, { useState } from "react";
 import cn from 'classnames';
+import Toggle  from '../../components/Toggle/Toggle'
 
 
 
@@ -16,10 +17,19 @@ function FeatureFlags() {
             ["FeatureFlags"]: true,
         })}>
             <div>
-                <h5>Debug Enabled: {debugEnabled}</h5>
-                <h5>Call For Proposals Enabled: {c4pEnabled}</h5>
-                <h5>Tickets Portal Enabled: {ticketsEnabled}</h5>
-                <h5>Speakers Enabled: {speakersEnabled}</h5>
+              <div className="FeatureFlag">
+                <Toggle status={true} /> Debug Enabled
+              </div>
+              <div className="FeatureFlag">
+                <Toggle status={c4pEnabled} /> Call For Proposals Enabled
+              </div>
+              <div className="FeatureFlag">
+                <Toggle status={ticketsEnabled} /> Tickets Portal Enabled
+              </div>
+              <div className="FeatureFlag">
+                <Toggle status={speakersEnabled} /> Speakers Enabled
+              </div>
+
             </div>
 
 
@@ -29,4 +39,3 @@ function FeatureFlags() {
 }
 
 export default FeatureFlags;
-

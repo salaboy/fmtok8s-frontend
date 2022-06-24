@@ -69,7 +69,7 @@ function BackOffice() {
           })}
     >
       <Header/>
-      <SectionHero  title="Welcome Conference Organizers" />
+      <SectionHero small title="Welcome Conference Organizers" />
       <section className="back-office__Layout">
 
         <div className="back-office__Layout__Nav">
@@ -78,7 +78,7 @@ function BackOffice() {
         <div className="back-office__Layout__Content">
             {(subSection === "proposals" && c4pEnabled) &&
               <>
-                <h2>Proposals to Review </h2>
+                <h4>Proposals to Review </h4>
                 <Suspense fallback='<div>Loading...</div>'>
                   <ProposalsFeature></ProposalsFeature>
                 </Suspense>
@@ -86,7 +86,7 @@ function BackOffice() {
             }
           {(subSection === "features" || subSection === undefined) && (
               <>
-                <h2>Feature Flags</h2>
+                <h4>Feature Flags</h4>
                 <FeatureFlags></FeatureFlags>
               </>
           )}

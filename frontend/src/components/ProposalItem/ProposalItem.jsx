@@ -33,9 +33,11 @@ function ProposalItem({title, author, id, status, approved, email, description, 
         <div className="ProposalItem__description">
           <p className="p p-s">{description}</p>
         </div>
+        {false && (
         <div className="ProposalItem__id">
           {id}
         </div>
+        )}
         {status && status==="PENDING" && (
           <div className="ProposalItem__actions">
             <div >
