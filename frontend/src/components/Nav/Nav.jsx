@@ -14,9 +14,9 @@ function Nav() {
 
     return (
         <div className={cn({
-            ["Nav"]: true,
-            ["Nav-debug"]: debugEnabled === 'true',
-            ["--backoffice"]: currentSection === "back-office",
+          ["Nav"]: debugEnabled === 'false',
+           ["Nav-debug"]: debugEnabled === 'true',
+           ["--backoffice"]: currentSection === "back-office",
         })}>
             <div className="Nav__container">
                 {currentSection !== "back-office" && (
