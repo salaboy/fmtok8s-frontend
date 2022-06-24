@@ -54,3 +54,59 @@
     opacity: .3;
   }
 }
+
+.Nav-debug{
+  position: fixed;
+  top: spacing(2,36);
+  right: 0;
+  z-index: 120;
+  &.--backoffice {
+    .Nav__container {
+      .Nav__back-office{
+
+        background-color: color(white);
+        color: color(black);
+        a {
+          color: color(black);
+        }
+
+      }
+    }
+  }
+  .Nav__container {
+    display: flex;
+    .Nav__main{
+      padding: 0 spacing(6);
+      background-color: color(black);
+      color: color(white);
+      height: spacing(2,10);
+      border-radius: spacing(2,5);
+      margin-right: spacing(4,4);
+      span {
+        display: inline-block;
+        margin: 0 spacing(2);
+      }
+    }
+    .Nav__back-office{
+      padding: 0 0 0 spacing(4);
+      background-color: color(black);
+      color: color(white);
+      height: spacing(2,10);
+      border-radius: spacing(2,5) 0 0 spacing(2,5);
+      transition: transition();
+    }
+
+  }
+
+  a {
+    color: color(white);
+    text-decoration: none;
+    line-height: spacing(2,10.5);
+    padding: 0 spacing(4);
+    transition: transition();
+
+  }
+  .--active {
+    opacity: .3;
+  }
+}

@@ -7,6 +7,7 @@ import cn from 'classnames';
 function BackOfficeNav({currentSubSection}) {
     const {currentSection} = useContext(AppContext);
 
+    let debugEnabled = window._env_.FEATURE_DEBUG_ENABLED
     let ticketsEnabled = window._env_.FEATURE_TICKETS_ENABLED
     let c4pEnabled = window._env_.FEATURE_C4P_ENABLED
     let speakersEnabled = window._env_.FEATURE_SPEAKERS_ENABLED
@@ -25,13 +26,13 @@ function BackOfficeNav({currentSubSection}) {
                         activeClassName='--active' to='/back-office-page/features' exact> Features
                     </NavLink>
                 </div>
-                {c4pEnabled && (
+                {c4pEnabled === 'true' && (
                         <div>
                             <NavLink activeClassName='--active' to='/back-office-page/proposals' exact> Proposals
                             </NavLink>
                         </div>
                 )}
-                {ticketsEnabled && (
+                {ticketsEnabled === 'true' && (
                     <div>
                         <NavLink activeClassName='--active' to='/back-office-page/tickets' exact> Tickets Queue</NavLink>
                     </div>

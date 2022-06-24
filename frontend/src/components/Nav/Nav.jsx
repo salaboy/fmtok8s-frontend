@@ -7,13 +7,15 @@ import cn from 'classnames';
 function Nav() {
     const {currentSection} = useContext(AppContext);
 
+    let debugEnabled = window._env_.FEATURE_DEBUG_ENABLED
     let speakersEnabled = window._env_.FEATURE_SPEAKERS_ENABLED
     let ticketsEnabled = window._env_.FEATURE_TICKETS_ENABLED
     let c4pEnabled = window._env_.FEATURE_C4P_ENABLED
 
     return (
         <div className={cn({
-            ["Nav"]: true,
+            ["Nav"]: debugEnabled === 'false',
+            ["Nav-debug"]: debugEnabled === 'true',
             ["--backoffice"]: currentSection === "back-office",
         })}>
             <div className="Nav__container">
@@ -23,17 +25,19 @@ function Nav() {
               <span>
                 <NavLink activeClassName='--active' to='/agenda-page' exact> Agenda</NavLink>
               </span>
-                        {speakersEnabled && (
+
+                        {speakersEnabled === 'true' && (
                             <span>
                              <NavLink activeClassName='--active' to='/speakers-page' exact> Speakers</NavLink>
                             </span>
                         )}
-                        {ticketsEnabled && (
+                        {ticketsEnabled === 'true' && (
                             <span>
                     <NavLink activeClassName='--active' to='/tickets-page' exact> Tickets</NavLink>
                   </span>
                         )}
-                        {c4pEnabled && (
+
+                        {c4pEnabled === 'true' && (
                             <span>
                 <NavLink activeClassName='--active' to='/proposals-page' exact> Proposals</NavLink>
               </span>

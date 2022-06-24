@@ -31,6 +31,7 @@ function Proposals() {
   const pageAnimationComplete = e => {
   };
 
+  let debugEnabled = window._env_.FEATURE_DEBUG_ENABLED
 
   return (
   <motion.div
@@ -43,7 +44,8 @@ function Proposals() {
   >
 
     <div className={  cn({
-            ["page"]: true,
+            ["page"]: debugEnabled === 'false',
+            ["page-debug"]: debugEnabled === 'true',
             ["proposals"]: true
           })}
     >

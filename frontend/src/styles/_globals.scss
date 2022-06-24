@@ -28,7 +28,12 @@ section {
 .page {
   transition: transition();
   min-height: 100vh;
+}
 
+.page-debug {
+  transition: transition();
+  min-height: 100vh;
+  padding-top: 154px;
 }
 
 .grid {

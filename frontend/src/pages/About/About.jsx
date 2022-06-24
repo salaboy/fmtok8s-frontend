@@ -27,6 +27,8 @@ function About() {
   const pageAnimationComplete = e => {
   };
 
+  let debugEnabled = window._env_.FEATURE_DEBUG_ENABLED
+
 
   return (
   <motion.div
@@ -39,7 +41,8 @@ function About() {
   >
 
     <div className={  cn({
-            ["page"]: true,
+            ["page"]: debugEnabled === 'false',
+            ["page-debug"]: debugEnabled === 'true',
             ["about"]: true
           })}
     >

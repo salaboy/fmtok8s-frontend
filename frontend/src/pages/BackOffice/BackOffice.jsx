@@ -51,7 +51,7 @@ function BackOffice() {
   const pageAnimationComplete = e => {
   };
 
-
+  let debugEnabled = window._env_.FEATURE_DEBUG_ENABLED
 
   return (
   <motion.div
@@ -63,7 +63,8 @@ function BackOffice() {
     onAnimationComplete={pageAnimationComplete}
   >
     <div className={  cn({
-            ["page"]: true,
+            ["page"]: debugEnabled === 'false',
+            ["page-debug"]: debugEnabled === 'true',
             ["back-office"]: true
           })}
     >

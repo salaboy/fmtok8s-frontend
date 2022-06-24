@@ -12,11 +12,13 @@ import BackOffice from './pages/BackOffice/BackOffice';
 import Nav from './components/Nav/Nav';
 import AppContext from './contexts/AppContext';
 import cn from 'classnames';
+import Debug from './components/Debug/Debug';
 
 function App() {
     const location = useLocation();
     const containerRef = useRef(null);
 
+    let debugEnabled = window._env_.FEATURE_DEBUG_ENABLED
 
     //contexts
     const [currentSection, setCurrentSection] = useState("home");
@@ -28,6 +30,11 @@ function App() {
             setCurrentSection: setCurrentSection,
             currentSection: currentSection,
         }}>
+            {debugEnabled === 'true' && (
+            <div className="debug">
+                Debug
+            </div>
+                )}
             <LocomotiveScrollProvider
                 options={{
                     smooth: true,
@@ -39,6 +46,9 @@ function App() {
                 <div className={cn({
                     ["App"]: true,
                 })}>
+                    {debugEnabled === 'true' && (
+                    <Debug />
+                    )}
                     <Nav/>
                     <main data-scroll-container ref={containerRef}>
                         <AnimatePresence exitBeforeEnter>

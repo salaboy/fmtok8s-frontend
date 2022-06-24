@@ -17,6 +17,7 @@ function Home() {
   const {  currentSection, setCurrentSection } = useContext(AppContext);
   //scroll
   const { scroll } = useLocomotiveScroll();
+  let debugEnabled = window._env_.FEATURE_DEBUG_ENABLED
 
   useEffect(() => {
 
@@ -37,7 +38,6 @@ function Home() {
   };
   const pageAnimationComplete = e => {
   };
-
   return (
   <motion.div
     exit="exit"
@@ -48,11 +48,11 @@ function Home() {
     onAnimationComplete={pageAnimationComplete}
   >
     <div className={  cn({
-            ["page"]: true,
+            ["page"]: debugEnabled === 'false',
+            ["page-debug"]: debugEnabled === 'true',
             ["home"]: true
           })}
     >
-
 
       <Header/>
 
