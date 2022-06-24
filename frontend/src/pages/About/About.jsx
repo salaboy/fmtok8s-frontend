@@ -47,7 +47,29 @@ function About() {
       <section>
 
         <h1>About Us</h1>
-        <p></p>
+        <p>You can find the links to the source code and tutorials by going to the main Github repository: <a href="https://github.com/salaboy/from-monolith-to-k8s">https://github.com/salaboy/from-monolith-to-k8s</a></p>
+        <br/>
+        <p>This application is fully covered by the <a href="http://mng.bz/jjKP">Continuous Delivery for Kubernetes Book</a></p>
+
+        <img src="images/book.png"></img>
+        <br/>
+        <p>This application is currently being developed and maintained by: </p>
+        <ul>
+          <li>
+            <img src="images/salaboy.png"></img>
+            <a href="https://twitter.com/salaboy">Mauricio Salatino (Salaboy)</a>
+          </li>
+          <li>
+            <img src="images/eze.png"></img>
+            <a href="https://">Ezequiel Salatino</a>
+          </li>
+          <li>
+            <img src="images/matheus.png"></img>
+            <a href="https://twitter.com/mcruzdev1">Matheus Cruz</a>
+          </li>
+        </ul>
+        <p>Do you want to contribute to make this application better?
+          Go to the <a href="https://github.com/salaboy/from-monolith-to-k8s/issues">From Monolith To K8s repository</a> and create an issue or drop me a message in Twitter <a href="https://twitter.com/salaboy">@Salaboy</a> </p>
       </section>
     </div>
   </motion.div>
