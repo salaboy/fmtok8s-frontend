@@ -23,6 +23,18 @@ body, html {
 
 section {
   padding: spacing(2,16) spacing(2,20);
+  &.section.border {
+    border-top: 2px solid color(black);
+  }
+  &.section.white {
+    background-color: color(white, light);
+  }
+  &.section.small {
+    padding: spacing(2,8) spacing(2,20);
+  }
+  &.section.nopadding {
+    padding: 0 ;
+  }
 
 }
 .page {

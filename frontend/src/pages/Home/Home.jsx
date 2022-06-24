@@ -58,39 +58,41 @@ function Home() {
 
       <Hero country="United Kingdom"/>
 
-      <section>
+      <section className="section ">
         <Element>
           <h4>Agenda Highlights</h4>
           <Agenda highlights/>
-          <Button link="/agenda">Check the full Conference Agenda here.</Button>
+          <Button link="/agenda-page">Check the full Conference Agenda here.</Button>
         </Element>
       </section>
 
 
-      <section>
+      <section className="section border">
         <Element>
           <h4>Speakers</h4>
           <Speakers/>
-          <Button link="/speakers">View all speakers</Button>
+
         </Element>
       </section>
-      <section>
+      <section className="section white small">
         <Element>
           <h4>Call for Proposals</h4>
-          <p className="p p-b">Are you interested in presenting in this year edition, submit your proposals here. </p>
+          <h2>Are you interested in presenting in this year edition, submit your proposals here. </h2>
           <br/>
           <Element delay=".2">
-            <Button main link="/proposals">Submit a Proposal</Button>
+            <Button main link="/proposals-page">Submit a Proposal</Button>
           </Element>
         </Element>
       </section>
-      <section>
+      <section className="section  small">
         <Element>
           <h4>Our Sponsors</h4>
           <Sponsors />
         </Element>
       </section>
-      <Footer/>
+      <section className="section border nopadding">
+        <Footer/>
+      </section>
 
     </div>
   </motion.div>

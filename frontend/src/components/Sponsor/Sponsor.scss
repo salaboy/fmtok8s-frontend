@@ -1,16 +1,16 @@
 @import '../../styles/_foundations.scss';
 .Sponsor {
   display: inline-block;
-  margin: 0 0 spacing(2,10) 0;
+  margin: 0 0 spacing(2,2) 0;
   width: 100%;
   .Sponsor__image {
-    width: spacing(2,20);
-    height: spacing(2,20);
+    width: spacing(2,15);
+    height: spacing(2,15);
     border-radius: spacing(2,10);
     font-size: 0;
     img {
-      width: spacing(2,20);
-      height: spacing(2,20);
+      width: spacing(2,15);
+      height: spacing(2,15);
       object-fit: cover;
     }
   }

@@ -2,7 +2,7 @@
 .Hero {
   background-color: color(yellow);
   padding-top: spacing(2,30);
-  min-height: 100vh;
+  min-height: 90vh;
 
 
   section {
@@ -10,15 +10,15 @@
     .Hero__title {
       display: inline-block;
       width: 100%;
-      height: 50vh;
-      min-height: spacing(2, 60);
+      height: 25vh;
+      min-height: spacing(2, 40);
       position: relative;
       .Hero__title__container {
         font-size: heading-font-size(mainH1);
         font-family: font-family(display);
         line-height: heading-line-height(mainH1);
         position: absolute;
-        bottom: spacing(2,10);
+        bottom: spacing(2,8);
         span {
           font-family: font-family(mono);
           font-style: italic;
@@ -36,7 +36,7 @@
       display: flex;
       border-top: 2px solid color(black);
       .Hero__info {
-        min-width: spacing(2, 66);
+        min-width: spacing(2, 60);
 
 
         ul {
