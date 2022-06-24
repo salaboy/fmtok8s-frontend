@@ -13,13 +13,15 @@ function Agenda(props) {
         "title": "Cached Entry",
         "author": "Cached Author",
         "time": "1pm",
-        "day": "Monday"
+        "day": "Monday",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id officia doloribus, molestiae, mollitia quia maiores velit consequuntur dolorem labore beatae, porro aliquam quis! Quasi commodi aperiam, assumenda rem molestiae porro."
     }]
     const mockAgendaItemsTuesday = [{
         "title": "Cached Entry",
         "author": "Cached Author",
         "time": "1pm",
-        "day": "Tuesday"
+        "day": "Tuesday",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id officia doloribus, molestiae, mollitia quia maiores velit consequuntur dolorem labore beatae, porro aliquam quis! Quasi commodi aperiam, assumenda rem molestiae porro."
     }]
 
 
@@ -63,6 +65,7 @@ function Agenda(props) {
                         time={item.time}
                         key={index}
                         position={index}
+                        description={item.description}
                         author={item.author}
                         authorImage={item.authorImage}
 

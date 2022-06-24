@@ -5,8 +5,19 @@ import AppContext from '../../contexts/AppContext';
 import Element from '../../components/Element/Element'
 import cn from 'classnames';
 
-function AgendaItem({name, day, time, author, authorImage, position}) {
+function AgendaItem({name, day, time, author, authorImage, position, description}) {
     const {  currentSection } = useContext(AppContext);
+    const [open, setOpen] = useState(false) // state hook
+
+    const handleOpen = () => {
+      if(open){
+        setOpen(false);
+      }else {
+        setOpen(true);
+      }
+
+
+    }
 
     return (
       <Element   >
@@ -21,7 +32,9 @@ function AgendaItem({name, day, time, author, authorImage, position}) {
           ["--light-blue"]: day==="Saturday",
           ["--violet"]: day==="Sunday",
 
-        })}>
+        })}
+          onClick={() => handleOpen()}
+        >
         <div className="AgendaItem__date">
           <div className="AgendaItem__day">
             {day}
@@ -33,8 +46,13 @@ function AgendaItem({name, day, time, author, authorImage, position}) {
         <div className="AgendaItem__data">
           <h3>{name}</h3>
           <p className="p p-s"> {author}</p>
-
+          {open && (
+            <div className="AgendaItem__description">
+              <p>{description} asd</p>
+            </div>
+          )}
         </div>
+
         {authorImage && (
           <div className="AgendaItem__image">
             <div className="AgendaItem__avatar">

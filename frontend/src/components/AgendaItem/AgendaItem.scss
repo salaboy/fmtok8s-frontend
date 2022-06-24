@@ -5,6 +5,14 @@
   border-top: 0;
   padding: spacing(6);
   display: flex;
+  cursor: pointer;
+  &:hover {
+      .AgendaItem__data {
+         h3 {
+           color: color(red);
+         }
+      }
+  }
   &.--first{
     border-top: 2px solid color(black);
   }
