@@ -26,6 +26,7 @@
     position: absolute;
     top: spacing(6,2);
     right: spacing(6,2);
+    text-align: right;
   }
   .ProposalItem__status-info {
     position: absolute;
@@ -65,8 +66,10 @@
   }
   &.--pending {
     .ProposalItem__header {
+      max-width: 75%;
+      padding-bottom: 80px;
       .ProposalItem__status {
-        color: mix(color(black), color(yellow), 20%)
+        color: mix(color(black), color(yellow), 20%);
       }
     }
   }
