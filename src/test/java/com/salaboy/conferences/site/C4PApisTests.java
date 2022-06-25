@@ -25,7 +25,7 @@ public class C4PApisTests {
 //    @StubRunnerPort("fmtok8s-c4p")
 //    int c4pServicePort;
 
-    public JacksonTester<Proposal> json;
+//    public JacksonTester<Proposal> json;
 
 //    @Before
 //    public void setupPort() {
