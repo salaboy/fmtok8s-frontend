@@ -5,21 +5,23 @@ import Element from '../../components/Element/Element'
 import cn from 'classnames';
 
 function Hero({country}) {
-    let alternateColorEnabled = window._env_.FEATURE_ALTERNATIVE_COLOR_ENABLED
+    let alternativeHeroEnabled = window._env_.FEATURE_ALTERNATIVE_HERO_ENABLED
 
     return (
       <div className={  cn({
-          ["Hero"]: alternateColorEnabled === 'false',
-          ["HeroAlternative"]: alternateColorEnabled === 'true'
+          ["Hero"]: alternativeHeroEnabled === 'false',
+          ["HeroAlternative"]: alternativeHeroEnabled === 'true'
         })}>
         <section>
         <div className="Hero__title">
 
             <div className="Hero__title__container" data-scroll data-scroll-speed="1">
               <Element inline>Cloud <br/>Conference <span>2025</span> </Element>
+                {alternativeHeroEnabled === 'true' && (
               <div className="Hero__title__country">
                 <Element inline delay=".3">{country} </Element>
               </div>
+                    )}
             </div>
 
         </div>
