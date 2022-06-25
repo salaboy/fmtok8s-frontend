@@ -14,12 +14,12 @@ function Footer() {
         })}>
         <div className="Footer__text">
           <Element>
-            Cloud Conf 2025™
+            Cloud Conf 2025
           </Element>
         </div>
         <div className="Footer__contact">
           <Element>
-            info@cloudconf.com
+            fake@cloudconf.com
           </Element>
         </div>
       </div>

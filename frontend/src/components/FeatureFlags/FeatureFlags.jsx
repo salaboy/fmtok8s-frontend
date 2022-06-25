@@ -18,7 +18,7 @@ function FeatureFlags() {
         })}>
             <div>
               <div className="FeatureFlag">
-                <Toggle status={true} /> Debug Enabled
+                <Toggle status={debugEnabled} /> Debug Enabled
               </div>
               <div className="FeatureFlag">
                 <Toggle status={c4pEnabled} /> Call For Proposals Enabled

@@ -48,7 +48,7 @@ function AgendaItem({name, day, time, author, authorImage, position, description
           <p className="p p-s"> {author}</p>
           {open && (
             <div className="AgendaItem__description">
-              <p>{description} asd</p>
+              <p>{description}</p>
             </div>
           )}
         </div>
