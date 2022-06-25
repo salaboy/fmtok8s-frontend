@@ -11,11 +11,29 @@ function Debug() {
     const [c4pInfo, setC4pInfo] = useState('') // state hook
     const [agendaInfo, setAgendaInfo] = useState('')
     const [notificationsInfo, setNotificationsInfo] = useState('')
+    const [frontendInfo, setFrontendInfo] = useState('')
 
 
 
     useEffect(() => {                           // side effect hook
+        axios({
+            "method": "GET",
+            "url": "/info",
+            "headers": {}, "params": {}
+        })
+            .then((response) => {
+                setFrontendInfo(response.data)
+            })
+            .catch((error) => {
+                setFrontendInfo({"name":"Frontend Service","version":"N/A",
+                    "url": "N/A",
+                    "podId": "N/A",
+                    "podNamepsace": "N/A",
+                    "podNodeName": "N/A",
+                    "status" : "down"})
 
+                console.log(error)
+            })
         axios({
             "method": "GET",
             "url": "/c4p/info", // This is going throw the proxy in package.json
@@ -75,7 +93,7 @@ function Debug() {
                 console.log(error)
             })
 
-    }, [setC4pInfo, setAgendaInfo, setNotificationsInfo])
+    }, [setC4pInfo, setAgendaInfo, setNotificationsInfo, setFrontendInfo])
 
 
     return (
@@ -87,6 +105,17 @@ function Debug() {
                 <div className="Debug__container__badge">
                     <span>Debug</span>
                 </div>
+                {frontendInfo && (
+                    <DebugItem
+                        name={frontendInfo.name}
+                        version={frontendInfo.version}
+                        source={frontendInfo.url}
+                        podId={frontendInfo.podId}
+                        podNameSpace={frontendInfo.podNamepsace}
+                        podNodeName={frontendInfo.podNodeName}
+                        status={frontendInfo.status}
+                    />
+                )}
                 {c4pInfo && (
                     <DebugItem
                         name={c4pInfo.name}

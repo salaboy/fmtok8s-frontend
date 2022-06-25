@@ -12,9 +12,9 @@ module.exports = {
     devServer: {
         historyApiFallback: true,
         proxy: {
-            '/': {
-                target: 'http://35.205.221.201/',
-            },
+            // '/': {
+            //     target: 'http://35.205.221.201/',
+            // },
             // '/default': {
             //     //k port-forward svc/broker-ingress -n knative-eventing 8081:80
             //     target: 'http://localhost:8081/default',
