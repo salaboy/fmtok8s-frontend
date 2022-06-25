@@ -25,6 +25,10 @@ public class WebEndpoints {
                         ServerResponse.ok().contentType(MediaType.TEXT_HTML).bodyValue(getIndexPage()))
                 .GET("/back-office-page", request ->
                         ServerResponse.ok().contentType(MediaType.TEXT_HTML).bodyValue(getIndexPage()))
+                .GET("/back-office-page/features", request ->
+                        ServerResponse.ok().contentType(MediaType.TEXT_HTML).bodyValue(getIndexPage()))
+                .GET("/back-office-page/proposals", request ->
+                        ServerResponse.ok().contentType(MediaType.TEXT_HTML).bodyValue(getIndexPage()))
                 .GET("/agenda-page", request ->
                         ServerResponse.ok().contentType(MediaType.TEXT_HTML).bodyValue(getIndexPage()))
                 .GET("/sponsors-page", request ->
