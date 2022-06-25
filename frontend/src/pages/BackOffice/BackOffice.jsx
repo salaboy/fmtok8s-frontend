@@ -69,7 +69,7 @@ function BackOffice() {
           })}
     >
       <Header/>
-      <SectionHero small title="Welcome Conference Organizers" />
+      <SectionHero border small title="Welcome Conference Organizers" />
       <section className="back-office__Layout">
 
         <div className="back-office__Layout__Nav">

@@ -30,9 +30,16 @@
   }
   &.--small {
     section {
-      padding: spacing(2,8) spacing(2,20);
+      padding: spacing(2,8) spacing(2,20) spacing(2,2);
       .SectionHero__title {
         min-height: 0;
+      }
+    }
+  }
+  &.--border {
+    section {
+      .SectionHero__title {
+      border-bottom: 2px solid color(white);
       }
     }
   }
