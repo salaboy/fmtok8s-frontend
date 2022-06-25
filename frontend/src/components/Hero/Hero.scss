@@ -4,7 +4,6 @@
   padding-top: spacing(2,30);
   min-height: 90vh;
 
-
   section {
 
     .Hero__title {
@@ -47,6 +46,67 @@
         }
 
       }
+      .Hero__desc {
+        width: 100%;
+        padding: spacing(2, 14);
+      }
+    }
+
+
+  }
+}
+.HeroAlternative {
+  background-color: color(orange);
+  padding-top: spacing(2, 30);
+  min-height: 90vh;
+
+  section {
+
+    .Hero__title {
+      display: inline-block;
+      width: 100%;
+      height: 25vh;
+      min-height: spacing(2, 40);
+      position: relative;
+
+      .Hero__title__container {
+        font-size: heading-font-size(mainH1);
+        font-family: font-family(display);
+        line-height: heading-line-height(mainH1);
+        position: absolute;
+        bottom: spacing(2, 8);
+
+        span {
+          font-family: font-family(mono);
+          font-style: italic;
+        }
+
+        .Hero__title__country {
+          font-size: font-size(b);
+          line-height: line-height(b);
+          font-family: font-family(display);
+          font-weight: 300;
+        }
+      }
+    }
+
+    .Hero__secondary {
+      display: flex;
+      border-top: 2px solid color(black);
+
+      .Hero__info {
+        min-width: spacing(2, 60);
+
+
+        ul {
+          list-style-type: none;
+          padding: spacing(2, 14) spacing(2, 14) spacing(2, 14) 0;
+          margin: 0;
+          border-right: 2px solid color(black);
+        }
+
+      }
+
       .Hero__desc {
         width: 100%;
         padding: spacing(2, 14);

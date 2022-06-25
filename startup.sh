@@ -12,6 +12,8 @@ echo "  FEATURE_TICKETS_ENABLED: \"$FEATURE_TICKETS_ENABLED\"," >> ./static/env-
 echo "  FEATURE_C4P_ENABLED: \"$FEATURE_C4P_ENABLED\"," >> ./static/env-config.js
 echo "  FEATURE_SPEAKERS_ENABLED: \"$FEATURE_SPEAKERS_ENABLED\"," >> ./static/env-config.js
 echo "  FEATURE_DEBUG_ENABLED: \"$FEATURE_DEBUG_ENABLED\"," >> ./static/env-config.js
+echo "  FEATURE_ALTERNATIVE_COLOR_ENABLED: \"$FEATURE_ALTERNATIVE_COLOR_ENABLED\"," >> ./static/env-config.js
+
 
 echo "}" >> ./static/env-config.js
 

@@ -5,9 +5,12 @@ import Element from '../../components/Element/Element'
 import cn from 'classnames';
 
 function Hero({country}) {
+    let alternateColorEnabled = window._env_.FEATURE_ALTERNATIVE_COLOR_ENABLED
+
     return (
       <div className={  cn({
-          ["Hero"]: true
+          ["Hero"]: alternateColorEnabled === 'false',
+          ["HeroAlternative"]: alternateColorEnabled === 'true'
         })}>
         <section>
         <div className="Hero__title">
