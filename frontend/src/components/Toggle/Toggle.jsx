@@ -8,9 +8,7 @@ function Toggle({status}) {
     return (
       <div className={  cn({
           ["Toggle"]: true,
-          ["--on"]: status === 'true',
-          ["--off"]: status === 'false',
-
+          ["--on"]: status === 'true'
         })}>
             <div className="Toggle-handle"> </div>
       </div>
