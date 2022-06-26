@@ -1,7 +1,5 @@
 # From Monolith to K8s :: Frontend Helm Chart
 
-# From Monolith to K8s :: Email Service Helm Chart
-
 To install this chart you need to run: 
 
 ```
