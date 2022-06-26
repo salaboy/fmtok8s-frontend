@@ -18,5 +18,5 @@ tests:
       service.name: "frontend"
     asserts:
       - notEqual:
-        path: spec.template.metadata.label.prometheus
+        path: spec.template.metadata.labels.prometheus
         value: "frontend" 
