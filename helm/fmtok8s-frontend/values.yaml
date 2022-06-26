@@ -22,7 +22,7 @@ knative:
     enabled: false
 
 prometheus:
-  enabled: true
+  enabled: false
 
 service:
   name: fmtok8s-frontend

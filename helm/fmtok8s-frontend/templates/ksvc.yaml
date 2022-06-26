@@ -9,11 +9,18 @@ metadata:
   {{- end }}
   labels:
     chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+    {{- if .Values.prometheus.enabled }}
+    prometheus: {{ .Values.service.name }}
+    {{- end }}
 spec:
   template:
     metadata:
       annotations:
         autoscaling.knative.dev/minScale: "1"
+      labels:
+        {{- if .Values.prometheus.enabled }}
+        prometheus: {{ .Values.service.name }}
+        {{- end }}
     spec:
       containers:
         - image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
