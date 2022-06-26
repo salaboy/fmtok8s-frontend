@@ -1,0 +1,16 @@
+suite: test prometheussvc
+templates:
+  - prometheussvc.yaml
+tests:
+  - it: should render if prometheus.enabled is true
+    set: 
+      prometheus.enabled: true
+    asserts:
+      - isKind:
+          of: ServiceMonitor
+  - it: should not render if prometheus.enabled is false
+    set:
+      prometheus.enabled: false
+    asserts:
+      - hasDocuments:
+          count: 0  
