@@ -1,4 +1,4 @@
-# fmtok8s-frontend
+# From Monolith to K8s :: Frontend Helm Chart
 
 ## Running helm tests
 
@@ -7,5 +7,5 @@ This project uses [helm unittest plugin](https://github.com/helm-unittest/helm-u
 After installing unittest plugin, run the following command (on root folder):
 
 ```sh
-    helm unittest /helm/fmtok8s-frontend --helm3
+    helm unittest helm/fmtok8s-frontend --helm3
 ```
