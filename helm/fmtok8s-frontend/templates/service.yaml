@@ -11,6 +11,7 @@ metadata:
   labels:
     chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
     draft: {{ default "draft-app" .Values.draft }}
+    prometheus: {{ .Values.service.name }}
 {{- if .Values.service.annotations }}
   annotations:
 {{ toYaml .Values.service.annotations | indent 4 }}

@@ -21,6 +21,9 @@ knative:
   eventing:
     enabled: false
 
+prometheus:
+  enabled: false
+
 service:
   name: fmtok8s-frontend
   type: ClusterIP
