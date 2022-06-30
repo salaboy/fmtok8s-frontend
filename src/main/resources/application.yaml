@@ -102,7 +102,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: health, gateway, info, prometheus, metrics, threaddump
+        include: "*"
   endpoint:
     loggers:
       enabled: true
