@@ -26,7 +26,7 @@ function Debug() {
             })
             .catch((error) => {
                 setFrontendInfo({"name":"Frontend Service","version":"N/A",
-                    "url": "N/A",
+                    "url": "https://github.com/salaboy/fmtok8s-frontend/",
                     "podId": "N/A",
                     "podNamepsace": "N/A",
                     "podNodeName": "N/A",
@@ -43,7 +43,7 @@ function Debug() {
                 setC4pInfo(response.data)
             })
             .catch((error) => {
-                setC4pInfo({"name":"C4P Service","version":"N/A",
+                setC4pInfo({"name":"C4P Service","version":"https://github.com/salaboy/fmtok8s-c4p-service/",
                     "url": "N/A",
                     "podId": "N/A",
                     "podNamepsace": "N/A",
@@ -64,7 +64,7 @@ function Debug() {
                 setAgendaInfo(
                     {"name":"Agenda Service",
                         "version":"N/A",
-                        "url": "N/A",
+                        "url": "https://github.com/salaboy/fmtok8s-agenda-service/",
                         "podId": "N/A",
                         "podNamepsace": "N/A",
                         "podNodeName": "N/A",
@@ -84,7 +84,7 @@ function Debug() {
             .catch((error) => {
                 setNotificationsInfo({"name":"Email Service",
                     "version":"N/A",
-                    "url": "N/A",
+                    "url": "https://github.com/salaboy/fmtok8s-email-service/",
                     "podId": "N/A",
                     "podNamepsace": "N/A",
                     "podNodeName": "N/A",
