@@ -130,4 +130,24 @@
      }
    }
 
+   @media only screen and (max-width: breakpoint(mobileHD)) {
+     display: block;
+     width: 100%;
+     text-align: center;
+     .__container, a{
+       text-align: center;
+       font-size: font-size(s);
+       display: block;
+       width: 100%;
+       padding: 0 spacing(2,2);
+       span {
+       white-space: nowrap;
+       text-overflow: ellipsis;
+       overflow: hidden;
+       max-width: 100%;
+       display: block;
+       }
+     }
+   }
+
 }

@@ -12,6 +12,12 @@
     .Speaker__image {
       top: spacing(2,4);right: spacing(2,4);
     }
+    @media only screen and (max-width: breakpoint(mobileHD)) {
+      padding: spacing(2,3);
+      .Speaker__image {
+        top: spacing(2);right: spacing(2);
+      }
+    }
   }
   .Speaker__image {
     position: absolute;
@@ -89,6 +95,18 @@
       color: color(red);
     }
   }
+  @media only screen and (max-width: breakpoint(mobileHD)) {
+    padding: spacing(2,3);
+    .Speaker__title {
+      padding-top: spacing(2, 4);
+      padding-bottom: spacing(2, 2);
+    }
+    .Speaker__image {
+      top: spacing(2);right: spacing(2);
+      border-radius:  0 spacing(2,5) 0 0 ;
+    }
+  }
+
 }
 .Speaker-container {
   margin: 0 0 spacing(2,5) 0;
@@ -112,6 +130,24 @@
         height: spacing(2,15);
         border-width: 2px;
 
+      }
+    }
+    @media only screen and (max-width: breakpoint(mobileHD)) {
+      .Speaker__avatar{
+        width: spacing(2,10);
+        height: spacing(2,10);
+        img {
+          width: spacing(2,10) - 4px;
+          height: spacing(2,10) - 4px;
+          transition-delay: .9;
+          opacity: 1;
+        }
+        &:before, &:after {
+          width: spacing(2,10);
+          height: spacing(2,10);
+          border-width: 2px;
+
+        }
       }
     }
   }

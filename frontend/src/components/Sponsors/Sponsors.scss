@@ -3,8 +3,9 @@
 
   columns: 12 90px;
   column-gap: spacing(2,5);
+  display: flex;
   @media only screen and (max-width: breakpoint(mobileHD)) {
-    display: block;
-    columns: 1;
+    columns: 4 44px;
+    column-gap: spacing(2,3);
   }
 }
