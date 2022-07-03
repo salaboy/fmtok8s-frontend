@@ -36,11 +36,9 @@ h1,
 
   //Mobile
   @media only screen and (max-width: breakpoint(tabletSD)) {
-    font-size: heading-font-size(h2);
-    line-height: heading-line-height(h2);
-    margin: heading-line-height(h2) 0 heading-line-height(h2) / 2;
-    letter-spacing: -0.01em;
-    max-width: 780px;
+    font-size: heading-font-size(mh1);
+    line-height: heading-line-height(mh1);
+    margin: heading-line-height(mh1) 0 heading-line-height(mh1) / 2;
   }
 }
 

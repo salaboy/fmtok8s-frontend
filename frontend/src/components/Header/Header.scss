@@ -18,4 +18,20 @@
   & + section {
     padding-top: spacing(2,30);
   }
+
+  @media only screen and (max-width: breakpoint(mobileHD)) {
+    padding: spacing(2,4) spacing(2,4);
+    .Header__logo {
+      img {
+        width: spacing(2, 8);
+      }
+    }
+    &.--home {
+      .Header__logo {
+        img {
+          width: spacing(2, 8);
+        }
+      }
+    }
+  }
 }

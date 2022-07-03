@@ -54,6 +54,43 @@
 
 
   }
+
+  @media only screen and (max-width: breakpoint(mobileHD)) {
+    padding-top: spacing(2,14);
+    position: relative;
+    section {
+      .Hero__title {
+        height: auto;
+        min-height: 0;
+        display: block;
+        position: relative;
+        padding-bottom: spacing(2,4);
+        .Hero__title__container {
+          position: relative;
+          bottom: auto;
+          font-size: heading-font-size(mh1);
+          line-height: heading-line-height(mh1);
+        }
+      }
+      .Hero__secondary {
+        display: block;
+        .Hero__info {
+          min-width: 0;
+
+          ul {
+
+            padding: spacing(2, 4) spacing(2, 4) spacing(2, 4) 0;
+            margin: 0;
+            border-right: 0;
+          }
+        }
+        .Hero__desc {
+          width: 100%;
+          padding: 0 0 spacing(2,6);
+        }
+      }
+    }
+  }
 }
 .HeroAlternative {
   background-color: color(orange);
