@@ -1,6 +1,11 @@
 @import '../../styles/_foundations.scss';
 .Speakers {
-
+  display: flex;
+  flex-direction: column;
   columns: 2 300px;
   column-gap: spacing(2,5);
+  @media only screen and (max-width: breakpoint(mobileHD)) {
+    columns: 1;
+    column-gap: spacing(2);
+  }
 }

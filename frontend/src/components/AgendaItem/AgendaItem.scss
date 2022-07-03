@@ -87,6 +87,33 @@
     }
 
   }
+
+  @media only screen and (max-width: breakpoint(mobileHD)) {
+    padding: spacing(2,3);
+    flex-direction: column;
+    .AgendaItem__date {
+      .AgendaItem__day{
+        padding: 0 spacing(3);
+        background-color: color(black);
+        color: color(white);
+        height: spacing(2,6);
+        line-height: spacing(2,6);
+        border-radius: spacing(2,3);
+        font-size: font-size(s);
+      }
+      .AgendaItem__time{
+        padding: 0 spacing(3);
+        height: spacing(2,6);
+        line-height: spacing(2,6);
+        border-radius: spacing(2,3);
+        font-size: font-size(s);
+        padding-left: spacing(2, 10);
+      }
+    }
+    .AgendaItem__data {
+      padding: 0;
+    }
+  }
 }
 
 .--visible > .AgendaItem {

@@ -1,4 +1,7 @@
 @import '../../styles/_foundations.scss';
 .Agenda {
   padding-bottom: spacing(2,10);
+  @media only screen and (max-width: breakpoint(mobileHD)) {
+    padding-bottom: spacing(2,4);
+  }
 }
