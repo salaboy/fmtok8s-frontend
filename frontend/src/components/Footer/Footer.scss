@@ -2,7 +2,7 @@
 .Footer {
   display: flex;
   padding: spacing(2, 5) 0;
-  
+
   margin: 0 spacing(2,20);
   .Footer__text {
     width: 100%;
@@ -13,5 +13,13 @@
   &.--backoffice {
     color: color(white);
     border-top: 2px solid color(white);
+  }
+  @media only screen and (max-width: breakpoint(mobileHD)) {
+      margin: 0 spacing(2,4);
+      display: block;
+      .Footer__contact {
+        text-align: left;
+      }
+      font-size: font-size(s);
   }
 }

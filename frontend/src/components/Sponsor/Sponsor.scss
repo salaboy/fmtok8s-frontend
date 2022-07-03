@@ -13,6 +13,23 @@
       height: spacing(2,15);
       object-fit: cover;
     }
+
+  }
+  @media only screen and (max-width: breakpoint(mobileHD)) {
+    width: auto;
+    text-align: center;
+    .Sponsor__image {
+      width: spacing(2,10);
+      height: spacing(2,10);
+      border-radius: spacing(2,4);
+      padding-top: spacing(2);
+      img {
+        width: spacing(2,8);
+        height: spacing(2,8);
+        object-fit: cover;
+        vertical-align: bottom;
+      }
+    }
   }
 }
 .Sponsor-container {
