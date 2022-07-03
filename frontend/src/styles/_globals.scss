@@ -19,6 +19,7 @@ body, html {
   &.dark {
     background-color: color(black);
   }
+
 }
 
 section {
@@ -43,7 +44,7 @@ section {
     padding: spacing(2,8) spacing(2,10);
   }
   @media only screen and (max-width: breakpoint(mobileHD)) {
-    padding: spacing(2,2) spacing(2,4);  
+    padding: spacing(2,2) spacing(2,4);
   }
 }
 .page {
@@ -95,6 +96,10 @@ section {
     }
 
 
+  }
+  @media only screen and (max-width: breakpoint(mobileHD)) {
+    width: 100vw;
+    overflow-x: hidden;
   }
 
 
