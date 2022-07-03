@@ -91,7 +91,7 @@ function About() {
             />
             <Speaker
               name={"Ezequiel Salatino"}
-              position={<a target="_blank" href="https://salatino.me">Webstite: salatino.me</a>}
+              position={<a target="_blank" href="https://salatino.me">Website: salatino.me</a>}
               authorImage={EzeImage}
               externalImage={true}
               small

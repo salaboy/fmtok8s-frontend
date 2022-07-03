@@ -39,6 +39,12 @@ section {
     padding: 0 ;
   }
 
+  @media only screen and (max-width: breakpoint(tabletHD)) {
+    padding: spacing(2,8) spacing(2,10);
+  }
+  @media only screen and (max-width: breakpoint(mobileHD)) {
+    padding: spacing(2,2) spacing(2,4);  
+  }
 }
 .page {
   transition: transition();
