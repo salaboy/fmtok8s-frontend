@@ -10,4 +10,19 @@
       padding-top: spacing(2, 10);
     }
   }
+  //Mobile
+  @media only screen and (max-width: breakpoint(tabletSD)) {
+    .proposals__body {
+      display: flex;
+      flex-direction: column-reverse;
+      .proposals__form {
+        min-width: 100%;
+        margin-right: 0;
+      }
+      .proposals__info {
+        padding-top: 0;
+        padding-bottom: spacing(2, 6);
+      }
+    }
+  }
 }
