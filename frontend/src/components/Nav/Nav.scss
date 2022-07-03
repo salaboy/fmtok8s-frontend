@@ -54,6 +54,7 @@
       height: spacing(2,10);
       border-radius: spacing(2,5) 0 0 spacing(2,5);
       transition: transition();
+
     }
 
   }
@@ -98,7 +99,7 @@
       }
       .Nav__back-office{
         display: inline-block;
-        padding: 0 spacing(4) 0 spacing(2);
+        padding: 0 spacing(4) 0 spacing(4);
         height: spacing(2,7);
         border-radius: spacing(2,5) 0 0 spacing(2,5);
 

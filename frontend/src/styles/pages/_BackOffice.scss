@@ -19,4 +19,31 @@
       min-width: 600px;
     }
   }
+  @media only screen and (max-width: breakpoint(mobileHD)) {
+      .back-office__Layout {
+        flex-direction: column;
+        padding: 0 spacing(2,4);
+        min-height: auto;
+        .back-office__Layout__Nav {
+          width: 100%;
+          padding: 0;
+
+          color: color(black);
+
+          margin-bottom: spacing(2,10);
+          padding-bottom: spacing(2,4);
+          border-bottom: 2px solid color(white);
+
+
+
+        }
+        .back-office__Layout__Content {
+          border-left: none;
+          padding-left: 0;
+          padding-bottom: spacing(2,6);
+          min-width: 100%;
+        }
+      }
+
+  }
 }

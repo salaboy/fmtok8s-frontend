@@ -86,7 +86,7 @@ function BackOffice() {
             }
           {(subSection === "features" || subSection === undefined) && (
               <>
-                <h4>Feature Flags</h4>
+                <h4>Feature Flags (read only)</h4>
                 <FeatureFlags></FeatureFlags>
               </>
           )}

@@ -12,4 +12,27 @@
   .--active, .--default {
     color: color(yellow);
   }
+  @media only screen and (max-width: breakpoint(mobileHD)) {
+    background-color: color(black, medium);
+    border-radius:  spacing(2,4);
+    .BackOfficeNav__link {
+      display: inline-block;
+      font-size: font-size(s);
+      a {
+        color: color(white);
+        text-decoration: none;
+        line-height: spacing(2,8);
+        padding: 0 spacing(2,4);
+        transition: transition();
+        display: inline-block;
+        border-radius: spacing(2,4);
+
+      }
+      .--active, .--default {
+        color: color(black);
+        background-color: color(yellow);
+      }
+    }
+
+  }
 }

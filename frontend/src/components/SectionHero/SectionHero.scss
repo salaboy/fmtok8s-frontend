@@ -39,7 +39,26 @@
   &.--border {
     section {
       .SectionHero__title {
-      border-bottom: 2px solid color(white);
+        border-bottom: 2px solid color(white);
+      }
+    }
+  }
+  @media only screen and (max-width: breakpoint(mobileHD)) {
+    padding-top: spacing(2,15);
+    &.--small {
+      section {
+        padding: spacing(2,6) spacing(2,4) spacing(2,4);
+        .SectionHero__title {
+          min-height: 0;
+          padding-bottom: spacing(2);
+        }
+      }
+    }
+    &.--border {
+      section {
+        .SectionHero__title {
+          border-bottom: 0;
+        }
       }
     }
   }

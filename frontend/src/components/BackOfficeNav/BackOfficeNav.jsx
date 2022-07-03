@@ -18,7 +18,7 @@ function BackOfficeNav({currentSubSection}) {
             ["--backoffice"]: currentSection === "back-office",
         })}>
             <div className="BackOfficeNav__container">
-                <div>
+                <div className="BackOfficeNav__link">
                     <NavLink
                         className={cn({
                             ["--default"]: !currentSubSection,
@@ -27,13 +27,13 @@ function BackOfficeNav({currentSubSection}) {
                     </NavLink>
                 </div>
                 {c4pEnabled === 'true' && (
-                        <div>
+                        <div className="BackOfficeNav__link">
                             <NavLink activeClassName='--active' to='/back-office-page/proposals' exact> Proposals
                             </NavLink>
                         </div>
                 )}
                 {ticketsEnabled === 'true' && (
-                    <div>
+                    <div className="BackOfficeNav__link">
                         <NavLink activeClassName='--active' to='/back-office-page/tickets' exact> Tickets Queue</NavLink>
                     </div>
                 )}
