@@ -2,6 +2,7 @@ import "./Nav.scss";
 import React, {useEffect, useState, useContext, useRef} from "react";
 import {NavLink} from 'react-router-dom'
 import AppContext from '../../contexts/AppContext';
+import HomeIcon from '../../images/home-icon.svg';
 import cn from 'classnames';
 
 function Nav() {
@@ -21,7 +22,11 @@ function Nav() {
             <div className="Nav__container">
                 {currentSection !== "back-office" && (
                     <div className="Nav__main">
-
+                    <span className="Nav__HomeLink">
+                      <NavLink activeClassName='--active' to='/' exact>
+                        <img src={HomeIcon} alt=""/>
+                      </NavLink>
+                    </span>
               <span>
                 <NavLink activeClassName='--active' to='/agenda-page' exact> Agenda</NavLink>
               </span>
