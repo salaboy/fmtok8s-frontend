@@ -1,6 +1,6 @@
 # From Monolith to K8s :: API Gateway / FrontEnd
 
-User facing component as it contains an API Gateway and the User Interface of the Conference Platform. 
+User facing component as it contains an API Gateway and the User Interface of the Conference Platform.
 
 ## Build and Release
 
@@ -20,6 +20,16 @@ helm package .
 
 Copy tar to http://github.com/salaboy/helm and push
 
+### Using [Dagger](https://dagger.io)
+
+```
+go run dagger.go publish-image salaboy/fmtok8s-frontend:0.1.0
+```
+
+```
+go run dagger.go helm-package
+```
+
 ## Running the front end only
 
 Install all deps with yarn, from inside the `frontend` directory:
@@ -28,7 +38,7 @@ Install all deps with yarn, from inside the `frontend` directory:
 yarn install
 ```
 
-Start the application: 
+Start the application:
 
 ```
 yarn start

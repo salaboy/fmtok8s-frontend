@@ -1,0 +1,69 @@
+name: From Monolith to K8s using Dagger (Github Actions)
+on: [ workflow_dispatch ]
+
+env:
+  OWNER: salaboy
+  GH_PAGES_BRANCH_NAME: gh-pages
+
+permissions:
+  packages: write
+
+jobs:
+  setup:
+    runs-on: ubuntu-20.04
+    steps:
+      ## Setup
+      - name: Info
+        run: echo "Building ${{ github.repository }} application, branch/tag ${{ github.ref_name}}"
+      - name: From Monolith to K8S CI
+        id: fmtok8s_ci
+        uses: salaboy/fmtok8s-ci@main
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          default_branch: main
+      - name: Set up Docker Meta
+        id: docker_meta
+        uses: docker/metadata-action@v3
+        with:
+          images: |
+            ghcr.io/${{ github.repository }}
+          tags: |
+            type=ref,event=branch
+            type=ref,event=pr,
+            type=semver,pattern={{raw}}
+      - name: Docker Meta Output
+        run: echo "Docker meta tags ${{ steps.docker_meta.outputs.tags }}"
+
+      ## Build and push image
+      - name: Checkout
+        uses: actions/checkout@v3
+      - uses: actions/setup-go@v3
+        with:
+          go-version: 1.19
+      - name: Build application
+        run: go run dagger.go build
+
+      - name: Set up QEMU
+        if: ${{ steps.fmtok8s_ci.outputs.execute_docker_publish == 'true' }}
+        uses: docker/setup-qemu-action@v1
+      - name: Login to Github Container Registry
+        uses: docker/login-action@v1
+        if: ${{ steps.fmtok8s_ci.outputs.execute_docker_publish == 'true' }}
+        with:
+          registry: ghcr.io
+          username: ${{ env.OWNER }}
+          password: ${{ secrets.PACKAGE_TOKEN }}
+      - name: Publish OCI image
+        if: ${{ steps.fmtok8s_ci.outputs.execute_docker_publish == 'true' }}
+        run: go run dagger.go publish-image ghcr.io/${{ github.repository }}:${{ steps.fmtok8s_ci.outputs.version_to_use }}
+
+      ## Release helm chart
+      - name: Change Chart.yml
+        if: ${{ steps.fmtok8s_ci.outputs.execute_helm_publish == 'true' }}
+        run: go run dagger.go update-yaml '(.version="'${{ steps.fmtok8s_ci.outputs.version_to_use }}'")' ./helm/fmtok8s-frontend/Chart.yaml
+      - name: Change values.yml
+        if: ${{ steps.fmtok8s_ci.outputs.execute_helm_publish == 'true' }}
+        run: go run dagger.go update-yaml '(.image.tag="'${{ steps.fmtok8s_ci.outputs.version_to_use }}'")' ./helm/fmtok8s-frontend/values.yaml
+      - name: Release helm chart
+        if: ${{ steps.fmtok8s_ci.outputs.execute_helm_publish == 'true' }}
+        run: go run dagger.go publish-chart ${{ secrets.PACKAGE_TOKEN }} helm ${{ env.OWNER }} helm ${{ env. GH_PAGES_BRANCH_NAME }}
