@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"dagger.io/dagger"
+	"github.com/marcosnils/dagger-libs/java"
 )
 
 func main() {
@@ -127,24 +128,9 @@ func buildImage(ctx context.Context, nameTag string) error {
 func buildContainer(ctx context.Context) *dagger.Container {
 	c := getDaggerClient(ctx)
 
-	hostDir := c.Host().Directory(".", dagger.HostDirectoryOpts{
-		// exclude target to avoid cache invalidation
-		Exclude: []string{"target"},
-	})
+	javaContainer := java.WithMaven(c)
 
-	// TODO this cache won't work in CI's were the docker
-	// engine is ephemeral (i.e GHA). We should do optimizations
-	// for those cases
-	mvnCache := c.CacheVolume("mvn-cache")
-
-	return c.Container().From("maven:3.8.6-eclipse-temurin-17").
-		WithExec([]string{"apt", "update"}).
-		// TODO what can we do to speed this up in a CI so we don't
-		// have to pull the dependencies each time?
-		WithMountedCache("/root/.m2", mvnCache).
-		WithMountedDirectory("/app", hostDir).
-		WithWorkdir("/app").
-		WithExec([]string{"mvn", "package"})
+	return javaContainer.WithExec([]string{"mvn", "package"})
 }
 
 func getDaggerClient(ctx context.Context) *dagger.Client {
