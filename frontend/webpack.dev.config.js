@@ -10,11 +10,11 @@ module.exports = {
         extensions: ['.js', '.jsx'],
     },
     devServer: {
-        historyApiFallback: true,
+        //historyApiFallback: true,
         proxy: {
-            // '/': {
-            //     target: 'http://35.205.221.201/',
-            // },
+            '/': {
+                target: 'http://fmtok8s-frontend.default.35.204.218.48.sslip.io/',
+            },
             // '/default': {
             //     //k port-forward svc/broker-ingress -n knative-eventing 8081:80
             //     target: 'http://localhost:8081/default',

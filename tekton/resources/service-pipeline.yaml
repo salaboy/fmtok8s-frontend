@@ -1,0 +1,112 @@
+apiVersion: tekton.dev/v1
+kind: Pipeline
+metadata:
+  name: frontend-pipeline
+  annotations:
+    description: |
+      Build the artifacts for the Conference Application Frontend
+spec:
+  params:
+    - name: gitRepository
+      description: The git repository that hosts the source code of the service
+      default: https://github.com/salaboy/fmtok8s-frontend
+    - name: gitRevision
+      description: The git revision to build
+      default: main
+    - name: context
+      description: The path to the docker context in the sources workspace
+      default: /
+    - name: dockerfile
+      description: The path to the dockerfile within the context
+      default: Dockerfile
+    - name: target-registry
+      description: The target container registry and path where to build the image
+      default: salaboy
+    - name: target-name
+      description: Name of the image to publish
+      default: fmtok8s-frontend
+    - name: target-version
+      description: the target version to build
+      default: 0.1.0-service-pipeline
+  workspaces:
+    - name: sources
+      description: Workspace where the git repo is prepared for building
+    - name: maven-settings
+      description: custom maven settings workspace
+    - name: dockerconfig
+      description: Docker config secret
+  tasks:
+    - name: clone-repo
+      taskRef:
+        name: git-clone
+      params:
+        - name: url
+          value: $(params.gitRepository)
+        - name: revision
+          value: main
+      workspaces:
+        - name: output
+          workspace: sources
+    - name: maven-build
+      runAfter: 
+      - clone-repo
+      params:
+        - name: GOALS
+          value: 
+          - package
+        - name: CONTEXT_DIR
+          value: ""
+      workspaces:
+        - name: maven-settings
+          workspace: maven-settings
+        - name: source
+          workspace: sources 
+      taskSpec:      
+        workspaces:
+        - name: source
+        - name: maven-settings   
+        steps:
+        - name: mvn-goals
+          image: gcr.io/cloud-builders/mvn
+          workingDir: $(workspaces.source.path)
+          command: ["/usr/bin/mvn"]
+          args:
+            - "package"
+        sidecars: 
+        # TODO add services and dbs for IT testing here
+        # - image: redis:6
+        #   name: redis
+    - name: image-build
+      runAfter: [maven-build]
+      taskRef:
+        name: kaniko
+      params:
+        - name: IMAGE
+          value: $(params.target-registry)/$(params.target-name):$(params.target-version)
+        - name: CONTEXT
+          value: ""
+        - name: DOCKERFILE
+          value: $(params.dockerfile)
+      workspaces:
+        - name: source
+          workspace: sources
+        - name: dockerconfig
+          workspace: dockerconfig
+    - name: helm-package
+      runAfter: [image-build]
+      workspaces:
+        - name: sources
+          workspace: sources
+      taskSpec:
+        workspaces:
+          - name: sources
+        steps:
+          - name: package
+            image: quay.io/roboll/helmfile:helm3-v0.135.0
+            script: |
+              #!/bin/sh
+              set -ex
+
+              cd $(workspaces.sources.path)/helm/fmtok8s-frontend
+
+              helm template .

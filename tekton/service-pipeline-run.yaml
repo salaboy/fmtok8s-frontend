@@ -1,0 +1,26 @@
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  name: service-pipeline-run-1
+spec:
+  params: 
+    target-registry: salaboy
+    target-name: fmtok8s-frontend
+    target-version: 0.1.0-from-pipeline-run
+  workspaces:
+    - name: sources
+      volumeClaimTemplate: 
+        spec:
+          accessModes:
+          - ReadWriteOnce
+          resources:
+            requests:
+              storage: 1Gi 
+    - name: dockerconfig
+      secret:  
+        secretName: regcred
+    - name: maven-settings
+      emptyDir: {}
+  pipelineRef:
+    name: frontend-service-pipeline
+  
