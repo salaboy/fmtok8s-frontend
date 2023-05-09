@@ -2,4 +2,4 @@ apiVersion: v2
 description: FMTOK8s Frontend Service Helm chart for Kubernetes
 icon: https://salaboy.files.wordpress.com/2019/07/avatar.png
 name: fmtok8s-frontend
-version: 0.1.0
+version: v0.1.2
